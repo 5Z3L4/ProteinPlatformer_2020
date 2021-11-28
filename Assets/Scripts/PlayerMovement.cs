@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D mainCollider;
     public BoxCollider2D slideCollider;
 
+    public bool isCharging = false;
+
     private void Awake()
     {
         PlayerStats.playerPosition = this.gameObject.transform;
@@ -49,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             Slide();
+        }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Charge();
         }
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
@@ -120,13 +126,19 @@ public class PlayerMovement : MonoBehaviour
         //{
         //    SoundManager.PlaySound(SoundManager.Sound.PlayerMove, groundCheck.transform.position);
         //}
+        //poruszanie
         rb.velocity = new Vector2(horizontal * PlayerStats.moveSpeed * Time.fixedDeltaTime, rb.velocity.y);
+
+        //je¿eli siê gibiemy
         if (isSliding)
         {
-            rb.velocity = new Vector2(slideDirection * PlayerStats.moveSpeed * Time.fixedDeltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(slideDirection * PlayerStats.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        }
+        if (isCharging)
+        {
+            rb.velocity = new Vector2(slideDirection * PlayerStats.chargeSpeed * Time.fixedDeltaTime, rb.velocity.y);
         }
         
-        //na razie nie robi nic dopóki nie dodam animatora
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
         {
             Flip();
@@ -141,24 +153,42 @@ public class PlayerMovement : MonoBehaviour
         isSliding = true;
         StartCoroutine("stopSlide");
     }
-
-    public void Flip()
-    {
-        //if (!SceneLoader.gamePaused)
-        //{
-        facingRight = !facingRight;
-        Vector3 scaler = transform.localScale;
-        scaler.x *= -1;
-        transform.localScale = scaler;
-        slideDirection *= -1;
-        //}
-    }
-
     IEnumerator stopSlide()
     {
         yield return new WaitForSeconds(0.8f);
         mainCollider.enabled = true;
         slideCollider.enabled = false;
         isSliding = false;
+    }
+
+    public void Charge()
+    {
+        isCharging = true;
+        StartCoroutine("stopCharge");
+    }
+  
+    IEnumerator stopCharge()
+    {
+        yield return new WaitForSeconds(0.4f);
+        isCharging = false;
+    }
+
+    public void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
+        slideDirection *= -1;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
+        {
+            //Play sound
+            //particles
+            Destroy(collision.gameObject);
+        }
     }
 }

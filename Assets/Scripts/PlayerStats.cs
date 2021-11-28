@@ -8,6 +8,8 @@ public static class PlayerStats
     static Transform spawnposition;
 
     public static float moveSpeed = 300;
+    public static float chargeSpeed = 700;
+    public static float slideSpeed = 450;
     public static float jumpForce = 5;
     public static Transform playerPosition;
     public static Vector3 spawnPosition;
