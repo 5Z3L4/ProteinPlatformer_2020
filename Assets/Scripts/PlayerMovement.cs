@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D slideCollider;
 
     public bool isCharging = false;
+    public bool isSmashing = false;
 
     private void Awake()
     {
@@ -55,6 +56,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             Charge();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Smash();
         }
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
@@ -173,6 +178,19 @@ public class PlayerMovement : MonoBehaviour
         isCharging = false;
     }
 
+    public void Smash()
+    {
+        //spadaj w dó³ a¿ nie trafisz na ziemie
+        playerRB.velocity += Vector2.up * Physics2D.gravity.y * (300) * Time.deltaTime;
+        isSmashing = true;
+    }
+
+    IEnumerator stopSmash()
+    {
+        yield return new WaitForSeconds(0.8f);
+        isSmashing = false;
+    }
+
     public void Flip()
     {
         facingRight = !facingRight;
@@ -190,5 +208,12 @@ public class PlayerMovement : MonoBehaviour
             //particles
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.tag == "Smashable" && isSmashing)
+        {
+            //Play sound
+            //particles
+            Destroy(collision.gameObject);
+        }
+
     }
 }
