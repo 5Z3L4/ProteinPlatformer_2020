@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public float slideSpeed = 500;
 
     public BoxCollider2D mainCollider;
-    public BoxCollider2D slideCollider;
+    public CircleCollider2D slideCollider;
 
     public bool isCharging = false;
     public bool isSmashing = false;
@@ -138,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
         if (isSliding)
         {
             rb.velocity = new Vector2(slideDirection * PlayerStats.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
+            transform.eulerAngles = Vector3.forward * 70 * slideDirection;
         }
         if (isCharging)
         {
@@ -161,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator stopSlide()
     {
         yield return new WaitForSeconds(0.8f);
+        transform.eulerAngles = Vector3.zero;
         mainCollider.enabled = true;
         slideCollider.enabled = false;
         isSliding = false;
