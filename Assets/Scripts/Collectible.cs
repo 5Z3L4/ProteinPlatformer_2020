@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
+    private Vector3 startPosition;
+    private float maxSpeed = 3f;
+
     //enum statystyk
     public enum StatsToUpgrade { 
         Strength,
@@ -14,6 +17,14 @@ public class Collectible : MonoBehaviour
     public StatsToUpgrade stats;
     public int scoreValue;
 
+    private void Start()
+    {
+        startPosition = transform.position;
+    }
+    private void Update()
+    {
+        transform.position = new Vector3(transform.position.x, startPosition.y + (Mathf.Sin(Time.time * maxSpeed))/4, transform.position.y);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -33,4 +44,8 @@ public class Collectible : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+ 
+
+    
 }

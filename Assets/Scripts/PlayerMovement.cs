@@ -183,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
         //spadaj w dó³ a¿ nie trafisz na ziemie
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (300) * Time.deltaTime;
         isSmashing = true;
+        StartCoroutine("stopSmash");
     }
 
     IEnumerator stopSmash()
