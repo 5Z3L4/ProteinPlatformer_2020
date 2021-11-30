@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isCharging = false;
     public bool isSmashing = false;
+    private bool shouldSmashParticle;
 
     private void Awake()
     {
@@ -60,13 +61,22 @@ public class PlayerMovement : MonoBehaviour
         {
             Charge();
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y !=0)
         {
             Smash();  
         }
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-
+        if (shouldSmashParticle)
+        {
+            if (isGrounded==true && playerRB.velocity.y == 0 && isSmashing)
+            {
+                PlayParticleSystem(smash);
+                shouldSmashParticle = false;
+                isSmashing = false;
+            }
+            
+        }
         PlayerStats.playerPosition = this.gameObject.transform;
         //if (!playerStats.isDead)
         //{
@@ -154,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     public void Slide()
     {
         PlayParticleSystem(slide);
@@ -187,18 +198,20 @@ public class PlayerMovement : MonoBehaviour
     public void Smash()
     {
         //TO DO: (smash w momencie uderzenia w ziemie)
-        //PlayParticleSystem(smash);
+        
         //spadaj w dó³ a¿ nie trafisz na ziemie
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (300) * Time.deltaTime;
         isSmashing = true;
-        StartCoroutine("stopSmash");
+        //StartCoroutine("stopSmash");
+        shouldSmashParticle = true;
+        
     }
 
-    IEnumerator stopSmash()
-    {
-        yield return new WaitForSeconds(0.8f);
-        isSmashing = false;
-    }
+    //IEnumerator stopSmash()
+    //{
+    //    yield return new WaitForSeconds(0.8f);
+        
+    //}
 
     public void Flip()
     {
