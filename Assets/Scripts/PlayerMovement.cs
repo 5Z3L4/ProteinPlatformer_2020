@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     //particle system
     public ParticleSystem slide;
     public ParticleSystem smash;
+    public ParticleSystem charge;
     //move variables
     private float horizontalAxis;
     public float moveSpeed;
@@ -174,6 +175,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Charge()
     {
+        PlayParticleSystem(charge);
         isCharging = true;
         StartCoroutine("stopCharge");
     }
