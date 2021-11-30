@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //particle system
+    public ParticleSystem slide;
+    public ParticleSystem smash;
     //move variables
     private float horizontalAxis;
     public float moveSpeed;
@@ -59,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Smash();
+            Smash();  
         }
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
@@ -152,6 +155,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Slide()
     {
+        PlayParticleSystem(slide);
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (80) * Time.deltaTime;
         mainCollider.enabled = false;
         slideCollider.enabled = true;
@@ -180,6 +184,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Smash()
     {
+        //TO DO: (smash w momencie uderzenia w ziemie)
+        //PlayParticleSystem(smash);
         //spadaj w dó³ a¿ nie trafisz na ziemie
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (300) * Time.deltaTime;
         isSmashing = true;
@@ -216,5 +222,9 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
+    }
+    private void PlayParticleSystem(ParticleSystem vfx)
+    {
+        vfx.Play();
     }
 }
