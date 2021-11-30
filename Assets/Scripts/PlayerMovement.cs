@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public ParticleSystem slideDust;
     //move variables
     private float horizontalAxis;
     public float moveSpeed;
@@ -153,7 +152,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Slide()
     {
-        CreateFootsteps();
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (80) * Time.deltaTime;
         mainCollider.enabled = false;
         slideCollider.enabled = true;
@@ -217,9 +215,5 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-    }
-    private void CreateFootsteps()
-    {
-        slideDust.Play();
     }
 }
