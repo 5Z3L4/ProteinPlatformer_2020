@@ -202,20 +202,8 @@ public class PlayerMovement : MonoBehaviour
     public void Smash()
     {
         //TO DO: (smash w momencie uderzenia w ziemie)
-        if (facingRight && playerRB.velocity.x !=0)
-        {
-            falling.transform.rotation = Quaternion.Euler(0, 0, 30);
+
             PlayParticleSystem(falling);
-        }
-        else if (!facingRight && playerRB.velocity.x != 0)
-        {
-            falling.transform.rotation =  Quaternion.Euler(0, 0, -30);
-            PlayParticleSystem(falling);
-        }  
-        else
-        {
-            PlayParticleSystem(falling);
-        }
         //spadaj w dó³ a¿ nie trafisz na ziemie
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (300) * Time.deltaTime;
         isSmashing = true;
