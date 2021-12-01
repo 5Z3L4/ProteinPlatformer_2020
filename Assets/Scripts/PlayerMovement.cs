@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //particle system
+    public ParticleSystem slide;
+    public ParticleSystem smash;
+    public ParticleSystem charge;
+    public ParticleSystem falling;
+    public ParticleSystem fakeFloorBlowUp;
+    public ParticleSystem fakeWallBlowUp;
     //move variables
     private float horizontalAxis;
     public float moveSpeed;
@@ -27,18 +34,19 @@ public class PlayerMovement : MonoBehaviour
     public float slideSpeed = 500;
 
     public BoxCollider2D mainCollider;
-    public BoxCollider2D slideCollider;
+    public CircleCollider2D slideCollider;
+
+    public bool isCharging = false;
+    public bool isSmashing = false;
+    private bool shouldSmashParticle;
 
     private void Awake()
     {
         PlayerStats.playerPosition = this.gameObject.transform;
     }
-    // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-        //anim = GetComponent<Animator>();
-        
     }
 
     // Update is called once per frame
@@ -50,14 +58,28 @@ public class PlayerMovement : MonoBehaviour
         {
             Slide();
         }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Charge();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y !=0)
+        {
+            Smash();  
+        }
+
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-
+        if (shouldSmashParticle)
+        {
+            if (isGrounded==true && playerRB.velocity.y == 0 && isSmashing)
+            {
+                shouldSmashParticle = false;
+                isSmashing = false;
+            }
+            
+        }
         PlayerStats.playerPosition = this.gameObject.transform;
-        //if (!playerStats.isDead)
-        //{
         Jump();
-        //}
     }
 
     private void FixedUpdate()
@@ -101,15 +123,6 @@ public class PlayerMovement : MonoBehaviour
         horizontalAxis = Input.GetAxisRaw("Horizontal");
         isJumping = Input.GetButtonDown("Jump");
         isJumpingLow = Input.GetButton("Jump");
-        //isSliding = Input.GetKeyDown(KeyCode.Z);
-        //if (horizontalAxis != 0)
-        //{
-        //    anim.SetBool("isRunning", true);
-        //}
-        //else
-        //{
-        //    anim.SetBool("isRunning", false);
-        //}
     }
 
     public void Move(float horizontal, Rigidbody2D rb, float speed)
@@ -120,45 +133,108 @@ public class PlayerMovement : MonoBehaviour
         //{
         //    SoundManager.PlaySound(SoundManager.Sound.PlayerMove, groundCheck.transform.position);
         //}
+        //poruszanie
         rb.velocity = new Vector2(horizontal * PlayerStats.moveSpeed * Time.fixedDeltaTime, rb.velocity.y);
+
+        //je¿eli siê gibiemy
         if (isSliding)
         {
-            rb.velocity = new Vector2(slideDirection * PlayerStats.moveSpeed * Time.fixedDeltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(slideDirection * PlayerStats.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
+            transform.eulerAngles = Vector3.forward * 70 * slideDirection;
+        }
+
+        if (isCharging)
+        {
+            rb.velocity = new Vector2(slideDirection * PlayerStats.chargeSpeed * Time.fixedDeltaTime, rb.velocity.y);
         }
         
-        //na razie nie robi nic dopóki nie dodam animatora
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
         {
             Flip();
         }
     }
 
+
     public void Slide()
     {
+        PlayParticleSystem(slide);
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (80) * Time.deltaTime;
         mainCollider.enabled = false;
         slideCollider.enabled = true;
         isSliding = true;
         StartCoroutine("stopSlide");
     }
+    IEnumerator stopSlide()
+    {
+        yield return new WaitForSeconds(0.8f);
+        transform.eulerAngles = Vector3.zero;
+        mainCollider.enabled = true;
+        slideCollider.enabled = false;
+        isSliding = false;
+    }
+
+    public void Charge()
+    {
+        PlayParticleSystem(charge);
+        isCharging = true;
+        StartCoroutine("stopCharge");
+    }
+  
+    IEnumerator stopCharge()
+    {
+        yield return new WaitForSeconds(0.4f);
+        isCharging = false;
+    }
+
+    public void Smash()
+    {
+        //TO DO: (smash w momencie uderzenia w ziemie)
+
+        PlayParticleSystem(falling);
+        //spadaj w dó³ a¿ nie trafisz na ziemie
+        
+        playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
+        isSmashing = true;
+        StartCoroutine("stopSmash");
+    }
+
+    IEnumerator stopSmash()
+    {
+        yield return new WaitForSeconds(0.1f);
+        playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerRB.velocity += Vector2.up * Physics2D.gravity.y * (250) * Time.deltaTime;
+        shouldSmashParticle = true;
+    }
 
     public void Flip()
     {
-        //if (!SceneLoader.gamePaused)
-        //{
         facingRight = !facingRight;
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
         slideDirection *= -1;
-        //}
     }
 
-    IEnumerator stopSlide()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        yield return new WaitForSeconds(0.8f);
-        mainCollider.enabled = true;
-        slideCollider.enabled = false;
-        isSliding = false;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
+        {
+            //Play sound
+            PlayParticleSystem(fakeWallBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Smashable" && isSmashing)
+        {
+            //Play sound
+            PlayParticleSystem(fakeFloorBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
+        }
+
+    }
+    private void PlayParticleSystem(ParticleSystem vfx)
+    {
+        vfx.Play();
     }
 }
