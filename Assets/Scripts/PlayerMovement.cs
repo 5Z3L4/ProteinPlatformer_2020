@@ -190,20 +190,21 @@ public class PlayerMovement : MonoBehaviour
     {
         //TO DO: (smash w momencie uderzenia w ziemie)
 
-            PlayParticleSystem(falling);
+        PlayParticleSystem(falling);
         //spadaj w dó³ a¿ nie trafisz na ziemie
-        playerRB.velocity += Vector2.up * Physics2D.gravity.y * (300) * Time.deltaTime;
-        isSmashing = true;
-        //StartCoroutine("stopSmash");
-        shouldSmashParticle = true;
         
+        playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
+        isSmashing = true;
+        StartCoroutine("stopSmash");
     }
 
-    //IEnumerator stopSmash()
-    //{
-    //    yield return new WaitForSeconds(0.8f);
-        
-    //}
+    IEnumerator stopSmash()
+    {
+        yield return new WaitForSeconds(0.1f);
+        playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerRB.velocity += Vector2.up * Physics2D.gravity.y * (250) * Time.deltaTime;
+        shouldSmashParticle = true;
+    }
 
     public void Flip()
     {
@@ -220,12 +221,14 @@ public class PlayerMovement : MonoBehaviour
         {
             //Play sound
             PlayParticleSystem(fakeWallBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Smashable" && isSmashing)
         {
             //Play sound
             PlayParticleSystem(fakeFloorBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
             Destroy(collision.gameObject);
         }
 
