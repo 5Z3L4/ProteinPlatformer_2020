@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuManagement : MonoBehaviour
 {
@@ -74,6 +75,19 @@ public class MenuManagement : MonoBehaviour
             controlsSettingsPanel.SetActive(true);
         }
         
+    }
+    [Space(10)]
+    //STORY MODE
+    public Button Level1;
+    public void LaodScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+    public void ChangeMode(GameObject panel)
+    {
+        DisablePanels();
+        menuPanel.SetActive(false);
+        endlessModePanel.SetActive(true);
     }
     //------------------------------------------------------------------------
     private void Update()
