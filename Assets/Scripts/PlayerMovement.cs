@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem slide;
     public ParticleSystem smash;
     public ParticleSystem charge;
+    public ParticleSystem falling;
+    public ParticleSystem fakeFloorBlowUp;
+    public ParticleSystem fakeWallBlowUp;
     //move variables
     private float horizontalAxis;
     public float moveSpeed;
@@ -72,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGrounded==true && playerRB.velocity.y == 0 && isSmashing)
             {
-                PlayParticleSystem(smash);
                 shouldSmashParticle = false;
                 isSmashing = false;
             }
@@ -200,7 +202,20 @@ public class PlayerMovement : MonoBehaviour
     public void Smash()
     {
         //TO DO: (smash w momencie uderzenia w ziemie)
-        
+        if (facingRight && playerRB.velocity.x !=0)
+        {
+            falling.transform.rotation = Quaternion.Euler(0, 0, 30);
+            PlayParticleSystem(falling);
+        }
+        else if (!facingRight && playerRB.velocity.x != 0)
+        {
+            falling.transform.rotation =  Quaternion.Euler(0, 0, -30);
+            PlayParticleSystem(falling);
+        }  
+        else
+        {
+            PlayParticleSystem(falling);
+        }
         //spadaj w dó³ a¿ nie trafisz na ziemie
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (300) * Time.deltaTime;
         isSmashing = true;
@@ -229,13 +244,13 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
         {
             //Play sound
-            //particles
+            PlayParticleSystem(fakeWallBlowUp);
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Smashable" && isSmashing)
         {
             //Play sound
-            //particles
+            PlayParticleSystem(fakeFloorBlowUp);
             Destroy(collision.gameObject);
         }
 
