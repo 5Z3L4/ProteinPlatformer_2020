@@ -44,12 +44,9 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerStats.playerPosition = this.gameObject.transform;
     }
-    // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-        //anim = GetComponent<Animator>();
-        
     }
 
     // Update is called once per frame
@@ -69,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Smash();  
         }
+
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         if (shouldSmashParticle)
@@ -81,10 +79,7 @@ public class PlayerMovement : MonoBehaviour
             
         }
         PlayerStats.playerPosition = this.gameObject.transform;
-        //if (!playerStats.isDead)
-        //{
         Jump();
-        //}
     }
 
     private void FixedUpdate()
@@ -128,15 +123,6 @@ public class PlayerMovement : MonoBehaviour
         horizontalAxis = Input.GetAxisRaw("Horizontal");
         isJumping = Input.GetButtonDown("Jump");
         isJumpingLow = Input.GetButton("Jump");
-        //isSliding = Input.GetKeyDown(KeyCode.Z);
-        //if (horizontalAxis != 0)
-        //{
-        //    anim.SetBool("isRunning", true);
-        //}
-        //else
-        //{
-        //    anim.SetBool("isRunning", false);
-        //}
     }
 
     public void Move(float horizontal, Rigidbody2D rb, float speed)
@@ -156,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(slideDirection * PlayerStats.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
             transform.eulerAngles = Vector3.forward * 70 * slideDirection;
         }
+
         if (isCharging)
         {
             rb.velocity = new Vector2(slideDirection * PlayerStats.chargeSpeed * Time.fixedDeltaTime, rb.velocity.y);
