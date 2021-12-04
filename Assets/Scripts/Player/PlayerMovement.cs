@@ -130,12 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float horizontal, Rigidbody2D rb, float speed)
     {
-        //Sound manager bêdzie statyczny
-        //if (!isJumping &&
-        //!isJumpingLow && horizontalAxis != 0 && !SceneLoader.gamePaused)
-        //{
-        //    SoundManager.PlaySound(SoundManager.Sound.PlayerMove, groundCheck.transform.position);
-        //}
+
         //poruszanie
         rb.velocity = new Vector2(horizontal * statistics.moveSpeed * Time.fixedDeltaTime, rb.velocity.y);
 
@@ -218,6 +213,18 @@ public class PlayerMovement : MonoBehaviour
         slideDirection *= -1;
     }
 
+    public void SpeedBoost()
+    {
+        statistics.moveSpeed *= 2.5f;
+        StartCoroutine("speedBoostTimer");
+    }
+
+    IEnumerator speedBoostTimer()
+    {
+        yield return new WaitForSeconds(5);
+        statistics.moveSpeed /= 2.5f;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
@@ -232,6 +239,11 @@ public class PlayerMovement : MonoBehaviour
             //Play sound
             PlayParticleSystem(fakeFloorBlowUp);
             ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "SpeedBoost")
+        {
+            SpeedBoost();
             Destroy(collision.gameObject);
         }
 
