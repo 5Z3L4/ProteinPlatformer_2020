@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1541717135675941891}
   - component: {fileID: 1541717135675941901}
-  - component: {fileID: 1541717135675941902}
-  - component: {fileID: 1541717135675941900}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -84,37 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &1541717135675941902
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541717135675941890}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.09780365, y: 0}
-  serializedVersion: 2
-  m_Radius: 4.5648923
---- !u!114 &1541717135675941900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541717135675941890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5353bccaea0e1794e8d122033ca7d1e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GM: {fileID: 0}
-  stats: 2
-  scoreValue: 2
 --- !u!1 &1541717137344807964
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +91,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1541717137344807965}
+  - component: {fileID: 4484876353970492981}
+  - component: {fileID: 4484876353970492980}
   m_Layer: 0
   m_Name: Protein 1
   m_TagString: Untagged
@@ -146,3 +115,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &4484876353970492981
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541717137344807964}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0058836937, y: -0.02607274}
+  serializedVersion: 2
+  m_Radius: 0.71999407
+--- !u!114 &4484876353970492980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541717137344807964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5353bccaea0e1794e8d122033ca7d1e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GM: {fileID: 0}
+  stats: 2
+  scoreValue: 2

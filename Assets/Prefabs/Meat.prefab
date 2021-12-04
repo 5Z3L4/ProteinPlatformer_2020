@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2955945915336974808}
   - component: {fileID: 2955945915336974806}
-  - component: {fileID: 2955945915336974805}
-  - component: {fileID: 2955945915336974807}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -84,37 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2955945915336974805
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2955945915336974809}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.09780351, y: 0.05500354}
-  serializedVersion: 2
-  m_Radius: 3.1898022
---- !u!114 &2955945915336974807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2955945915336974809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5353bccaea0e1794e8d122033ca7d1e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GM: {fileID: 0}
-  stats: 1
-  scoreValue: 2
 --- !u!1 &2955945916921823687
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +91,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2955945916921823686}
+  - component: {fileID: 1987964364095363491}
+  - component: {fileID: 4442306580812191040}
   m_Layer: 0
   m_Name: Meat
   m_TagString: Untagged
@@ -146,3 +115,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1987964364095363491
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2955945916921823687}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.013448715, y: -0.0068027973}
+  serializedVersion: 2
+  m_Radius: 0.8658886
+--- !u!114 &4442306580812191040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2955945916921823687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5353bccaea0e1794e8d122033ca7d1e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GM: {fileID: 0}
+  stats: 1
+  scoreValue: 2
