@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public PlayerStats statistics = new PlayerStats();
     //particle system
     public ParticleSystem slide;
     public ParticleSystem smash;
@@ -42,7 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        PlayerStats.playerPosition = this.gameObject.transform;
+
+        statistics.playerPosition = this.gameObject.transform;
     }
     void Start()
     {
@@ -73,12 +75,13 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGrounded==true && playerRB.velocity.y == 0 && isSmashing)
             {
+                PlayParticleSystem(smash);
                 shouldSmashParticle = false;
                 isSmashing = false;
             }
             
         }
-        PlayerStats.playerPosition = this.gameObject.transform;
+        statistics.playerPosition = this.gameObject.transform;
         Jump();
     }
 
@@ -103,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         if (isJumping && isGrounded)
         {
             playerRB.velocity = Vector2.up * 0;
-            playerRB.velocity = Vector2.up * PlayerStats.jumpForce;
+            playerRB.velocity = Vector2.up * statistics.jumpForce;
         }
         //je¿eli gracz spada
         if (playerRB.velocity.y < 0)
@@ -134,18 +137,18 @@ public class PlayerMovement : MonoBehaviour
         //    SoundManager.PlaySound(SoundManager.Sound.PlayerMove, groundCheck.transform.position);
         //}
         //poruszanie
-        rb.velocity = new Vector2(horizontal * PlayerStats.moveSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * statistics.moveSpeed * Time.fixedDeltaTime, rb.velocity.y);
 
         //je¿eli siê gibiemy
         if (isSliding)
         {
-            rb.velocity = new Vector2(slideDirection * PlayerStats.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(slideDirection * statistics.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
             transform.eulerAngles = Vector3.forward * 70 * slideDirection;
         }
 
         if (isCharging)
         {
-            rb.velocity = new Vector2(slideDirection * PlayerStats.chargeSpeed * Time.fixedDeltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(slideDirection * statistics.chargeSpeed * Time.fixedDeltaTime, rb.velocity.y);
         }
         
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)

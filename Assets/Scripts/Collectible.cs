@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
+    public GameManager GM;
     private Vector3 startPosition;
     private float maxSpeed = 3f;
 
@@ -31,15 +32,15 @@ public class Collectible : MonoBehaviour
         {
             if (stats == StatsToUpgrade.Strength)
             {
-                PlayerStats.attackRange++;
+                GM.CollectedStrenght++;
             }
             else if(stats == StatsToUpgrade.Constitution)
             {
-                PlayerStats.moveSpeed++;
+                GM.CollectedConstitution++;
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
-                //
+                GM.CollectedAgility++;
             }
             Destroy(gameObject);
         }

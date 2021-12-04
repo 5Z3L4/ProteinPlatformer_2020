@@ -2,26 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class PlayerStats
+public class PlayerStats
 {
+    public float strengthCap;
+    public float agilityCap;
+    public float constitutionCap;
+
+    public float currentStrength;
+    public float currentAgility;
+    public float currentConstitution;
+
     [SerializeField]
     static Transform spawnposition;
 
-    public static float moveSpeed = 300;
-    public static float chargeSpeed = 700;
-    public static float slideSpeed = 450;
-    public static float jumpForce = 5;
-    public static Transform playerPosition;
-    public static Vector3 spawnPosition;
+    public float moveSpeed = 300;
+    public float chargeSpeed = 700;
+    public float slideSpeed = 450;
+    public float jumpForce = 5;
+    public Transform playerPosition;
+    public Vector3 spawnPosition;
 
-    public static int maxHealth = 5;
-    public static bool isDeadBySpikes = false;
-    public static int healthPoints = 5;
-    private static Animator anim;
-    public static bool isDead = false;
-    public static int souls;
-    public static float attackRange = 0.5f;
-    public static int damage = 1;
+    public int maxHealth = 5;
+    public bool isDeadBySpikes = false;
+    public int healthPoints = 5;
+    public  bool isDead = false;
+    public  int souls;
+    public  float attackRange = 0.5f;
+    public  int damage = 1;
 
     private static void Awake()
     {
@@ -40,7 +47,7 @@ public static class PlayerStats
 
     }
     //to samo
-    private static void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Spikes"))
         {
@@ -55,7 +62,7 @@ public static class PlayerStats
         //}
     }
     //te¿
-    private static void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Spikes"))
         {
