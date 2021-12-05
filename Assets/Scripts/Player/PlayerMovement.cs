@@ -218,11 +218,25 @@ public class PlayerMovement : MonoBehaviour
         statistics.moveSpeed *= 2.5f;
         StartCoroutine("speedBoostTimer");
     }
+    public void ZaWarudo()
+    {
+        
+    }
+    public void JumpBoost()
+    {
+        statistics.jumpForce *= 1.5f;
+        StartCoroutine("jumpBoostTimer");
+    }
 
     IEnumerator speedBoostTimer()
     {
         yield return new WaitForSeconds(5);
         statistics.moveSpeed /= 2.5f;
+    }
+    IEnumerator jumpBoostTimer()
+    {
+        yield return new WaitForSeconds(5);
+        statistics.jumpForce /= 1.5f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -244,6 +258,11 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "SpeedBoost")
         {
             SpeedBoost();
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "JumpBoost")
+        {
+            JumpBoost();
             Destroy(collision.gameObject);
         }
 
