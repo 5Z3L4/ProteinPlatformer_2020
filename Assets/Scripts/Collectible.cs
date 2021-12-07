@@ -33,14 +33,20 @@ public class Collectible : MonoBehaviour
             if (stats == StatsToUpgrade.Strength)
             {
                 GM.CollectedStrenght++;
+                HUDManager.currentScore += scoreValue;
+                CollectiblesAmount.dumbbleAmount++;
             }
             else if(stats == StatsToUpgrade.Constitution)
             {
                 GM.CollectedConstitution++;
+                HUDManager.currentScore += scoreValue;
+                CollectiblesAmount.meatAmount++;
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
                 GM.CollectedAgility++;
+                HUDManager.currentScore += scoreValue;
+                CollectiblesAmount.proteinAmount++;
             }
             Destroy(gameObject);
         }
