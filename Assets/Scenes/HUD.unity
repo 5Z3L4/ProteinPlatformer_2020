@@ -713,7 +713,7 @@ Animator:
   m_GameObject: {fileID: 363736952}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3deaed1727c7281438c73524fdc83657, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6bd636cbb7fe29d4ba41af0e851dd395, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -900,6 +900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 408477142}
   - component: {fileID: 408477143}
+  - component: {fileID: 408477144}
   m_Layer: 5
   m_Name: meatHolder
   m_TagString: Untagged
@@ -924,7 +925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -450, y: -150}
+  m_AnchoredPosition: {x: -450, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408477143
@@ -941,6 +942,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemAmount: {fileID: 1841551238}
   specificItem: 1
+--- !u!95 &408477144
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408477141}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9b360eab4d9b1e4c9250a2d200ca5a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &416029055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,9 +1586,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScoreText: {fileID: 1913070060}
-  dumbbleAnimator: {fileID: 0}
-  meatAnimator: {fileID: 0}
-  proteinAnimator: {fileID: 0}
+  dumbbleAnimator: {fileID: 363736955}
+  meatAnimator: {fileID: 408477144}
+  proteinAnimator: {fileID: 756414225}
 --- !u!114 &558276021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1839,6 +1859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 756414223}
   - component: {fileID: 756414224}
+  - component: {fileID: 756414225}
   m_Layer: 5
   m_Name: proteinHolder
   m_TagString: Untagged
@@ -1863,7 +1884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -200, y: -150}
+  m_AnchoredPosition: {x: -200, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &756414224
@@ -1880,6 +1901,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemAmount: {fileID: 1621726106}
   specificItem: 2
+--- !u!95 &756414225
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756414222}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3deaed1727c7281438c73524fdc83657, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &757819382
 GameObject:
   m_ObjectHideFlags: 0

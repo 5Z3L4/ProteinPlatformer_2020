@@ -22,4 +22,12 @@ public class HUDManager : MonoBehaviour
             
         }
     }
+    public void ShowCollected(string name)
+    {
+        GameObject.Find(name).GetComponent<Animator>().SetTrigger("Open");
+    }
+    public void HideCollected(string name)
+    {
+        GameObject.Find(name).GetComponent<Animator>().SetTrigger("Close");
+    }
 }

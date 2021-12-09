@@ -28,6 +28,7 @@ public class Collectible : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        var hudManager = new HUDManager();
         if (collision.CompareTag("Player"))
         {
             if (stats == StatsToUpgrade.Strength)
@@ -35,18 +36,21 @@ public class Collectible : MonoBehaviour
                 GM.CollectedStrenght++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.dumbbleAmount++;
+                hudManager.ShowCollected("dumbbleHolder");
             }
             else if(stats == StatsToUpgrade.Constitution)
             {
                 GM.CollectedConstitution++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.meatAmount++;
+                hudManager.ShowCollected("meatHolder");
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
                 GM.CollectedAgility++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.proteinAmount++;
+                hudManager.ShowCollected("proteinHolder");
             }
             Destroy(gameObject);
         }
