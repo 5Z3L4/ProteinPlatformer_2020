@@ -21,11 +21,12 @@ public class Collectible : MonoBehaviour
     private void Start()
     {
         startPosition = transform.position;
+        GM = FindObjectOfType<GameManager>();
     }
-    private void Update()
-    {
-        transform.position = new Vector3(transform.position.x, startPosition.y + (Mathf.Sin(Time.time * maxSpeed))/4, transform.position.y);
-    }
+    //private void Update()
+    //{
+    //    transform.position = new Vector3(transform.position.x, startPosition.y + (Mathf.Sin(Time.time * maxSpeed))/4, transform.position.y);
+    //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -48,7 +49,7 @@ public class Collectible : MonoBehaviour
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.proteinAmount++;
             }
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

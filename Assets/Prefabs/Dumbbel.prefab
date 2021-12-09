@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2189045981951902377}
   - component: {fileID: 8881999930851598213}
   - component: {fileID: 8881999930851598212}
+  - component: {fileID: -8353568748175267693}
   m_Layer: 0
   m_Name: Dumbbel
   m_TagString: Untagged
@@ -146,3 +147,16 @@ MonoBehaviour:
   GM: {fileID: 0}
   stats: 0
   scoreValue: 2
+--- !u!114 &-8353568748175267693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2189045981951902376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c10165332c4794cb94ad7f2e582cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformDestructionPoint: {fileID: 0}

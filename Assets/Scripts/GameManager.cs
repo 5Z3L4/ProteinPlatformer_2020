@@ -7,4 +7,6 @@ public class GameManager : MonoBehaviour
     public int CollectedStrenght = 0;
     public int CollectedAgility = 0;
     public int CollectedConstitution = 0;
+
+
 }
