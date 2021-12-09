@@ -26,6 +26,9 @@ public class PlatformGenerator : MonoBehaviour
     public List<ObjectPooler> theObjectPools;
 
     public float randomCollectibleThreshold;
+
+    public float randomSpikeThreshhold;
+    public ObjectPooler spikePool;
     void Start()
     {
         platformWidths = new List<float>();
@@ -69,6 +72,17 @@ public class PlatformGenerator : MonoBehaviour
             if (Random.Range(0f, 100f) < randomCollectibleThreshold)
             {
                 theCollectiblesGenerator.SpawnCollectibles(new Vector2(transform.position.x, transform.position.y + 1.5f));
+            }
+
+            if (Random.Range(0f, 100f) < randomSpikeThreshhold)
+            {
+                GameObject newSpike = spikePool.GetPooledObject();
+
+                float spikeXPos = Random.Range(-platformWidths[platformSelector] / 2, platformWidths[platformSelector] / 2);
+                Vector3 spikesPosition = new Vector3(spikeXPos, 0.5f);
+                newSpike.transform.position = transform.position + spikesPosition;
+                newSpike.transform.rotation = transform.rotation;
+                newSpike.SetActive(true);
             }
             transform.position = new Vector2(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y);
         }
