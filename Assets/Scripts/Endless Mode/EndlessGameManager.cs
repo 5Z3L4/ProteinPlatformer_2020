@@ -26,6 +26,7 @@ public class EndlessGameManager : MonoBehaviour
 
     public void RestartGame()
     {
+
         StartCoroutine("RestartGameCo");
     }
 

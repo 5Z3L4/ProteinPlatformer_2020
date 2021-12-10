@@ -26,6 +26,7 @@ public class MovementEndless : MonoBehaviour
 
     private Rigidbody2D myRB;
     public EndlessGameManager theGameManager;
+    public EndlessModeUI EndlessModeUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +65,7 @@ public class MovementEndless : MonoBehaviour
         if (other.gameObject.CompareTag("KillBox"))
         {
             moveSpeed = moveSpeedStore;
-            theGameManager.RestartGame();
+            EndlessModeUI.ShowDeathScreen();
             speedMilestoneCount = speedMilestoneCountStore;
             speedIncreaseMilestone = speedIncreaseMilestoneStore;
         }

@@ -36,18 +36,24 @@ public class Collectible : MonoBehaviour
                 GM.CollectedStrenght++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.dumbbleAmount++;
+                EndlessModeUI.score += scoreValue;
+                EndlessModeUI.dumbbleAmount++;
             }
             else if(stats == StatsToUpgrade.Constitution)
             {
                 GM.CollectedConstitution++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.meatAmount++;
+                EndlessModeUI.score += scoreValue;
+                EndlessModeUI.meatAmount++;
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
                 GM.CollectedAgility++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.proteinAmount++;
+                EndlessModeUI.score += scoreValue;
+                EndlessModeUI.proteinAmount++;
             }
             gameObject.SetActive(false);
         }
