@@ -13,6 +13,7 @@ public class HUDManager : MonoBehaviour
     public Animator meatAnimator;
     public Animator proteinAnimator;
 
+
     [SerializeField] public static bool callTimer;
     [SerializeField] public static float time;
     private void Start()
@@ -71,4 +72,5 @@ public class HUDManager : MonoBehaviour
         GameObject.Find("ProteinAmountImage").GetComponentInChildren<Text>().enabled = true;
         GameObject.Find("currentScoreText").GetComponent<Text>().enabled = true;
     }
+    
 }

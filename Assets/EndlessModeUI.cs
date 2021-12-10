@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EndlessModeUI : MonoBehaviour
 {
+    public GameObject pauseScreen;
     public HUDManager HUDM;
     public EndlessGameManager theGameManager;
     public Text Score;
@@ -19,7 +20,14 @@ public class EndlessModeUI : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape) && !DeathScreen.activeInHierarchy && Time.timeScale == 1)
+        {
+            Pause();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && !DeathScreen.activeInHierarchy)
+        {
+            Resume();
+        }
     }
     public void RestartButton()
     {
@@ -43,5 +51,19 @@ public class EndlessModeUI : MonoBehaviour
         MeatCollected.text = "Meat: " + GameManager.collectedConstitution.ToString();
         ProteinCollected.text = "Proteins: " + GameManager.collectedAgility.ToString();
     }
-    
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        DeathScreen.SetActive(false);
+        pauseScreen.SetActive(true);
+        HUDM.HideHUD();
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        pauseScreen.SetActive(false);
+        DeathScreen.SetActive(false);
+        HUDM.ShowHUD();
+    }
+
 }
