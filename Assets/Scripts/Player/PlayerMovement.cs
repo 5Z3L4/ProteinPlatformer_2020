@@ -68,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Smash();  
         }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            print(GameManager.maxAgility);
+            print(GameManager.maxConstitution);
+            print(GameManager.maxStrenght);
+        }
 
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);

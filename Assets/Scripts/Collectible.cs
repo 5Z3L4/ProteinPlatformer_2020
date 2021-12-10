@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public GameManager GM;
-    private Vector3 startPosition;
-    private float maxSpeed = 3f;
+    public HUDManager HUDM;
 
     //enum statystyk
     public enum StatsToUpgrade { 
@@ -14,52 +12,55 @@ public class Collectible : MonoBehaviour
         Constitution,
         Dexterity
     }
-
+    
     public StatsToUpgrade stats;
     public int scoreValue;
 
     private void Start()
     {
-        startPosition = transform.position;
-        GM = FindObjectOfType<GameManager>();
+        if (stats == StatsToUpgrade.Dexterity)
+        {
+            GameManager.maxAgility++;
+        }
+        else if(stats == StatsToUpgrade.Strength)
+        {
+            GameManager.maxStrenght++;
+        }
+        else if (stats == StatsToUpgrade.Constitution)
+        {
+            GameManager.maxConstitution++;
+        }
     }
-    //private void Update()
-    //{
-    //    transform.position = new Vector3(transform.position.x, startPosition.y + (Mathf.Sin(Time.time * maxSpeed))/4, transform.position.y);
-    //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            HUDManager.callTimer = true;
+            HUDManager.time = 3.5f;
             if (stats == StatsToUpgrade.Strength)
             {
-                GM.CollectedStrenght++;
+                GameManager.collectedStrenght++;
                 HUDManager.currentScore += scoreValue;
-                CollectiblesAmount.dumbbleAmount++;
-                EndlessModeUI.score += scoreValue;
-                EndlessModeUI.dumbbleAmount++;
+                HUDM.ShowCollected("dumbbleHolder");
             }
             else if(stats == StatsToUpgrade.Constitution)
             {
-                GM.CollectedConstitution++;
+                GameManager.collectedConstitution++;
                 HUDManager.currentScore += scoreValue;
-                CollectiblesAmount.meatAmount++;
-                EndlessModeUI.score += scoreValue;
-                EndlessModeUI.meatAmount++;
+                HUDM.ShowCollected("meatHolder");
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
-                GM.CollectedAgility++;
+                GameManager.collectedAgility++;
                 HUDManager.currentScore += scoreValue;
-                CollectiblesAmount.proteinAmount++;
-                EndlessModeUI.score += scoreValue;
-                EndlessModeUI.proteinAmount++;
+                HUDM.ShowCollected("proteinHolder");
             }
             gameObject.SetActive(false);
         }
     }
-
- 
-
     
+
+
+
+
 }

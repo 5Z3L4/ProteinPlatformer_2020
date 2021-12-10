@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public static class GameManager
 {
-    public int CollectedStrenght = 0;
-    public int CollectedAgility = 0;
-    public int CollectedConstitution = 0;
+    public static int collectedStrenght = 0;
+    public static int maxStrenght = 0;
 
+    public static int collectedAgility = 0;
+    public static int maxAgility = 0;
+
+    public static int collectedConstitution = 0;
+    public static int maxConstitution = 0;
+
+    public static bool isStoryMode = true;
 
 }
