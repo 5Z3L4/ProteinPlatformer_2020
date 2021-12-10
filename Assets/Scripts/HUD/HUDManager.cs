@@ -13,21 +13,47 @@ public class HUDManager : MonoBehaviour
     public Animator meatAnimator;
     public Animator proteinAnimator;
 
+    public bool callTimer;
+    public float time;
+
     // Update is called once per frame
     void Update()
     {
+        if (callTimer)
+        {
+            if (time > 0)
+            {
+                time -= Time.deltaTime;
+            }
+            else if (time <= 0)
+            {
+                HideCollected();
+            }
+        }
         currentScoreText.text = "Score: " + currentScore.ToString();
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            
+            ShowCollected("dumbbleHolder");
+            ShowCollected("meatHolder");
+            ShowCollected("proteinHolder");
         }
+    }
+    private void Start()
+    {
+        time = 3f;
     }
     public void ShowCollected(string name)
     {
+        print(callTimer);
+        callTimer = true;
+        print(callTimer);
         GameObject.Find(name).GetComponent<Animator>().SetTrigger("Open");
+        
     }
-    public void HideCollected(string name)
+    public void HideCollected()
     {
-        GameObject.Find(name).GetComponent<Animator>().SetTrigger("Close");
+        GameObject.Find("dumbbleHolder").GetComponent<Animator>().SetTrigger("Close");
+        GameObject.Find("meatHolder").GetComponent<Animator>().SetTrigger("Close");
+        GameObject.Find("proteinHolder").GetComponent<Animator>().SetTrigger("Close");
     }
 }

@@ -7,6 +7,7 @@ public class Collectible : MonoBehaviour
     public GameManager GM;
     private Vector3 startPosition;
     private float maxSpeed = 3f;
+    public HUDManager HUDM;
 
     //enum statystyk
     public enum StatsToUpgrade { 
@@ -14,7 +15,7 @@ public class Collectible : MonoBehaviour
         Constitution,
         Dexterity
     }
-
+    
     public StatsToUpgrade stats;
     public int scoreValue;
 
@@ -28,7 +29,6 @@ public class Collectible : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var hudManager = new HUDManager();
         if (collision.CompareTag("Player"))
         {
             if (stats == StatsToUpgrade.Strength)
@@ -36,27 +36,28 @@ public class Collectible : MonoBehaviour
                 GM.CollectedStrenght++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.dumbbleAmount++;
-                hudManager.ShowCollected("dumbbleHolder");
+                HUDM.ShowCollected("dumbbleHolder");
             }
             else if(stats == StatsToUpgrade.Constitution)
             {
                 GM.CollectedConstitution++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.meatAmount++;
-                hudManager.ShowCollected("meatHolder");
+                HUDM.ShowCollected("meatHolder");
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
                 GM.CollectedAgility++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.proteinAmount++;
-                hudManager.ShowCollected("proteinHolder");
+                HUDM.ShowCollected("proteinHolder");
             }
             Destroy(gameObject);
         }
     }
-
- 
-
     
+
+
+
+
 }

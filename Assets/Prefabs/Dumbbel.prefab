@@ -144,5 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
+  HUDM: {fileID: 8140784499073629995, guid: a131632a0c978af438c561b2c71ffeed, type: 3}
   stats: 0
   scoreValue: 2
