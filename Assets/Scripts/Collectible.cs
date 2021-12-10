@@ -35,25 +35,24 @@ public class Collectible : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            HUDManager.callTimer = true;
+            HUDManager.time = 3.5f;
             if (stats == StatsToUpgrade.Strength)
             {
                 GameManager.collectedStrenght++;
                 HUDManager.currentScore += scoreValue;
-                CollectiblesAmount.dumbbleAmount++;
                 HUDM.ShowCollected("dumbbleHolder");
             }
             else if(stats == StatsToUpgrade.Constitution)
             {
                 GameManager.collectedConstitution++;
                 HUDManager.currentScore += scoreValue;
-                CollectiblesAmount.meatAmount++;
                 HUDM.ShowCollected("meatHolder");
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
                 GameManager.collectedAgility++;
                 HUDManager.currentScore += scoreValue;
-                CollectiblesAmount.proteinAmount++;
                 HUDM.ShowCollected("proteinHolder");
             }
             gameObject.SetActive(false);

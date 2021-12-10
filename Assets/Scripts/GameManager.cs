@@ -15,5 +15,4 @@ public static class GameManager
 
     public static bool isStoryMode = true;
 
-
 }

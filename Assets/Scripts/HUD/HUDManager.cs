@@ -13,10 +13,14 @@ public class HUDManager : MonoBehaviour
     public Animator meatAnimator;
     public Animator proteinAnimator;
 
-    public bool callTimer;
-    public float time;
+    [SerializeField] public static bool callTimer;
+    [SerializeField] public static float time;
+    private void Start()
+    {
+        callTimer = false;
+        time = 3.5f;
+    }
 
-    // Update is called once per frame
     void Update()
     {
         if (callTimer)
@@ -25,30 +29,21 @@ public class HUDManager : MonoBehaviour
             {
                 time -= Time.deltaTime;
             }
-            else if (time <= 0)
+            else if (time <= 1)
             {
                 HideCollected();
+                callTimer = false;
             }
         }
+
         currentScoreText.text = "Score: " + currentScore.ToString();
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ShowCollected("dumbbleHolder");
-            ShowCollected("meatHolder");
-            ShowCollected("proteinHolder");
-        }
     }
-    private void Start()
-    {
-        time = 3f;
-    }
+    
     public void ShowCollected(string name)
     {
-        print(callTimer);
-        callTimer = true;
-        print(callTimer);
-        GameObject.Find(name).GetComponent<Animator>().SetTrigger("Open");
         
+        GameObject.Find(name).GetComponent<Animator>().SetTrigger("Open");
+        print(GameObject.Find(name).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).ToString());
     }
     public void HideCollected()
     {
