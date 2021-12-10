@@ -14,10 +14,12 @@ public class PlatfromDestroyer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < platformDestructionPoint.transform.position.x)
+        if (!GameManager.isStoryMode)
         {
-            //Destroy(gameObject);
-            gameObject.SetActive(false);
+            if (transform.position.x < platformDestructionPoint.transform.position.x)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }
