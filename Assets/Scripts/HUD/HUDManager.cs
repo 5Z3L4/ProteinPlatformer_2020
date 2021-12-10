@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-    Collectible collectibleObject = new Collectible();
+    Collectible collectibleObject;
     public Text currentScoreText;
     public static int currentScore;
     public Animator dumbbleAnimator;
@@ -23,7 +23,7 @@ public class HUDManager : MonoBehaviour
 
     void Update()
     {
-        if (callTimer)
+        if (callTimer && GameManager.isStoryMode)
         {
             if (time > 0)
             {
@@ -43,12 +43,32 @@ public class HUDManager : MonoBehaviour
     {
         
         GameObject.Find(name).GetComponent<Animator>().SetTrigger("Open");
-        print(GameObject.Find(name).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).ToString());
+        //GameObject.Find(name).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).ToString();
     }
     public void HideCollected()
     {
-        GameObject.Find("dumbbleHolder").GetComponent<Animator>().SetTrigger("Close");
+        GameObject.Find("dumbbelHolder").GetComponent<Animator>().SetTrigger("Close");
         GameObject.Find("meatHolder").GetComponent<Animator>().SetTrigger("Close");
         GameObject.Find("proteinHolder").GetComponent<Animator>().SetTrigger("Close");
+    }
+    public void HideHUD()
+    {
+        GameObject.Find("DumbbelAmountImage").GetComponent<Image>().enabled = false;
+        GameObject.Find("DumbbelAmountImage").GetComponentInChildren<Text>().enabled = false;
+        GameObject.Find("MeatAmountImage").GetComponent<Image>().enabled = false;
+        GameObject.Find("MeatAmountImage").GetComponentInChildren<Text>().enabled = false;
+        GameObject.Find("ProteinAmountImage").GetComponent<Image>().enabled = false;
+        GameObject.Find("ProteinAmountImage").GetComponentInChildren<Text>().enabled = false;
+        GameObject.Find("currentScoreText").GetComponent<Text>().enabled = false;
+    }
+    public void ShowHUD()
+    {
+        GameObject.Find("DumbbelAmountImage").GetComponent<Image>().enabled = true;
+        GameObject.Find("DumbbelAmountImage").GetComponentInChildren<Text>().enabled = true;
+        GameObject.Find("MeatAmountImage").GetComponent<Image>().enabled = true;
+        GameObject.Find("MeatAmountImage").GetComponentInChildren<Text>().enabled = true;
+        GameObject.Find("ProteinAmountImage").GetComponent<Image>().enabled = true;
+        GameObject.Find("ProteinAmountImage").GetComponentInChildren<Text>().enabled = true;
+        GameObject.Find("currentScoreText").GetComponent<Text>().enabled = true;
     }
 }

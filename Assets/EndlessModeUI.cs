@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EndlessModeUI : MonoBehaviour
 {
+    public HUDManager HUDM;
     public EndlessGameManager theGameManager;
     public Text Score;
     public Text DumbbleCollected;
@@ -18,21 +19,29 @@ public class EndlessModeUI : MonoBehaviour
 
     private void Update()
     {
-        Score.text = "Your score: " + score.ToString();
-        DumbbleCollected.text = "Dumbbles: " + dumbbleAmount.ToString();
-        MeatCollected.text = "Meat: " + meatAmount.ToString();
-        ProteinCollected.text = "Proteins: " + proteinAmount.ToString();
-        //TO DO: pobierac wartosci z GameManagera
+        
     }
     public void RestartButton()
     {
+        HUDM.ShowHUD();
+        HUDManager.currentScore = 0;
+        GameManager.collectedStrenght = 0;
+        GameManager.collectedConstitution = 0;
+        GameManager.collectedAgility = 0;
         Time.timeScale = 1;
         DeathScreen.SetActive(false);
         theGameManager.RestartGame();
+        
     }
     public void ShowDeathScreen()
     {
-        Time.timeScale = 0;
+        HUDM.HideHUD();
         DeathScreen.SetActive(true);
+        Time.timeScale = 0;
+        Score.text = "Your score: " + HUDManager.currentScore.ToString();
+        DumbbleCollected.text = "Dumbbles: " + GameManager.collectedStrenght.ToString();
+        MeatCollected.text = "Meat: " + GameManager.collectedConstitution.ToString();
+        ProteinCollected.text = "Proteins: " + GameManager.collectedAgility.ToString();
     }
+    
 }
