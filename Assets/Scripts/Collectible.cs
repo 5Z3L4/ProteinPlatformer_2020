@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
+    public HUDManager HUDM;
 
     //enum statystyk
     public enum StatsToUpgrade { 
@@ -11,7 +12,7 @@ public class Collectible : MonoBehaviour
         Constitution,
         Dexterity
     }
-
+    
     public StatsToUpgrade stats;
     public int scoreValue;
 
@@ -39,24 +40,28 @@ public class Collectible : MonoBehaviour
                 GameManager.collectedStrenght++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.dumbbleAmount++;
+                HUDM.ShowCollected("dumbbleHolder");
             }
             else if(stats == StatsToUpgrade.Constitution)
             {
                 GameManager.collectedConstitution++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.meatAmount++;
+                HUDM.ShowCollected("meatHolder");
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
                 GameManager.collectedAgility++;
                 HUDManager.currentScore += scoreValue;
                 CollectiblesAmount.proteinAmount++;
+                HUDM.ShowCollected("proteinHolder");
             }
             gameObject.SetActive(false);
         }
     }
-
- 
-
     
+
+
+
+
 }

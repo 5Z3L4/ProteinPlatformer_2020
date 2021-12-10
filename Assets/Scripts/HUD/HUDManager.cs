@@ -9,27 +9,51 @@ public class HUDManager : MonoBehaviour
     Collectible collectibleObject = new Collectible();
     public Text currentScoreText;
     public static int currentScore;
-    public Animator animator;
+    public Animator dumbbleAnimator;
+    public Animator meatAnimator;
+    public Animator proteinAnimator;
+
+    public bool callTimer;
+    public float time;
 
     // Update is called once per frame
     void Update()
     {
+        if (callTimer)
+        {
+            if (time > 0)
+            {
+                time -= Time.deltaTime;
+            }
+            else if (time <= 0)
+            {
+                HideCollected();
+            }
+        }
         currentScoreText.text = "Score: " + currentScore.ToString();
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("Hit");
-            PlayPanelAnim();
+            ShowCollected("dumbbleHolder");
+            ShowCollected("meatHolder");
+            ShowCollected("proteinHolder");
         }
     }
-
-    private void PlayPanelAnim()
+    private void Start()
     {
-        StartCoroutine(ShowAndClose());
+        time = 3f;
     }
-    IEnumerator ShowAndClose()
+    public void ShowCollected(string name)
     {
-        animator.SetTrigger("Open");
-        yield return new WaitForSeconds(3f);
-        animator.SetTrigger("Close");
+        print(callTimer);
+        callTimer = true;
+        print(callTimer);
+        GameObject.Find(name).GetComponent<Animator>().SetTrigger("Open");
+        
+    }
+    public void HideCollected()
+    {
+        GameObject.Find("dumbbleHolder").GetComponent<Animator>().SetTrigger("Close");
+        GameObject.Find("meatHolder").GetComponent<Animator>().SetTrigger("Close");
+        GameObject.Find("proteinHolder").GetComponent<Animator>().SetTrigger("Close");
     }
 }
