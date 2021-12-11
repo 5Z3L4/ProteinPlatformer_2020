@@ -14,6 +14,7 @@ public class EndlessGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.isStoryMode = false;
         platformStartPoint = platformGenerator.position;
         playerStartPoint = thePlayer.transform.position;
     }
@@ -26,6 +27,7 @@ public class EndlessGameManager : MonoBehaviour
 
     public void RestartGame()
     {
+
         StartCoroutine("RestartGameCo");
     }
 

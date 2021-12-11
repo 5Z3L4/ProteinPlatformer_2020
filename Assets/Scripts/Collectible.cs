@@ -41,7 +41,7 @@ public class Collectible : MonoBehaviour
             {
                 GameManager.collectedStrenght++;
                 HUDManager.currentScore += scoreValue;
-                HUDM.ShowCollected("dumbbleHolder");
+                HUDM.ShowCollected("dumbbelHolder");
             }
             else if(stats == StatsToUpgrade.Constitution)
             {
