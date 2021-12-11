@@ -30,13 +30,13 @@ public class Collectible : MonoBehaviour
         {
             GameManager.maxConstitution++;
         }
+
+        HUDM = GameObject.Find("HUDManager").GetComponent<HUDManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            HUDManager.callTimer = true;
-            HUDManager.time = 3.5f;
             if (stats == StatsToUpgrade.Strength)
             {
                 GameManager.collectedStrenght++;

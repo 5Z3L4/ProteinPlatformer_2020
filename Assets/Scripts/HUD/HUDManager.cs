@@ -12,10 +12,10 @@ public class HUDManager : MonoBehaviour
     public Animator dumbbleAnimator;
     public Animator meatAnimator;
     public Animator proteinAnimator;
-
-
-    [SerializeField] public static bool callTimer;
-    [SerializeField] public static float time;
+    
+    
+    public  bool callTimer;
+    public  float time;
     private void Start()
     {
         callTimer = false;
@@ -30,10 +30,11 @@ public class HUDManager : MonoBehaviour
             {
                 time -= Time.deltaTime;
             }
-            else if (time <= 1)
+            else if (time <= 0)
             {
                 HideCollected();
                 callTimer = false;
+                time = 3.5f;
             }
         }
 
@@ -41,9 +42,12 @@ public class HUDManager : MonoBehaviour
     }
     
     public void ShowCollected(string name)
-    {
+     {
+
         
-        GameObject.Find(name).GetComponent<Animator>().SetTrigger("Open");
+            GameObject.Find(name).GetComponent<Animator>().SetTrigger("Open");
+            callTimer = true;
+        
         //GameObject.Find(name).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).ToString();
     }
     public void HideCollected()
