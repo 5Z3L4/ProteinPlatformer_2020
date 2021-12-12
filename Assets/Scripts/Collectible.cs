@@ -7,12 +7,13 @@ public class Collectible : MonoBehaviour
     public HUDManager HUDM;
 
     //enum statystyk
-    public enum StatsToUpgrade { 
+    public enum StatsToUpgrade
+    {
         Strength,
         Constitution,
         Dexterity
     }
-    
+
     public StatsToUpgrade stats;
     public int scoreValue;
 
@@ -22,7 +23,7 @@ public class Collectible : MonoBehaviour
         {
             GameManager.maxAgility++;
         }
-        else if(stats == StatsToUpgrade.Strength)
+        else if (stats == StatsToUpgrade.Strength)
         {
             GameManager.maxStrenght++;
         }
@@ -41,26 +42,36 @@ public class Collectible : MonoBehaviour
             {
                 GameManager.collectedStrenght++;
                 HUDManager.currentScore += scoreValue;
-                HUDM.ShowCollected("dumbbelHolder");
+                if (!GameObject.Find("dumbbelHolder").GetComponent<Animator>().GetBool("Open"))
+                {
+                    HUDM.ShowCollected("dumbbelHolder");
+                    HUDM.callTimer = true;
+                    HUDM.time += 0.5f;
+                }
             }
-            else if(stats == StatsToUpgrade.Constitution)
+            else if (stats == StatsToUpgrade.Constitution)
             {
                 GameManager.collectedConstitution++;
                 HUDManager.currentScore += scoreValue;
-                HUDM.ShowCollected("meatHolder");
+                if (!GameObject.Find("meatHolder").GetComponent<Animator>().GetBool("Open"))
+                {
+                    HUDM.ShowCollected("meatHolder");
+                    HUDM.callTimer = true;
+                    HUDM.time += 0.5f;
+                }
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
                 GameManager.collectedAgility++;
                 HUDManager.currentScore += scoreValue;
-                HUDM.ShowCollected("proteinHolder");
+                if (!GameObject.Find("proteinHolder").GetComponent<Animator>().GetBool("Open"))
+                {
+                    HUDM.ShowCollected("proteinHolder");
+                    HUDM.callTimer = true;
+                    HUDM.time += 0.5f;
+                }
             }
             gameObject.SetActive(false);
         }
     }
-    
-
-
-
-
 }

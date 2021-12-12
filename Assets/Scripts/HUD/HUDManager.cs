@@ -12,10 +12,9 @@ public class HUDManager : MonoBehaviour
     public Animator dumbbleAnimator;
     public Animator meatAnimator;
     public Animator proteinAnimator;
-    
-    
-    public  bool callTimer;
-    public  float time;
+    public bool callTimer;
+    public float time;
+
     private void Start()
     {
         callTimer = false;
@@ -35,26 +34,26 @@ public class HUDManager : MonoBehaviour
                 HideCollected();
                 callTimer = false;
                 time = 3.5f;
+                GameObject.Find("dumbbelHolder").GetComponent<Animator>().SetBool("Open", false);
+                GameObject.Find("meatHolder").GetComponent<Animator>().SetBool("Open", false);
+                GameObject.Find("proteinHolder").GetComponent<Animator>().SetBool("Open", false);
             }
         }
 
         currentScoreText.text = "Score: " + currentScore.ToString();
     }
-    
-    public void ShowCollected(string name)
-     {
 
-        
-            GameObject.Find(name).GetComponent<Animator>().SetTrigger("Open");
-            callTimer = true;
-        
-        //GameObject.Find(name).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).ToString();
+    public void ShowCollected(string name)
+    {
+        GameObject.Find(name).GetComponent<Animator>().SetBool("Close", false);
+        GameObject.Find(name).GetComponent<Animator>().SetBool("Open", true);
+        callTimer = true;
     }
     public void HideCollected()
     {
-        GameObject.Find("dumbbelHolder").GetComponent<Animator>().SetTrigger("Close");
-        GameObject.Find("meatHolder").GetComponent<Animator>().SetTrigger("Close");
-        GameObject.Find("proteinHolder").GetComponent<Animator>().SetTrigger("Close");
+        GameObject.Find("dumbbelHolder").GetComponent<Animator>().SetBool("Close", true);
+        GameObject.Find("meatHolder").GetComponent<Animator>().SetBool("Close", true);
+        GameObject.Find("proteinHolder").GetComponent<Animator>().SetBool("Close", true);
     }
     public void HideHUD()
     {
@@ -76,5 +75,5 @@ public class HUDManager : MonoBehaviour
         GameObject.Find("ProteinAmountImage").GetComponentInChildren<Text>().enabled = true;
         GameObject.Find("currentScoreText").GetComponent<Text>().enabled = true;
     }
-    
+
 }
