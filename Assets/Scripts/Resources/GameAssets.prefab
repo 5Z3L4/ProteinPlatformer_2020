@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5312822206202710657}
-  - component: {fileID: 721337752599897023}
+  - component: {fileID: 132993224998404931}
   m_Layer: 0
   m_Name: GameAssets
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &721337752599897023
+--- !u!114 &132993224998404931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundAudioClipArray:
-  - sound: 1
-    audioClip: {fileID: 0}
+  - sound: 0
+    audioClip: {fileID: 8300000, guid: 1f61217b3eb94c749adefb9bf0e4299c, type: 3}

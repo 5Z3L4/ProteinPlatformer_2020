@@ -6,21 +6,14 @@ public static class SFXManager
 {
     public enum Sound//enum z nazwami klipów
     {
-        PlayerAttack,
-        PlayerMove,
-        PlayerJump,
-        PlayerDie,
-        EnemyMove,
-        EnemyAttack,
-        EnemyDie,
-        EnemyJump,
+        PickUpItem
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 
     public static void Initialize()
     {
         soundTimerDictionary = new Dictionary<Sound, float>();
-        soundTimerDictionary[Sound.PlayerMove] = 0f;
+        soundTimerDictionary[Sound.PickUpItem] = 0f;
     }
 
     private static bool CanPlaySound(Sound sound) //sprawdzanie czy mozna zagrac kolejny dzwiek (zeby wyeliminowac ciagle odtwarzanie dziekow np. podczas chodzenia)
@@ -29,7 +22,7 @@ public static class SFXManager
         {
             default:
                 return true;
-            case Sound.PlayerMove:
+            case Sound.PickUpItem:
                 if(soundTimerDictionary.ContainsKey(sound))
                 {
                     float lastTimePlayed = soundTimerDictionary[sound];
