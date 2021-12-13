@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public bool facingRight = true;
 
-    //slide bariables
+    //slide variables
     public float slideDirection = 1;
 
     //jump variables
@@ -41,6 +41,10 @@ public class PlayerMovement : MonoBehaviour
     public bool isSmashing = false;
     private bool shouldSmashParticle;
 
+    public Vector3 respawnPos;
+    public Vector3 startingPos;
+    public int hp = 3;
+
     private void Awake()
     {
 
@@ -49,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        respawnPos = transform.position;
+        startingPos = transform.position;
     }
 
     // Update is called once per frame
@@ -271,11 +277,32 @@ public class PlayerMovement : MonoBehaviour
             JumpBoost();
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag("CheckPoint"))
+        {
+            respawnPos = transform.position;
+        }
+        if (collision.gameObject.CompareTag("KillBox"))
+        {
+            hp--;
+            Respawn();
+        }
 
     }
     private void PlayParticleSystem(ParticleSystem vfx)
     {
         vfx.Play();
+    }
+    public void Respawn()
+    {
+        if (hp <= 0)
+        {
+            transform.position = startingPos;
+        }
+        else
+        {
+            transform.position = respawnPos;
+            playerRB.velocity = Vector2.zero;
+        }
     }
 
     
