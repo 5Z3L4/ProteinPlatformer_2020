@@ -23,27 +23,7 @@ public static class SFXManager
             default:
                 return true;
             case Sound.PickUpItem:
-                if(soundTimerDictionary.ContainsKey(sound))
-                {
-                    float lastTimePlayed = soundTimerDictionary[sound];
-                    float playerMoveTimerMax = GetAudioClip(sound).length;
-                    //TO DO:
-                    //sprawdzic wszystkie przypadki
-                    if(lastTimePlayed + playerMoveTimerMax < Time.time)
-                    {
-                        soundTimerDictionary[sound] = Time.time;
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                //tutaj mozna dodac kolejne case'y do innych dzwiekow
-            else
-            {
                 return true;
-            }
         }
     }
 
