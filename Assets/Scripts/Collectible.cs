@@ -38,6 +38,7 @@ public class Collectible : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            SFXManager.PlaySound(SFXManager.Sound.PickUpItem, gameObject.transform.position);
             if (stats == StatsToUpgrade.Strength)
             {
                 GameManager.collectedStrenght++;
