@@ -47,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-
         statistics.playerPosition = this.gameObject.transform;
     }
     void Start()
@@ -99,17 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (!playerStats.isDead)
-        //{
-        //Poruszanie siê - fizyka zawsze w FixedUpdate
-
-            Move(horizontalAxis, playerRB, moveSpeed);
-        //}
-        //else
-        //{
-        //    playerRB.velocity = Vector2.zero;
-        //}
-        
+        Move(horizontalAxis, playerRB, moveSpeed);
     }
 
     private void Jump()
