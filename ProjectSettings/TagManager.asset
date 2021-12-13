@@ -9,6 +9,7 @@ TagManager:
   - JumpBoost
   - KillBox
   - CheckPoint
+  - Box
   layers:
   - Default
   - TransparentFX
