@@ -13,6 +13,8 @@ public static class GameManager
     public static int collectedConstitution = 0;
     public static int maxConstitution = 0;
 
+    public static int Score = 0;
+
     public static bool isStoryMode = true;
 
 }
