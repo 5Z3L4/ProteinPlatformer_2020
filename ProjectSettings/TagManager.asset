@@ -8,6 +8,7 @@ TagManager:
   - SpeedBoost
   - JumpBoost
   - KillBox
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
