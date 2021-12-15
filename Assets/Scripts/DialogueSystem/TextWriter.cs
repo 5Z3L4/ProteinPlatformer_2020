@@ -7,10 +7,10 @@ public class TextWriter : MonoBehaviour
 {
     [SerializeField] private float textWriterSpeed = 50f;
     public bool isRunning { get; private set; }
-    private readonly List<Punctuation> punctuations = new List<Punctuation>()
+    private readonly Dictionary<HashSet<char>, float> punctuations = new Dictionary<HashSet<char>, float>()
     {
-        new Punctuation(new HashSet<char>(){'.', '!', '?'}, 0.6f),
-        new Punctuation(new HashSet<char>(){',' , ':', ';'}, 0.3f)
+        {new HashSet<char>(){'.', '!', '?'}, 3f },
+        {new HashSet<char>(){',' , ':', ';'}, 0.3f }
     };
     private Coroutine typingCoroutine;
     public void Run(string textToType, TMP_Text textLabel)
@@ -55,26 +55,15 @@ public class TextWriter : MonoBehaviour
     }
     private bool IsPunctuation(char characterToSearch, out float waitTime)
     {
-        foreach(Punctuation punctuationCategory in punctuations)
+        foreach(KeyValuePair<HashSet<char>, float> punctuationCategory in punctuations)
         {
-            if (punctuationCategory.Punctuations.Contains(characterToSearch))
+            if (punctuationCategory.Key.Contains(characterToSearch))
             {
-                waitTime = punctuationCategory.WaitTime;
+                waitTime = punctuationCategory.Value;
                 return true;
             }
         }
         waitTime = default;
         return false;
-    }
-    private readonly struct Punctuation
-    {
-        public readonly HashSet<char> Punctuations;
-        public readonly float WaitTime;
-
-        public Punctuation(HashSet<char> punctuations, float waitTime)
-        {
-            Punctuations = punctuations;
-            WaitTime = waitTime;
-        }
     }
 }
