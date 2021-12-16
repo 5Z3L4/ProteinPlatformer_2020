@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //dialogue system
+    [SerializeField] private DialogueUI dialogueUI;
+    public DialogueUI DialogueUI => dialogueUI;
+    public IInteractable Interactable { get; set; }
+    private bool canMove = true;
+
     public PlayerStats statistics = new PlayerStats();
     //particle system
     public ParticleSystem slide;
@@ -61,11 +67,11 @@ public class PlayerMovement : MonoBehaviour
     {
         //Sprawdzamy inputy, robimy to w Update, bo FixedUpdate jest jedynie do fizyki
         CheckAxis();
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && canMove)
         {
             Slide();
         }
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && canMove)
         {
             Charge();
         }
@@ -93,12 +99,32 @@ public class PlayerMovement : MonoBehaviour
             
         }
         statistics.playerPosition = this.gameObject.transform;
-        Jump();
+        if (canMove)
+        {
+            Jump();
+        }
+        
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interactable?.Interact(this);
+        }
+        if (dialogueUI.IsOpen)
+        {
+            canMove = false;
+        }
+        else
+        {
+            canMove = true;
+        }
     }
 
     private void FixedUpdate()
     {
-        Move(horizontalAxis, playerRB, moveSpeed);
+        if (canMove)
+        {
+            Move(horizontalAxis, playerRB, moveSpeed);
+        }
     }
 
     private void Jump()
