@@ -6,6 +6,7 @@ using UnityEngine;
 public class TextWriter : MonoBehaviour
 {
     [SerializeField] private float textWriterSpeed = 50f;
+
     public bool isRunning { get; private set; }
     private readonly Dictionary<HashSet<char>, float> punctuations = new Dictionary<HashSet<char>, float>()
     {

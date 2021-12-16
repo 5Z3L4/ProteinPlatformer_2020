@@ -8,7 +8,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text textLabel;
     [SerializeField] private DialogueObject testDialogue;
     private TextWriter textWriter;
-    public bool isOpen { get; private set; }
+    public bool IsOpen { get; private set; }
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class DialogueUI : MonoBehaviour
     }
     public void ShowDialogue(DialogueObject dialogueObject)
     {
-        isOpen = true;
+        IsOpen = true;
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
@@ -35,12 +35,12 @@ public class DialogueUI : MonoBehaviour
             yield return null;
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
         }
-        
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
         CloseDialogueBox();
     }
     private void CloseDialogueBox()
     {
-        isOpen = false;
+        IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
     }

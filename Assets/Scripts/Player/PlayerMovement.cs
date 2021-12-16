@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Interactable?.Interact(this);
         }
-        if (dialogueUI.isOpen)
+        if (dialogueUI.IsOpen)
         {
             canMove = false;
         }
