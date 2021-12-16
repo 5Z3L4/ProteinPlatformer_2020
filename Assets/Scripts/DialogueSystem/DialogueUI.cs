@@ -47,7 +47,7 @@ public class DialogueUI : MonoBehaviour
     private IEnumerator RunTypingEffect(string dialogue)
     {
         textWriter.Run(dialogue, textLabel);
-        while (textWriter.isRunning)
+        while (textWriter.IsRunning)
         {
             yield return null;
             if (Input.GetKeyDown(KeyCode.R))
