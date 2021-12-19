@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LaughingGirl : MonoBehaviour //Enemy
 {
-    [SerializeField] private Animator anim;
-    [SerializeField] private GameObject projectileRef;
+    [SerializeField] private Animation anim;
     [SerializeField] private float focusDistance;
     [SerializeField] private float timeBtwAttack;
     [SerializeField] private float startTimeBtwAttack;
@@ -21,7 +20,7 @@ public class LaughingGirl : MonoBehaviour //Enemy
     {
         isFacingRight = 1;
         minePosition = GetComponent<Transform>();
-        anim = GetComponent<Animator>();
+        anim = GetComponent<Animation>();
     }
 
     private void Update()
@@ -32,7 +31,6 @@ public class LaughingGirl : MonoBehaviour //Enemy
 
         if (distanceToPlayer <= focusDistance)
         {
-            
             if (playerPos.position.x > transform.position.x && transform.localScale.x < 0 || playerPos.position.x < transform.position.x && transform.localScale.x > 0)
             {
                 Invoke("Flip", 2f);
@@ -46,7 +44,7 @@ public class LaughingGirl : MonoBehaviour //Enemy
         if (timeBtwAttack <= 0)
         {
             timeBtwAttack = startTimeBtwAttack;
-            //anim.setbool()
+            anim.Play("laughing_girl_wave");
         }
         else
         {
