@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 startingPos;
     public int hp = 3;
 
+    public SaveManager SM;
+
     private void Awake()
     {
         statistics.playerPosition = this.gameObject.transform;
@@ -54,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         respawnPos = transform.position;
         startingPos = transform.position;
+        SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
     }
 
     // Update is called once per frame
@@ -274,6 +277,8 @@ public class PlayerMovement : MonoBehaviour
         {
             hp--;
             Respawn();
+            SM.level1.deathCounter++;
+            
         }
 
     }
