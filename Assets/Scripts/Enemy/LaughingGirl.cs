@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class LaughingGirl : MonoBehaviour //Enemy
 {
-    public GameObject projectileRef;
-    public float focusDistance;
-    public float timeBtwAttack;
-    public float startTimeBtwAttack;
-    public float distanceToPlayer;
-    public Transform shootPos;
+    [SerializeField] private Animation anim;
+    [SerializeField] private float focusDistance;
+    [SerializeField] private float timeBtwAttack;
+    [SerializeField] private float startTimeBtwAttack;
+    [SerializeField] private float distanceToPlayer;
     [HideInInspector]
     public int isFacingRight;
 
@@ -21,7 +20,7 @@ public class LaughingGirl : MonoBehaviour //Enemy
     {
         isFacingRight = 1;
         minePosition = GetComponent<Transform>();
-        shootPos = GameObject.Find("ShootPos").transform;
+        anim = GetComponent<Animation>();
     }
 
     private void Update()
@@ -32,28 +31,31 @@ public class LaughingGirl : MonoBehaviour //Enemy
 
         if (distanceToPlayer <= focusDistance)
         {
-            
             if (playerPos.position.x > transform.position.x && transform.localScale.x < 0 || playerPos.position.x < transform.position.x && transform.localScale.x > 0)
             {
-                isFacingRight *= -1;
-                Vector3 scaler = transform.localScale;
-                scaler.x *= -1;
-                transform.localScale = scaler;
+                Invoke("Flip", 2f);
             }
-            ShootProjectile();
+            ShootWave();
         }
     }
     
-    public void ShootProjectile()
+    public void ShootWave()
     {
         if (timeBtwAttack <= 0)
         {
             timeBtwAttack = startTimeBtwAttack;
-            Instantiate(projectileRef, shootPos.position, Quaternion.identity);
+            anim.Play("laughing_girl_wave");
         }
         else
         {
             timeBtwAttack -= Time.deltaTime;
         }
+    }
+    private void Flip()
+    {
+        isFacingRight *= -1;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
     }
 }
