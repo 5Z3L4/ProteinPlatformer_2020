@@ -56,7 +56,7 @@ public class Collectible : MonoBehaviour
                 ShowCollectibleUI("proteinHolder");
             }
             HUDManager.currentScore += scoreValue;
-            SM.level1.score += scoreValue;
+            SM.levels[SM.currentLevelId].score += scoreValue;
             gameObject.SetActive(false);
         }
     }

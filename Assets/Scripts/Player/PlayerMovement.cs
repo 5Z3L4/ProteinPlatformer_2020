@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         respawnPos = transform.position;
         startingPos = transform.position;
         SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
+        SM.levels[SM.currentLevelId].levelName = "Level_" + SM.currentLevelId;
     }
 
     // Update is called once per frame
@@ -303,8 +304,7 @@ public class PlayerMovement : MonoBehaviour
         {
             hp--;
             Respawn();
-            SM.level1.deathCounter++;
-            
+            SM.levels[SM.currentLevelId].deathCounter++;
         }
 
     }

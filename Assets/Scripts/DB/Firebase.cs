@@ -13,15 +13,8 @@ public class Firebase : MonoBehaviour
     private void Start()
     {
         SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
-        SignUpUser("newapitevsxccxxdvsdvst@test.com", "Apixxx_test", "twojaaastara123");
-        //SignInUser("finaltest@test.com", "twojastara123");
-        //PostToDB(new PlayerData
-        //{
-        //    playerName = "test",
-        //    wallet = "testterrawallet",
-
-        //});
-        ////GetToDB("Zbigniew Handzel");
+        //SignUpUser("testlistyaa@test.com", "lista", "twojaaastara123");
+        SignInUser("testlistyaa@test.com", "twojaaastara123");
     }
 
     private void Update()
@@ -33,7 +26,6 @@ public class Firebase : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            print(SM.level1.score);
             RetrieveFromDatabase();
             print(SM.idToken);
         }
@@ -43,12 +35,7 @@ public class Firebase : MonoBehaviour
         print("Current local id: " + SM.localId);
         RestClient.Get<PlayerData>(databaseURL + "/" + SM.localId + ".json?auth=" + SM.idToken).Then(response =>
         {
-            SM.idToken = response.localId;
-            SM.level1 = response.levels[0];
-            SM.level2 = response.levels[1];
-            SM.level3 = response.levels[2];
-            SM.level4 = response.levels[3];
-            SM.level5 = response.levels[4];
+            SM.levels = response.levels;
             SM.playerName = response.playerName;
             SM.terraWallet = response.wallet;
             SM.localId = response.localId;
@@ -94,7 +81,6 @@ public class Firebase : MonoBehaviour
 
     public void SignInUser(string email, string password)
     {
-        print(SM.level1.score);
         string userData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
         RestClient.Post<SignResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + authKey, userData).Then(
             response =>
@@ -132,14 +118,7 @@ public class Firebase : MonoBehaviour
             playerName = SM.playerName,
             localId = SM.localId,
             wallet = SM.terraWallet,
-            levels = new LevelData[5] 
-            { 
-                new LevelData { levelName = "Level_1", score = SM.level1.score, deathCounter = SM.level1.deathCounter, isCompleted = SM.level1.isCompleted }, 
-                new LevelData { levelName = "Level_2", score = SM.level2.score }, 
-                new LevelData { levelName = "Level_3", score = SM.level3.score }, 
-                new LevelData { levelName = "Level_4", score = SM.level4.score }, 
-                new LevelData { levelName = "Level_5", score = SM.level5.score }, 
-            }
+            levels = SM.levels
         };
 
         return pd;

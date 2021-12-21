@@ -9,4 +9,5 @@ public class LevelData
     public bool isCompleted;
     public int score;
     public int deathCounter;
+
 }
