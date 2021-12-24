@@ -1469,6 +1469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 520913795}
+  - component: {fileID: 520913796}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1490,6 +1491,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &520913796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520913794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da063ffa3f14401458075ab70766717a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSceneName: 
 --- !u!1001 &609093406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2099,28 +2113,25 @@ MonoBehaviour:
   playerName: 
   terraWallet: 
   deathCounter: 0
-  level1:
-    levelName: 
+  currentLevelId: 3
+  levels:
+  - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
-  level2:
-    levelName: 
+  - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
-  level3:
-    levelName: 
+  - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
-  level4:
-    levelName: 
+  - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
-  level5:
-    levelName: 
+  - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
