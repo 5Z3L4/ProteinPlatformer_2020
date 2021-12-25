@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isJumping;
     private bool isJumpingLow;
-    private bool isSliding;
+    public bool isSliding;
     public Rigidbody2D playerRB;
     public float slideSpeed = 500;
 
@@ -62,8 +62,8 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         respawnPos = transform.position;
         startingPos = transform.position;
-        SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
-        SM.levels[SM.currentLevelId].levelName = "Level_" + SM.currentLevelId;
+        //SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
+        //SM.levels[SM.currentLevelId].levelName = "Level_" + SM.currentLevelId;
     }
 
     // Update is called once per frame
