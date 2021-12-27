@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         if (isJumping && isGrounded)
         {
             playerRB.velocity = Vector2.up * 0;
-            playerRB.velocity = Vector2.up * statistics.jumpForce;
+            playerRB.velocity = Vector2.up * jumpForce;
         }
         //je¿eli gracz spada
         if (playerRB.velocity.y < 0)
@@ -163,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //poruszanie
-        rb.velocity = new Vector2(horizontal * statistics.moveSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y);
 
         //je¿eli siê gibiemy
         if (isSliding)
