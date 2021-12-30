@@ -7,6 +7,7 @@ public class TriggerBubble : MonoBehaviour
     [SerializeField]  private TextBubble textToShow;
     private DialogueUI dialogueUI;
     private DialogueActivator dialogueActivator;
+    public DialogueObject NewDialogue;
     private void Awake()
     {
         dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
@@ -19,10 +20,8 @@ public class TriggerBubble : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (dialogueUI.currentDialogue != 0)
-        {
-            dialogueUI.currentDialogue = dialogueActivator.dialogues.Length - 1;
-        }
+        dialogueActivator.newDialogue = NewDialogue;
+        //NewDialogue.Dialogue.Length;
         NPCBubble.SetActive(false);
     }
 }

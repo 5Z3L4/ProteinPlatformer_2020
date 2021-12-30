@@ -1041,6 +1041,10 @@ PrefabInstance:
       value: Dialogue
       objectReference: {fileID: 0}
     - target: {fileID: 4488002640272243577, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
+      propertyPath: newDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 3825f520948b9ef479fbd4f0150114c0, type: 2}
+    - target: {fileID: 4488002640272243577, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
       propertyPath: dialogues.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -1580,6 +1584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bubble
       objectReference: {fileID: 0}
+    - target: {fileID: 1651178200893142213, guid: 977c67df225826d429d0dafe2679a740, type: 3}
+      propertyPath: NewDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 57779c316d6db454489de7a4a5ae3bad, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 977c67df225826d429d0dafe2679a740, type: 3}
 --- !u!1001 &808399110

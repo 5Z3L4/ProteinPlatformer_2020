@@ -8,7 +8,6 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text textLabel;
     private TextWriter textWriter;
     private DialogueActivator dialogueActivator;
-    public int currentDialogue;
     public bool IsOpen { get; private set; }
     private void Awake()
     {
@@ -18,7 +17,6 @@ public class DialogueUI : MonoBehaviour
     {
         CloseDialogueBox();
         textWriter = GetComponent<TextWriter>();
-        currentDialogue = 0;
     }
     public void ShowDialogue(DialogueObject dialogueObject)
     {
@@ -45,12 +43,6 @@ public class DialogueUI : MonoBehaviour
     }
     private void CloseDialogueBox()
     {
-        print(dialogueActivator.dialogues.Length);
-        print(currentDialogue);
-        if (currentDialogue < dialogueActivator.dialogues.Length - 2)
-        {
-            currentDialogue++;
-        }
         IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;

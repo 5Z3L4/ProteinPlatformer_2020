@@ -5,9 +5,9 @@ using UnityEngine;
 public class DialogueActivator : MonoBehaviour, IInteractable
 {
     private DialogueUI dialogueUI;
-    [SerializeField] private DialogueObject currentDialogueObject;
+    private DialogueObject currentDialogueObject;
     [SerializeField] private GameObject pressToTalk;
-    public DialogueObject[] dialogues;
+    public DialogueObject newDialogue;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerMovement player)
     {
-        currentDialogueObject = dialogues[dialogueUI.currentDialogue];
+        currentDialogueObject = newDialogue;
         player.DialogueUI.ShowDialogue(currentDialogueObject);
     }
 }
