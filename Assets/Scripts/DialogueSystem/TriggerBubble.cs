@@ -7,21 +7,25 @@ public class TriggerBubble : MonoBehaviour
     [SerializeField]  private TextBubble textToShow;
     private DialogueUI dialogueUI;
     private DialogueActivator dialogueActivator;
-    public DialogueObject NewDialogue;
+    private Quest questSystem;
+
     private void Awake()
     {
+        questSystem = gameObject.GetComponent<Quest>();
         dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
         dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (questSystem.isQuestAvailable && !questSystem.isQuestCompleted)
+        {
+            questSystem.ChangeDialogue();
+        }
         NPCBubble.SetActive(true);
         textToShow.BubbleSetup();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        dialogueActivator.newDialogue = NewDialogue;
-        //NewDialogue.Dialogue.Length;
         NPCBubble.SetActive(false);
     }
 }

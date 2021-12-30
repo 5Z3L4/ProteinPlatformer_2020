@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class DialogueActivator : MonoBehaviour, IInteractable
 {
+    public Quest[] questTargets;
+    [SerializeField] private DialogueObject startingDialogue;
     private DialogueUI dialogueUI;
-    private DialogueObject currentDialogueObject;
+    [HideInInspector] public DialogueObject currentDialogue;
     [SerializeField] private GameObject pressToTalk;
     public DialogueObject newDialogue;
+    [HideInInspector] public int questID;
 
     private void Start()
     {
+        questID = 0;
         dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();
+        currentDialogue = startingDialogue;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,7 +40,10 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerMovement player)
     {
-        currentDialogueObject = newDialogue;
-        player.DialogueUI.ShowDialogue(currentDialogueObject);
+        if (!questTargets[questID].isQuestAvailable && !questTargets[questID].isQuestCompleted)
+        {
+            questTargets[questID].isQuestAvailable = true;
+        }
+        player.DialogueUI.ShowDialogue(currentDialogue);
     }
 }

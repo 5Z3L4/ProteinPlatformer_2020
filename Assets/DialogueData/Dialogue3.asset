@@ -13,7 +13,4 @@ MonoBehaviour:
   m_Name: Dialogue3
   m_EditorClassIdentifier: 
   dialogue:
-  - 'Zbigniew Handzel
-
-'
-  - "zr\xF3b mi louda"
+  - "Seks z peda\u0142ami"

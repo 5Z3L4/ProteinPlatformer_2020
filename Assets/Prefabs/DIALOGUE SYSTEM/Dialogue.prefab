@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.019820213, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -113,8 +113,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329bdaad3b486e04581111450dee3579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 11400000, guid: f98c2690beb77aa4f88bbac4a3763b70, type: 2}
+  questTargets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startingDialogue: {fileID: 11400000, guid: 3825f520948b9ef479fbd4f0150114c0, type: 2}
+  currentDialogue: {fileID: 0}
   pressToTalk: {fileID: 4488002640337218657}
+  newDialogue: {fileID: 11400000, guid: 3825f520948b9ef479fbd4f0150114c0, type: 2}
+  questID: 0
 --- !u!1 &4488002640337218657
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.27, y: 1.06}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4488002640337218668
@@ -247,8 +255,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
