@@ -240,7 +240,7 @@ MonoBehaviour:
     m_Bits: 8
   jumpForce: 12
   fallMultiplier: 4
-  lowJumpMultiplier: 3.5
+  lowJumpMultiplier: 4.5
   isSliding: 0
   playerRB: {fileID: 5913092299120865098}
   slideSpeed: 50000
