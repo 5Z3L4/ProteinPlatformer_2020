@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public float lowJumpMultiplier = 2f;
     private bool isGrounded;
     private bool isJumping;
+    private bool shouldJump;
     private bool isJumpingLow;
     public bool isSliding;
     public Rigidbody2D playerRB;
@@ -42,6 +43,10 @@ public class PlayerMovement : MonoBehaviour
 
     public BoxCollider2D mainCollider;
     public CircleCollider2D slideCollider;
+
+    private float jumpTimeCounter;
+    public float jumpTime = 1f;
+
 
     public bool isCharging = false;
     public bool isSmashing = false;
@@ -133,12 +138,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
-        if (isJumping && isGrounded)
+        if (isGrounded && Input.GetKeyDown("space") && !shouldJump)
         {
-            playerRB.velocity = Vector2.up * 0;
-            playerRB.velocity = Vector2.up * statistics.jumpForce;
+            shouldJump = true;
+            jumpTimeCounter = jumpTime;
+            //playerRB.velocity = Vector2.up * 0;
+            playerRB.velocity = Vector2.up * jumpForce;
         }
+
         //je¿eli gracz spada
         if (playerRB.velocity.y < 0)
         {
@@ -146,24 +155,47 @@ public class PlayerMovement : MonoBehaviour
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
         //dostosowujemy wysokoœæ skoku do czasu trzymania spacji
-        else if (playerRB.velocity.y > 0 && !isJumpingLow)
+        else if (playerRB.velocity.y > 0 && !Input.GetButtonDown("Jump"))
         {
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+
+        {
+
+            shouldJump = false;
+
+        }
+
+
+        if (Input.GetKey(KeyCode.Space) && shouldJump == true)
+        {
+            if (jumpTimeCounter > 0)
+            {
+                playerRB.velocity = Vector2.up * jumpForce;
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                shouldJump = false;
+            }
+
+        }
     }
 
-    private void CheckAxis()
+        private void CheckAxis()
     {
         horizontalAxis = Input.GetAxisRaw("Horizontal");
         isJumping = Input.GetButtonDown("Jump");
-        isJumpingLow = Input.GetButton("Jump");
+        //isJumpingLow = Input.GetKey(KeyCode.Space);
     }
 
     public void Move(float horizontal, Rigidbody2D rb, float speed)
     {
 
         //poruszanie
-        rb.velocity = new Vector2(horizontal * statistics.moveSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y);
 
         //je¿eli siê gibiemy
         if (isSliding)

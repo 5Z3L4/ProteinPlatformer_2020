@@ -17,6 +17,7 @@ public class Firebase : MonoBehaviour
         SignInUser("testlistyaa@test.com", "twojaaastara123");
     }
 
+    //delete this
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
