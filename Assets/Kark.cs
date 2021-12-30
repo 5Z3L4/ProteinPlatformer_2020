@@ -15,6 +15,9 @@ public class Kark : MonoBehaviour //,Enemy
     Vector3 baseScale;
     bool canMove;
     bool canAttack;
+    [Tooltip("true -> w prawo false -> w lewo")]
+    public bool leftOrRight = true;
+    public bool shouldAttack = true;
 
     private void Awake()
     {
@@ -27,13 +30,22 @@ public class Kark : MonoBehaviour //,Enemy
         canAttack = false;
         canMove = true;
         baseScale = transform.localScale;
-        facingRight = true;
+        if (leftOrRight)
+        {
+            facingRight = true;
+        }
+        else
+        {
+            Flip(false);
+            facingRight = false;
+        }
+        
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if (canAttack)
+        if (canAttack && shouldAttack)
         {
             Attack();
         }
