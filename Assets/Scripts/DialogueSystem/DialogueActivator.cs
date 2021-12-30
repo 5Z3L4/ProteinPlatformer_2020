@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class DialogueActivator : MonoBehaviour, IInteractable
 {
-    [SerializeField] private DialogueObject dialogueObject;
+    private DialogueUI dialogueUI;
+    [SerializeField] private DialogueObject currentDialogueObject;
     [SerializeField] private GameObject pressToTalk;
+    public DialogueObject[] dialogues;
 
+    private void Start()
+    {
+        dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         pressToTalk.SetActive(true);
         if (collision.CompareTag("Player") && collision.TryGetComponent(out PlayerMovement player))
         {
@@ -28,6 +35,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerMovement player)
     {
-        player.DialogueUI.ShowDialogue(dialogueObject);
+        currentDialogueObject = dialogues[dialogueUI.currentDialogue];
+        player.DialogueUI.ShowDialogue(currentDialogueObject);
     }
 }
