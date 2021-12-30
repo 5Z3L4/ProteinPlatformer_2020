@@ -9,7 +9,7 @@ public class TextBubble : MonoBehaviour
     private SpriteRenderer backgroundSpriteRenderer;
     private TextMeshPro textMeshPro;
 
-    private string[] bubbleTexts = new string[5] { "test1", "test2", "test3", "test4", "test5" };
+    private string[] bubbleTexts = new string[5] { "Disgusting...", "Freak!", "Get away!", "Worm!", "Ugh, something stinks..." };
 
     private void Awake()
     {
