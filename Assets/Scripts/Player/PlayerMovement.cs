@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
     public float jumpForce = 5;
+    public float basejumpForce;
+    public bool isOnJumpBoost = false;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     private bool isGrounded;
@@ -67,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         respawnPos = transform.position;
         startingPos = transform.position;
+        basejumpForce = jumpForce;
         //SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
         //SM.levels[SM.currentLevelId].levelName = "Level_" + SM.currentLevelId;
     }
@@ -287,7 +290,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void JumpBoost()
     {
-        statistics.jumpForce *= 1.5f;
+        isOnJumpBoost = true;
+        Debug.Log(jumpForce);
+        jumpForce = 27f;
+        Debug.Log(jumpForce);
         StartCoroutine("jumpBoostTimer");
     }
 
@@ -299,7 +305,9 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator jumpBoostTimer()
     {
         yield return new WaitForSeconds(5);
-        statistics.jumpForce /= 1.5f;
+        jumpForce = basejumpForce;
+        isOnJumpBoost = false;
+        Debug.Log(jumpForce);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -323,7 +331,7 @@ public class PlayerMovement : MonoBehaviour
             SpeedBoost();
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.tag == "JumpBoost")
+        if (collision.gameObject.tag == "JumpBoost" && !isOnJumpBoost)
         {
             JumpBoost();
             Destroy(collision.gameObject);
