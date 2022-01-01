@@ -35,7 +35,10 @@ public class LaughingGirl : MonoBehaviour //Enemy
     {
         ShootWave();
     }
-
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        timeBtwAttack = startTimeBtwAttack;
+    }
     public void ShootWave()
     {
         if (timeBtwAttack <= 0)
