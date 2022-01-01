@@ -292,7 +292,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isOnJumpBoost = true;
         Debug.Log(jumpForce);
-        jumpForce = 27f;
+        jumpForce = 25f;
         Debug.Log(jumpForce);
         StartCoroutine("jumpBoostTimer");
     }
