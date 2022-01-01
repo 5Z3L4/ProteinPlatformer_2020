@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         Invoke("DestroyProjectile", lifeTime);
-        rb.velocity = new Vector2(shootSpeed * GameObject.Find("Girl").GetComponent<LaughingGirl>().isFacingRight * Time.fixedDeltaTime, 0);
+        //rb.velocity = new Vector2(shootSpeed * GameObject.Find("Girl").GetComponent<LaughingGirl>().isFacingRight * Time.fixedDeltaTime, 0);
     }
     private void DestroyProjectile()
     {

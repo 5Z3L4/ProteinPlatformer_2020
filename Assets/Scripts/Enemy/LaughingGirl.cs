@@ -5,40 +5,37 @@ using UnityEngine;
 public class LaughingGirl : MonoBehaviour //Enemy
 {
     [SerializeField] private Animation anim;
-    [SerializeField] private float focusDistance;
     [SerializeField] private float timeBtwAttack;
     [SerializeField] private float startTimeBtwAttack;
-    [SerializeField] private float distanceToPlayer;
     [HideInInspector]
-    public int isFacingRight;
+    public bool isFacingRight;
 
     public Transform minePosition;
-    public Transform playerPos;
-    
+    public GameObject player;
 
+    private void Awake()
+    {
+        player = GameObject.Find("Player");
+    }
     private void Start()
     {
-        isFacingRight = 1;
+        isFacingRight = false;
+        Flip();
         minePosition = GetComponent<Transform>();
         anim = GetComponent<Animation>();
     }
-
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        playerPos = GameObject.Find("Player").transform;
-
-        distanceToPlayer = Vector2.Distance(minePosition.position, playerPos.position);
-
-        if (distanceToPlayer <= focusDistance)
+        if (isFacingRight == player.GetComponent<PlayerMovement>().facingRight)
         {
-            if (playerPos.position.x > transform.position.x && transform.localScale.x < 0 || playerPos.position.x < transform.position.x && transform.localScale.x > 0)
-            {
-                Invoke("Flip", 2f);
-            }
-            ShootWave();
+            Flip();
         }
     }
-    
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        ShootWave();
+    }
+
     public void ShootWave()
     {
         if (timeBtwAttack <= 0)
@@ -53,7 +50,7 @@ public class LaughingGirl : MonoBehaviour //Enemy
     }
     private void Flip()
     {
-        isFacingRight *= -1;
+        isFacingRight = !isFacingRight;
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
