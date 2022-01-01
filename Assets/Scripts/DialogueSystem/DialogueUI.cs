@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
@@ -9,6 +10,11 @@ public class DialogueUI : MonoBehaviour
     private TextWriter textWriter;
     private DialogueActivator dialogueActivator;
     private ResponseHandler responseHandler;
+    [SerializeField] private Image playerImage;
+    public Image PlayerImage => playerImage;
+    [SerializeField] private Image interlocutorImage;
+    public Image InterlocutorImage => interlocutorImage;
+
     public bool IsOpen { get; private set; }
     private void Awake()
     {
@@ -16,7 +22,10 @@ public class DialogueUI : MonoBehaviour
     }
     void Start()
     {
+        playerImage.sprite = GameObject.Find("Player").GetComponentInChildren<SpriteRenderer>().sprite;
+        playerImage.color = GameObject.Find("Player").GetComponentInChildren<SpriteRenderer>().color;
         CloseDialogueBox();
+        InterlocutorImage.sprite = dialogueActivator.ImageToShow;
         textWriter = GetComponent<TextWriter>();
         responseHandler = GetComponent<ResponseHandler>();
     }
@@ -40,10 +49,12 @@ public class DialogueUI : MonoBehaviour
             yield return null;
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
         }
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
         if (dialogueObject.HasResponses)
         {
-            responseHandler.ShowResponses(dialogueObject.Responses);
             CloseDialogueBox();
+            responseHandler.ShowResponses(dialogueObject.Responses);
+            IsOpen = true;
         }
         else
         {

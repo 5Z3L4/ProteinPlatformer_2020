@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !dialogueUI.IsOpen)
         {
             Interactable?.Interact(this);
         }
