@@ -187,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-        private void CheckAxis()
+    private void CheckAxis()
     {
         horizontalAxis = Input.GetAxisRaw("Horizontal");
         isJumping = Input.GetButtonDown("Jump");

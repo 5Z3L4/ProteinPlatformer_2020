@@ -88,7 +88,18 @@ public class Kark : MonoBehaviour //,Enemy
                 canMove = false;
                 canAttack = true;
             }
-        } 
+        }
+        if (collision.CompareTag("Enemy"))
+        {
+            if (!facingRight)
+            {
+                Flip(true);
+            }
+            else
+            {
+                Flip(false);
+            }
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
