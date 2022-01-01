@@ -8,21 +8,26 @@ public class TextWriter : MonoBehaviour
     [SerializeField] private float textWriterSpeed = 50f;
 
     public bool IsRunning { get; private set; }
+
     private readonly List<Punctuation> punctuations = new List<Punctuation>()
     {
         new Punctuation(new HashSet<char>() { '.', '!', '?' }, 0.6f),
         new Punctuation(new HashSet<char>(){',' , ':', ';'}, 0.3f)
     };
+
     private Coroutine typingCoroutine;
+
     public void Run(string textToType, TMP_Text textLabel)
     {
         typingCoroutine = StartCoroutine(TypeText(textToType, textLabel));
     }
+
     public void Stop()
     {
         StopCoroutine(typingCoroutine);
         IsRunning = false;
     }
+
     private IEnumerator TypeText(string textToType, TMP_Text textLabel)
     {
         IsRunning = true;
@@ -54,6 +59,7 @@ public class TextWriter : MonoBehaviour
         }
         IsRunning = false;
     }
+
     private bool IsPunctuation(char characterToSearch, out float waitTime)
     {
         foreach (Punctuation punctuationCategory in punctuations)

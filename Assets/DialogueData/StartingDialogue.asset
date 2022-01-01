@@ -15,3 +15,8 @@ MonoBehaviour:
   dialogue:
   - Armand chuj.
   - "Dominiak te\u017C."
+  responses:
+  - responseText: Mariusz
+    dialogueObject: {fileID: 11400000, guid: c10ed84af6689a642a86d526f0e63d6d, type: 2}
+  - responseText: Mokebe
+    dialogueObject: {fileID: 11400000, guid: c6e89c684b0504940a5fae159326d1fe, type: 2}
