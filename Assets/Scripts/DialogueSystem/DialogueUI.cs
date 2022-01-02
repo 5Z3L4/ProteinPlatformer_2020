@@ -23,15 +23,15 @@ public class DialogueUI : MonoBehaviour
     private void Awake()
     {
         dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
-    }
-    void Start()
-    { 
-        playerImage.sprite = GameObject.Find("Player").GetComponentInChildren<SpriteRenderer>().sprite;
-        playerImage.color = GameObject.Find("Player").GetComponentInChildren<SpriteRenderer>().color;
+        playerImage.sprite = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>().sprite;
+        playerImage.color = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>().color;
         defaultPlayerColor = playerImage.color;
         defaultInterlocutorColor = interlocutorImage.color;
-        CloseDialogueBox();
         interlocutorImage.sprite = dialogueActivator.ImageToShow;
+    }
+    void Start()
+    {   
+        CloseDialogueBox();
         textWriter = GetComponent<TextWriter>();
         responseHandler = GetComponent<ResponseHandler>();
     }

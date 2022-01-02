@@ -54,10 +54,17 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerMovement player)
     {
-        if (!questTargets[questID].isQuestAvailable && !questTargets[questID].isQuestCompleted)
+        if (questTargets != null)
         {
-            questTargets[questID].isQuestAvailable = true;
+            player.DialogueUI.ShowDialogue(currentDialogue);
         }
-        player.DialogueUI.ShowDialogue(currentDialogue);
+        else
+        {
+            if (!questTargets[questID].isQuestAvailable && !questTargets[questID].isQuestCompleted)
+            {
+                questTargets[questID].isQuestAvailable = true;
+            }
+        }
+        
     }
 }

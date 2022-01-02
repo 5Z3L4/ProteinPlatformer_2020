@@ -123,6 +123,7 @@ MonoBehaviour:
   pressToTalk: {fileID: 4488002640337218657}
   newDialogue: {fileID: 11400000, guid: 3825f520948b9ef479fbd4f0150114c0, type: 2}
   questID: 0
+  imageToShow: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &4488002640337218657
 GameObject:
   m_ObjectHideFlags: 0

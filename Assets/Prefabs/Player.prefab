@@ -239,6 +239,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   jumpForce: 12
+  basejumpForce: 0
+  isOnJumpBoost: 0
   fallMultiplier: 4
   lowJumpMultiplier: 4.5
   isSliding: 0
