@@ -21,7 +21,6 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         pressToTalk.SetActive(true);
         if (collision.CompareTag("Player") && collision.TryGetComponent(out PlayerMovement player))
         {
@@ -36,6 +35,20 @@ public class DialogueActivator : MonoBehaviour, IInteractable
             if (player.Interactable is DialogueActivator dialogueActivator && dialogueActivator == this)
             {
                 player.Interactable = null;
+            }
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (dialogueUI.IsOpen)
+            {
+                pressToTalk.SetActive(false);
+            }
+            else
+            {
+                pressToTalk.SetActive(true);
             }
         }
     }
