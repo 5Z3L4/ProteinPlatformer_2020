@@ -31,17 +31,24 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
     public float jumpForce = 5;
+    public float basejumpForce;
+    public bool isOnJumpBoost = false;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     private bool isGrounded;
     private bool isJumping;
+    private bool shouldJump;
     private bool isJumpingLow;
-    private bool isSliding;
+    public bool isSliding;
     public Rigidbody2D playerRB;
     public float slideSpeed = 500;
 
     public BoxCollider2D mainCollider;
     public CircleCollider2D slideCollider;
+
+    private float jumpTimeCounter;
+    public float jumpTime = 1f;
+
 
     public bool isCharging = false;
     public bool isSmashing = false;
@@ -62,8 +69,9 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         respawnPos = transform.position;
         startingPos = transform.position;
-        SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
-        SM.levels[SM.currentLevelId].levelName = "Level_" + SM.currentLevelId;
+        basejumpForce = jumpForce;
+        //SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
+        //SM.levels[SM.currentLevelId].levelName = "Level_" + SM.currentLevelId;
     }
 
     // Update is called once per frame
@@ -133,12 +141,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
-        if (isJumping && isGrounded)
+        if (isGrounded && Input.GetKeyDown("space") && !shouldJump)
         {
-            playerRB.velocity = Vector2.up * 0;
-            playerRB.velocity = Vector2.up * statistics.jumpForce;
+            shouldJump = true;
+            jumpTimeCounter = jumpTime;
+            //playerRB.velocity = Vector2.up * 0;
+            playerRB.velocity = Vector2.up * jumpForce;
         }
+
         //je¿eli gracz spada
         if (playerRB.velocity.y < 0)
         {
@@ -146,9 +158,32 @@ public class PlayerMovement : MonoBehaviour
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
         //dostosowujemy wysokoœæ skoku do czasu trzymania spacji
-        else if (playerRB.velocity.y > 0 && !isJumpingLow)
+        else if (playerRB.velocity.y > 0 && !Input.GetButtonDown("Jump"))
         {
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+
+        {
+
+            shouldJump = false;
+
+        }
+
+
+        if (Input.GetKey(KeyCode.Space) && shouldJump == true)
+        {
+            if (jumpTimeCounter > 0)
+            {
+                playerRB.velocity = Vector2.up * jumpForce;
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                shouldJump = false;
+            }
+
         }
     }
 
@@ -156,14 +191,14 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalAxis = Input.GetAxisRaw("Horizontal");
         isJumping = Input.GetButtonDown("Jump");
-        isJumpingLow = Input.GetButton("Jump");
+        //isJumpingLow = Input.GetKey(KeyCode.Space);
     }
 
     public void Move(float horizontal, Rigidbody2D rb, float speed)
     {
 
         //poruszanie
-        rb.velocity = new Vector2(horizontal * statistics.moveSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y);
 
         //je¿eli siê gibiemy
         if (isSliding)
@@ -255,7 +290,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void JumpBoost()
     {
-        statistics.jumpForce *= 1.5f;
+        isOnJumpBoost = true;
+        Debug.Log(jumpForce);
+        jumpForce = 25f;
+        Debug.Log(jumpForce);
         StartCoroutine("jumpBoostTimer");
     }
 
@@ -267,7 +305,9 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator jumpBoostTimer()
     {
         yield return new WaitForSeconds(5);
-        statistics.jumpForce /= 1.5f;
+        jumpForce = basejumpForce;
+        isOnJumpBoost = false;
+        Debug.Log(jumpForce);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -291,7 +331,7 @@ public class PlayerMovement : MonoBehaviour
             SpeedBoost();
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.tag == "JumpBoost")
+        if (collision.gameObject.tag == "JumpBoost" && !isOnJumpBoost)
         {
             JumpBoost();
             Destroy(collision.gameObject);
