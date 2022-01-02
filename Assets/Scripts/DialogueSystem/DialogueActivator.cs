@@ -1,12 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueActivator : MonoBehaviour, IInteractable
 {
-    [SerializeField] private DialogueObject dialogueObject;
+    public Quest[] questTargets;
+    [SerializeField] private DialogueObject startingDialogue;
+    private DialogueUI dialogueUI;
+    [HideInInspector] public DialogueObject currentDialogue;
     [SerializeField] private GameObject pressToTalk;
+    public DialogueObject newDialogue;
+    [HideInInspector] public int questID;
+    [SerializeField] Sprite imageToShow;
+    public Sprite ImageToShow => imageToShow;
 
+    private void Start()
+    {
+        questID = 0;
+        dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();
+        currentDialogue = startingDialogue;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         pressToTalk.SetActive(true);
@@ -26,8 +38,26 @@ public class DialogueActivator : MonoBehaviour, IInteractable
             }
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (dialogueUI.IsOpen)
+            {
+                pressToTalk.SetActive(false);
+            }
+            else
+            {
+                pressToTalk.SetActive(true);
+            }
+        }
+    }
     public void Interact(PlayerMovement player)
     {
-        player.DialogueUI.ShowDialogue(dialogueObject);
+        if (!questTargets[questID].isQuestAvailable && !questTargets[questID].isQuestCompleted)
+        {
+            questTargets[questID].isQuestAvailable = true;
+        }
+        player.DialogueUI.ShowDialogue(currentDialogue);
     }
 }

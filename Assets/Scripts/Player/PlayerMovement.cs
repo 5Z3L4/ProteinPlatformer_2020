@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             print(GameManager.maxStrenght);
         }
 
-        //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
+        //Sprawdzamy czy gracz dotyka podÂ³ogi, robimy to z zapasem Â¿eby skok byÂ³ pÂ³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         if (shouldSmashParticle)
         {
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !dialogueUI.IsOpen)
         {
             Interactable?.Interact(this);
         }
@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         
-        //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
+        //jeÂ¿eli gracz wcisnÂ¹Â³ spacjÃª i wykryliÅ“my Â¿e dotknÂ¹Â³ ziemi
         if (isGrounded && Input.GetKeyDown("space") && !shouldJump)
         {
             shouldJump = true;
@@ -151,13 +151,13 @@ public class PlayerMovement : MonoBehaviour
             playerRB.velocity = Vector2.up * jumpForce;
         }
 
-        //je¿eli gracz spada
+        //jeÂ¿eli gracz spada
         if (playerRB.velocity.y < 0)
         {
             //szybciej spadamy
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        //dostosowujemy wysokoœæ skoku do czasu trzymania spacji
+        //dostosowujemy wysokoÅ“Ã¦ skoku do czasu trzymania spacji
         else if (playerRB.velocity.y > 0 && !Input.GetButtonDown("Jump"))
         {
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
@@ -200,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
         //poruszanie
         rb.velocity = new Vector2(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y);
 
-        //je¿eli siê gibiemy
+        //jeÂ¿eli siÃª gibiemy
         if (isSliding)
         {
             rb.velocity = new Vector2(slideDirection * statistics.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
@@ -255,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
         //TO DO: (smash w momencie uderzenia w ziemie)
 
         PlayParticleSystem(falling);
-        //spadaj w dó³ a¿ nie trafisz na ziemie
+        //spadaj w dÃ³Â³ aÂ¿ nie trafisz na ziemie
         
         playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
         isSmashing = true;

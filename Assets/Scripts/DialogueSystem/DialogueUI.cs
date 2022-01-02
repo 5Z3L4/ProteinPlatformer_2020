@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
@@ -6,17 +7,37 @@ public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
-    [SerializeField] private DialogueObject testDialogue;
     private TextWriter textWriter;
-    public bool IsOpen { get; private set; }
+    private DialogueActivator dialogueActivator;
+    private ResponseHandler responseHandler;
+    [SerializeField] private Image playerImage;
+    public Image PlayerImage => playerImage;
+    [SerializeField] private Image interlocutorImage;
+    public Image InterlocutorImage => interlocutorImage;
+    private Color defaultInterlocutorColor;
+    private Color defaultPlayerColor;
+    public Color DefaultInterlocutorColor => defaultInterlocutorColor;
+    public Color DefaultPlayerColor => defaultPlayerColor;
 
-    void Start()
+    public bool IsOpen { get; private set; }
+    private void Awake()
     {
+        dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
+    }
+    void Start()
+    { 
+        playerImage.sprite = GameObject.Find("Player").GetComponentInChildren<SpriteRenderer>().sprite;
+        playerImage.color = GameObject.Find("Player").GetComponentInChildren<SpriteRenderer>().color;
+        defaultPlayerColor = playerImage.color;
+        defaultInterlocutorColor = interlocutorImage.color;
         CloseDialogueBox();
+        interlocutorImage.sprite = dialogueActivator.ImageToShow;
         textWriter = GetComponent<TextWriter>();
+        responseHandler = GetComponent<ResponseHandler>();
     }
     public void ShowDialogue(DialogueObject dialogueObject)
     {
+        interlocutorImage.gameObject.SetActive(true);
         IsOpen = true;
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
@@ -28,7 +49,7 @@ public class DialogueUI : MonoBehaviour
             string dialogue = dialogueObject.Dialogue[i];
             yield return RunTypingEffect(dialogue);
             textLabel.text = dialogue;
-            if (i == dialogueObject.Dialogue.Length - 1)
+            if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses)
             {
                 break;
             }
@@ -36,10 +57,24 @@ public class DialogueUI : MonoBehaviour
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
         }
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
-        CloseDialogueBox();
+        if (dialogueObject.HasResponses)
+        {
+            interlocutorImage.color = DarkenColor(interlocutorImage);
+            CloseDialogueBox();
+            responseHandler.ShowResponses(dialogueObject.Responses);
+            IsOpen = true;
+        }
+        else
+        {
+            interlocutorImage.gameObject.SetActive(false);
+            CloseDialogueBox();
+        }
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
+        
     }
     private void CloseDialogueBox()
     {
+        playerImage.gameObject.SetActive(false);
         IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
@@ -55,5 +90,10 @@ public class DialogueUI : MonoBehaviour
                 textWriter.Stop();
             }
         }
+    }
+    public Color DarkenColor(Image imgToDarken)
+    {
+        Color darkImg = new Color(imgToDarken.color.r - (imgToDarken.color.r * 0.6f), imgToDarken.color.g - (imgToDarken.color.g * 0.6f), imgToDarken.color.b - (imgToDarken.color.b * 0.6f));
+        return darkImg;
     }
 }
