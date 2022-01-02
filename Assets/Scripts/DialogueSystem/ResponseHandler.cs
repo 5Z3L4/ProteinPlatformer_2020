@@ -16,6 +16,7 @@ public class ResponseHandler : MonoBehaviour
     }
     public void ShowResponses(Response[] responses)
     {
+        dialogueUI.PlayerImage.color = dialogueUI.DefaultPlayerColor;
         dialogueUI.PlayerImage.gameObject.SetActive(true);
         foreach (Response response in responses)
         {
@@ -30,7 +31,8 @@ public class ResponseHandler : MonoBehaviour
     }
     private void OnPickedResponse(Response response)
     {
-        dialogueUI.PlayerImage.color = new Color(dialogueUI.PlayerImage.color.r - (dialogueUI.PlayerImage.color.r * 0.6f), dialogueUI.PlayerImage.color.g - (dialogueUI.PlayerImage.color.g * 0.6f), dialogueUI.PlayerImage.color.b - (dialogueUI.PlayerImage.color.b * 0.6f));
+        dialogueUI.PlayerImage.color = dialogueUI.DarkenColor(dialogueUI.PlayerImage);
+        dialogueUI.InterlocutorImage.color = dialogueUI.DefaultInterlocutorColor;
         responseBox.gameObject.SetActive(false);
         foreach (GameObject button in tempResponseButtons)
         {
