@@ -10,6 +10,8 @@ TagManager:
   - KillBox
   - CheckPoint
   - Box
+  - SaveManager
+  - Enemy
   layers:
   - Default
   - TransparentFX

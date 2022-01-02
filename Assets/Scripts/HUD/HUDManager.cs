@@ -40,7 +40,7 @@ public class HUDManager : MonoBehaviour
             }
         }
 
-        currentScoreText.text = "Score: " + currentScore.ToString();
+        //currentScoreText.text = "Score: " + currentScore.ToString();
     }
 
     public void ShowCollected(string name)
