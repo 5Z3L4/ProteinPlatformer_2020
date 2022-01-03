@@ -17,10 +17,14 @@ public class TriggerBubble : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (questSystem.isQuestAvailable && !questSystem.isQuestCompleted)
+        if (questSystem != null)
         {
-            questSystem.ChangeDialogue();
+            if (questSystem.isQuestAvailable && !questSystem.isQuestCompleted)
+            {
+                questSystem.ChangeDialogue();
+            }
         }
+        
         NPCBubble.SetActive(true);
         textToShow.BubbleSetup();
     }

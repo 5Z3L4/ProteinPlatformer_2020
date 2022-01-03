@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f184db9c6bf3546acf73870c9f1d94, type: 3}
   m_Name: QuiteResponse
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - You're shy guy huh? No worries, girls like sissy... ugh i mean quite mans.
+  - Don't waste your time buddy! Just came to her, she will handle rest!
   responses: []

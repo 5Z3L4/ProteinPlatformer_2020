@@ -5,7 +5,7 @@ public class Quest : MonoBehaviour
     [HideInInspector]public bool isQuestAvailable;
     [HideInInspector]public bool isQuestCompleted;
     [SerializeField] private GameObject QuestDestination;
-    [SerializeField] private DialogueObject newDialogue;
+    public DialogueObject newDialogue;
     private void Start()
     {
         isQuestAvailable = false;

@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36f184db9c6bf3546acf73870c9f1d94, type: 3}
-  m_Name: Dialogue1
+  m_Name: chickscream
   m_EditorClassIdentifier: 
-  dialogue:
-  - Kacper Cipkowski
+  dialogue: []
   responses: []

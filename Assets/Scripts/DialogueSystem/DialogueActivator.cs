@@ -54,7 +54,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerMovement player)
     {
-        if (questTargets != null)
+        if (questTargets == null || questTargets.Length == 0)
         {
             player.DialogueUI.ShowDialogue(currentDialogue);
         }
@@ -64,7 +64,8 @@ public class DialogueActivator : MonoBehaviour, IInteractable
             {
                 questTargets[questID].isQuestAvailable = true;
             }
+            player.DialogueUI.ShowDialogue(currentDialogue);
         }
-        
+
     }
 }

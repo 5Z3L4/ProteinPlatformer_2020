@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36f184db9c6bf3546acf73870c9f1d94, type: 3}
-  m_Name: ConfidentResponse
+  m_Name: Dialogue1
   m_EditorClassIdentifier: 
   dialogue:
-  - Holy moly, you are so confident, I like your attitude!
-  - Don't waste your time! Hit on her!
+  - Ugh, what are you doing here, get away you disgusting phreak!
   responses: []

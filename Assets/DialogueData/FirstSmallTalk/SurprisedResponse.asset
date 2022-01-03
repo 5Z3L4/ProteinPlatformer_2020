@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f184db9c6bf3546acf73870c9f1d94, type: 3}
   m_Name: SurprisedResponse
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - Ofcourse! To be honest she asked me to help her go out with you.
+  - So don't waste your time! Hit on her!
   responses: []
