@@ -4,11 +4,10 @@ using UnityEngine.UI;
 public class DialogueActivator : MonoBehaviour, IInteractable
 {
     public Quest[] questTargets;
-    [SerializeField] private DialogueObject startingDialogue;
     private DialogueUI dialogueUI;
     public DialogueObject currentDialogue;
+    [SerializeField] private DialogueObject startingDialogue;
     [SerializeField] private GameObject pressToTalk;
-    public DialogueObject newDialogue;
     [HideInInspector] public int questID;
     [SerializeField] Sprite imageToShow;
     public Sprite ImageToShow => imageToShow;
