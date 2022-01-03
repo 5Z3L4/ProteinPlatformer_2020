@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: chickscream
   m_EditorClassIdentifier: 
   dialogue:
-  - GET OUT!
+  - Ofcourse it was, just look at you!
+  - Get out of my sight, pathetic thrash!
   responses: []

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Dialogue1
   m_EditorClassIdentifier: 
   dialogue:
-  - Ugh, what are you doing here, get away you disgusting phreak!
+  - HAHAHA I CAN'T BELIVE YOU HAVE FALLEN FOR THAT!
+  - HAHAHAHAHAHAHA
   responses:
-  - responseText: But
+  - responseText: So that was a fucking lie
     dialogueObject: {fileID: 11400000, guid: 4a0024f9a83aec94f8b12c957c0ca7dd, type: 2}
