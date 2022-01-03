@@ -21,7 +21,7 @@ public class DialogueUI : MonoBehaviour
 
     public bool IsOpen { get; private set; }
     private void Awake()
-    {
+    {        
         dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
         playerImage.sprite = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>().sprite;
         playerImage.color = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>().color;
