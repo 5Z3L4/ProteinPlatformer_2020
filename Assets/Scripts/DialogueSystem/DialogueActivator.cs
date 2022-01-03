@@ -6,7 +6,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     public Quest[] questTargets;
     [SerializeField] private DialogueObject startingDialogue;
     private DialogueUI dialogueUI;
-    [HideInInspector] public DialogueObject currentDialogue;
+    public DialogueObject currentDialogue;
     [SerializeField] private GameObject pressToTalk;
     public DialogueObject newDialogue;
     [HideInInspector] public int questID;
