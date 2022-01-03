@@ -24,12 +24,12 @@ public class TriggerBubble : MonoBehaviour
                 questSystem.ChangeDialogue();
             }
         }
-        
         NPCBubble.SetActive(true);
         textToShow.BubbleSetup();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         NPCBubble.SetActive(false);
+        textToShow.startingDialogueFinished = true;
     }
 }
