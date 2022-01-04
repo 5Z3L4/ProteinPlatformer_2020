@@ -39,8 +39,8 @@ public class HUDManager : MonoBehaviour
                 GameObject.Find("proteinHolder").GetComponent<Animator>().SetBool("Open", false);
             }
         }
-
-        //currentScoreText.text = "Score: " + currentScore.ToString();
+        currentScore = GameManager.Score;
+        currentScoreText.text = "Score: " + currentScore.ToString();
     }
 
     public void ShowCollected(string name)
