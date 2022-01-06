@@ -9,7 +9,7 @@ public class TimeCounter : MonoBehaviour
     public TextMeshProUGUI counterText;
     public float seconds { get; private set; }
     public float minutes { get; private set; }
-    void Start()
+    void Awake()
     {
         counterText = GetComponent<TextMeshProUGUI>();
     }
