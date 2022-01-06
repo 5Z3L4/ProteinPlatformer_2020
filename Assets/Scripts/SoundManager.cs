@@ -6,43 +6,64 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-
     public AudioMixer audioMixer;
     public Toggle muteToggle;
-    public Slider slider;
+    public Slider volumeSlider;
+    private bool muted = false;
 
-    public void Mute()
+    private void Start()
     {
-        if (muteToggle.isOn)
+        DontDestroyOnLoad(gameObject);
+        muteToggle = FindObjectOfType<Toggle>();
+        volumeSlider = FindObjectOfType<Slider>();
+        if (!PlayerPrefs.HasKey("musicVolume"))
         {
-            AudioListener.volume = 0;
-            Debug.Log(AudioListener.volume);
+            PlayerPrefs.SetFloat("musicVolume", 1f);
+        }
+        else if (!PlayerPrefs.HasKey("muted"))
+        {
+            PlayerPrefs.SetInt("muted", 0);
         }
         else
         {
-            AudioListener.volume = 1;
+            LoadAudioSettings();
         }
+        if (GameObject.Find("OptionsPanel") != null)
+        {
+            GameObject.Find("OptionsPanel").SetActive(false);
+        }
+        
     }
 
-    public void SetVolume(float volume)
+    public void MuteToggle()
     {
-        audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
-    }
-    void Awake()
-    {
-        if (Ticker.counter == 0)
+        if (!muted)
         {
-            DontDestroyOnLoad(this.gameObject);
-            Ticker.counter++;
-            return;
+            muted = true;
+            AudioListener.pause = true;
         }
         else
         {
-            Destroy(this.gameObject);
+            muted = false;
+            AudioListener.pause = false;
         }
     }
-}
-public static class Ticker
-{
-    public static int counter = 0;
+
+    public void SetVolume()
+    {
+        AudioListener.volume = volumeSlider.value;
+        SaveAudioSettings();
+    }
+
+    private void LoadAudioSettings()
+    {
+        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        muted = PlayerPrefs.GetInt("muted") == 1;
+    }
+
+    private void SaveAudioSettings()
+    {
+        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
+        PlayerPrefs.SetInt("muted", muted ? 1 : 0);
+    }
 }
