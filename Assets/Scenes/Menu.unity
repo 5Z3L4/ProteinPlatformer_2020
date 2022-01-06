@@ -424,7 +424,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 151703248, guid: 279f11277b4f83841807743af29a7642, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: DeathScreen
+      value: SampleScene
       objectReference: {fileID: 0}
     - target: {fileID: 851715383666653022, guid: 279f11277b4f83841807743af29a7642, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
