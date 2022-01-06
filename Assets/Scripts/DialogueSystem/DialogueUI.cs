@@ -27,14 +27,14 @@ public class DialogueUI : MonoBehaviour
         playerSpriteRen = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>();
         textWriter = GetComponent<TextWriter>();
         responseHandler = GetComponent<ResponseHandler>();
-        defaultPlayerColor = playerImage.color;
-        defaultInterlocutorColor = interlocutorImage.color;
-        interlocutorImage.sprite = dialogueActivator.ImageToShow;
     }
     void Start()
     {
         playerImage.sprite = playerSpriteRen.sprite;
         playerImage.color = playerSpriteRen.color;
+        defaultPlayerColor = playerImage.color;
+        defaultInterlocutorColor = interlocutorImage.color;
+        interlocutorImage.sprite = dialogueActivator.ImageToShow;
         CloseDialogueBox();
     }
     public void ShowDialogue(DialogueObject dialogueObject)
