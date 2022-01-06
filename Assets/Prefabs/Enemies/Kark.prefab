@@ -196,9 +196,9 @@ MonoBehaviour:
   startTimeBtwAttack: 1.5
   castPos: {fileID: 8826563103988336591}
   baseCastDist: 0.8
-  moveSpeed: 5
-  leftOrRight: 1
-  shouldAttack: 1
+  moveSpeed: 0
+  leftOrRight: 0
+  shouldAttack: 0
 --- !u!61 &8826563104645454143
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -343,6 +343,14 @@ PrefabInstance:
       propertyPath: dialogueObject
       value: 
       objectReference: {fileID: 11400000, guid: 7db1bc2753790b145bd51a17b16e40fa, type: 2}
+    - target: {fileID: 4488002640272243577, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
+      propertyPath: currentDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: ab8b6df224e06ca4a9c655aaf23bae73, type: 2}
+    - target: {fileID: 4488002640272243577, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
+      propertyPath: questTargets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4488002640272243579, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}

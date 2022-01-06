@@ -5,7 +5,6 @@ using TMPro;
 
 public class TextBubble : MonoBehaviour
 {
-    private TextWriter textWriter;
     private SpriteRenderer backgroundSpriteRenderer;
     private TextMeshPro textMeshPro;
     [SerializeField] private DialogueObject startingDialogue;
@@ -22,7 +21,6 @@ public class TextBubble : MonoBehaviour
         {
             startingDialogueFinished = false;
         }
-        textWriter = GetComponent<TextWriter>();
         backgroundSpriteRenderer = transform.Find("BubbleBackground").GetComponent<SpriteRenderer>();
         textMeshPro = backgroundSpriteRenderer.transform.GetComponentInChildren<TextMeshPro>();
     }
