@@ -18,6 +18,7 @@ public class Kark : MonoBehaviour //,Enemy
     [Tooltip("true -> w prawo false -> w lewo")]
     public bool leftOrRight = true;
     public bool shouldAttack = true;
+    public int scoreValue { private set; get; }
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class Kark : MonoBehaviour //,Enemy
 
     private void Start()
     {
+        scoreValue = 10;
         timeBtwAttack = startTimeBtwAttack;
         canAttack = false;
         canMove = true;
@@ -82,6 +84,7 @@ public class Kark : MonoBehaviour //,Enemy
             if (facingRight == player.facingRight && player.isSliding)
             {
                 Destroy(gameObject);
+                GameManager.Score += scoreValue;
             }
             else if (facingRight != player.facingRight)
             {
