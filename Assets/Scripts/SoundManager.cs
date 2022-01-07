@@ -6,64 +6,49 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioMixer audioMixer;
-    public Toggle muteToggle;
-    public Slider volumeSlider;
-    private bool muted = false;
-
+    [SerializeField] private Slider musicVolumeSlider;
+    [SerializeField] private Slider SfxVolumeSlider;
+    [SerializeField] private AudioSource musicSource;
+    public Slider SFXVolumeSlider => SfxVolumeSlider;
+    private void Awake()
+    {
+        if (!PlayerPrefs.HasKey("MusicVolume"))
+        {
+            PlayerPrefs.SetFloat("MusicVolume", 1);
+        }
+        if (!PlayerPrefs.HasKey("SFXVolume"))
+        {
+            PlayerPrefs.SetFloat("SFXVolume", 1);
+        }
+        Load();
+    }
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
-        muteToggle = FindObjectOfType<Toggle>();
-        volumeSlider = FindObjectOfType<Slider>();
-        if (!PlayerPrefs.HasKey("musicVolume"))
+        musicSource.volume = musicVolumeSlider.value;
+    }
+    public void ChangeVolume()
+    {
+        musicSource.volume = musicVolumeSlider.value;
+        if (musicVolumeSlider.value == 0)
         {
-            PlayerPrefs.SetFloat("musicVolume", 1f);
-        }
-        else if (!PlayerPrefs.HasKey("muted"))
-        {
-            PlayerPrefs.SetInt("muted", 0);
+            musicSource.mute = true;
+            PlayerPrefs.SetInt("MusicMuted", 1);
         }
         else
         {
-            LoadAudioSettings();
+            musicSource.mute = false;
+            PlayerPrefs.SetInt("MusicMuted", 0);
         }
-        if (GameObject.Find("OptionsPanel") != null)
-        {
-            GameObject.Find("OptionsPanel").SetActive(false);
-        }
-        
+        Save();
     }
-
-    public void MuteToggle()
+    private void Load()
     {
-        if (!muted)
-        {
-            muted = true;
-            AudioListener.pause = true;
-        }
-        else
-        {
-            muted = false;
-            AudioListener.pause = false;
-        }
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+        SfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
     }
-
-    public void SetVolume()
+    private void Save()
     {
-        AudioListener.volume = volumeSlider.value;
-        SaveAudioSettings();
-    }
-
-    private void LoadAudioSettings()
-    {
-        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
-        muted = PlayerPrefs.GetInt("muted") == 1;
-    }
-
-    private void SaveAudioSettings()
-    {
-        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
-        PlayerPrefs.SetInt("muted", muted ? 1 : 0);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
+        PlayerPrefs.SetFloat("SFXVolume", SfxVolumeSlider.value);
     }
 }
