@@ -6,43 +6,49 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-
-    public AudioMixer audioMixer;
-    public Toggle muteToggle;
-    public Slider slider;
-
-    public void Mute()
+    [SerializeField] private Slider musicVolumeSlider;
+    [SerializeField] private Slider SfxVolumeSlider;
+    [SerializeField] private AudioSource musicSource;
+    public Slider SFXVolumeSlider => SfxVolumeSlider;
+    private void Awake()
     {
-        if (muteToggle.isOn)
+        if (!PlayerPrefs.HasKey("MusicVolume"))
         {
-            AudioListener.volume = 0;
-            Debug.Log(AudioListener.volume);
+            PlayerPrefs.SetFloat("MusicVolume", 1);
+        }
+        if (!PlayerPrefs.HasKey("SFXVolume"))
+        {
+            PlayerPrefs.SetFloat("SFXVolume", 1);
+        }
+        Load();
+    }
+    private void Start()
+    {
+        musicSource.volume = musicVolumeSlider.value;
+    }
+    public void ChangeVolume()
+    {
+        musicSource.volume = musicVolumeSlider.value;
+        if (musicVolumeSlider.value == 0)
+        {
+            musicSource.mute = true;
+            PlayerPrefs.SetInt("MusicMuted", 1);
         }
         else
         {
-            AudioListener.volume = 1;
+            musicSource.mute = false;
+            PlayerPrefs.SetInt("MusicMuted", 0);
         }
+        Save();
     }
-
-    public void SetVolume(float volume)
+    private void Load()
     {
-        audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+        SfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
     }
-    void Awake()
+    private void Save()
     {
-        if (Ticker.counter == 0)
-        {
-            DontDestroyOnLoad(this.gameObject);
-            Ticker.counter++;
-            return;
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
+        PlayerPrefs.SetFloat("SFXVolume", SfxVolumeSlider.value);
     }
-}
-public static class Ticker
-{
-    public static int counter = 0;
 }
