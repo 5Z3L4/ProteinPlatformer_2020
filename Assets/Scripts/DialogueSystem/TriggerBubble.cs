@@ -17,19 +17,25 @@ public class TriggerBubble : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (questSystem != null)
+        if (collision.CompareTag("Player"))
         {
-            if (questSystem.isQuestAvailable && !questSystem.isQuestCompleted)
+            if (questSystem != null)
             {
-                questSystem.ChangeDialogue();
+                if (questSystem.isQuestAvailable && !questSystem.isQuestCompleted)
+                {
+                    questSystem.ChangeDialogue();
+                }
             }
+            NPCBubble.SetActive(true);
+            textToShow.BubbleSetup();
         }
-        
-        NPCBubble.SetActive(true);
-        textToShow.BubbleSetup();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        NPCBubble.SetActive(false);
+        if (collision.CompareTag("Player"))
+        {
+            NPCBubble.SetActive(false);
+            textToShow.startingDialogueFinished = true;
+        }
     }
 }
