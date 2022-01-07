@@ -377,26 +377,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 516282183369389957, guid: 279f11277b4f83841807743af29a7642, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 851715383666653022, guid: 279f11277b4f83841807743af29a7642, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1014807149}
-    - target: {fileID: 1318972426959494178, guid: 279f11277b4f83841807743af29a7642, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1911394905994135584, guid: 279f11277b4f83841807743af29a7642, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2749728386906650608, guid: 279f11277b4f83841807743af29a7642, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5352179097647181754, guid: 279f11277b4f83841807743af29a7642, type: 3}
       propertyPath: m_Name
       value: Canvas
