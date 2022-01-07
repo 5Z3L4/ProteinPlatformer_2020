@@ -12,6 +12,7 @@ TagManager:
   - Box
   - SaveManager
   - Enemy
+  - PlayerSprite
   layers:
   - Default
   - TransparentFX

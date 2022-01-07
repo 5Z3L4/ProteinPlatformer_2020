@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     public BoxCollider2D mainCollider;
     public CircleCollider2D slideCollider;
+    public Animator playerAnim;
 
     private float jumpTimeCounter;
     public float jumpTime = 1f;
@@ -63,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         statistics.playerPosition = this.gameObject.transform;
+        playerAnim = GameObject.FindGameObjectWithTag("PlayerSprite").GetComponent<Animator>();
     }
     void Start()
     {
@@ -196,9 +198,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float horizontal, Rigidbody2D rb, float speed)
     {
-
         //poruszanie
         rb.velocity = new Vector2(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y);
+
+        if (rb.velocity.x != 0)
+        {
+            playerAnim.SetBool("IsRunning", true);
+        }
+        if (rb.velocity == Vector2.zero)
+        {
+            playerAnim.SetBool("IsRunning", false);
+        }
+        
 
         //je¿eli siê gibiemy
         if (isSliding)
@@ -342,8 +353,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("KillBox"))
         {
-            hp--;
-            Respawn();
+            Die();
             SM.levels[SM.currentLevelId].deathCounter++;
         }
 
@@ -351,6 +361,21 @@ public class PlayerMovement : MonoBehaviour
     private void PlayParticleSystem(ParticleSystem vfx)
     {
         vfx.Play();
+    }
+    [ContextMenu("LowerPlayerHp")]
+    public void TakeCertainAmountOfHp()
+    {
+        hp -= 1;
+        if (hp <= 0)
+        {
+            Die();
+        }
+    }
+    [ContextMenu("Kill player")]
+    private void Die()
+    {
+        hp = 0;
+        playerAnim.Play("SkinnyBoyDeath");
     }
     public void Respawn()
     {
