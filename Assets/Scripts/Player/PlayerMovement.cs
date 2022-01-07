@@ -143,6 +143,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        if (isGrounded)
+        {
+            playerAnim.SetBool("IsJumping", false);
+            playerAnim.SetBool("IsFalling", false);
+        }
         
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
         if (isGrounded && Input.GetKeyDown("space") && !shouldJump)
@@ -154,8 +159,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //je¿eli gracz spada
-        if (playerRB.velocity.y < 0)
+        if (playerRB.velocity.y < 0 && !isGrounded)
         {
+            playerAnim.SetBool("IsFalling", true);
+            playerAnim.SetBool("IsJumping", false);
+            playerAnim.SetBool("IsSliding", false);
             //szybciej spadamy
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
@@ -166,9 +174,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
-
         {
-
             shouldJump = false;
 
         }
@@ -178,6 +184,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (jumpTimeCounter > 0)
             {
+                playerAnim.SetBool("IsJumping", true);
+                playerAnim.SetBool("IsSliding", false);
                 playerRB.velocity = Vector2.up * jumpForce;
                 jumpTimeCounter -= Time.deltaTime;
             }
@@ -200,7 +208,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //poruszanie
         rb.velocity = new Vector2(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y);
-
+        print(rb.velocity.x);
         if (rb.velocity.x != 0)
         {
             playerAnim.SetBool("IsRunning", true);
@@ -215,7 +223,6 @@ public class PlayerMovement : MonoBehaviour
         if (isSliding)
         {
             rb.velocity = new Vector2(slideDirection * statistics.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
-            transform.eulerAngles = Vector3.forward * 70 * slideDirection;
         }
 
         if (isCharging)
@@ -233,6 +240,7 @@ public class PlayerMovement : MonoBehaviour
     public void Slide()
     {
         PlayParticleSystem(slide);
+        playerAnim.SetBool("IsSliding", true);
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (80) * Time.deltaTime;
         mainCollider.enabled = false;
         slideCollider.enabled = true;
@@ -242,7 +250,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator stopSlide()
     {
         yield return new WaitForSeconds(0.8f);
-        transform.eulerAngles = Vector3.zero;
+        playerAnim.SetBool("IsSliding", false);
         mainCollider.enabled = true;
         slideCollider.enabled = false;
         isSliding = false;
