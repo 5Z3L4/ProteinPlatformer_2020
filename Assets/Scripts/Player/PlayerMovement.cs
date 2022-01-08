@@ -59,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 startingPos;
     public int hp = 3;
 
+    public Transform PlayerBubbleTransform;
+
     public SaveManager SM;
 
     private void Awake()
@@ -295,6 +297,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+        PlayerBubbleTransform.transform.localScale = new Vector3(PlayerBubbleTransform.transform.localScale.x * -1, PlayerBubbleTransform.transform.localScale.y, PlayerBubbleTransform.transform.localScale.z);
         slideDirection *= -1;
     }
 
