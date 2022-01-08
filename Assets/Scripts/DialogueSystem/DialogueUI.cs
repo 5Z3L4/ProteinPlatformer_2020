@@ -9,7 +9,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text textLabel;
     private SpriteRenderer playerSpriteRen;
     private TextWriter textWriter;
-    private DialogueActivator dialogueActivator;
+    [SerializeField] private DialogueActivator dialogueActivator;
     private ResponseHandler responseHandler;
     [SerializeField] private Image playerImage;
     public Image PlayerImage => playerImage;
@@ -22,8 +22,11 @@ public class DialogueUI : MonoBehaviour
 
     public bool IsOpen { get; private set; }
     private void Awake()
-    {        
-        dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
+    {
+        if (FindObjectOfType<DialogueActivator>() != null)
+        {
+            dialogueActivator = FindObjectOfType<DialogueActivator>();
+        }
         playerSpriteRen = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>();
         textWriter = GetComponent<TextWriter>();
         responseHandler = GetComponent<ResponseHandler>();
@@ -34,7 +37,10 @@ public class DialogueUI : MonoBehaviour
         playerImage.color = playerSpriteRen.color;
         defaultPlayerColor = playerImage.color;
         defaultInterlocutorColor = interlocutorImage.color;
-        interlocutorImage.sprite = dialogueActivator.ImageToShow;
+        if (dialogueActivator != null)
+        {
+            interlocutorImage.sprite = dialogueActivator.ImageToShow;
+        }
         CloseDialogueBox();
     }
     public void ShowDialogue(DialogueObject dialogueObject)
