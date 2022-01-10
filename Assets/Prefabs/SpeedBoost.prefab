@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4700697197437120021}
   m_Layer: 0
   m_Name: SpeedBoost
-  m_TagString: SpeedBoost
+  m_TagString: JumpBoost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4700697197437120027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -21.32, y: -1.44, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 4700697198333264082}
   m_Father: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 4700697198333264082}
   - component: {fileID: 4700697198333267757}
   m_Layer: 0
-  m_Name: baton
+  m_Name: coffee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ Transform:
   m_GameObject: {fileID: 4700697198333264083}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 100}
-  m_LocalScale: {x: 0.101164214, y: 0.118398875, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4700697197437120026}
   m_RootOrder: 0
@@ -119,7 +119,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 53a4bcea76caf0f448176882f37a96fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0a7a7e71a8673f0429e423dc3c96d92a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
