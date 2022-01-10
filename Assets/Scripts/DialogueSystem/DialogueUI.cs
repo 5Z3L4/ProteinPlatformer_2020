@@ -9,7 +9,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text textLabel;
     private SpriteRenderer playerSpriteRen;
     private TextWriter textWriter;
-    [SerializeField] private DialogueActivator dialogueActivator;
+    private DialogueActivator dialogueActivator;
     private ResponseHandler responseHandler;
     [SerializeField] private Image playerImage;
     public Image PlayerImage => playerImage;
@@ -22,12 +22,9 @@ public class DialogueUI : MonoBehaviour
 
     public bool IsOpen { get; private set; }
     private void Awake()
-    {
-        if (FindObjectOfType<DialogueActivator>() != null)
-        {
-            dialogueActivator = FindObjectOfType<DialogueActivator>();
-        }
-        playerSpriteRen = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>();
+    {        
+        dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
+        playerSpriteRen = GameObject.FindWithTag("PlayerSprite").GetComponent<SpriteRenderer>();
         textWriter = GetComponent<TextWriter>();
         responseHandler = GetComponent<ResponseHandler>();
     }
@@ -37,10 +34,7 @@ public class DialogueUI : MonoBehaviour
         playerImage.color = playerSpriteRen.color;
         defaultPlayerColor = playerImage.color;
         defaultInterlocutorColor = interlocutorImage.color;
-        if (dialogueActivator != null)
-        {
-            interlocutorImage.sprite = dialogueActivator.ImageToShow;
-        }
+        interlocutorImage.sprite = dialogueActivator.ImageToShow;
         CloseDialogueBox();
     }
     public void ShowDialogue(DialogueObject dialogueObject)
@@ -49,6 +43,12 @@ public class DialogueUI : MonoBehaviour
         IsOpen = true;
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
+    }
+
+    public void ChangeinterlocutorSprite(Sprite image)
+    {
+        interlocutorImage.sprite = image;
+        //interlocutorImage.gameObject.transform.localScale *= new Vector2(-1, 1);
     }
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
     {

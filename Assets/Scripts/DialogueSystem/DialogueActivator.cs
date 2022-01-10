@@ -53,6 +53,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerMovement player)
     {
+        player.DialogueUI.ChangeinterlocutorSprite(imageToShow);
         if (questTargets == null || questTargets.Length == 0)
         {
             player.DialogueUI.ShowDialogue(currentDialogue);

@@ -5,27 +5,27 @@ using Cinemachine;
 public class ZoomOutCamera : MonoBehaviour
 {
     CinemachineVirtualCamera vCam;
-    float startCameraSize;
+    public float minCameraSize;
     public float maxCameraSize;
+    public float zoomSpeed = 5f;
     private void Start()
     {
         vCam = GetComponent<CinemachineVirtualCamera>();
-        startCameraSize = vCam.m_Lens.OrthographicSize;
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.V))
+        if (Input.mouseScrollDelta.y > 0)
         {
             if (vCam.m_Lens.OrthographicSize <= maxCameraSize)
             {
-                vCam.m_Lens.OrthographicSize += 5f * Time.deltaTime;
+                vCam.m_Lens.OrthographicSize += zoomSpeed * Time.deltaTime;
             }
         }
-        else
+        else if(Input.mouseScrollDelta.y < 0)
         {
-            if (vCam.m_Lens.OrthographicSize > startCameraSize)
+            if (vCam.m_Lens.OrthographicSize > minCameraSize)
             {
-                vCam.m_Lens.OrthographicSize -= 5f * Time.deltaTime;
+                vCam.m_Lens.OrthographicSize -= zoomSpeed * Time.deltaTime;
             } 
         }
     }
