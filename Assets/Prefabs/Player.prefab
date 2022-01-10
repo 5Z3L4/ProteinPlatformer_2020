@@ -380,7 +380,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5913092299120865102}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5913092298699254268
 GameObject:
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 5913092298699254270}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: PlayerSprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,7 +411,7 @@ Transform:
   m_LocalScale: {x: 0.9423124, y: 0.38990134, z: 1}
   m_Children: []
   m_Father: {fileID: 5913092299120865102}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5913092298699254270
 SpriteRenderer:
@@ -496,8 +496,8 @@ Transform:
   m_LocalPosition: {x: -5.25, y: -2.1866, z: 0}
   m_LocalScale: {x: 1, y: 2.3633, z: 1}
   m_Children:
-  - {fileID: 5913092298244357208}
   - {fileID: 5913092298699254269}
+  - {fileID: 5913092298244357208}
   - {fileID: 5913092297051663633}
   - {fileID: 1520816875}
   m_Father: {fileID: 0}
@@ -552,12 +552,14 @@ MonoBehaviour:
   slideSpeed: 50000
   mainCollider: {fileID: 5913092299120865097}
   slideCollider: {fileID: 5913092299120865101}
+  playerAnim: {fileID: 0}
   jumpTime: 0.25
   isCharging: 0
   isSmashing: 0
   respawnPos: {x: 25.044989, y: -1.2326987, z: 0}
   startingPos: {x: -5.25, y: -2.1866, z: 0}
   hp: 3
+  PlayerBubbleTransform: {fileID: 0}
   SM: {fileID: 0}
 --- !u!50 &5913092299120865098
 Rigidbody2D:

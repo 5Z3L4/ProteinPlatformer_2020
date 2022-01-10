@@ -24,7 +24,7 @@ public class DialogueUI : MonoBehaviour
     private void Awake()
     {        
         dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
-        playerSpriteRen = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>();
+        playerSpriteRen = GameObject.FindWithTag("PlayerSprite").GetComponent<SpriteRenderer>();
         textWriter = GetComponent<TextWriter>();
         responseHandler = GetComponent<ResponseHandler>();
     }
@@ -43,6 +43,12 @@ public class DialogueUI : MonoBehaviour
         IsOpen = true;
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
+    }
+
+    public void ChangeinterlocutorSprite(Sprite image)
+    {
+        interlocutorImage.sprite = image;
+        //interlocutorImage.gameObject.transform.localScale *= new Vector2(-1, 1);
     }
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
     {
