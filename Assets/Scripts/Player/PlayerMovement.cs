@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     private bool isGrounded;
+    private bool isGroundedWithoutOffset;
     private bool isJumping;
     private bool shouldJump;
     private bool isJumpingLow;
@@ -104,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.1f, whatIsGround);
         if (shouldSmashParticle)
         {
             if (isGrounded==true && playerRB.velocity.y == 0 && isSmashing)
@@ -145,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (isGrounded)
+        if (isGroundedWithoutOffset)
         {
             playerAnim.SetBool("IsJumping", false);
             playerAnim.SetBool("IsFalling", false);
