@@ -113,15 +113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329bdaad3b486e04581111450dee3579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questTargets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  startingDialogue: {fileID: 11400000, guid: 3825f520948b9ef479fbd4f0150114c0, type: 2}
+  questTargets: []
   currentDialogue: {fileID: 0}
+  startingDialogue: {fileID: 11400000, guid: 3825f520948b9ef479fbd4f0150114c0, type: 2}
   pressToTalk: {fileID: 4488002640337218657}
-  newDialogue: {fileID: 11400000, guid: 3825f520948b9ef479fbd4f0150114c0, type: 2}
   questID: 0
   imageToShow: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &4488002640337218657
