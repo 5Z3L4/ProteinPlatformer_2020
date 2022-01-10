@@ -15,42 +15,42 @@ public class Kark : MonoBehaviour //,Enemy
     Vector3 baseScale;
     bool canMove;
     bool canAttack;
+    bool startedAttack;
     [Tooltip("true -> w prawo false -> w lewo")]
     public bool leftOrRight = true;
     public bool shouldAttack = true;
-    public int scoreValue { private set; get; }
+    public int scoreValue = 10;
+
+    public Animator myAnim;
 
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
-        scoreValue = 10;
+        myAnim.SetFloat("Speed", moveSpeed);
         timeBtwAttack = startTimeBtwAttack;
         canAttack = false;
         canMove = true;
         baseScale = transform.localScale;
+ 
         if (leftOrRight)
         {
             facingRight = true;
         }
         else
         {
-            Flip(false);
+            Flip();
             facingRight = false;
         }
-        
-        rb = GetComponent<Rigidbody2D>();
+       
     }
 
     void Update()
     {
-        if (canAttack && shouldAttack)
-        {
-            Attack();
-        }
     }
     private void FixedUpdate()
     {
@@ -63,17 +63,14 @@ public class Kark : MonoBehaviour //,Enemy
         {
             rb.velocity = new Vector2(vX, rb.velocity.y);
         }
+        else
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
         
         if (IsHittingWall() || IsNearEdge())
         {
-            if (!facingRight)
-            {
-                Flip(true);
-            }
-            else
-            {
-                Flip(false);
-            }
+            Flip();
         }
     }
 
@@ -81,52 +78,49 @@ public class Kark : MonoBehaviour //,Enemy
     {
         if (collision.CompareTag("Player"))
         {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);
             if (facingRight == player.facingRight && player.isSliding)
             {
                 Destroy(gameObject);
                 GameManager.Score += scoreValue;
             }
-            else if (facingRight != player.facingRight)
+            else if (facingRight != player.facingRight || facingRight == player.facingRight ) // TO DO: poprawiæ to tak, ¿eby kark siê odwraca³ jak gracz podejdzie do niego od ty³u
             {
                 canMove = false;
                 canAttack = true;
+                if (canAttack && shouldAttack)
+                {
+                    StartCoroutine(Punch());
+                }
             }
         }
         if (collision.CompareTag("Enemy"))
         {
-            if (!facingRight)
-            {
-                Flip(true);
-            }
-            else
-            {
-                Flip(false);
-            }
+            Flip();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            canMove = true;
             canAttack = false;
             timeBtwAttack = startTimeBtwAttack;
         }
     }
-    private void Attack()
+
+    IEnumerator Punch()
     {
-        if (timeBtwAttack <= 0)
-        {
-            player.hp--;
-            print("Player hp: " + player.hp);
-            //anim.Play("");
-            Flip(!facingRight);
-            timeBtwAttack = startTimeBtwAttack;
-        }
-        else
-        {
-            timeBtwAttack -= Time.deltaTime;
-        }
+        //TO DO: sprawdzanie czy gracz nadal jest w zasiêgu w trakcie ataku
+        myAnim.SetBool("Punch", true);
+        yield return new WaitForSeconds(0.3f);
+        myAnim.SetBool("Punch", false);
+        yield return new WaitForSeconds(0.3f);
+        Flip();
+        startedAttack = true;
+        canMove = true;
+        player.TakeCertainAmountOfHp();
+        //player.KnockBack(!facingRight);
+        print("Player hp: " + player.hp);
     }
     bool IsHittingWall()
     {
@@ -149,21 +143,12 @@ public class Kark : MonoBehaviour //,Enemy
         }
         return val;
     }
-    void Flip(bool newDirection)
+    void Flip()
     {
         Vector3 newScale = baseScale;
-
-        if (!newDirection)
-        {
-            newScale.x = -baseScale.x;
-        }
-        else
-        {
-            newScale.x = baseScale.x;
-        }
-
+        newScale.x = transform.localScale.x * -1;
         transform.localScale = newScale;
-        facingRight = newDirection;
+        facingRight = !facingRight;
     }
     bool IsNearEdge()
     {

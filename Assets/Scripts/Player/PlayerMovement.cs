@@ -378,6 +378,7 @@ public class PlayerMovement : MonoBehaviour
     [ContextMenu("LowerPlayerHp")]
     public void TakeCertainAmountOfHp()
     {
+        playerAnim.Play("SkinnyHit");
         hp -= 1;
         if (hp <= 0)
         {
@@ -390,6 +391,19 @@ public class PlayerMovement : MonoBehaviour
         hp = 0;
         playerAnim.Play("SkinnyBoyDeath");
     }
+
+    //public void KnockBack(bool shouldKnockBackToRight)
+    //{
+    //    canMove = false;
+    //    if (shouldKnockBackToRight)
+    //    {
+    //        playerRB.velocity = new Vector2(100, 10);
+    //    }
+    //    else if (!shouldKnockBackToRight)
+    //    {
+    //        playerRB.velocity = new Vector2(-100, 10);
+    //    }
+    //}
     public void Respawn()
     {
         if (hp <= 0)
