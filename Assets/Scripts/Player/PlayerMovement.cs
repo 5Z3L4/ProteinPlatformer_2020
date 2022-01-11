@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D playerRB;
     public float slideSpeed = 500;
 
-    public BoxCollider2D mainCollider;
+    public CapsuleCollider2D mainCollider;
     public CircleCollider2D slideCollider;
     public Animator playerAnim;
 
