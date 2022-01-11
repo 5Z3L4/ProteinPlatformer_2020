@@ -14,7 +14,11 @@ public class HUDManager : MonoBehaviour
     public Animator proteinAnimator;
     public bool callTimer;
     public float time;
-
+    private SaveManager SM;
+    private void Awake()
+    {
+        SM = GameObject.FindObjectOfType<SaveManager>();
+    }
     private void Start()
     {
         callTimer = false;

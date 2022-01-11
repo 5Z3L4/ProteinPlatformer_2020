@@ -6,6 +6,11 @@ public class Collectible : MonoBehaviour
 {
     public HUDManager HUDM;
     public SaveManager SM;
+    private Collect collectItem;
+    private void Awake()
+    {
+        collectItem = GetComponent<Collect>();
+    }
     //enum statystyk
     public enum StatsToUpgrade
     {
@@ -40,6 +45,7 @@ public class Collectible : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             SFXManager.PlaySound(SFXManager.Sound.PickUpItem, gameObject.transform.position);
+            
             if (stats == StatsToUpgrade.Strength)
             {
                 GameManager.collectedStrenght++;
@@ -55,9 +61,10 @@ public class Collectible : MonoBehaviour
                 GameManager.collectedAgility++;
                 ShowCollectibleUI("proteinHolder");
             }
+            GameManager.Score += scoreValue;
             HUDManager.currentScore += scoreValue;
             SM.levels[SM.currentLevelId].score += scoreValue;
-            gameObject.SetActive(false);
+            collectItem.CollectItem();
         }
     }
 

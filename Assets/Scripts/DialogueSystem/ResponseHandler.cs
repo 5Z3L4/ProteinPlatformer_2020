@@ -24,12 +24,11 @@ public class ResponseHandler : MonoBehaviour
             responseButton.gameObject.SetActive(true);
             responseButton.GetComponent<TMP_Text>().text = response.ResponseText;
             responseButton.GetComponent<Button>().onClick.AddListener(() => OnPickedResponse(response));
-
             tempResponseButtons.Add(responseButton);
         }
         responseBox.gameObject.SetActive(true);
     }
-    private void OnPickedResponse(Response response)
+    public void OnPickedResponse(Response response)
     {
         dialogueUI.PlayerImage.color = dialogueUI.DarkenColor(dialogueUI.PlayerImage);
         dialogueUI.InterlocutorImage.color = dialogueUI.DefaultInterlocutorColor;

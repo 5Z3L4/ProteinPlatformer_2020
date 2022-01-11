@@ -62,14 +62,20 @@ public class DialogueUI : MonoBehaviour
                 break;
             }
             yield return null;
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
         }
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
         if (dialogueObject.HasResponses)
         {
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
             interlocutorImage.color = DarkenColor(interlocutorImage);
             CloseDialogueBox();
             responseHandler.ShowResponses(dialogueObject.Responses);
+            if (dialogueObject.Responses.Length == 1)
+            {
+                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
+                responseHandler.OnPickedResponse(dialogueObject.Responses[0]);
+            }
             IsOpen = true;
         }
         else
@@ -77,7 +83,7 @@ public class DialogueUI : MonoBehaviour
             interlocutorImage.gameObject.SetActive(false);
             CloseDialogueBox();
         }
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
         
     }
     private void CloseDialogueBox()
