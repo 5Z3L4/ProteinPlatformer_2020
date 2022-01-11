@@ -8,6 +8,7 @@ public class Collect : MonoBehaviour
     private Animation anim;
     private TMP_Text text;
     private Collectible scoreValue;
+    [SerializeField] private string popUpText;
     private void Awake()
     {
         anim = GetComponent<Animation>();
@@ -16,7 +17,14 @@ public class Collect : MonoBehaviour
     }
     public void CollectItem()
     {
-        text.SetText("+" + scoreValue.scoreValue.ToString());
+        if (string.IsNullOrEmpty(popUpText))
+        {
+            text.SetText("+" + scoreValue.scoreValue.ToString());
+        }
+        else
+        {
+            text.SetText(popUpText);
+        }
         anim.Play("CollectItemAnimation");
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         Destroy(gameObject, anim.GetClip("CollectItemAnimation").length);

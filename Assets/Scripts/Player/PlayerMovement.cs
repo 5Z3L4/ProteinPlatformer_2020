@@ -358,7 +358,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "JumpBoost" && !isOnJumpBoost)
         {
             JumpBoost();
-            Destroy(collision.gameObject);
+            collision.GetComponent<Collect>().CollectItem();
         }
         if (collision.gameObject.CompareTag("CheckPoint"))
         {
