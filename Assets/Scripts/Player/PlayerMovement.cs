@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     public CapsuleCollider2D mainCollider;
     public CircleCollider2D slideCollider;
     public Animator playerAnim;
+    public GameObject wallCheck;
 
     private float jumpTimeCounter;
     public float jumpTime = 1f;
@@ -248,6 +249,7 @@ public class PlayerMovement : MonoBehaviour
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (80) * Time.deltaTime;
         mainCollider.enabled = false;
         slideCollider.enabled = true;
+        wallCheck.SetActive(false);
         isSliding = true;
         StartCoroutine("stopSlide");
     }
@@ -257,6 +259,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnim.SetBool("IsSliding", false);
         mainCollider.enabled = true;
         slideCollider.enabled = false;
+        wallCheck.SetActive(true);
         isSliding = false;
     }
 
