@@ -28,14 +28,12 @@ public class ResponseHighlight : MonoBehaviour, IPointerEnterHandler, IPointerEx
         text.faceColor = highlightedFontColor;
         text.outlineWidth = highlightWidth;
         text.outlineColor = highlightOutlineColor;
-        print("chuj");
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         text.faceColor = fontColor;
         text.outlineColor = outlineColor;
         text.outlineWidth = outlineWidth;
-        print("cipa");
     }
 
 }
