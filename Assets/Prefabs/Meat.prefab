@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 4129546853132451064}
   - component: {fileID: 2095278304}
   - component: {fileID: 2095278305}
+  - component: {fileID: 248698752}
   m_Layer: 0
   m_Name: Meat
   m_TagString: Untagged
@@ -302,9 +303,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010890166, y: -0.024710655}
+  m_Offset: {x: 0.017018637, y: -0.024710655}
   serializedVersion: 2
-  m_Radius: 0.4923803
+  m_Radius: 0.5965474
 --- !u!114 &4442306580812191040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,3 +363,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984443c49d1a04e40aa7e5cb6af5a3df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpText: 
+--- !u!114 &248698752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2955945916921823687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df75cb0adb6098d44867417bb30ef64d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.25
+  frequency: 1
