@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerStats statistics = new PlayerStats();
     //particle system
     public ParticleSystem slide;
+    private ParticleSystem.EmissionModule slideEmission;
     public ParticleSystem smash;
     public ParticleSystem charge;
     public ParticleSystem falling;
@@ -72,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
+        slideEmission = slide.emission;
         playerRB = GetComponent<Rigidbody2D>();
         respawnPos = transform.position;
         startingPos = transform.position;
@@ -86,8 +88,16 @@ public class PlayerMovement : MonoBehaviour
         //Sprawdzamy inputy, robimy to w Update, bo FixedUpdate jest jedynie do fizyki
         CheckAxis();
         if (Input.GetKeyDown(KeyCode.LeftControl) && canMove)
-        {
+        {    
             Slide();
+        }
+        if (isGroundedWithoutOffset && isSliding)
+        {
+            slideEmission.rateOverTime = 60f;
+        }
+        else
+        {
+            slideEmission.rateOverTime = 0;
         }
         if (Input.GetKeyDown(KeyCode.Tab) && canMove)
         {
@@ -244,7 +254,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Slide()
     {
-        PlayParticleSystem(slide);
         playerAnim.SetBool("IsSliding", true);
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (80) * Time.deltaTime;
         mainCollider.enabled = false;
