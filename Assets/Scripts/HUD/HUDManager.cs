@@ -8,6 +8,7 @@ public class HUDManager : MonoBehaviour
 {
     Collectible collectibleObject;
     public Text currentScoreText;
+    public float displayScore;
     public static int currentScore;
     public Animator dumbbleAnimator;
     public Animator meatAnimator;
@@ -21,12 +22,16 @@ public class HUDManager : MonoBehaviour
     }
     private void Start()
     {
+        currentScore = GameManager.Score;
+        displayScore = 0;
         callTimer = false;
         time = 3.5f;
+        StartCoroutine(ScoreUpdater());
     }
 
     void Update()
     {
+        currentScore = GameManager.Score;
         if (callTimer && GameManager.isStoryMode)
         {
             if (time > 0)
@@ -43,8 +48,6 @@ public class HUDManager : MonoBehaviour
                 GameObject.Find("proteinHolder").GetComponent<Animator>().SetBool("Open", false);
             }
         }
-        currentScore = GameManager.Score;
-        currentScoreText.text = "Score: " + currentScore.ToString();
     }
 
     public void ShowCollected(string name)
@@ -78,6 +81,19 @@ public class HUDManager : MonoBehaviour
         GameObject.Find("ProteinAmountImage").GetComponent<Image>().enabled = true;
         GameObject.Find("ProteinAmountImage").GetComponentInChildren<Text>().enabled = true;
         GameObject.Find("currentScoreText").GetComponent<Text>().enabled = true;
+    }
+    private IEnumerator ScoreUpdater()
+    {
+        while (true)
+        {
+            if (displayScore < currentScore)
+            {
+                print("dupa");
+                displayScore++; //Increment the display score by 1
+                currentScoreText.text = "Score: " + displayScore.ToString(); //Write it to the UI
+            }
+            yield return new WaitForSeconds(0.2f); // I used .2 secs but you can update it as fast as you want
+        }
     }
 
 }
