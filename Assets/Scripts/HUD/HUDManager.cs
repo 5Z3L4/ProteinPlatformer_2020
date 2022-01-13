@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-    Collectible collectibleObject;
-    public Text currentScoreText;
-    public float displayScore;
+    [SerializeField] private float scoreUpdateSpeed;
+    [SerializeField] private Text currentScoreText;
+    private float displayScore;
     public static int currentScore;
-    public Animator dumbbleAnimator;
-    public Animator meatAnimator;
-    public Animator proteinAnimator;
+    [SerializeField] private Animator dumbbleAnimator;
+    [SerializeField] private Animator meatAnimator;
+    [SerializeField] private Animator proteinAnimator;
     public bool callTimer;
     public float time;
     private SaveManager SM;
@@ -22,10 +22,15 @@ public class HUDManager : MonoBehaviour
     }
     private void Start()
     {
+        if (scoreUpdateSpeed == 0)
+        {
+            scoreUpdateSpeed = 0.2f;
+        }
         currentScore = GameManager.Score;
         displayScore = 0;
         callTimer = false;
         time = 3.5f;
+        currentScoreText.text = "Score: " + displayScore.ToString();
         StartCoroutine(ScoreUpdater());
     }
 
@@ -92,7 +97,7 @@ public class HUDManager : MonoBehaviour
                 displayScore++; //Increment the display score by 1
                 currentScoreText.text = "Score: " + displayScore.ToString(); //Write it to the UI
             }
-            yield return new WaitForSeconds(0.2f); // I used .2 secs but you can update it as fast as you want
+            yield return new WaitForSeconds(scoreUpdateSpeed); // I used .2 secs but you can update it as fast as you want
         }
     }
 
