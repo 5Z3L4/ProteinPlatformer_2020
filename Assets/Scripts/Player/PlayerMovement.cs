@@ -167,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
         if (isGrounded && Input.GetKeyDown("space") && !shouldJump)
         {
+            playerAnim.SetBool("isSliding", false);
             shouldJump = true;
             jumpTimeCounter = jumpTime;
             //playerRB.velocity = Vector2.up * 0;
@@ -178,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnim.SetBool("IsFalling", true);
             playerAnim.SetBool("IsJumping", false);
-            playerAnim.SetBool("IsSliding", false);
+            //playerAnim.SetBool("IsSliding", false);
             //szybciej spadamy
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
