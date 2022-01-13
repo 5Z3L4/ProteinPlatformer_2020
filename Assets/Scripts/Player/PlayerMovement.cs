@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private DialogueUI dialogueUI;
     public DialogueUI DialogueUI => dialogueUI;
     public IInteractable Interactable { get; set; }
-    private bool canMove = true;
+    public bool canMove = true;
 
     public PlayerStats statistics = new PlayerStats();
     //particle system
@@ -138,14 +138,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Interactable?.Interact(this);
         }
-        if (dialogueUI.IsOpen)
-        {
-            canMove = false;
-        }
-        else
-        {
-            canMove = true;
-        }
     }
 
     private void FixedUpdate()
@@ -167,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
         if (isGrounded && Input.GetKeyDown("space") && !shouldJump)
         {
-            playerAnim.SetBool("isSliding", false);
+            playerAnim.SetBool("IsSliding", false);
             shouldJump = true;
             jumpTimeCounter = jumpTime;
             //playerRB.velocity = Vector2.up * 0;
@@ -401,8 +393,9 @@ public class PlayerMovement : MonoBehaviour
     [ContextMenu("Kill player")]
     private void Die()
     {
+        canMove = false;
         hp = 0;
-        playerAnim.Play("SkinnyBoyDeath");
+        playerAnim.SetBool("IsDead", true);
     }
 
     //public void KnockBack(bool shouldKnockBackToRight)
@@ -422,6 +415,8 @@ public class PlayerMovement : MonoBehaviour
         if (hp <= 0)
         {
             transform.position = startingPos;
+            playerAnim.SetBool("IsDead", false);
+            canMove = true;
         }
         else
         {

@@ -20,9 +20,12 @@ public class DialogueUI : MonoBehaviour
     public Color DefaultInterlocutorColor => defaultInterlocutorColor;
     public Color DefaultPlayerColor => defaultPlayerColor;
 
+    PlayerMovement player;
+
     public bool IsOpen { get; private set; }
     private void Awake()
     {        
+        player = FindObjectOfType<PlayerMovement>();
         dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
         playerSpriteRen = GameObject.FindWithTag("PlayerSprite").GetComponent<SpriteRenderer>();
         textWriter = GetComponent<TextWriter>();
@@ -41,6 +44,7 @@ public class DialogueUI : MonoBehaviour
     {
         interlocutorImage.gameObject.SetActive(true);
         IsOpen = true;
+        player.canMove = false;
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
@@ -77,6 +81,7 @@ public class DialogueUI : MonoBehaviour
                 responseHandler.OnPickedResponse(dialogueObject.Responses[0]);
             }
             IsOpen = true;
+            player.canMove = false;
         }
         else
         {
@@ -90,6 +95,7 @@ public class DialogueUI : MonoBehaviour
     {
         playerImage.gameObject.SetActive(false);
         IsOpen = false;
+        player.canMove = true;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
     }
