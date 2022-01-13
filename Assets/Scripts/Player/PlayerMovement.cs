@@ -68,13 +68,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        statistics.playerPosition = this.gameObject.transform;
         playerAnim = GameObject.FindGameObjectWithTag("PlayerSprite").GetComponent<Animator>();
+        playerRB = GetComponent<Rigidbody2D>();
     }
     void Start()
     {
         slideEmission = slide.emission;
-        playerRB = GetComponent<Rigidbody2D>();
+        statistics.playerPosition = this.gameObject.transform;
         respawnPos = transform.position;
         startingPos = transform.position;
         basejumpForce = jumpForce;
@@ -106,12 +106,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y !=0)
         {
             Smash();  
-        }
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            print(GameManager.maxAgility);
-            print(GameManager.maxConstitution);
-            print(GameManager.maxStrenght);
         }
 
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
@@ -216,7 +210,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //poruszanie
         rb.velocity = new Vector2(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y);
-        print(rb.velocity.x);
         if (rb.velocity.x != 0)
         {
             playerAnim.SetBool("IsRunning", true);
@@ -384,6 +377,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeCertainAmountOfHp()
     {
         playerAnim.Play("SkinnyHit");
+        KnockBack(false);
         hp -= 1;
         if (hp <= 0)
         {
@@ -398,18 +392,18 @@ public class PlayerMovement : MonoBehaviour
         playerAnim.SetBool("IsDead", true);
     }
 
-    //public void KnockBack(bool shouldKnockBackToRight)
-    //{
-    //    canMove = false;
-    //    if (shouldKnockBackToRight)
-    //    {
-    //        playerRB.velocity = new Vector2(100, 10);
-    //    }
-    //    else if (!shouldKnockBackToRight)
-    //    {
-    //        playerRB.velocity = new Vector2(-100, 10);
-    //    }
-    //}
+    public void KnockBack(bool shouldKnockBackToRight)
+    {
+        canMove = false;
+        if (shouldKnockBackToRight)
+        {
+            playerRB.velocity = new Vector2(3, 3);
+        }
+        else if (!shouldKnockBackToRight)
+        {
+            playerRB.velocity = new Vector2(-3, 3);
+        }
+    }
     public void Respawn()
     {
         if (hp <= 0)

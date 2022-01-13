@@ -170,6 +170,36 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+--- !u!1 &934776406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934776407}
+  m_Layer: 0
+  m_Name: SlideCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934776407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934776406}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5913092299120865102}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &964296645
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +313,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520816874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.6, z: 0}
+  m_LocalPosition: {x: 0, y: 3.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 964296646}
@@ -686,6 +716,7 @@ Transform:
   - {fileID: 1520816875}
   - {fileID: 2125414706}
   - {fileID: 1601613608}
+  - {fileID: 934776407}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -714,6 +745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueUI: {fileID: 0}
+  canMove: 1
   slide: {fileID: 3025373535833340419}
   smash: {fileID: 1886680183169553625}
   charge: {fileID: 3186263671420266488}
@@ -739,6 +771,7 @@ MonoBehaviour:
   mainCollider: {fileID: 1164784222}
   slideCollider: {fileID: 5913092299120865101}
   playerAnim: {fileID: 0}
+  wallCheck: {fileID: 1601613607}
   jumpTime: 0.25
   isCharging: 0
   isSmashing: 0
@@ -775,7 +808,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5913092299120865096}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1224,6 +1257,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5913092297051663633}
     m_Modifications:
+    - target: {fileID: 8931710283837144499, guid: 8b0466958028c2040a548bb460842dca, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931710283837144499, guid: 8b0466958028c2040a548bb460842dca, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8931710283837144508, guid: 8b0466958028c2040a548bb460842dca, type: 3}
       propertyPath: m_Name
       value: Slide
@@ -1238,7 +1279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8931710283837144509, guid: 8b0466958028c2040a548bb460842dca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.727
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8931710283837144509, guid: 8b0466958028c2040a548bb460842dca, type: 3}
       propertyPath: m_LocalPosition.z
