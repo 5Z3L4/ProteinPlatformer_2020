@@ -391,18 +391,34 @@ public class PlayerMovement : MonoBehaviour
     public void KnockBack(bool shouldKnockBackToRight)
     {
         canMove = false;
+        Vector2 knockbackVelocity = new Vector2();
         if (shouldKnockBackToRight)
         {
-            playerRB.velocity = new Vector2(3, 3);
+            knockbackVelocity = new Vector2(3, 3);
         }
         else if (!shouldKnockBackToRight)
         {
-            playerRB.velocity = new Vector2(-3, 3);
+            knockbackVelocity = new Vector2(-3, 3);
         }
+        StartCoroutine(StartKnockabck(knockbackVelocity));
+    }
+
+    IEnumerator StartKnockabck(Vector2 knockbackVelocity)
+    {
+        playerRB.velocity = knockbackVelocity;
+        yield return new WaitForSeconds(0.3f);
+        if (!IsPlayerDead())
+        {
+            canMove = true;
+        }
+        else
+        {
+            playerRB.velocity = Vector2.zero;
+        }    
     }
     public void Respawn()
     {
-        if (hp <= 0)
+        if (IsPlayerDead())
         {
             transform.position = startingPos;
             playerAnim.SetBool("IsDead", false);
@@ -415,5 +431,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
+    bool IsPlayerDead()
+    {
+        return hp <= 0;
+    }
 }
