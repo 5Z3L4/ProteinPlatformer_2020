@@ -306,10 +306,6 @@ public class PlayerMovement : MonoBehaviour
         statistics.moveSpeed *= 2.5f;
         StartCoroutine("speedBoostTimer");
     }
-    public void ZaWarudo()
-    {
-        
-    }
     public void JumpBoost()
     {
         isOnJumpBoost = true;

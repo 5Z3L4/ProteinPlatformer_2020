@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95956e6355f96b04e8f001097ce4fe3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreUpdateSpeed: -3
   currentScoreText: {fileID: 0}
   dumbbleAnimator: {fileID: 0}
   meatAnimator: {fileID: 0}
