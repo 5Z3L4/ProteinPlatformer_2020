@@ -48,10 +48,11 @@ public class Kark : MonoBehaviour //,Enemy
         }
        
     }
-
-    void Update()
+    private void Update()
     {
+        timeBtwAttack -= Time.deltaTime;
     }
+
     private void FixedUpdate()
     {
         float vX = moveSpeed;
@@ -76,6 +77,13 @@ public class Kark : MonoBehaviour //,Enemy
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+       
+        if (collision.CompareTag("Enemy"))
+        {
+            Flip();
+        }
+        if (timeBtwAttack > 0) return;
+
         if (collision.CompareTag("Player"))
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);
@@ -94,33 +102,31 @@ public class Kark : MonoBehaviour //,Enemy
                 }
             }
         }
-        if (collision.CompareTag("Enemy"))
-        {
-            Flip();
-        }
+        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             canAttack = false;
-            timeBtwAttack = startTimeBtwAttack;
+
         }
     }
 
     IEnumerator Punch()
     {
+        timeBtwAttack = startTimeBtwAttack;
         //TO DO: sprawdzanie czy gracz nadal jest w zasiêgu w trakcie ataku
         myAnim.SetBool("Punch", true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         myAnim.SetBool("Punch", false);
-        yield return new WaitForSeconds(0.3f);
-        Flip();
         startedAttack = true;
         canMove = true;
         player.TakeCertainAmountOfHp();
         //player.KnockBack(!facingRight);
         print("Player hp: " + player.hp);
+        yield return new WaitForSeconds(0.2f);
+        Flip();
     }
     bool IsHittingWall()
     {
