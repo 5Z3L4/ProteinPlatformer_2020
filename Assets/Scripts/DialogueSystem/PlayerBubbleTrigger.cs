@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class PlayerBubbleTrigger : MonoBehaviour
 {
@@ -9,7 +10,11 @@ public class PlayerBubbleTrigger : MonoBehaviour
     private TMP_Text tutorialText;
     public DialogueObject newPlayerBubbleText;
     public DialogueObject tutorial;
-
+    public enum TutorialFinishKey
+    {
+        ScrollWheel = KeyCode.mouseScrollDelta;
+    }
+    public TutorialFinishKey key;
     private void Awake()
     {
         tutorialText = GameObject.Find("TutorialText").GetComponent<TMP_Text>();
@@ -32,8 +37,19 @@ public class PlayerBubbleTrigger : MonoBehaviour
     //        playerBubble.gameObject.SetActive(true);
     //        playerBubble.BubbleSetup(newPlayerBubbleText);
     //    }
-        
+
     //}
+    private void Update()
+    {
+        if (Input.mouseScrollDelta.y < 0 || Input.mouseScrollDelta.y > 0)
+        {
+            if (tutorialText.gameObject.activeInHierarchy)
+            {
+                tutorialText.text = string.Empty;
+                tutorialText.gameObject.SetActive(false);
+            }
+        }
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -51,11 +67,6 @@ public class PlayerBubbleTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (tutorialText.gameObject.activeInHierarchy)
-            {
-                tutorialText.text = string.Empty;
-                tutorialText.gameObject.SetActive(false);
-            }
             playerBubble.gameObject.SetActive(false);
         }
     }
