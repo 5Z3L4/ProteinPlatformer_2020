@@ -26,7 +26,10 @@ public class DialogueUI : MonoBehaviour
     private void Awake()
     {        
         player = FindObjectOfType<PlayerMovement>();
-        dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
+        if (GameObject.Find("Dialogue") != null)
+        {
+            dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
+        }
         playerSpriteRen = GameObject.FindWithTag("PlayerSprite").GetComponent<SpriteRenderer>();
         textWriter = GetComponent<TextWriter>();
         responseHandler = GetComponent<ResponseHandler>();
@@ -37,7 +40,10 @@ public class DialogueUI : MonoBehaviour
         playerImage.color = playerSpriteRen.color;
         defaultPlayerColor = playerImage.color;
         defaultInterlocutorColor = interlocutorImage.color;
-        interlocutorImage.sprite = dialogueActivator.ImageToShow;
+        if (GameObject.Find("Dialogue") != null)
+        {
+            interlocutorImage.sprite = dialogueActivator.ImageToShow;
+        }
         CloseDialogueBox();
     }
     public void ShowDialogue(DialogueObject dialogueObject)
