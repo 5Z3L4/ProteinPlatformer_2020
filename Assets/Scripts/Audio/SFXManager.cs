@@ -34,7 +34,7 @@ public static class SFXManager
             GameObject soundGameObject = new GameObject("Sound"); // tworzenie obiektu
             soundGameObject.transform.position = position;
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>(); //dodanie komponentu audiosource do obiektu
-            audioSource.volume = GameObject.Find("SoundManager").GetComponent<SoundManager>().SFXVolumeSlider.value;
+            audioSource.volume = GameObject.Find("SoundManager").GetComponent<SoundManager>().sfxVolumeSlider.value;
             audioSource.clip = GetAudioClip(sound);
             audioSource.Play(); //odtworzenie klipu jeden raz
             Object.Destroy(soundGameObject, audioSource.clip.length);
