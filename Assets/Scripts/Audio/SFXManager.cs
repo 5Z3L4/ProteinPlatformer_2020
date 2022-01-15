@@ -6,7 +6,11 @@ public static class SFXManager
 {
     public enum Sound//enum z nazwami klipów
     {
-        PickUpItem
+        PickUpItem,
+        Jump,
+        DestroyChest,
+        Slide,
+        Death
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 
@@ -23,6 +27,8 @@ public static class SFXManager
             default:
                 return true;
             case Sound.PickUpItem:
+                return true;
+            case Sound.Jump:
                 return true;
         }
     }

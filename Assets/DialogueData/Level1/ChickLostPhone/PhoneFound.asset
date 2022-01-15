@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f184db9c6bf3546acf73870c9f1d94, type: 3}
+  m_Name: PhoneFound
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Have you found it? Yo're amazing! Maybe, we will... WAIT, IT'S BROKEN?!
+  responses:
+  - responseText: Yes, i found it like that.
+    dialogueObject: {fileID: 11400000, guid: a299d3067e391ec478cd7466520216ae, type: 2}
