@@ -153,6 +153,8 @@ public class PlayerMovement : MonoBehaviour
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
         if (isGrounded && Input.GetKeyDown("space") && !shouldJump)
         {
+            mainCollider.enabled = true;
+            SFXManager.PlaySound(SFXManager.Sound.Jump, transform.position);
             playerAnim.SetBool("IsSliding", false);
             shouldJump = true;
             jumpTimeCounter = jumpTime;
@@ -241,6 +243,7 @@ public class PlayerMovement : MonoBehaviour
     public void Slide()
     {
         playerAnim.SetBool("IsSliding", true);
+        SFXManager.PlaySound(SFXManager.Sound.Slide, transform.position);
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (80) * Time.deltaTime;
         mainCollider.enabled = false;
         slideCollider.enabled = true;
@@ -383,6 +386,7 @@ public class PlayerMovement : MonoBehaviour
     [ContextMenu("Kill player")]
     private void Die()
     {
+        SFXManager.PlaySound(SFXManager.Sound.Death, transform.position);
         canMove = false;
         hp = 0;
         playerAnim.SetBool("IsDead", true);
