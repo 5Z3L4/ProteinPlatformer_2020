@@ -10,12 +10,18 @@ public class ResponseHandler : MonoBehaviour
     [SerializeField] private RectTransform responseContainer;
     private DialogueUI dialogueUI;
     List<GameObject> tempResponseButtons = new List<GameObject>();
+    PlayerMovement player;
+    private void Awake()
+    {
+        player = FindObjectOfType<PlayerMovement>();
+    }
     private void Start()
     {
         dialogueUI = GetComponent<DialogueUI>();
     }
     public void ShowResponses(Response[] responses)
     {
+        player.canMove = false;
         dialogueUI.PlayerImage.color = dialogueUI.DefaultPlayerColor;
         dialogueUI.PlayerImage.gameObject.SetActive(true);
         foreach (Response response in responses)
@@ -38,7 +44,16 @@ public class ResponseHandler : MonoBehaviour
             Destroy(button);
         }
         tempResponseButtons.Clear();
-        dialogueUI.ShowDialogue(response.DialogueObject);
+        if (response.DialogueObject != null)
+        {
+            dialogueUI.ShowDialogue(response.DialogueObject);
+        }
+        else
+        {
+            dialogueUI.CloseDialogueBox();
+            dialogueUI.InterlocutorImage.gameObject.SetActive(false);
+            player.canMove = true;
+        }
     }
 }
 
