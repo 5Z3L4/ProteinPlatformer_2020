@@ -19,7 +19,6 @@ public class DialogueUI : MonoBehaviour
     private Color defaultPlayerColor;
     public Color DefaultInterlocutorColor => defaultInterlocutorColor;
     public Color DefaultPlayerColor => defaultPlayerColor;
-
     PlayerMovement player;
 
     public bool IsOpen;
@@ -59,7 +58,7 @@ public class DialogueUI : MonoBehaviour
     public void ChangeinterlocutorSprite(Sprite image)
     {
         interlocutorImage.sprite = image;
-        interlocutorImage.gameObject.transform.localScale *= new Vector2(-1, 1);
+        //interlocutorImage.gameObject.transform.localScale *= new Vector2(-1, 1);
     }
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
     {

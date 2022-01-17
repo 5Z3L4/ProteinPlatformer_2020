@@ -10,7 +10,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
     private TMP_Text tutorialText;
     public DialogueObject newPlayerBubbleText;
     public DialogueObject tutorial;
-    private bool isTutAvailable;
+    public bool isTutAvailable;
     public enum TutorialFinishKey
     {
         ScrollWheel,
@@ -26,7 +26,6 @@ public class PlayerBubbleTrigger : MonoBehaviour
     }
     private void Start()
     {
-        isTutAvailable = true;
         tutorialText.gameObject.SetActive(false);
         playerBubble.gameObject.SetActive(false);
     }
@@ -72,8 +71,12 @@ public class PlayerBubbleTrigger : MonoBehaviour
                 tutorialText.gameObject.SetActive(true);
                 tutorialText.SetText(tutorial.Dialogue[0]);
             }
-            playerBubble.gameObject.SetActive(true);
-            playerBubble.BubbleSetup(newPlayerBubbleText);
+            if (newPlayerBubbleText != null && newPlayerBubbleText.Dialogue.Length > 0)
+            {
+                playerBubble.gameObject.SetActive(true);
+                playerBubble.BubbleSetup(newPlayerBubbleText);
+            }
+            
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -83,7 +86,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
             playerBubble.gameObject.SetActive(false);
         }
     }
-    void HideTutorialText()
+    public void HideTutorialText()
     {
         if (tutorialText.gameObject.activeInHierarchy)
         {
