@@ -19,10 +19,12 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem falling;
     public ParticleSystem fakeFloorBlowUp;
     public ParticleSystem fakeWallBlowUp;
+    public ParticleSystem jumpAndLand;
     //move variables
     private float horizontalAxis;
     public float moveSpeed;
     public bool facingRight = true;
+    public bool isAirborn;
 
     //slide variables
     public float slideDirection = 1;
@@ -123,6 +125,10 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
+        if (!isGrounded)
+        {
+            isAirborn = true;
+        }
         statistics.playerPosition = this.gameObject.transform;
         if (canMove)
         {
@@ -157,6 +163,8 @@ public class PlayerMovement : MonoBehaviour
         {
             mainCollider.enabled = true;
             SFXManager.PlaySound(SFXManager.Sound.Jump, transform.position);
+            PlayParticleSystem(jumpAndLand);
+            isAirborn = true;
             playerAnim.SetBool("IsSliding", false);
             shouldJump = true;
             jumpTimeCounter = jumpTime;
@@ -190,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (jumpTimeCounter > 0)
             {
+                
                 playerAnim.SetBool("IsJumping", true);
                 playerAnim.SetBool("IsSliding", false);
                 playerRB.velocity = Vector2.up * jumpForce;
@@ -279,7 +288,7 @@ public class PlayerMovement : MonoBehaviour
     public void Smash()
     {
         //TO DO: (smash w momencie uderzenia w ziemie)
-
+        
         PlayParticleSystem(falling);
         //spadaj w dó³ a¿ nie trafisz na ziemie
         
@@ -368,9 +377,10 @@ public class PlayerMovement : MonoBehaviour
             Die();
             SM.levels[SM.currentLevelId].deathCounter++;
         }
+        
 
     }
-    private void PlayParticleSystem(ParticleSystem vfx)
+    public void PlayParticleSystem(ParticleSystem vfx)
     {
         vfx.Play();
     }
