@@ -13,8 +13,13 @@ public class Landing : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && player.isAirborn)
         {
-            player.PlayParticleSystem(player.jumpAndLand);
+            Invoke("PlayParticle", 0.02f);
+            
             player.isAirborn = false;
         }
+    }
+    private void PlayParticle()
+    {
+        player.PlayParticleSystem(player.jumpAndLand);
     }
 }

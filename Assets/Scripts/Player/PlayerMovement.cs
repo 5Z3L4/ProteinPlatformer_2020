@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
-        if (!isGrounded)
+        if (!isGroundedWithoutOffset)
         {
             isAirborn = true;
         }
