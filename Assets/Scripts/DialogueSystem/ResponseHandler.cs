@@ -51,6 +51,7 @@ public class ResponseHandler : MonoBehaviour
         else
         {
             dialogueUI.CloseDialogueBox();
+            dialogueUI.IsOpen = false;
             dialogueUI.InterlocutorImage.gameObject.SetActive(false);
             player.canMove = true;
         }
