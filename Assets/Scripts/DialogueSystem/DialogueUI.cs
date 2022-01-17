@@ -22,7 +22,7 @@ public class DialogueUI : MonoBehaviour
 
     PlayerMovement player;
 
-    public bool IsOpen { get; private set; }
+    public bool IsOpen;
     private void Awake()
     {        
         player = FindObjectOfType<PlayerMovement>();
@@ -45,6 +45,7 @@ public class DialogueUI : MonoBehaviour
             interlocutorImage.sprite = dialogueActivator.ImageToShow;
         }
         CloseDialogueBox();
+        IsOpen = false;
     }
     public void ShowDialogue(DialogueObject dialogueObject)
     {
@@ -58,7 +59,7 @@ public class DialogueUI : MonoBehaviour
     public void ChangeinterlocutorSprite(Sprite image)
     {
         interlocutorImage.sprite = image;
-        //interlocutorImage.gameObject.transform.localScale *= new Vector2(-1, 1);
+        interlocutorImage.gameObject.transform.localScale *= new Vector2(-1, 1);
     }
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
     {
@@ -76,6 +77,10 @@ public class DialogueUI : MonoBehaviour
         }
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
         CloseDialogueBox();
+        if (!dialogueObject.HasResponses)
+        {
+            IsOpen = false;
+        }
         if (dialogueObject.HasResponses)
         {
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
@@ -99,7 +104,6 @@ public class DialogueUI : MonoBehaviour
     public void CloseDialogueBox()
     {
         playerImage.gameObject.SetActive(false);
-        IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
     }
@@ -109,9 +113,10 @@ public class DialogueUI : MonoBehaviour
         while (textWriter.IsRunning)
         {
             yield return null;
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 textWriter.Stop();
+                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
             }
         }
     }
