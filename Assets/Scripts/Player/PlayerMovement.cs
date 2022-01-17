@@ -430,6 +430,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = startingPos;
             playerAnim.SetBool("IsDead", false);
             canMove = true;
+            hp = 3;
         }
         else
         {

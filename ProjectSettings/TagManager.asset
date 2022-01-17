@@ -13,6 +13,7 @@ TagManager:
   - SaveManager
   - Enemy
   - PlayerSprite
+  - Ground
   layers:
   - Default
   - TransparentFX
