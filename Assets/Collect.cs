@@ -31,7 +31,16 @@ public class Collect : MonoBehaviour
             text.SetText(popUpText);
         }
         anim.Play("CollectItemAnimation");
-        StartCoroutine(BoostOnCd());
+        if (gameObject.CompareTag("JumpBoost"))
+        {
+            StartCoroutine(BoostOnCd());
+        }
+        else
+        {
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
+            Destroy(gameObject, anim.GetClip("CollectItemAnimation").length);
+        }
+        
     }
 
     public IEnumerator BoostOnCd()
