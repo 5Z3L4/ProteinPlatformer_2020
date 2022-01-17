@@ -29,16 +29,26 @@ public class HUDManager : MonoBehaviour
     public float cameraDeadZoneWidth;
     private CinemachineFramingTransposer cinemachineBody;
     private Rigidbody2D playerRB;
+    private Text dumbbelText, proteinText, meatText;
+    private Image dumbbelImage, meatImage, proteinImage;
+    private Text scoreText;
     private void Awake()
     {
         anim = dyingBackground.GetComponent<Animation>();
         SM = GameObject.FindObjectOfType<SaveManager>();
         player = FindObjectOfType<PlayerMovement>();
+        playerRB = player.GetComponent<Rigidbody2D>();
+        cinemachineBody = cam.GetCinemachineComponent<CinemachineFramingTransposer>();
+        dumbbelImage = GameObject.Find("DumbbelAmountImage").GetComponentInChildren<Image>();
+        dumbbelText = GameObject.Find("DumbbelAmountImage").GetComponentInChildren<Text>();
+        meatImage = GameObject.Find("MeatAmountImage").GetComponent<Image>();
+        meatText = GameObject.Find("MeatAmountImage").GetComponentInChildren<Text>();
+        proteinImage = GameObject.Find("ProteinAmountImage").GetComponent<Image>();
+        proteinText = GameObject.Find("ProteinAmountImage").GetComponentInChildren<Text>();
+        scoreText = GameObject.Find("currentScoreText").GetComponent<Text>();
     }
     private void Start()
     {
-        playerRB = player.GetComponent<Rigidbody2D>();
-        cinemachineBody = cam.GetCinemachineComponent<CinemachineFramingTransposer>();
         cameraSoftZoneHeight = cinemachineBody.m_SoftZoneHeight;
         cameraSoftZoneWidth = cinemachineBody.m_SoftZoneWidth;
         cameraDeadZoneHeight = cinemachineBody.m_DeadZoneHeight;
@@ -56,6 +66,7 @@ public class HUDManager : MonoBehaviour
         StartCoroutine(ScoreUpdater());
     }
 
+    //TO DO poprawiæ
     void Update()
     {
         currentScore = GameManager.Score;
@@ -76,13 +87,14 @@ public class HUDManager : MonoBehaviour
             }
         }
     }
-
+    //TO DO poprawiæ
     public void ShowCollected(string name)
     {
         GameObject.Find(name).GetComponent<Animator>().SetBool("Close", false);
         GameObject.Find(name).GetComponent<Animator>().SetBool("Open", true);
         callTimer = true;
     }
+    //TO DO poprawiæ
     public void HideCollected()
     {
         GameObject.Find("dumbbelHolder").GetComponent<Animator>().SetBool("Close", true);
@@ -91,23 +103,22 @@ public class HUDManager : MonoBehaviour
     }
     public void HideHUD()
     {
-        GameObject.Find("DumbbelAmountImage").GetComponent<Image>().enabled = false;
-        GameObject.Find("DumbbelAmountImage").GetComponentInChildren<Text>().enabled = false;
-        GameObject.Find("MeatAmountImage").GetComponent<Image>().enabled = false;
-        GameObject.Find("MeatAmountImage").GetComponentInChildren<Text>().enabled = false;
-        GameObject.Find("ProteinAmountImage").GetComponent<Image>().enabled = false;
-        GameObject.Find("ProteinAmountImage").GetComponentInChildren<Text>().enabled = false;
-        GameObject.Find("currentScoreText").GetComponent<Text>().enabled = false;
+        ChangeHUDVisibility(false);
     }
     public void ShowHUD()
     {
-        GameObject.Find("DumbbelAmountImage").GetComponent<Image>().enabled = true;
-        GameObject.Find("DumbbelAmountImage").GetComponentInChildren<Text>().enabled = true;
-        GameObject.Find("MeatAmountImage").GetComponent<Image>().enabled = true;
-        GameObject.Find("MeatAmountImage").GetComponentInChildren<Text>().enabled = true;
-        GameObject.Find("ProteinAmountImage").GetComponent<Image>().enabled = true;
-        GameObject.Find("ProteinAmountImage").GetComponentInChildren<Text>().enabled = true;
-        GameObject.Find("currentScoreText").GetComponent<Text>().enabled = true;
+        ChangeHUDVisibility(true);
+    }
+
+    public void ChangeHUDVisibility(bool shouldBeVisible)
+    {
+        dumbbelImage.enabled = shouldBeVisible;
+        dumbbelText.enabled = shouldBeVisible;
+        meatImage.enabled = shouldBeVisible;
+        meatText.enabled = shouldBeVisible;
+        proteinImage.enabled = shouldBeVisible;
+        proteinText.enabled = shouldBeVisible;
+        scoreText.enabled = shouldBeVisible;
     }
     private IEnumerator ScoreUpdater()
     {
@@ -115,7 +126,6 @@ public class HUDManager : MonoBehaviour
         {
             if (displayScore < currentScore)
             {
-                print("dupa");
                 displayScore++; //Increment the display score by 1
                 currentScoreText.text = "Score: " + displayScore.ToString(); //Write it to the UI
             }
