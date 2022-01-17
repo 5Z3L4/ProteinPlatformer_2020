@@ -65,11 +65,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform PlayerBubbleTransform;
 
     public SaveManager SM;
+    public HUDManager HUDManager;
 
     private void Awake()
     {
         playerAnim = GameObject.FindGameObjectWithTag("PlayerSprite").GetComponent<Animator>();
         playerRB = GetComponent<Rigidbody2D>();
+        HUDManager = FindObjectOfType<HUDManager>();
     }
     void Start()
     {
@@ -390,6 +392,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         hp = 0;
         playerAnim.SetBool("IsDead", true);
+        StartCoroutine(HUDManager.DyingScreen());
     }
 
     public void KnockBack(bool shouldKnockBackToRight)
@@ -432,6 +435,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = respawnPos;
             playerRB.velocity = Vector2.zero;
+            Time.timeScale = 1;
         }
     }
 

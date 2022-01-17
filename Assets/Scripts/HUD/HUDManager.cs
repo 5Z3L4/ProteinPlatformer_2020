@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class HUDManager : MonoBehaviour
 {
@@ -16,12 +17,33 @@ public class HUDManager : MonoBehaviour
     public bool callTimer;
     public float time;
     private SaveManager SM;
+    public GameObject deathScreen;
+    public PlayerMovement player;
+    public GameObject dyingBackground;
+    public Animation anim;
+    //public CinemachineVirtualCamera cam;
+    public CinemachineVirtualCamera cam;
+    public float cameraSoftZoneHeight;
+    public float cameraSoftZoneWidth;
+    public float cameraDeadZoneHeight;
+    public float cameraDeadZoneWidth;
+    private CinemachineFramingTransposer cinemachineBody;
+    private Rigidbody2D playerRB;
     private void Awake()
     {
+        anim = dyingBackground.GetComponent<Animation>();
         SM = GameObject.FindObjectOfType<SaveManager>();
+        player = FindObjectOfType<PlayerMovement>();
     }
     private void Start()
     {
+        playerRB = player.GetComponent<Rigidbody2D>();
+        cinemachineBody = cam.GetCinemachineComponent<CinemachineFramingTransposer>();
+        cameraSoftZoneHeight = cinemachineBody.m_SoftZoneHeight;
+        cameraSoftZoneWidth = cinemachineBody.m_SoftZoneWidth;
+        cameraDeadZoneHeight = cinemachineBody.m_DeadZoneHeight;
+        cameraDeadZoneWidth = cinemachineBody.m_DeadZoneWidth;
+
         if (scoreUpdateSpeed == 0)
         {
             scoreUpdateSpeed = 0.2f;
@@ -99,6 +121,62 @@ public class HUDManager : MonoBehaviour
             }
             yield return new WaitForSeconds(scoreUpdateSpeed); // I used .2 secs but you can update it as fast as you want
         }
+    }
+    public void Respawn()
+    {
+        player.Respawn();
+        playerRB.constraints = RigidbodyConstraints2D.None;
+        playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+        cinemachineBody.m_SoftZoneHeight = cameraSoftZoneHeight;
+        cinemachineBody.m_SoftZoneWidth = cameraSoftZoneWidth;
+        cinemachineBody.m_DeadZoneHeight = cameraDeadZoneHeight;
+        cinemachineBody.m_DeadZoneWidth = cameraDeadZoneWidth;
+        cinemachineBody.m_ScreenX = 0.5f;
+        deathScreen.SetActive(false);
+        dyingBackground.SetActive(false); 
+        Time.timeScale = 1;
+    }
+    public IEnumerator DyingScreen()
+    {
+        //if (player.transform.position.x <= cam.transform.position.x)
+        //{
+        //    if (player.facingRight)
+        //    {
+        //        player.transform.position = new Vector3(cam.transform.position.x - 2, cam.transform.position.y, cam.transform.position.z);
+        //    }
+        //    else
+        //    {
+        //        player.transform.position = new Vector3(cam.transform.position.x + 2, cam.transform.position.y, cam.transform.position.z);
+        //    }
+        //}
+        //else
+        //{
+        //    if (player.facingRight)
+        //    {
+        //        player.transform.position = new Vector3(cam.transform.position.x - 2, cam.transform.position.y, cam.transform.position.z);
+        //    }
+        //    else
+        //    {
+        //        player.transform.position = new Vector3(cam.transform.position.x + 2, cam.transform.position.y, cam.transform.position.z);
+        //    }
+        //}
+        cinemachineBody.m_SoftZoneHeight = 0;
+        cinemachineBody.m_SoftZoneWidth = 0;
+        if (player.facingRight)
+        {
+            cinemachineBody.m_ScreenX -= 0.04f;
+        }
+        else
+        {
+            cinemachineBody.m_ScreenX += 0.04f;
+        }
+        playerRB.constraints = RigidbodyConstraints2D.FreezePositionY;
+        playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+        dyingBackground.SetActive(true);
+        anim.Play("dyingBackgroundAnimation");
+        yield return new WaitForSeconds(1.5f);
+        deathScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 
 }
