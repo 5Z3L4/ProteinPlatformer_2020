@@ -11,10 +11,15 @@ public class YachMove : MonoBehaviour
     private float secondTimeholder;
     private float rotationPoint = 180f;
     public bool goLeft = false;
+    public GameObject waterParticle;
+    //private ParticleSystem.EmissionModule waterEmission;
+
     // Update is called once per frame
 
     private void Start()
     {
+        
+        //waterEmission = waterParticle.emission;
         if (goLeft)
         {
             rotationPoint = 0;
@@ -28,6 +33,7 @@ public class YachMove : MonoBehaviour
         timeholder -= Time.deltaTime;
         if (timeholder <= 0)
         {
+            waterParticle.SetActive(true);
             if (secondTimeholder > 0)
             {
                 Quaternion target;
