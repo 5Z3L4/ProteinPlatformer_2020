@@ -50,3 +50,12 @@ MonoBehaviour:
   proteinAnimator: {fileID: 0}
   callTimer: 0
   time: 0
+  deathScreen: {fileID: 0}
+  player: {fileID: 0}
+  dyingBackground: {fileID: 0}
+  anim: {fileID: 0}
+  cam: {fileID: 0}
+  cameraSoftZoneHeight: 0
+  cameraSoftZoneWidth: 0
+  cameraDeadZoneHeight: 0
+  cameraDeadZoneWidth: 0
