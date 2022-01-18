@@ -88,11 +88,15 @@ public class PlayerBubbleTrigger : MonoBehaviour
     }
     public void HideTutorialText()
     {
-        if (tutorialText.gameObject.activeInHierarchy)
+        if (tutorialText != null)
         {
-            tutorialText.text = string.Empty;
-            tutorialText.gameObject.SetActive(false);
-            isTutAvailable = false;
+            if (tutorialText.gameObject.activeInHierarchy)
+            {
+                tutorialText.text = string.Empty;
+                tutorialText.gameObject.SetActive(false);
+                isTutAvailable = false;
+            }
         }
+
     }
 }
