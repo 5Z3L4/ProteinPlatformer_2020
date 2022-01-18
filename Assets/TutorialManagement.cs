@@ -18,6 +18,11 @@ public class TutorialManagement : MonoBehaviour
     }
     private void Update()
     {
+        
+    }
+
+    public void FlipNPC()
+    {
         if (!dialogueBox.gameObject.activeInHierarchy && !responseBox.gameObject.activeInHierarchy && questForTut.isQuestCompleted)
         {
             if (!GetComponent<Kark>().leftOrRight)

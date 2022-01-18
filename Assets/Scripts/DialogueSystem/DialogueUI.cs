@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DialogueUI : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class DialogueUI : MonoBehaviour
     public Color DefaultInterlocutorColor => defaultInterlocutorColor;
     public Color DefaultPlayerColor => defaultPlayerColor;
     PlayerMovement player;
+    public List<bool> isCompleted = new List<bool>();
+    int x=0;
 
     public bool IsOpen;
     private void Awake()
@@ -79,6 +82,7 @@ public class DialogueUI : MonoBehaviour
         if (!dialogueObject.HasResponses)
         {
             IsOpen = false;
+            isCompleted.Add(true);
         }
         if (dialogueObject.HasResponses)
         {

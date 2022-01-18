@@ -149,7 +149,7 @@ public class Kark : MonoBehaviour //,Enemy
         }
         return val;
     }
-    void Flip()
+    public void Flip()
     {
         Vector3 newScale = baseScale;
         newScale.x = transform.localScale.x * -1;
