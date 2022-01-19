@@ -11,6 +11,8 @@ public class PlayerBubbleTrigger : MonoBehaviour
     public DialogueObject newPlayerBubbleText;
     public DialogueObject tutorial;
     public bool isTutAvailable;
+    [SerializeField] private TMP_Text pressE;
+    private bool isPlayerInTrigger = false;
     public enum TutorialFinishKey
     {
         ScrollWheel,
@@ -61,28 +63,53 @@ public class PlayerBubbleTrigger : MonoBehaviour
         {
             HideTutorialText();
         }
+        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (isPlayerInTrigger)
+            {
+                ShowTexts();
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            pressE.gameObject.SetActive(true);
+        }
+        
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            if (tutorial != null && tutorial.Dialogue.Length != 0 && !tutorialText.gameObject.activeInHierarchy && isTutAvailable)
-            {
-                tutorialText.gameObject.SetActive(true);
-                tutorialText.SetText(tutorial.Dialogue[0]);
-            }
-            if (newPlayerBubbleText != null && newPlayerBubbleText.Dialogue.Length > 0)
-            {
-                playerBubble.gameObject.SetActive(true);
-                playerBubble.BubbleSetup(newPlayerBubbleText);
-            }
+            isPlayerInTrigger = true;
             
         }
     }
+
+    private void ShowTexts()
+    {
+        pressE.gameObject.SetActive(false);
+        if (tutorial != null && tutorial.Dialogue.Length != 0 && !tutorialText.gameObject.activeInHierarchy && isTutAvailable)
+        {
+            tutorialText.gameObject.SetActive(true);
+            tutorialText.SetText(tutorial.Dialogue[0]);
+        }
+        if (newPlayerBubbleText != null && newPlayerBubbleText.Dialogue.Length > 0)
+        {
+            playerBubble.gameObject.SetActive(true);
+            playerBubble.BubbleSetup(newPlayerBubbleText);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            pressE.gameObject.SetActive(false);
+            isPlayerInTrigger = false;
             playerBubble.gameObject.SetActive(false);
         }
     }

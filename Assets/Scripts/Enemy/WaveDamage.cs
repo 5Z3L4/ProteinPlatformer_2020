@@ -15,9 +15,12 @@ public class WaveDamage : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            player.hp--;
-            print(player.hp);
+            if (GetComponentInParent<LaughingGirl>().shouldAttack)
+            {
+                player.TakeCertainAmountOfHp();
+                print(player.hp);
+            }
+            
         }
-
     }
 }

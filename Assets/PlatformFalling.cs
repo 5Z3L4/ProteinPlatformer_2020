@@ -9,6 +9,8 @@ public class PlatformFalling : MonoBehaviour
     SpriteRenderer mySprite;
     BoxCollider2D myCollider;
     public BoxCollider2D myColliderTrigger;
+    [SerializeField] private ParticleSystem platformDestroy;
+    [SerializeField] private ParticleSystem platformRespawn;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -50,6 +52,8 @@ public class PlatformFalling : MonoBehaviour
         myCollider.enabled = false;
         myRb.velocity = Vector2.zero;
         myRb.isKinematic = true;
+        platformDestroy.Play();
+        Invoke("PlayRespawnParticle", 9f);
         Invoke("RespawnPlatform", 10);
     }
 
@@ -59,5 +63,10 @@ public class PlatformFalling : MonoBehaviour
         mySprite.enabled = true;
         myCollider.enabled = true;
         myColliderTrigger.enabled = true;
+    }
+    void PlayRespawnParticle()
+    {
+        platformRespawn.transform.position = startPos;
+        platformRespawn.Play();
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class HUDManager : MonoBehaviour
     private Text dumbbelText, proteinText, meatText;
     private Image dumbbelImage, meatImage, proteinImage;
     private Text scoreText;
+    [SerializeField] private TMP_Text hpAmountText;
     private void Awake()
     {
         anim = dyingBackground.GetComponent<Animation>();
@@ -49,6 +51,7 @@ public class HUDManager : MonoBehaviour
     }
     private void Start()
     {
+        hpAmountText.SetText("x " + player.hp.ToString());
         cameraSoftZoneHeight = cinemachineBody.m_SoftZoneHeight;
         cameraSoftZoneWidth = cinemachineBody.m_SoftZoneWidth;
         cameraDeadZoneHeight = cinemachineBody.m_DeadZoneHeight;
@@ -70,6 +73,7 @@ public class HUDManager : MonoBehaviour
     void Update()
     {
         currentScore = GameManager.Score;
+        hpAmountText.SetText("x " + player.hp.ToString());
         if (callTimer && GameManager.isStoryMode)
         {
             if (time > 0)
