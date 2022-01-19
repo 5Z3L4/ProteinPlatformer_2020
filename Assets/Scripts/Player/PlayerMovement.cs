@@ -437,8 +437,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsPlayerDead())
         {
-            transform.position = startingPos;
-            playerAnim.SetBool("IsDead", false);
+            transform.position = respawnPos;
             canMove = true;
             hp = 3;
         }

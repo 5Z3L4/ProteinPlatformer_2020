@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8886411236333733160}
   m_Layer: 3
   m_Name: fallingPlatform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52397febc2d90f249867ac782529a718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myColliderTrigger: {fileID: 8886411236333733160}
 --- !u!61 &8886411236333733160
 BoxCollider2D:
   m_ObjectHideFlags: 0
