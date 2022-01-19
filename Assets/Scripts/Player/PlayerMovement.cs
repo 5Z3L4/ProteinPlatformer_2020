@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     public SaveManager SM;
     public HUDManager HUDManager;
+    private bool isDying;
 
     private void Awake()
     {
@@ -398,6 +399,8 @@ public class PlayerMovement : MonoBehaviour
     [ContextMenu("Kill player")]
     private void Die()
     {
+        if (isDying) return;
+        isDying = true;
         SFXManager.PlaySound(SFXManager.Sound.Death, transform.position);
         canMove = false;
         hp = 0;
@@ -440,6 +443,8 @@ public class PlayerMovement : MonoBehaviour
             transform.position = respawnPos;
             canMove = true;
             hp = 3;
+            isDying = false;
+            playerAnim.SetBool("IsDead", false);
         }
         else
         {
