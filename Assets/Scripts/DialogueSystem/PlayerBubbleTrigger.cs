@@ -10,7 +10,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
     private TMP_Text tutorialText;
     public DialogueObject newPlayerBubbleText;
     public DialogueObject tutorial;
-    public bool isTutAvailable;
+    private bool isTutAvailable;
     public enum TutorialFinishKey
     {
         ScrollWheel,
@@ -26,6 +26,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
     }
     private void Start()
     {
+        isTutAvailable = true;
         tutorialText.gameObject.SetActive(false);
         playerBubble.gameObject.SetActive(false);
     }
@@ -71,12 +72,8 @@ public class PlayerBubbleTrigger : MonoBehaviour
                 tutorialText.gameObject.SetActive(true);
                 tutorialText.SetText(tutorial.Dialogue[0]);
             }
-            if (newPlayerBubbleText != null && newPlayerBubbleText.Dialogue.Length > 0)
-            {
-                playerBubble.gameObject.SetActive(true);
-                playerBubble.BubbleSetup(newPlayerBubbleText);
-            }
-            
+            playerBubble.gameObject.SetActive(true);
+            playerBubble.BubbleSetup(newPlayerBubbleText);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -86,17 +83,13 @@ public class PlayerBubbleTrigger : MonoBehaviour
             playerBubble.gameObject.SetActive(false);
         }
     }
-    public void HideTutorialText()
+    void HideTutorialText()
     {
-        if (tutorialText != null)
+        if (tutorialText.gameObject.activeInHierarchy)
         {
-            if (tutorialText.gameObject.activeInHierarchy)
-            {
-                tutorialText.text = string.Empty;
-                tutorialText.gameObject.SetActive(false);
-                isTutAvailable = false;
-            }
+            tutorialText.text = string.Empty;
+            tutorialText.gameObject.SetActive(false);
+            isTutAvailable = false;
         }
-
     }
 }

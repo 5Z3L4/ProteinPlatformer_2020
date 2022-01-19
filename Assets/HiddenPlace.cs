@@ -6,20 +6,24 @@ using UnityEngine.Tilemaps;
 public class HiddenPlace : MonoBehaviour
 {
     Tilemap background;
+    bool isPlayerInside;
     Color transparent = new Color(255,255,255,0);
-    public bool isPlayerInside;
     private void Awake()
     {
         background = GetComponent<Tilemap>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (isPlayerInside) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(DoAThingOverTime(Color.white, transparent, 0.5f));
             isPlayerInside = true;
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        StartCoroutine(CheckIfPlayerIsInside());
+        isPlayerInside = false;
     }
 
     IEnumerator FadeTo(float aValue, float aTime)
@@ -47,10 +51,12 @@ public class HiddenPlace : MonoBehaviour
     }
 
 
-    public void CheckIfPlayerIsInside()
+    IEnumerator CheckIfPlayerIsInside()
     {
-        if (!isPlayerInside) return;
-        isPlayerInside = false;
-        StartCoroutine(DoAThingOverTime(transparent, Color.white, 0.5f));
+        yield return new WaitForSeconds(0.2f);
+        if (!isPlayerInside)
+        {
+            StartCoroutine(DoAThingOverTime(transparent, Color.white, 0.5f));
+        }
     }
 }

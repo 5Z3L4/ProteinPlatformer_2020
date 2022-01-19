@@ -60,7 +60,6 @@ public class ChestScript : MonoBehaviour
     [ContextMenu("DestroyChest")]
     public void BrokeChest()
     {
-        SFXManager.PlaySound(SFXManager.Sound.DestroyChest, transform.position);
         brokenChest.SetActive(true);
         sprite.enabled = false;
     }

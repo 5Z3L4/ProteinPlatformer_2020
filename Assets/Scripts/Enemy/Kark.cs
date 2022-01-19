@@ -15,7 +15,7 @@ public class Kark : MonoBehaviour //,Enemy
     Vector3 baseScale;
     bool canMove;
     bool canAttack;
-    bool isFlipping = false;
+    bool startedAttack;
     [Tooltip("true -> w prawo false -> w lewo")]
     public bool leftOrRight = true;
     public bool shouldAttack = true;
@@ -71,30 +71,16 @@ public class Kark : MonoBehaviour //,Enemy
         
         if (IsHittingWall() || IsNearEdge())
         {
-            if (!isFlipping)
-            {
-                StartCoroutine(WaitBeforeFlip());
-            }
+            Flip();
         }
     }
-    IEnumerator WaitBeforeFlip()
-    {
-        isFlipping = true;
-        myAnim.SetFloat("Speed", 0);
-        canMove = false;
-        yield return new WaitForSeconds(1);
-        Flip();
-        canMove = true;
-        isFlipping = false;
-        myAnim.SetFloat("Speed", moveSpeed);
 
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
        
         if (collision.CompareTag("Enemy"))
         {
-            StartCoroutine(WaitBeforeFlip());
+            Flip();
         }
         if (timeBtwAttack > 0) return;
 
@@ -134,6 +120,7 @@ public class Kark : MonoBehaviour //,Enemy
         myAnim.SetBool("Punch", true);
         yield return new WaitForSeconds(0.1f);
         myAnim.SetBool("Punch", false);
+        startedAttack = true;
         canMove = true;
         player.TakeCertainAmountOfHp();
         //player.KnockBack(!facingRight);
@@ -162,7 +149,7 @@ public class Kark : MonoBehaviour //,Enemy
         }
         return val;
     }
-    public void Flip()
+    void Flip()
     {
         Vector3 newScale = baseScale;
         newScale.x = transform.localScale.x * -1;
