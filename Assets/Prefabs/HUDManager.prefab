@@ -43,19 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95956e6355f96b04e8f001097ce4fe3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreUpdateSpeed: -10
+  scoreUpdateSpeed: -3
   currentScoreText: {fileID: 0}
   dumbbleAnimator: {fileID: 0}
   meatAnimator: {fileID: 0}
   proteinAnimator: {fileID: 0}
   callTimer: 0
   time: 0
-  deathScreen: {fileID: 0}
-  player: {fileID: 0}
-  dyingBackground: {fileID: 0}
-  anim: {fileID: 0}
-  cam: {fileID: 0}
-  cameraSoftZoneHeight: 0
-  cameraSoftZoneWidth: 0
-  cameraDeadZoneHeight: 0
-  cameraDeadZoneWidth: 0

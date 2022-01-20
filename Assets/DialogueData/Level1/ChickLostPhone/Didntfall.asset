@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Didntfall
   m_EditorClassIdentifier: 
   dialogue:
-  - Because it didn't fall down!
+  - Because it didn't fell down!
   responses:
-  - responseText: Okay, I'll try to find it.
+  - responseText: Okay, i'll try to find it.
     dialogueObject: {fileID: 11400000, guid: 8f5f015f1a8b23c4facbf41d3c41b42a, type: 2}

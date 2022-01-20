@@ -17,8 +17,7 @@ public class Collectible : MonoBehaviour
     {
         Strength,
         Constitution,
-        Dexterity,
-        None
+        Dexterity
     }
 
     public StatsToUpgrade stats;
@@ -51,10 +50,6 @@ public class Collectible : MonoBehaviour
             {
                 GameManager.collectedAgility++;
                 ShowCollectibleUI("proteinHolder");
-            }
-            else if (stats == StatsToUpgrade.None)
-            {
-                return;
             }
             GameManager.Score += scoreValue;
             HUDManager.currentScore += scoreValue;
