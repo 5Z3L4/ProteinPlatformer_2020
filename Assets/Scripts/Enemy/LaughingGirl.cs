@@ -9,7 +9,7 @@ public class LaughingGirl : MonoBehaviour //Enemy
     [SerializeField] private float startTimeBtwAttack;
     [HideInInspector]
     public bool isFacingRight;
-    public bool shouldAttack = true;
+
     public Transform minePosition;
     public GameObject player;
 
@@ -26,36 +26,18 @@ public class LaughingGirl : MonoBehaviour //Enemy
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (isFacingRight == player.GetComponent<PlayerMovement>().facingRight)
         {
-            if (isFacingRight == player.GetComponent<PlayerMovement>().facingRight)
-            {
-                Flip();
-            }
+            Flip();
         }
-        
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            if (shouldAttack)
-            {
-                ShootWave();
-            }
-            
-        }
-        
+        ShootWave();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            if (shouldAttack)
-            {
-                timeBtwAttack = startTimeBtwAttack;
-            }
-        }  
+        timeBtwAttack = startTimeBtwAttack;
     }
     public void ShootWave()
     {
