@@ -39,7 +39,10 @@ public class ChestScript : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-         isPlayerThere = true;
+        if (collision.CompareTag("Player"))
+        {
+            isPlayerThere = true;
+        }
     }
     public void OpenBox()
     {
