@@ -7,10 +7,15 @@ public class RugPullerController : MonoBehaviour
     PlayerMovement player;
     public bool facingRight = false;
     public bool facingLeft = true;
-    bool doShockwave = false;
+    bool jumped = false;
+    bool isGrounded;
     public BossWave left;
     public BossWave right;
+    public GameObject leftObj;
+    public GameObject rightObj;
     Rigidbody2D myRb;
+    public Transform groundCheck;
+    public LayerMask whatIsGround;
     private void Awake()
     {
         myRb = GetComponent<Rigidbody2D>();
@@ -18,12 +23,23 @@ public class RugPullerController : MonoBehaviour
     } 
     public void ShockWave()
     {
-        left.Fly();
-        right.Fly();
+        leftObj.SetActive(true);
+        rightObj.SetActive(true);
     }
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.3f, whatIsGround);
+        if (!isGrounded)
+        {
+            jumped = true;
+        }
+        if (isGrounded && jumped)
+        {
+            ShockWave();
+            jumped = false;
+        }
+
         if (transform.position.x > player.transform.position.x)
         {
             if (facingRight) return;
@@ -38,17 +54,8 @@ public class RugPullerController : MonoBehaviour
             facingLeft = true;
             facingRight = false;
         }
-        if (myRb.velocity.y < 0)
-        {
-            doShockwave = true;
-        }
-        if (doShockwave)
-        {
-            if (myRb.velocity.y >=0)
-            {
-                ShockWave();
-            }  
-        }
+
+        
     }
     public void Flip()
     {

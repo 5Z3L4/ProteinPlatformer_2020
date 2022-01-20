@@ -6,11 +6,15 @@ public class BossWave : MonoBehaviour
 {
     public float projectileSpeed;
     public bool goLeft;
+    private Vector2 startPos;
     Rigidbody2D myRb;
     bool shouldFly = false;
+    RugPullerController rugPull;
     private void Awake()
     {
+        rugPull = FindObjectOfType<RugPullerController>();
         myRb = GetComponent<Rigidbody2D>();
+        startPos = transform.position;
     }
 
     // Update is called once per frame
@@ -33,10 +37,12 @@ public class BossWave : MonoBehaviour
         {
             myRb.velocity = Vector2.zero;
             shouldFly = false;
+            transform.position = new Vector2(rugPull.transform.position.x, transform.position.y);
+            gameObject.SetActive(false);
         }
     }
 
-    public void Fly()
+    private void OnEnable()
     {
         shouldFly = true;
     }
