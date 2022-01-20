@@ -11,8 +11,11 @@ public class PlayerBubbleTrigger : MonoBehaviour
     public DialogueObject newPlayerBubbleText;
     public DialogueObject tutorial;
     public bool isTutAvailable;
+<<<<<<< HEAD
     [SerializeField] private TMP_Text pressE;
     private bool isPlayerInTrigger = false;
+=======
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
     public enum TutorialFinishKey
     {
         ScrollWheel,
@@ -84,6 +87,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+<<<<<<< HEAD
             isPlayerInTrigger = true;
             
         }
@@ -101,6 +105,19 @@ public class PlayerBubbleTrigger : MonoBehaviour
         {
             playerBubble.gameObject.SetActive(true);
             playerBubble.BubbleSetup(newPlayerBubbleText);
+=======
+            if (tutorial != null && tutorial.Dialogue.Length != 0 && !tutorialText.gameObject.activeInHierarchy && isTutAvailable)
+            {
+                tutorialText.gameObject.SetActive(true);
+                tutorialText.SetText(tutorial.Dialogue[0]);
+            }
+            if (newPlayerBubbleText != null && newPlayerBubbleText.Dialogue.Length > 0)
+            {
+                playerBubble.gameObject.SetActive(true);
+                playerBubble.BubbleSetup(newPlayerBubbleText);
+            }
+            
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
         }
     }
 

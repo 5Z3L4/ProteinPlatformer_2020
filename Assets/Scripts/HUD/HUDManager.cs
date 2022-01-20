@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+<<<<<<< HEAD
 using TMPro;
+=======
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
 
 public class HUDManager : MonoBehaviour
 {
@@ -33,7 +36,10 @@ public class HUDManager : MonoBehaviour
     private Text dumbbelText, proteinText, meatText;
     private Image dumbbelImage, meatImage, proteinImage;
     private Text scoreText;
+<<<<<<< HEAD
     [SerializeField] private TMP_Text hpAmountText;
+=======
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
     private void Awake()
     {
         anim = dyingBackground.GetComponent<Animation>();
@@ -51,7 +57,10 @@ public class HUDManager : MonoBehaviour
     }
     private void Start()
     {
+<<<<<<< HEAD
         hpAmountText.SetText("x " + player.hp.ToString());
+=======
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
         cameraSoftZoneHeight = cinemachineBody.m_SoftZoneHeight;
         cameraSoftZoneWidth = cinemachineBody.m_SoftZoneWidth;
         cameraDeadZoneHeight = cinemachineBody.m_DeadZoneHeight;

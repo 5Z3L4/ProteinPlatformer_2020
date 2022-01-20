@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
 --- !u!1 &157379340972140861
 GameObject:
   m_ObjectHideFlags: 0
@@ -9742,6 +9743,8 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+=======
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
 --- !u!1 &5331134402988939866
 GameObject:
   m_ObjectHideFlags: 0
@@ -9773,9 +9776,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 82.1, y: -0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+<<<<<<< HEAD
   m_Children:
   - {fileID: 561162991864571146}
   - {fileID: 1663798113910727942}
+=======
+  m_Children: []
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9890,8 +9897,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myColliderTrigger: {fileID: 8886411236333733160}
+<<<<<<< HEAD
   platformDestroy: {fileID: 925726804583603810}
   platformRespawn: {fileID: 4554714204817696373}
+=======
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
 --- !u!61 &8886411236333733160
 BoxCollider2D:
   m_ObjectHideFlags: 0

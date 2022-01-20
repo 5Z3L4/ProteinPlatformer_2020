@@ -9,8 +9,11 @@ public class PlatformFalling : MonoBehaviour
     SpriteRenderer mySprite;
     BoxCollider2D myCollider;
     public BoxCollider2D myColliderTrigger;
+<<<<<<< HEAD
     [SerializeField] private ParticleSystem platformDestroy;
     [SerializeField] private ParticleSystem platformRespawn;
+=======
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
     // Start is called before the first frame update
     private void Awake()
     {
@@ -52,8 +55,11 @@ public class PlatformFalling : MonoBehaviour
         myCollider.enabled = false;
         myRb.velocity = Vector2.zero;
         myRb.isKinematic = true;
+<<<<<<< HEAD
         platformDestroy.Play();
         Invoke("PlayRespawnParticle", 9f);
+=======
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
         Invoke("RespawnPlatform", 10);
     }
 
@@ -64,9 +70,12 @@ public class PlatformFalling : MonoBehaviour
         myCollider.enabled = true;
         myColliderTrigger.enabled = true;
     }
+<<<<<<< HEAD
     void PlayRespawnParticle()
     {
         platformRespawn.transform.position = startPos;
         platformRespawn.Play();
     }
+=======
+>>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
 }

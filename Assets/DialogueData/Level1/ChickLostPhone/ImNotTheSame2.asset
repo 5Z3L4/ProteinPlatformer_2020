@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ImNotTheSame2
   m_EditorClassIdentifier: 
   dialogue:
-  - No way. im not like other girls! I'm even talking to someone as ugly as you!
+  - No way. I'm not like other girls! I'm even talking to someone as ugly as you!
   responses:
-  - responseText: Yeah. but only because you need something
+  - responseText: Yeah. But only because you need something
     dialogueObject: {fileID: 11400000, guid: 72b54fee914f56940801c0693dfbe9f2, type: 2}
