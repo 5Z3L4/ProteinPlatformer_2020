@@ -1,9 +1,3 @@
-<<<<<<< HEAD
 Base path: 'C:/Program Files/Unity/Hub/Editor/2020.3.3f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2020.3.3f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
-=======
-Base path: 'G:/Programy/Unity/Editor/Data', plugins path 'G:/Programy/Unity/Editor/Data/PlaybackEngines'
-Cmd: initializeCompiler
 
-Cmd: shutdown
->>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
