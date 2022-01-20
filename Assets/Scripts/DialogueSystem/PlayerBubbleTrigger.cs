@@ -11,6 +11,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
     public DialogueObject newPlayerBubbleText;
     public DialogueObject tutorial;
     public bool isTutAvailable;
+    public bool callItWithoutButton;
     [SerializeField] private TMP_Text pressE;
     private bool isPlayerInTrigger = false;
     public enum TutorialFinishKey
@@ -64,7 +65,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
             HideTutorialText();
         }
         
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || callItWithoutButton)
         {
             if (isPlayerInTrigger)
             {
@@ -74,7 +75,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && pressE != null)
         {
             pressE.gameObject.SetActive(true);
         }
@@ -91,7 +92,10 @@ public class PlayerBubbleTrigger : MonoBehaviour
 
     private void ShowTexts()
     {
-        pressE.gameObject.SetActive(false);
+        if (pressE != null)
+        {
+            pressE.gameObject.SetActive(false);
+        }
         if (tutorial != null && tutorial.Dialogue.Length != 0 && !tutorialText.gameObject.activeInHierarchy && isTutAvailable)
         {
             tutorialText.gameObject.SetActive(true);
@@ -108,7 +112,10 @@ public class PlayerBubbleTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            pressE.gameObject.SetActive(false);
+            if (pressE != null)
+            {
+                pressE.gameObject.SetActive(false);
+            }
             isPlayerInTrigger = false;
             playerBubble.gameObject.SetActive(false);
         }
