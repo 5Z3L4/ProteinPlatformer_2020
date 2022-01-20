@@ -19,12 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem falling;
     public ParticleSystem fakeFloorBlowUp;
     public ParticleSystem fakeWallBlowUp;
-    public ParticleSystem jumpAndLand;
     //move variables
     private float horizontalAxis;
     public float moveSpeed;
     public bool facingRight = true;
-    public bool isAirborn;
 
     //slide variables
     public float slideDirection = 1;
@@ -67,14 +65,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform PlayerBubbleTransform;
 
     public SaveManager SM;
-    public HUDManager HUDManager;
-    private bool isDying;
 
     private void Awake()
     {
         playerAnim = GameObject.FindGameObjectWithTag("PlayerSprite").GetComponent<Animator>();
         playerRB = GetComponent<Rigidbody2D>();
-        HUDManager = FindObjectOfType<HUDManager>();
     }
     void Start()
     {
@@ -126,10 +121,6 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
-        if (!isGroundedWithoutOffset)
-        {
-            isAirborn = true;
-        }
         statistics.playerPosition = this.gameObject.transform;
         if (canMove)
         {
@@ -162,10 +153,6 @@ public class PlayerMovement : MonoBehaviour
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
         if (isGrounded && Input.GetKeyDown("space") && !shouldJump)
         {
-            mainCollider.enabled = true;
-            SFXManager.PlaySound(SFXManager.Sound.Jump, transform.position);
-            PlayParticleSystem(jumpAndLand);
-            isAirborn = true;
             playerAnim.SetBool("IsSliding", false);
             shouldJump = true;
             jumpTimeCounter = jumpTime;
@@ -199,7 +186,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if (jumpTimeCounter > 0)
             {
-                
                 playerAnim.SetBool("IsJumping", true);
                 playerAnim.SetBool("IsSliding", false);
                 playerRB.velocity = Vector2.up * jumpForce;
@@ -255,7 +241,6 @@ public class PlayerMovement : MonoBehaviour
     public void Slide()
     {
         playerAnim.SetBool("IsSliding", true);
-        SFXManager.PlaySound(SFXManager.Sound.Slide, transform.position);
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (80) * Time.deltaTime;
         mainCollider.enabled = false;
         slideCollider.enabled = true;
@@ -289,7 +274,7 @@ public class PlayerMovement : MonoBehaviour
     public void Smash()
     {
         //TO DO: (smash w momencie uderzenia w ziemie)
-        
+
         PlayParticleSystem(falling);
         //spadaj w dó³ a¿ nie trafisz na ziemie
         
@@ -378,10 +363,9 @@ public class PlayerMovement : MonoBehaviour
             Die();
             SM.levels[SM.currentLevelId].deathCounter++;
         }
-        
 
     }
-    public void PlayParticleSystem(ParticleSystem vfx)
+    private void PlayParticleSystem(ParticleSystem vfx)
     {
         vfx.Play();
     }
@@ -399,13 +383,9 @@ public class PlayerMovement : MonoBehaviour
     [ContextMenu("Kill player")]
     private void Die()
     {
-        if (isDying) return;
-        isDying = true;
-        SFXManager.PlaySound(SFXManager.Sound.Death, transform.position);
         canMove = false;
         hp = 0;
         playerAnim.SetBool("IsDead", true);
-        StartCoroutine(HUDManager.DyingScreen());
     }
 
     public void KnockBack(bool shouldKnockBackToRight)
@@ -440,17 +420,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsPlayerDead())
         {
-            transform.position = respawnPos;
-            canMove = true;
-            hp = 3;
-            isDying = false;
+            transform.position = startingPos;
             playerAnim.SetBool("IsDead", false);
+            canMove = true;
         }
         else
         {
             transform.position = respawnPos;
             playerRB.velocity = Vector2.zero;
-            Time.timeScale = 1;
         }
     }
 

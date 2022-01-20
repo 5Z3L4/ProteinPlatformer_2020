@@ -2582,10 +2582,7 @@ MonoBehaviour:
   textLabel: {fileID: 81239862}
   playerImage: {fileID: 8199054732293181089}
   interlocutorImage: {fileID: 8712550905938149210}
-<<<<<<< HEAD
   isCompleted: 
-=======
->>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
   IsOpen: 0
 --- !u!114 &264251756
 MonoBehaviour:
@@ -3103,11 +3100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-<<<<<<< HEAD
   m_AnchoredPosition: {x: 25, y: -51}
-=======
-  m_AnchoredPosition: {x: 24, y: 34.600006}
->>>>>>> parent of 78d1ac9 (Revert "Merge branch 'master' into feature-levelDesignMariusz")
   m_SizeDelta: {x: 0, y: 120}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2906552371573950186

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LostPhone
   m_EditorClassIdentifier: 
   dialogue:
-  - I broke up with my boyfriend. He got mad, took my phone and threwi t high up
+  - I broke up with my boyfriend. He got mad, took my phone and threw is high up
     to the air!
   responses:
-  - responseText: Well, why didn't you just pick it up from the floor?
+  - responseText: Well, why didn't you just picked it up from the floor?
     dialogueObject: {fileID: 11400000, guid: 0bf576055f6900d4988ced9b83c6431f, type: 2}

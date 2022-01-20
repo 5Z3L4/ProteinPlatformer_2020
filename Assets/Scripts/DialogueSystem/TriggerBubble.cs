@@ -8,14 +8,9 @@ public class TriggerBubble : MonoBehaviour
     private DialogueUI dialogueUI;
     private DialogueActivator dialogueActivator;
     private Quest questSystem;
-    private TutorialManagement tutorial;
 
     private void Awake()
     {
-        if (!GetComponent<TutorialManagement>())
-        {
-            tutorial = GetComponent<TutorialManagement>();
-        }
         questSystem = gameObject.GetComponent<Quest>();
         dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
         dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();

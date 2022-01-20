@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicVolumeSlider: {fileID: 0}
-  sfxVolumeSlider: {fileID: 0}
+  SfxVolumeSlider: {fileID: 0}
   musicSource: {fileID: 8284878225575073832}
 --- !u!82 &8284878225575073832
 AudioSource:
@@ -57,7 +57,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e9d51eb363a61ec4a9c51ff38bf0f093, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1f61217b3eb94c749adefb9bf0e4299c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

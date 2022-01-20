@@ -6,11 +6,7 @@ public static class SFXManager
 {
     public enum Sound//enum z nazwami klipów
     {
-        PickUpItem,
-        Jump,
-        DestroyChest,
-        Slide,
-        Death
+        PickUpItem
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 
@@ -28,8 +24,6 @@ public static class SFXManager
                 return true;
             case Sound.PickUpItem:
                 return true;
-            case Sound.Jump:
-                return true;
         }
     }
 
@@ -40,7 +34,7 @@ public static class SFXManager
             GameObject soundGameObject = new GameObject("Sound"); // tworzenie obiektu
             soundGameObject.transform.position = position;
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>(); //dodanie komponentu audiosource do obiektu
-            audioSource.volume = GameObject.Find("SoundManager").GetComponent<SoundManager>().sfxVolumeSlider.value;
+            audioSource.volume = GameObject.Find("SoundManager").GetComponent<SoundManager>().SFXVolumeSlider.value;
             audioSource.clip = GetAudioClip(sound);
             audioSource.Play(); //odtworzenie klipu jeden raz
             Object.Destroy(soundGameObject, audioSource.clip.length);

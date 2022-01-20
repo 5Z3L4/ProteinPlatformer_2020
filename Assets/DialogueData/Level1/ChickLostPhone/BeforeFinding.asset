@@ -15,5 +15,5 @@ MonoBehaviour:
   dialogue:
   - Help me, please!
   responses:
-  - responseText: Wait, I saw you a while ago, how did you move here that fast?
+  - responseText: Wait i saw you while ago, how did you went here that fast?
     dialogueObject: {fileID: 11400000, guid: c2dbc99fc5499724c9f11bb827b83d13, type: 2}
