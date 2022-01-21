@@ -174,6 +174,7 @@ public class HUDManager : MonoBehaviour
         //        player.transform.position = new Vector3(cam.transform.position.x + 2, cam.transform.position.y, cam.transform.position.z);
         //    }
         //}
+        SFXManager.PlaySound(SFXManager.Sound.Fail, transform.position);
         cinemachineBody.m_SoftZoneHeight = 0;
         cinemachineBody.m_SoftZoneWidth = 0;
         if (player.facingRight)
