@@ -16,6 +16,7 @@ public class RugPullerController : MonoBehaviour
     Rigidbody2D myRb;
     public Transform groundCheck;
     public LayerMask whatIsGround;
+    public ScreenShake sc;
     private void Awake()
     {
         myRb = GetComponent<Rigidbody2D>();
@@ -25,6 +26,7 @@ public class RugPullerController : MonoBehaviour
     {
         leftObj.SetActive(true);
         rightObj.SetActive(true);
+        sc.Shakecamera(5f, .1f);
     }
     // Update is called once per frame
     void Update()
