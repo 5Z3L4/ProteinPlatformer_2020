@@ -10,7 +10,8 @@ public static class SFXManager
         Jump,
         DestroyChest,
         Slide,
-        Death
+        Death,
+        Fail
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 
