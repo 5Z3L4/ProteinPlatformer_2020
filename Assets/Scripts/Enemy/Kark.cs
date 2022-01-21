@@ -20,6 +20,7 @@ public class Kark : MonoBehaviour //,Enemy
     public bool leftOrRight = true;
     public bool shouldAttack = true;
     public int scoreValue = 10;
+    [SerializeField] private GameObject scoreText;
 
     public Animator myAnim;
 
@@ -103,6 +104,7 @@ public class Kark : MonoBehaviour //,Enemy
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);
             if (facingRight == player.facingRight && player.isSliding)
             {
+                Instantiate(scoreText, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 Destroy(gameObject);
                 GameManager.Score += scoreValue;
             }
