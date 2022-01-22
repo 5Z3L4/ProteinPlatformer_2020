@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - Hey you, you're finally awake!
-  - Do you see this chick over here?
+  - Do you see this chick over there?
   - I've heard she has big crush on you!
   responses:
   - responseText: For real?!

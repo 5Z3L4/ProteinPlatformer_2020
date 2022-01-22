@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FirstSlideTutorial
   m_EditorClassIdentifier: 
   dialogue:
-  - Press ctrl to slide
+  - Press CTRL to slide
   responses: []

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ZoomOut
   m_EditorClassIdentifier: 
   dialogue:
-  - It's so high, i can't see anything.
+  - It's so high, I can't see anything.
   responses: []

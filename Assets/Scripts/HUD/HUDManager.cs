@@ -18,7 +18,8 @@ public class HUDManager : MonoBehaviour
     public bool callTimer;
     public float time;
     private SaveManager SM;
-    public GameObject deathScreen;
+    public Canvas canvas;
+    public Canvas deathScreenCanvas;
     public PlayerMovement player;
     public GameObject dyingBackground;
     public Animation anim;
@@ -146,7 +147,8 @@ public class HUDManager : MonoBehaviour
         cinemachineBody.m_DeadZoneHeight = cameraDeadZoneHeight;
         cinemachineBody.m_DeadZoneWidth = cameraDeadZoneWidth;
         cinemachineBody.m_ScreenX = 0.5f;
-        deathScreen.SetActive(false);
+        deathScreenCanvas.gameObject.SetActive(false);
+        canvas.gameObject.SetActive(true);
         dyingBackground.SetActive(false); 
         Time.timeScale = 1;
     }
@@ -189,8 +191,9 @@ public class HUDManager : MonoBehaviour
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         dyingBackground.SetActive(true);
         anim.Play("dyingBackgroundAnimation");
+        canvas.gameObject.SetActive(false);
         yield return new WaitForSeconds(1.5f);
-        deathScreen.SetActive(true);
+        deathScreenCanvas.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
 
