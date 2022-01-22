@@ -6,6 +6,7 @@ public class DumbbelFly : MonoBehaviour
 {
     public float speed = 10;
     bool right;
+    [SerializeField] private GameObject particle;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -35,6 +36,6 @@ public class DumbbelFly : MonoBehaviour
 
     private void OnDestroy()
     {
-        //play particle
+        Instantiate(particle, transform.position, Quaternion.identity);
     }
 }
