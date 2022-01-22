@@ -25,8 +25,10 @@ public class RugPullerController : MonoBehaviour
     public LayerMask whatIsGround;
     public ScreenShake sc;
     public GameObject projectile;
+    Animator anim;
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         player = FindObjectOfType<PlayerMovement>();
     } 
     public void ShockWave()
@@ -53,6 +55,10 @@ public class RugPullerController : MonoBehaviour
     void Update()
     {
         hpSlider.value = hp;
+        if (hp <= 15)
+        {
+            anim.SetBool("Second", true);
+        }
         if (hp <= 0)
         {
             Destroy(gameObject);
