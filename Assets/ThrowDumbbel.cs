@@ -5,18 +5,27 @@ using UnityEngine;
 public class ThrowDumbbel : MonoBehaviour
 {
     public GameObject dumbbel;
-    PlayerMovement player;
+    public float startTimeBtwAttack;
+    float timeBtwAttack;
 
-    private void Awake()
+    private void Start()
     {
-        player = FindObjectOfType<PlayerMovement>();
+        timeBtwAttack = startTimeBtwAttack;
     }
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (timeBtwAttack <= 0)
         {
-            Instantiate(dumbbel, transform.position, transform.rotation);
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Instantiate(dumbbel, transform.position, transform.rotation);
+                timeBtwAttack = startTimeBtwAttack;
+            }
         }
+        else
+        {
+            timeBtwAttack -= Time.deltaTime;
+        }
+        
     }
 }

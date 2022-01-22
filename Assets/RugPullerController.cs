@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RugPullerController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class RugPullerController : MonoBehaviour
     bool jumped = false;
     bool isGrounded;
     bool shouldFlip;
+    public Slider hpSlider;
     public BossWave left;
     public BossWave right;
     public BossWave left2;
@@ -50,6 +52,12 @@ public class RugPullerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        hpSlider.value = hp;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.3f, whatIsGround);
         if (!isGrounded)
         {
@@ -76,10 +84,7 @@ public class RugPullerController : MonoBehaviour
             facingRight = false;
         }
 
-        if (hp <= 0)
-        {
-            Destroy(gameObject);
-        }
+        
         
     }
     public void Flip()
