@@ -6,29 +6,22 @@ public class BossWave : MonoBehaviour
 {
     public float projectileSpeed;
     public bool goLeft;
-    private Vector2 startPos;
     Rigidbody2D myRb;
     bool shouldFly = false;
     RugPullerController rugPull;
+    float direction;
+    public Transform startPos;
     private void Awake()
     {
         rugPull = FindObjectOfType<RugPullerController>();
         myRb = GetComponent<Rigidbody2D>();
-        startPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!shouldFly) return;
-        if (goLeft)
-        {
-            myRb.velocity = Vector2.left * projectileSpeed;
-        }
-        else
-        {
-            myRb.velocity = Vector2.right * projectileSpeed;
-        }
+        myRb.velocity = new Vector2(direction * projectileSpeed, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,13 +30,22 @@ public class BossWave : MonoBehaviour
         {
             myRb.velocity = Vector2.zero;
             shouldFly = false;
-            transform.position = new Vector2(rugPull.transform.position.x, transform.position.y);
+            transform.position = new Vector2(rugPull.transform.position.x, -56.25f);
             gameObject.SetActive(false);
         }
     }
 
     private void OnEnable()
     {
+        transform.position = new Vector2(startPos.transform.position.x, -57.25f);
+        if (goLeft)
+        {
+            direction = -1;
+        }
+        else
+        {
+            direction = 1;
+        }
         shouldFly = true;
     }
 }
