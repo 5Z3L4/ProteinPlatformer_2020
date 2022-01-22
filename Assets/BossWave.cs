@@ -32,7 +32,7 @@ public class BossWave : MonoBehaviour
         {
             myRb.velocity = Vector2.zero;
             shouldFly = false;
-            transform.position = new Vector2(rugPull.transform.position.x, -56.25f);
+            transform.position = new Vector2(rugPull.transform.position.x, -1f);
             gameObject.SetActive(false);
         }
         if (collision.CompareTag("Player"))
@@ -43,7 +43,7 @@ public class BossWave : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.position = new Vector2(startPos.transform.position.x, -57.25f);
+        transform.position = new Vector2(startPos.transform.position.x, -2.25f);
         if (goLeft)
         {
             direction = -1;

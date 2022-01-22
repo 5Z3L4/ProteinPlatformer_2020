@@ -18,14 +18,13 @@ public class RugPullerController : MonoBehaviour
     public GameObject rightObj;
     public GameObject leftObj2;
     public GameObject rightObj2;
-    Rigidbody2D myRb;
+    int hp = 30;
     public Transform groundCheck;
     public LayerMask whatIsGround;
     public ScreenShake sc;
     public GameObject projectile;
     private void Awake()
     {
-        myRb = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<PlayerMovement>();
     } 
     public void ShockWave()
@@ -77,6 +76,10 @@ public class RugPullerController : MonoBehaviour
             facingRight = false;
         }
 
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
         
     }
     public void Flip()
@@ -88,5 +91,14 @@ public class RugPullerController : MonoBehaviour
         right.goLeft = !right.goLeft;
         left2.goLeft = !left2.goLeft;
         right2.goLeft = !right2.goLeft;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Projectile"))
+        {
+            hp--;
+            Destroy(collision.gameObject);
+        }
     }
 }
