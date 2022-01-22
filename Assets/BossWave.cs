@@ -11,8 +11,10 @@ public class BossWave : MonoBehaviour
     RugPullerController rugPull;
     float direction;
     public Transform startPos;
+    PlayerMovement player;
     private void Awake()
     {
+        player = FindObjectOfType<PlayerMovement>();
         rugPull = FindObjectOfType<RugPullerController>();
         myRb = GetComponent<Rigidbody2D>();
     }
@@ -32,6 +34,10 @@ public class BossWave : MonoBehaviour
             shouldFly = false;
             transform.position = new Vector2(rugPull.transform.position.x, -56.25f);
             gameObject.SetActive(false);
+        }
+        if (collision.CompareTag("Player"))
+        {
+            player.TakeCertainAmountOfHp();
         }
     }
 
