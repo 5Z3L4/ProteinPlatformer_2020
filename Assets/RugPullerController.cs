@@ -20,7 +20,7 @@ public class RugPullerController : MonoBehaviour
     public GameObject rightObj;
     public GameObject leftObj2;
     public GameObject rightObj2;
-    int hp = 60;
+    int hp = 15;
     public Transform groundCheck;
     public LayerMask whatIsGround;
     public ScreenShake sc;
@@ -55,7 +55,7 @@ public class RugPullerController : MonoBehaviour
     void Update()
     {
         hpSlider.value = hp;
-        if (hp <= 40)
+        if (hp <= 8)
         {
             anim.SetBool("Second", true);
         }
