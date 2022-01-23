@@ -18,7 +18,7 @@ public class CallTutorial : MonoBehaviour
     {
         if (dialogue.isCompleted.Count == 2)
         {
-            if (dialogue.isCompleted[1] && dialogueAc.currentDialogue.Dialogue[0] == "HAHAHA I CAN'T BELIVE YOU HAVE FALLEN FOR THAT!")
+            if (dialogue.isCompleted[1] && dialogueAc.currentDialogue.Dialogue[0] == "HAHAHA I CAN'T BELIVE YOU FELL FOR THAT!")
             {
                 if (!npcToMove.leftOrRight)
                 {
