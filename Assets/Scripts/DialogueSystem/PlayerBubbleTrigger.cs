@@ -7,7 +7,7 @@ using Cinemachine;
 public class PlayerBubbleTrigger : MonoBehaviour
 {
     private PlayerBubble playerBubble;
-    private TMP_Text tutorialText;
+    public TMP_Text tutorialText;
     public DialogueObject newPlayerBubbleText;
     public DialogueObject tutorial;
     public bool isTutAvailable;
@@ -21,6 +21,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
         LeftCtrl,
         Tab,
         S,
+        Q
     }
     public TutorialFinishKey key;
     private void Awake()
@@ -64,6 +65,11 @@ public class PlayerBubbleTrigger : MonoBehaviour
         if (key == TutorialFinishKey.S && isTutAvailable && (Input.GetKeyDown(KeyCode.S)))
         {
             HideTutorialText();
+        }
+        if (key == TutorialFinishKey.Q && isTutAvailable && (Input.GetKeyDown(KeyCode.Q)))
+        {
+            HideTutorialText();
+            Destroy(gameObject);
         }
         
         if (Input.GetKeyDown(KeyCode.E) || callItWithoutButton)
