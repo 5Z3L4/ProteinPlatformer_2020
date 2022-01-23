@@ -21,7 +21,8 @@ public static class SFXManager
     public static void Initialize()
     {
         soundTimerDictionary = new Dictionary<Sound, float>();
-        soundTimerDictionary[Sound.PickUpItem] = 0f;
+        soundTimerDictionary[Sound.PickUpItem] = 0;
+        soundTimerDictionary[Sound.Step] = 0;
     }
 
     private static bool CanPlaySound(Sound sound) //sprawdzanie czy mozna zagrac kolejny dzwiek (zeby wyeliminowac ciagle odtwarzanie dziekow np. podczas chodzenia)
@@ -34,6 +35,25 @@ public static class SFXManager
                 return true;
             case Sound.Jump:
                 return true;
+            case Sound.Step:
+                if (soundTimerDictionary.ContainsKey(sound))
+                {
+                    float lastTimePlayed = soundTimerDictionary[sound];
+                    float playerMoveTimerMax = 0.5f;
+                    if (lastTimePlayed + playerMoveTimerMax < Time.time)
+                    {
+                        soundTimerDictionary[sound] = Time.time;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
         }
     }
 
