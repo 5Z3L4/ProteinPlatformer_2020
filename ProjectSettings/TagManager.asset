@@ -29,8 +29,8 @@ TagManager:
   - IgnoreKillBox
   - KillBox
   - Projectile
-  - 
-  - 
+  - PlayerFall
+  - Player
   - 
   - 
   - 
