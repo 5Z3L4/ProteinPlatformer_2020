@@ -17,4 +17,6 @@ public static class GameManager
 
     public static bool isStoryMode = true;
 
+    public static int deaths = 0;
+
 }

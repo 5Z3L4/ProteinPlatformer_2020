@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SurprisedResponse
   m_EditorClassIdentifier: 
   dialogue:
-  - Ofcourse! To be honest she asked me to help her go out with you.
+  - Of course! To be honest she asked me to help her go out with you.
   - So don't waste your time! Hit on her!
   responses: []

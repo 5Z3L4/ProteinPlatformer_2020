@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: QuiteResponse
   m_EditorClassIdentifier: 
   dialogue:
-  - You're shy guy huh? No worries, girls like sissy... ugh i mean quite mans.
-  - Don't waste your time buddy! Just came to her, she will handle rest!
+  - Are you shy guy huh? No worries, girls like sissy... ugh I mean quite men.
+  - Don't waste your time buddy! Just go to her, she will handle rest!
   responses: []

@@ -14,6 +14,7 @@ TagManager:
   - Enemy
   - PlayerSprite
   - Ground
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -27,9 +28,9 @@ TagManager:
   - BrokenChest
   - IgnoreKillBox
   - KillBox
-  - 
-  - 
-  - 
+  - Projectile
+  - PlayerFall
+  - Player
   - 
   - 
   - 

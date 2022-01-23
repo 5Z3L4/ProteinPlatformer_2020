@@ -15,5 +15,5 @@ MonoBehaviour:
   dialogue:
   - What are you talking about. I'm here for hours.
   responses:
-  - responseText: Oh, so I just passed next to very similar looking girl.
+  - responseText: Oh, so I just passed next to very similar girl.
     dialogueObject: {fileID: 11400000, guid: dcdda77bb7ea7964f957143b570dcf35, type: 2}

@@ -24,12 +24,21 @@ public class ResponseHandler : MonoBehaviour
         player.canMove = false;
         dialogueUI.PlayerImage.color = dialogueUI.DefaultPlayerColor;
         dialogueUI.PlayerImage.gameObject.SetActive(true);
-        foreach (Response response in responses)
+        int count = 1;
+        foreach(Response response in responses)
         {
             GameObject responseButton = Instantiate(responseButtonTemplate.gameObject, responseContainer);
             responseButton.gameObject.SetActive(true);
-            responseButton.GetComponent<TMP_Text>().text = response.ResponseText;
+            if (responses.Length > 1)
+            {
+                responseButton.GetComponent<TMP_Text>().text = count + ". " + response.ResponseText;
+            }
+            else
+            {
+                responseButton.GetComponent<TMP_Text>().text = response.ResponseText;
+            }
             responseButton.GetComponent<Button>().onClick.AddListener(() => OnPickedResponse(response));
+            count++;
             tempResponseButtons.Add(responseButton);
         }
         responseBox.gameObject.SetActive(true);

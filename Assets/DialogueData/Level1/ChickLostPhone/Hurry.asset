@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hurry
   m_EditorClassIdentifier: 
   dialogue:
-  - 'Hurry! I need to check my twitter!
+  - 'Hurry! I need to check my Twitter!
 
 '
   responses: []

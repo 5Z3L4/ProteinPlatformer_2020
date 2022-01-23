@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RugPullerController : MonoBehaviour
 {
@@ -9,28 +10,60 @@ public class RugPullerController : MonoBehaviour
     public bool facingLeft = true;
     bool jumped = false;
     bool isGrounded;
+    bool shouldFlip;
+    public Slider hpSlider;
     public BossWave left;
     public BossWave right;
+    public BossWave left2;
+    public BossWave right2;
     public GameObject leftObj;
     public GameObject rightObj;
-    Rigidbody2D myRb;
+    public GameObject leftObj2;
+    public GameObject rightObj2;
+    int hp = 15;
     public Transform groundCheck;
     public LayerMask whatIsGround;
     public ScreenShake sc;
+    public GameObject projectile;
+    Animator anim;
     private void Awake()
     {
-        myRb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         player = FindObjectOfType<PlayerMovement>();
     } 
     public void ShockWave()
     {
-        leftObj.SetActive(true);
-        rightObj.SetActive(true);
+        if (leftObj.activeSelf)
+        {
+            leftObj2.SetActive(true);
+        }
+        else
+        {
+            leftObj.SetActive(true);
+        }
+        if (rightObj.activeSelf)
+        {
+            rightObj2.SetActive(true);
+        }
+        else
+        {
+            rightObj.SetActive(true);
+        }
         sc.Shakecamera(5f, .1f);
     }
     // Update is called once per frame
     void Update()
     {
+        hpSlider.value = hp;
+        if (hp <= 8)
+        {
+            anim.SetBool("Second", true);
+        }
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.3f, whatIsGround);
         if (!isGrounded)
         {
@@ -58,6 +91,7 @@ public class RugPullerController : MonoBehaviour
         }
 
         
+        
     }
     public void Flip()
     {
@@ -66,5 +100,16 @@ public class RugPullerController : MonoBehaviour
         transform.localScale = scaler;
         left.goLeft = !left.goLeft;
         right.goLeft = !right.goLeft;
+        left2.goLeft = !left2.goLeft;
+        right2.goLeft = !right2.goLeft;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Projectile"))
+        {
+            hp--;
+            Destroy(collision.gameObject);
+        }
     }
 }

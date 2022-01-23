@@ -16,6 +16,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
     private bool isPlayerInTrigger = false;
     public enum TutorialFinishKey
     {
+        None,
         ScrollWheel,
         LeftCtrl,
         Tab,

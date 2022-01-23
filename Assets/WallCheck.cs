@@ -8,7 +8,6 @@ public class WallCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.layer.ToString());
         if (collision.gameObject.layer == 3)
         {
             collider.SetActive(true);

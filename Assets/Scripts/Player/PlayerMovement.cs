@@ -377,6 +377,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Die();
             SM.levels[SM.currentLevelId].deathCounter++;
+            
         }
         
 
@@ -404,6 +405,7 @@ public class PlayerMovement : MonoBehaviour
         SFXManager.PlaySound(SFXManager.Sound.Death, transform.position);
         canMove = false;
         hp = 0;
+        GameManager.deaths++;
         playerAnim.SetBool("IsDead", true);
         StartCoroutine(HUDManager.DyingScreen());
     }

@@ -11,6 +11,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     [HideInInspector] public int questID;
     [SerializeField] Sprite imageToShow;
     public Sprite ImageToShow => imageToShow;
+    public bool Interactable = false;
 
     private void Start()
     {
@@ -20,7 +21,10 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        pressToTalk.SetActive(true);
+        if (Interactable)
+        {
+            pressToTalk.SetActive(true);
+        }
         if (collision.CompareTag("Player") && collision.TryGetComponent(out PlayerMovement player))
         {
             player.Interactable = this;
@@ -28,7 +32,10 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        pressToTalk.SetActive(false);
+        if (Interactable)
+        {
+            pressToTalk.SetActive(false);
+        }
         if (collision.CompareTag("Player") && collision.TryGetComponent(out PlayerMovement player))
         {
             if (player.Interactable is DialogueActivator dialogueActivator && dialogueActivator == this)
@@ -41,14 +48,18 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     {
         if (collision.CompareTag("Player"))
         {
-            if (dialogueUI.IsOpen)
+            if (Interactable)
             {
-                pressToTalk.SetActive(false);
+                if (dialogueUI.IsOpen)
+                {
+                    pressToTalk.SetActive(false);
+                }
+                else
+                {
+                    pressToTalk.SetActive(true);
+                }
             }
-            else
-            {
-                pressToTalk.SetActive(true);
-            }
+            
         }
     }
     public void Interact(PlayerMovement player)

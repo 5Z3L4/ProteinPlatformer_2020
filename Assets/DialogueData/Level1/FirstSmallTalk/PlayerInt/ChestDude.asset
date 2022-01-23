@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ChestDude
   m_EditorClassIdentifier: 
   dialogue:
-  - I'm not sure if i wanna face this guy. But this chest looks interesting.
+  - I'm not sure if I wanna face this guy. But this chest looks interesting.
   responses: []

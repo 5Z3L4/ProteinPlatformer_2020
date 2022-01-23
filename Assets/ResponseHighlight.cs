@@ -8,32 +8,26 @@ public class ResponseHighlight : MonoBehaviour, IPointerEnterHandler, IPointerEx
 {
     private TMP_Text text;
     private Color32 outlineColor;
-    private Color32 fontColor;
     private float outlineWidth;
     [SerializeField] private Color32 highlightOutlineColor;
     [SerializeField] private float highlightWidth;
-    [SerializeField] private Color32 highlightedFontColor;
     private void Awake()
     {
         text = GetComponent<TMP_Text>();
     }
     private void Start()
     {
+        text.outlineColor = new Color32(60, 60, 60, 255);
         outlineColor = text.outlineColor;
-        fontColor = text.faceColor;
-        outlineWidth = 0;
+        text.outlineWidth = highlightWidth;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        text.faceColor = highlightedFontColor;
-        text.outlineWidth = highlightWidth;
         text.outlineColor = highlightOutlineColor;
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        text.faceColor = fontColor;
         text.outlineColor = outlineColor;
-        text.outlineWidth = outlineWidth;
     }
 
 }
