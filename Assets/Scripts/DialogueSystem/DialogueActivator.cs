@@ -21,23 +21,25 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Interactable)
-        {
-            pressToTalk.SetActive(true);
-        }
+        
         if (collision.CompareTag("Player") && collision.TryGetComponent(out PlayerMovement player))
         {
             player.Interactable = this;
+            if (Interactable)
+            {
+                pressToTalk.SetActive(true);
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (Interactable)
-        {
-            pressToTalk.SetActive(false);
-        }
+        
         if (collision.CompareTag("Player") && collision.TryGetComponent(out PlayerMovement player))
         {
+            if (Interactable)
+            {
+                pressToTalk.SetActive(false);
+            }
             if (player.Interactable is DialogueActivator dialogueActivator && dialogueActivator == this)
             {
                 player.Interactable = null;

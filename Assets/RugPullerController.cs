@@ -25,6 +25,8 @@ public class RugPullerController : MonoBehaviour
     public LayerMask whatIsGround;
     public ScreenShake sc;
     public GameObject projectile;
+    public AudioSource bgMusic;
+    public AudioClip victoryMusic;
     Animator anim;
     private void Awake()
     {
@@ -49,6 +51,7 @@ public class RugPullerController : MonoBehaviour
         {
             rightObj.SetActive(true);
         }
+        SFXManager.PlaySound(SFXManager.Sound.BossBoom, transform.position);
         sc.Shakecamera(5f, .1f);
     }
     // Update is called once per frame
@@ -61,6 +64,9 @@ public class RugPullerController : MonoBehaviour
         }
         if (hp <= 0)
         {
+            bgMusic.clip = victoryMusic;
+            bgMusic.Play();
+            bgMusic.loop = false;
             Destroy(gameObject);
         }
 
@@ -109,6 +115,7 @@ public class RugPullerController : MonoBehaviour
         if (collision.CompareTag("Projectile"))
         {
             hp--;
+            SFXManager.PlaySound(SFXManager.Sound.Punch, transform.position);
             Destroy(collision.gameObject);
         }
     }

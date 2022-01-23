@@ -86,9 +86,9 @@ public class HUDManager : MonoBehaviour
                 HideCollected();
                 callTimer = false;
                 time = 3.5f;
-                GameObject.Find("dumbbelHolder").GetComponent<Animator>().SetBool("Open", false);
-                GameObject.Find("meatHolder").GetComponent<Animator>().SetBool("Open", false);
-                GameObject.Find("proteinHolder").GetComponent<Animator>().SetBool("Open", false);
+                dumbbleAnimator.SetBool("Open", false);
+                meatAnimator.SetBool("Open", false);
+                proteinAnimator.SetBool("Open", false);
             }
         }
     }
@@ -102,9 +102,9 @@ public class HUDManager : MonoBehaviour
     //TO DO poprawiæ
     public void HideCollected()
     {
-        GameObject.Find("dumbbelHolder").GetComponent<Animator>().SetBool("Close", true);
-        GameObject.Find("meatHolder").GetComponent<Animator>().SetBool("Close", true);
-        GameObject.Find("proteinHolder").GetComponent<Animator>().SetBool("Close", true);
+        dumbbleAnimator.SetBool("Close", true);
+        meatAnimator.SetBool("Close", true);
+        proteinAnimator.SetBool("Close", true);
     }
     public void HideHUD()
     {
