@@ -9,7 +9,7 @@ public class MenuManagement : MonoBehaviour
     //MENU
     public GameObject menuPanel;
     public GameObject storyModePanel;
-    public GameObject endlessModePanel;
+    public GameObject leaderboardsPanel;
     public GameObject profilePanel;
     public GameObject optionsPanel;
 
@@ -25,7 +25,7 @@ public class MenuManagement : MonoBehaviour
     {
         menuPanel.SetActive(true);
         storyModePanel.SetActive(false);
-        endlessModePanel.SetActive(false);
+        leaderboardsPanel.SetActive(false);
         profilePanel.SetActive(false);
         optionsPanel.SetActive(false);
     }
@@ -54,28 +54,6 @@ public class MenuManagement : MonoBehaviour
     {
         PlayerPrefs.SetInt("Selected Character", selectedCharacter);
     }
-
-    [Space(10)]
-    //OPTIONS
-    public Button audioButton;
-    public Button controlsButton;
-    public GameObject audioSettingsPanel;
-    public GameObject controlsSettingsPanel;
-    public void EnableOptionsPanel(GameObject panelToEnable)
-    {
-
-        if (panelToEnable == audioSettingsPanel && !audioSettingsPanel.activeInHierarchy)
-        {
-            controlsSettingsPanel.SetActive(false);
-            audioSettingsPanel.SetActive(true);
-        }
-        else if (panelToEnable == controlsSettingsPanel && !controlsSettingsPanel.activeInHierarchy)
-        {
-            audioSettingsPanel.SetActive(false);
-            controlsSettingsPanel.SetActive(true);
-        }
-        
-    }
     [Space(10)]
     //STORY MODE
     public Button Level1;
@@ -87,7 +65,7 @@ public class MenuManagement : MonoBehaviour
     {
         DisablePanels();
         menuPanel.SetActive(false);
-        endlessModePanel.SetActive(true);
+        leaderboardsPanel.SetActive(true);
     }
     //------------------------------------------------------------------------
     private void Update()
