@@ -227,11 +227,16 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.x != 0)
         {
             playerAnim.SetBool("IsRunning", true);
+            if (isGrounded)
+            {
+                SFXManager.PlaySound(SFXManager.Sound.Step, transform.position);
+            }
         }
         if (rb.velocity == Vector2.zero)
         {
             playerAnim.SetBool("IsRunning", false);
         }
+
         
 
         //je¿eli siê gibiemy

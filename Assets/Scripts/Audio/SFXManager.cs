@@ -13,7 +13,8 @@ public static class SFXManager
         Death,
         Fail,
         BossBoom,
-        Punch
+        Punch,
+        Step
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 
