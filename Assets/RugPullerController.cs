@@ -110,6 +110,7 @@ public class RugPullerController : MonoBehaviour
         if (collision.CompareTag("Projectile"))
         {
             hp--;
+            SFXManager.PlaySound(SFXManager.Sound.Punch, transform.position);
             Destroy(collision.gameObject);
         }
     }
