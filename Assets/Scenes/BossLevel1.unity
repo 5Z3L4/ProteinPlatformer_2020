@@ -6295,6 +6295,8 @@ MonoBehaviour:
     m_Bits: 8
   sc: {fileID: 1447489682}
   projectile: {fileID: 135380833}
+  bgMusic: {fileID: 1946566221}
+  victoryMusic: {fileID: 8300000, guid: 6c88512a43de6e94baba92f34372d4f5, type: 3}
 --- !u!212 &459552978
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50881,6 +50883,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5913092299120865102, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
   m_PrefabInstance: {fileID: 1896120609}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1946566221 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8284878225575073832, guid: 07e8f185214c19d468e104ef40413f2f, type: 3}
+  m_PrefabInstance: {fileID: 1246446844}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &1989815886 stripped
 Animator:

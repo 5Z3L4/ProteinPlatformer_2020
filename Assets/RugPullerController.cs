@@ -25,6 +25,8 @@ public class RugPullerController : MonoBehaviour
     public LayerMask whatIsGround;
     public ScreenShake sc;
     public GameObject projectile;
+    public AudioSource bgMusic;
+    public AudioClip victoryMusic;
     Animator anim;
     private void Awake()
     {
@@ -62,6 +64,9 @@ public class RugPullerController : MonoBehaviour
         }
         if (hp <= 0)
         {
+            bgMusic.clip = victoryMusic;
+            bgMusic.Play();
+            bgMusic.loop = false;
             Destroy(gameObject);
         }
 
