@@ -11,7 +11,8 @@ public static class SFXManager
         DestroyChest,
         Slide,
         Death,
-        Fail
+        Fail,
+        BossBoom
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 

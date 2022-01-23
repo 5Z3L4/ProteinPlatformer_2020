@@ -49,6 +49,7 @@ public class RugPullerController : MonoBehaviour
         {
             rightObj.SetActive(true);
         }
+        SFXManager.PlaySound(SFXManager.Sound.BossBoom, transform.position);
         sc.Shakecamera(5f, .1f);
     }
     // Update is called once per frame
