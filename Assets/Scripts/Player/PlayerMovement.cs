@@ -395,6 +395,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeCertainAmountOfHp()
     {
         playerAnim.Play("SkinnyHit");
+        SFXManager.PlaySound(SFXManager.Sound.GetHit, transform.position);
         KnockBack(false);
         hp -= 1;
         if (hp <= 0)
