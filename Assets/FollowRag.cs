@@ -5,9 +5,17 @@ using UnityEngine;
 public class FollowRag : MonoBehaviour
 {
     public RugPullerController rp;
-
+    public bool followOnY = false;
     private void Update()
     {
-        transform.position = new Vector2(rp.transform.position.x, transform.position.y);
+        
+        if (followOnY)
+        {
+            transform.position = new Vector2(rp.transform.position.x, rp.transform.position.y);
+        }
+        else
+        {
+            transform.position = new Vector2(rp.transform.position.x, transform.position.y);
+        }
     }
 }
