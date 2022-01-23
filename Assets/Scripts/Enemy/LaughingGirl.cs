@@ -61,6 +61,7 @@ public class LaughingGirl : MonoBehaviour //Enemy
     {
         if (timeBtwAttack <= 0)
         {
+            
             timeBtwAttack = startTimeBtwAttack;
             anim.Play("laughing_girl_wave");
         }

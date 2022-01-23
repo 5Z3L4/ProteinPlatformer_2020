@@ -7,16 +7,16 @@ using TMPro;
 public class TimeCounter : MonoBehaviour
 {
     public TextMeshProUGUI counterText;
-    public float seconds { get; private set; }
-    public float minutes { get; private set; }
+    public float seconds;
+    public float minutes;
     void Awake()
     {
         counterText = GetComponent<TextMeshProUGUI>();
     }
     void Update()
     {
-        minutes = (int)(Time.time / 60f);
-        seconds = (int)(Time.time % 60f);
+        minutes = (int)(Time.timeSinceLevelLoad / 60f);
+        seconds = (int)(Time.timeSinceLevelLoad % 60f);
         counterText.SetText(minutes.ToString("00") + ":" + seconds.ToString("00"));
     }
 }
