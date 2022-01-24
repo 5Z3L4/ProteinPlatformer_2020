@@ -94,7 +94,6 @@ public class HUDManager : MonoBehaviour
     //TO DO poprawiæ
     public void ShowCollected(Animator animator)
     {
-        print("dupa");
         animator.SetBool("Close", false);
         animator.SetBool("Open", true);
         callTimer = true;
