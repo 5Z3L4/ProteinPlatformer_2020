@@ -320,6 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HUDM: {fileID: 8140784499073629995, guid: a131632a0c978af438c561b2c71ffeed, type: 3}
   SM: {fileID: 0}
+  holder: {fileID: 0}
   stats: 1
   scoreValue: 100
 --- !u!114 &4129546853132451064

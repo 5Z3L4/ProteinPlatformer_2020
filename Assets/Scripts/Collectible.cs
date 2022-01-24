@@ -8,6 +8,7 @@ public class Collectible : MonoBehaviour
     public SaveManager SM;
     private Collect collectItem;
     private bool isCollected = false;
+    public Animator holder;
     private void Awake()
     {
         collectItem = GetComponent<Collect>();
@@ -40,17 +41,17 @@ public class Collectible : MonoBehaviour
             if (stats == StatsToUpgrade.Strength)
             {
                 GameManager.collectedStrenght++;
-                ShowCollectibleUI("dumbbelHolder");
+                ShowCollectibleUI(holder);
             }
             else if (stats == StatsToUpgrade.Constitution)
             {
                 GameManager.collectedConstitution++;
-                ShowCollectibleUI("meatHolder");
+                ShowCollectibleUI(holder);
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
                 GameManager.collectedAgility++;
-                ShowCollectibleUI("proteinHolder");
+                ShowCollectibleUI(holder);
             }
             else if (stats == StatsToUpgrade.None)
             {
@@ -63,11 +64,11 @@ public class Collectible : MonoBehaviour
         }
     }
 
-    private void ShowCollectibleUI(string name)
+    private void ShowCollectibleUI(Animator holder)
     {
-        if (!GameObject.Find(name).GetComponent<Animator>().GetBool("Open"))
+        if (holder != null && !holder.GetBool("Open"))
         {
-            HUDM.ShowCollected(name);
+            HUDM.ShowCollected(holder);
             HUDM.callTimer = true;
             HUDM.time += 0.5f;
         }

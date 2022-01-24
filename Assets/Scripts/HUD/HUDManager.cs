@@ -12,9 +12,6 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Text currentScoreText;
     private float displayScore;
     public static int currentScore;
-    [SerializeField] private Animator dumbbleAnimator;
-    [SerializeField] private Animator meatAnimator;
-    [SerializeField] private Animator proteinAnimator;
     public bool callTimer;
     public float time;
     private SaveManager SM;
@@ -35,6 +32,7 @@ public class HUDManager : MonoBehaviour
     private Image dumbbelImage, meatImage, proteinImage;
     private Text scoreText;
     [SerializeField] private TMP_Text hpAmountText;
+    public Animator animatorDumbbell, animatorMeat, animatorProtein;
     private void Awake()
     {
         anim = dyingBackground.GetComponent<Animation>();
@@ -49,6 +47,7 @@ public class HUDManager : MonoBehaviour
         proteinImage = GameObject.Find("ProteinAmountImage").GetComponent<Image>();
         proteinText = GameObject.Find("ProteinAmountImage").GetComponentInChildren<Text>();
         scoreText = GameObject.Find("currentScoreText").GetComponent<Text>();
+
     }
     private void Start()
     {
@@ -86,25 +85,26 @@ public class HUDManager : MonoBehaviour
                 HideCollected();
                 callTimer = false;
                 time = 3.5f;
-                dumbbleAnimator.SetBool("Open", false);
-                meatAnimator.SetBool("Open", false);
-                proteinAnimator.SetBool("Open", false);
+                animatorDumbbell.SetBool("Open", false);
+                animatorMeat.SetBool("Open", false);
+                animatorProtein.SetBool("Open", false);
             }
         }
     }
     //TO DO poprawiæ
-    public void ShowCollected(string name)
+    public void ShowCollected(Animator animator)
     {
-        GameObject.Find(name).GetComponent<Animator>().SetBool("Close", false);
-        GameObject.Find(name).GetComponent<Animator>().SetBool("Open", true);
+        print("dupa");
+        animator.SetBool("Close", false);
+        animator.SetBool("Open", true);
         callTimer = true;
     }
     //TO DO poprawiæ
     public void HideCollected()
     {
-        dumbbleAnimator.SetBool("Close", true);
-        meatAnimator.SetBool("Close", true);
-        proteinAnimator.SetBool("Close", true);
+        animatorDumbbell.SetBool("Close", true);
+        animatorMeat.SetBool("Close", true);
+        animatorProtein.SetBool("Close", true);
     }
     public void HideHUD()
     {
