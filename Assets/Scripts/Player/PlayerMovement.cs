@@ -422,11 +422,11 @@ public class PlayerMovement : MonoBehaviour
         Vector2 knockbackVelocity = new Vector2();
         if (shouldKnockBackToRight)
         {
-            knockbackVelocity = new Vector2(3, 3);
+            knockbackVelocity = new Vector2(0, 3);
         }
         else if (!shouldKnockBackToRight)
         {
-            knockbackVelocity = new Vector2(-3, 3);
+            knockbackVelocity = new Vector2(0, 3);
         }
         StartCoroutine(StartKnockabck(knockbackVelocity));
     }
