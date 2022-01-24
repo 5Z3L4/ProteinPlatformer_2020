@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Sprawdzamy inputy, robimy to w Update, bo FixedUpdate jest jedynie do fizyki
         CheckAxis();
-        if (Input.GetKeyDown(KeyCode.LeftControl) && canMove)
+        if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C)) && canMove)
         {    
             Slide();
         }
