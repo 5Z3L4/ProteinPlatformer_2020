@@ -40,13 +40,14 @@ public class PlayerMovement : MonoBehaviour
     public float lowJumpMultiplier = 2f;
     private bool isGrounded;
     private bool isGroundedWithoutOffset;
-    private bool isJumping;
     private bool shouldJump;
-    private bool isJumpingLow;
     public bool isSliding;
     public Rigidbody2D playerRB;
     public float slideSpeed = 500;
-
+    private float coyoteetime = 0.2f;
+    private float coyoteeTimeCounter;
+    private float jumpBuffer = 0.2f;
+    private float jumpBufferCounter;
     public CapsuleCollider2D mainCollider;
     public CircleCollider2D slideCollider;
     public Animator playerAnim;
@@ -78,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
+        coyoteeTimeCounter = coyoteetime;
         slideEmission = slide.emission;
         statistics.playerPosition = this.gameObject.transform;
         respawnPos = transform.position;
@@ -115,6 +117,10 @@ public class PlayerMovement : MonoBehaviour
 
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        if (isGrounded)
+        {
+            coyoteeTimeCounter = coyoteetime;
+        }
         isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.1f, whatIsGround);
         if (shouldSmashParticle)
         {
@@ -126,16 +132,14 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
-        if (!isGroundedWithoutOffset)
-        {
-            isAirborn = true;
-        }
+
         statistics.playerPosition = this.gameObject.transform;
         if (canMove)
         {
             Jump();
         }
-        
+
+        coyoteeTimeCounter -= Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.E) && !dialogueUI.IsOpen)
         {
@@ -157,10 +161,19 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnim.SetBool("IsJumping", false);
             playerAnim.SetBool("IsFalling", false);
+            isAirborn = false;
         }
-        
+
+        if (Input.GetKeyDown("space"))
+        {
+            jumpBufferCounter = jumpBuffer;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
-        if (isGrounded && Input.GetKeyDown("space") && !shouldJump)
+        if (coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn)
         {
             mainCollider.enabled = true;
             SFXManager.PlaySound(SFXManager.Sound.Jump, transform.position);
@@ -216,8 +229,6 @@ public class PlayerMovement : MonoBehaviour
     private void CheckAxis()
     {
         horizontalAxis = Input.GetAxisRaw("Horizontal");
-        isJumping = Input.GetButtonDown("Jump");
-        //isJumpingLow = Input.GetKey(KeyCode.Space);
     }
 
     public void Move(float horizontal, Rigidbody2D rb, float speed)
