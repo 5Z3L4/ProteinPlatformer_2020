@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem fakeWallBlowUp;
     public ParticleSystem jumpAndLand;
     //move variables
-    private float horizontalAxis;
+    public float horizontalAxis;
     public float moveSpeed;
     public bool facingRight = true;
     public bool isAirborn;

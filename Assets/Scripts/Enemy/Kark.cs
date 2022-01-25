@@ -97,8 +97,11 @@ public class Kark : MonoBehaviour //,Enemy
         {
             StartCoroutine(WaitBeforeFlip());
         }
-        if (timeBtwAttack > 0) return;
+    }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
         if (collision.CompareTag("Player"))
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);
@@ -108,8 +111,13 @@ public class Kark : MonoBehaviour //,Enemy
                 Destroy(gameObject);
                 GameManager.Score += scoreValue;
             }
-            else if (facingRight != player.facingRight || facingRight == player.facingRight ) // TO DO: poprawiæ to tak, ¿eby kark siê odwraca³ jak gracz podejdzie do niego od ty³u
+            else if (facingRight != player.facingRight || facingRight == player.facingRight) // TO DO: poprawiæ to tak, ¿eby kark siê odwraca³ jak gracz podejdzie do niego od ty³u
             {
+                if (timeBtwAttack > 0) return;
+                if ((CalculatePlayerPos() < 0 && facingRight) || CalculatePlayerPos() > 0 && !facingRight && shouldAttack)
+                {
+                    Flip();
+                }
                 canMove = false;
                 canAttack = true;
                 if (canAttack && shouldAttack)
@@ -118,7 +126,11 @@ public class Kark : MonoBehaviour //,Enemy
                 }
             }
         }
-        
+    }
+
+    private float CalculatePlayerPos()
+    {
+        return player.transform.position.x - transform.position.x;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
