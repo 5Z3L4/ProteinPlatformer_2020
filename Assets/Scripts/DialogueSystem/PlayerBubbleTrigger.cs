@@ -111,7 +111,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
         if (newPlayerBubbleText != null && newPlayerBubbleText.Dialogue.Length > 0)
         {
             playerBubble.gameObject.SetActive(true);
-            playerBubble.BubbleSetup(newPlayerBubbleText);
+            playerBubble.SetSizeOfTextBackground(newPlayerBubbleText);
         }
     }
 

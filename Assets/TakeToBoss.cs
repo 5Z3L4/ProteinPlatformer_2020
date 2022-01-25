@@ -5,11 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class TakeToBoss : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    bool takeToBoss = false;
+    private void Update()
+    {
+        if (!takeToBoss) return;
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SceneManager.LoadScene("BossLevel1");
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("BossLevel1");
+            takeToBoss = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            takeToBoss = false;
         }
     }
 }
