@@ -121,9 +121,13 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         if (isGrounded && !isAirborn)
         {
-            print("ImGrounded");
             coyoteeTimeCounter = coyoteetime;
         }
+        else
+        {
+            coyoteeTimeCounter -= Time.deltaTime;
+        }
+
         isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.1f, whatIsGround);
         if (shouldSmashParticle)
         {
@@ -142,7 +146,15 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
-        coyoteeTimeCounter -= Time.deltaTime;
+        if (Input.GetKeyDown("space"))
+        {
+            jumpBufferCounter = jumpBuffer;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
 
         if (Input.GetKeyDown(KeyCode.E) && !dialogueUI.IsOpen)
         {
@@ -167,14 +179,6 @@ public class PlayerMovement : MonoBehaviour
             isAirborn = false;
         }
 
-        if (Input.GetKeyDown("space"))
-        {
-            jumpBufferCounter = jumpBuffer;
-        }
-        else
-        {
-            jumpBufferCounter -= Time.deltaTime;
-        }
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
         if (coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn)
         {
