@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        if (isGrounded)
+        if (isGrounded && !isAirborn)
         {
             print("ImGrounded");
             coyoteeTimeCounter = coyoteetime;
