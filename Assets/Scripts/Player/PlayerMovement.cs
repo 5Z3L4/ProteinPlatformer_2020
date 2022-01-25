@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public DialogueUI DialogueUI => dialogueUI;
     public IInteractable Interactable { get; set; }
     public bool canMove = true;
-
+    public bool allowCharge = false;
+    public bool allowSmash = false;
     public PlayerStats statistics = new PlayerStats();
     //particle system
     public ParticleSystem slide;
@@ -106,11 +107,12 @@ public class PlayerMovement : MonoBehaviour
         {
             slideEmission.rateOverTime = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Tab) && canMove)
+
+        if (Input.GetKeyDown(KeyCode.Tab) && canMove && allowCharge)
         {
             Charge();
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y !=0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y !=0 && allowSmash)
         {
             Smash();  
         }
