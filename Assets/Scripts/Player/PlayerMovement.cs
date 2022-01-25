@@ -461,7 +461,12 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 1;
         }
     }
-
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+    }
     bool IsPlayerDead()
     {
         return hp <= 0;
