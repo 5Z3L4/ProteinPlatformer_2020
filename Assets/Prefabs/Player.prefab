@@ -5257,7 +5257,7 @@ GameObject:
   - component: {fileID: 1601613611}
   - component: {fileID: 1601613610}
   - component: {fileID: 1601613609}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: WallChecking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5354,7 +5354,7 @@ GameObject:
   - component: {fileID: 2125414706}
   - component: {fileID: 2125414708}
   - component: {fileID: 2125414707}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Coll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
