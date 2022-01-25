@@ -177,10 +177,10 @@ public class PlayerMovement : MonoBehaviour
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
         if (coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn)
         {
+            isAirborn = true;
             mainCollider.enabled = true;
             SFXManager.PlaySound(SFXManager.Sound.Jump, transform.position);
             PlayParticleSystem(jumpAndLand);
-            isAirborn = true;
             playerAnim.SetBool("IsSliding", false);
             shouldJump = true;
             jumpTimeCounter = jumpTime;
