@@ -121,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         if (isGrounded)
         {
+            print("ImGrounded");
             coyoteeTimeCounter = coyoteetime;
         }
         isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.1f, whatIsGround);
@@ -177,6 +178,8 @@ public class PlayerMovement : MonoBehaviour
         //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
         if (coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn)
         {
+            jumpBufferCounter = 0;
+            coyoteeTimeCounter = 0;
             isAirborn = true;
             mainCollider.enabled = true;
             SFXManager.PlaySound(SFXManager.Sound.Jump, transform.position);
