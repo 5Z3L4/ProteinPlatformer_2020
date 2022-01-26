@@ -107,9 +107,7 @@ public class Kark : MonoBehaviour //,Enemy
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);
             if (facingRight == player.facingRight && player.isSliding)
             {
-                Instantiate(scoreText, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-                Destroy(gameObject);
-                GameManager.Score += scoreValue;
+                StartCoroutine(Die());
             }
             else if (facingRight != player.facingRight || facingRight == player.facingRight) // TO DO: poprawiæ to tak, ¿eby kark siê odwraca³ jak gracz podejdzie do niego od ty³u
             {
@@ -141,6 +139,16 @@ public class Kark : MonoBehaviour //,Enemy
         }
     }
 
+    IEnumerator Die()
+    {
+        shouldAttack = false;
+        canMove = false;
+        myAnim.Play("GetHit");
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(scoreText, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        Destroy(gameObject);
+        GameManager.Score += scoreValue;
+    }
     IEnumerator Punch()
     {
         timeBtwAttack = startTimeBtwAttack;
