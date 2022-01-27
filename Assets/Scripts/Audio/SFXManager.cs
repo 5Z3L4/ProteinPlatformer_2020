@@ -16,7 +16,8 @@ public static class SFXManager
         Punch,
         Step,
         GetHit,
-        Hit
+        Hit,
+        Boost
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 

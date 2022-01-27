@@ -392,6 +392,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "JumpBoost" && !isOnJumpBoost)
         {
             JumpBoost();
+            SFXManager.PlaySound(SFXManager.Sound.Boost, transform.position);
             collision.GetComponent<Collect>().CollectItem();
         }
         if (collision.gameObject.CompareTag("CheckPoint"))
