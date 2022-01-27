@@ -23,6 +23,7 @@ public class Kark : MonoBehaviour //,Enemy
     [SerializeField] private GameObject scoreText;
 
     public Animator myAnim;
+    private bool isDying;
 
     private void Awake()
     {
@@ -120,7 +121,10 @@ public class Kark : MonoBehaviour //,Enemy
                 canAttack = true;
                 if (canAttack && shouldAttack)
                 {
-                    StartCoroutine(Punch());
+                    if (!isDying)
+                    {
+                        StartCoroutine(Punch());
+                    }
                 }
             }
         }
@@ -141,6 +145,10 @@ public class Kark : MonoBehaviour //,Enemy
 
     IEnumerator Die()
     {
+        if (!isDying) {
+            SFXManager.PlaySound(SFXManager.Sound.Hit, transform.position);
+        };
+        isDying = true;
         shouldAttack = false;
         canMove = false;
         myAnim.Play("GetHit");
