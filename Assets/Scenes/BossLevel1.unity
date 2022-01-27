@@ -5171,6 +5171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 135380834}
   - component: {fileID: 135380835}
+  - component: {fileID: 135380836}
   m_Layer: 0
   m_Name: Projectiles
   m_TagString: Untagged
@@ -5210,6 +5211,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rp: {fileID: 459552977}
   followOnY: 0
+--- !u!114 &135380836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135380833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7020cae66e40884fbc1da5141b44703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 459552976}
 --- !u!1 &150958462
 GameObject:
   m_ObjectHideFlags: 0
@@ -9260,6 +9274,7 @@ GameObject:
   - component: {fileID: 1241913079}
   - component: {fileID: 1241913078}
   - component: {fileID: 1241913077}
+  - component: {fileID: 1241913081}
   m_Layer: 0
   m_Name: RagPullerColl
   m_TagString: Untagged
@@ -9333,6 +9348,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1241913081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241913076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7020cae66e40884fbc1da5141b44703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 459552976}
 --- !u!1001 &1246446844
 PrefabInstance:
   m_ObjectHideFlags: 0
