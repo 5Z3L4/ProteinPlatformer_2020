@@ -11,6 +11,7 @@ public class ActivateBossFight : MonoBehaviour
         if (collision.CompareTag("Projectile"))
         {
             boss.SetActive(true);
+            dialogue.SetActive(true);
             Destroy(gameObject);
         }
     }
