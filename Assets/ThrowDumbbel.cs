@@ -6,14 +6,13 @@ public class ThrowDumbbel : MonoBehaviour
 {
     public GameObject dumbbel;
     public float startTimeBtwAttack;
-    float timeBtwAttack;
+    public bool canIShoot = false;
+    float timeBtwAttack =0;
 
-    private void Start()
-    {
-        timeBtwAttack = startTimeBtwAttack;
-    }
     void Update()
     {
+        if (!canIShoot) return;
+
         if (timeBtwAttack <= 0)
         {
             if (Input.GetKeyDown(KeyCode.Q))
