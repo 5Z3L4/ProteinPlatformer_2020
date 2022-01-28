@@ -8,7 +8,12 @@ public class ThrowDumbbel : MonoBehaviour
     public float startTimeBtwAttack;
     public bool canIShoot = false;
     float timeBtwAttack =0;
+    Animator anim;
 
+    private void Awake()
+    {
+        anim = GameObject.FindGameObjectWithTag("PlayerSprite").GetComponent<Animator>();
+    }
     void Update()
     {
         if (!canIShoot) return;
@@ -17,7 +22,7 @@ public class ThrowDumbbel : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Instantiate(dumbbel, transform.position, transform.rotation);
+                StartCoroutine(Shot());
                 timeBtwAttack = startTimeBtwAttack;
             }
         }
@@ -26,5 +31,11 @@ public class ThrowDumbbel : MonoBehaviour
             timeBtwAttack -= Time.deltaTime;
         }
         
+    }
+    IEnumerator Shot()
+    {
+        anim.Play("ThrowSkinny");
+        yield return new WaitForSeconds(0.3f);
+        Instantiate(dumbbel, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation);
     }
 }
