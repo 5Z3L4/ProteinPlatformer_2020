@@ -52,7 +52,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
         {
             if (Interactable)
             {
-                if (dialogueUI.IsOpen)
+                if (dialogueUI.isOpen)
                 {
                     pressToTalk.SetActive(false);
                 }

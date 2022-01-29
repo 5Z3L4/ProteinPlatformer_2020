@@ -8,27 +8,26 @@ public class CallTutorial : MonoBehaviour
     public DialogueActivator dialogueAc;
     public PlayerBubbleTrigger tutorial;
     public Kark npcToMove;
+    public DialogueObject callingDialogue;
+    public bool dialogueFinished;
     // Start is called before the first frame update
     void Start()
     {
        dialogueAc = GetComponent<DialogueActivator>();
+        callingDialogue.tutorial = GetComponent<CallTutorial>();
     }
 
     private void Update()
     {
-        if (dialogue.isCompleted.Count == 2)
+        if (dialogueFinished)
         {
-            if (dialogue.isCompleted[1] && dialogueAc.currentDialogue.Dialogue[0] == "HAHAHA I CAN'T BELIVE YOU FELL FOR THAT!")
+            if (!npcToMove.facingRight)
             {
-                if (!npcToMove.leftOrRight)
-                {
-                    npcToMove.Flip();
-                    npcToMove.leftOrRight = !npcToMove.leftOrRight;
-                }
-                EnableTutorial();
+                npcToMove.Flip();
+                npcToMove.facingRight = true;
             }
+            EnableTutorial();
         }
-        
     }
     public void EnableTutorial()
     {

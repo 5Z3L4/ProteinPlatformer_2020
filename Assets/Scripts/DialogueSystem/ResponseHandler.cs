@@ -5,23 +5,16 @@ using System.Collections.Generic;
 
 public class ResponseHandler : MonoBehaviour
 {
-    [SerializeField] private RectTransform responseBox;
     [SerializeField] private RectTransform responseButtonTemplate;
     [SerializeField] private RectTransform responseContainer;
     private DialogueUI dialogueUI;
     List<GameObject> tempResponseButtons = new List<GameObject>();
-    PlayerMovement player;
-    private void Awake()
-    {
-        player = FindObjectOfType<PlayerMovement>();
-    }
     private void Start()
     {
-        dialogueUI = GetComponent<DialogueUI>();
+        dialogueUI = gameObject.GetComponent<DialogueUI>();
     }
     public void ShowResponses(Response[] responses)
     {
-        player.canMove = false;
         dialogueUI.PlayerImage.color = dialogueUI.DefaultPlayerColor;
         dialogueUI.PlayerImage.gameObject.SetActive(true);
         int count = 1;
@@ -41,13 +34,11 @@ public class ResponseHandler : MonoBehaviour
             count++;
             tempResponseButtons.Add(responseButton);
         }
-        responseBox.gameObject.SetActive(true);
     }
     public void OnPickedResponse(Response response)
     {
         dialogueUI.PlayerImage.color = dialogueUI.DarkenColor(dialogueUI.PlayerImage);
         dialogueUI.InterlocutorImage.color = dialogueUI.DefaultInterlocutorColor;
-        responseBox.gameObject.SetActive(false);
         foreach (GameObject button in tempResponseButtons)
         {
             Destroy(button);
@@ -60,9 +51,7 @@ public class ResponseHandler : MonoBehaviour
         else
         {
             dialogueUI.CloseDialogueBox();
-            dialogueUI.IsOpen = false;
             dialogueUI.InterlocutorImage.gameObject.SetActive(false);
-            player.canMove = true;
         }
     }
 }
