@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
     {
         coyoteeTimeCounter = coyoteetime;
         slideEmission = slide.emission;
-        statistics.playerPosition = this.gameObject.transform;
+        statistics.playerPosition = gameObject.transform;
         respawnPos = transform.position;
         startingPos = transform.position;
         basejumpForce = jumpForce;
@@ -93,32 +93,63 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Sprawdzamy inputy, robimy to w Update, bo FixedUpdate jest jedynie do fizyki
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
         CheckAxis();
         if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C)) && canMove)
-        {    
+        {
             Slide();
         }
-        if (isGroundedWithoutOffset && isSliding)
-        {
-            slideEmission.rateOverTime = 60f;
-        }
-        else
-        {
-            slideEmission.rateOverTime = 0;
-        }
+
+        ShowSlideParticles();
 
         if (Input.GetKeyDown(KeyCode.Tab) && canMove && allowCharge)
         {
             Charge();
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y !=0 && allowSmash)
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y != 0 && allowSmash)
         {
-            Smash();  
+            Smash();
         }
 
-        //Sprawdzamy czy gracz dotyka pod³ogi, robimy to z zapasem ¿eby skok by³ p³ynniejszy
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        CheckCoyoteeTime();
+
+        if (isGroundedWithoutOffset)
+        {
+            playerAnim.SetBool("IsJumping", false);
+            playerAnim.SetBool("IsFalling", false);
+            isAirborn = false;
+        }
+
+        PlaySmashParticle();
+        CalculateJumpBuffer();
+        if (canMove)
+        {
+            Jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && !dialogueUI.isOpen)
+        {
+            Interactable?.Interact(this);
+        }
+    }
+
+    private void CalculateJumpBuffer()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            jumpBufferCounter = jumpBuffer;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+    }
+
+
+    private void CheckCoyoteeTime()
+    {
         if (isGrounded && !isAirborn)
         {
             coyoteeTimeCounter = coyoteetime;
@@ -127,60 +158,35 @@ public class PlayerMovement : MonoBehaviour
         {
             coyoteeTimeCounter -= Time.deltaTime;
         }
+    }
 
-        isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.1f, whatIsGround);
-        if (shouldSmashParticle)
+    private void ShowSlideParticles()
+    {
+        if (isGroundedWithoutOffset && isSliding)
         {
-            if (isGrounded==true && playerRB.velocity.y == 0 && isSmashing)
-            {
-                PlayParticleSystem(smash);
-                shouldSmashParticle = false;
-                isSmashing = false;
-            }
-            
-        }
-
-        statistics.playerPosition = this.gameObject.transform;
-        if (canMove)
-        {
-            Jump();
-        }
-
-        if (Input.GetKeyDown("space"))
-        {
-            jumpBufferCounter = jumpBuffer;
-            print(GameManager.collectiblesOnMap);
+            slideEmission.rateOverTime = 60f;
         }
         else
         {
-            jumpBufferCounter -= Time.deltaTime;
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.E) && !dialogueUI.isOpen)
-        {
-            Interactable?.Interact(this);
+            slideEmission.rateOverTime = 0;
         }
     }
 
     private void FixedUpdate()
     {
-        if (canMove)
-        {
-            Move(horizontalAxis, playerRB, moveSpeed);
-        }
+        if (!canMove) return;
+        
+        Move(horizontalAxis, playerRB, moveSpeed);
+        RunWalkAnimation(playerRB);
+        if (isSliding)
+            Slide(playerRB);
+        if (isCharging)
+            Charge(playerRB);
     }
 
     private void Jump()
     {
-        if (isGroundedWithoutOffset)
-        {
-            playerAnim.SetBool("IsJumping", false);
-            playerAnim.SetBool("IsFalling", false);
-            isAirborn = false;
-        }
-
-        //je¿eli gracz wcisn¹³ spacjê i wykryliœmy ¿e dotkn¹³ ziemi
+        //if is player trying to jump
         if (coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn)
         {
             jumpBufferCounter = 0;
@@ -192,31 +198,21 @@ public class PlayerMovement : MonoBehaviour
             playerAnim.SetBool("IsSliding", false);
             shouldJump = true;
             jumpTimeCounter = jumpTime;
-            //playerRB.velocity = Vector2.up * 0;
             playerRB.velocity = Vector2.up * jumpForce;
         }
 
-        //je¿eli gracz spada
+        //if is player falling
         if (playerRB.velocity.y < 0 && !isGrounded)
         {
             playerAnim.SetBool("IsFalling", true);
             playerAnim.SetBool("IsJumping", false);
-            //playerAnim.SetBool("IsSliding", false);
-            //szybciej spadamy
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        //dostosowujemy wysokoœæ skoku do czasu trzymania spacji
+        //accelerate jump to player space holding time
         else if (playerRB.velocity.y > 0 && !Input.GetButtonDown("Jump"))
         {
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            shouldJump = false;
-
-        }
-
 
         if (Input.GetKey(KeyCode.Space) && shouldJump == true)
         {
@@ -232,51 +228,38 @@ public class PlayerMovement : MonoBehaviour
             {
                 shouldJump = false;
             }
-
         }
     }
 
     private void CheckAxis()
     {
         horizontalAxis = Input.GetAxisRaw("Horizontal");
-    }
 
-    public void Move(float horizontal, Rigidbody2D rb, float speed)
-    {
-        //poruszanie
-        rb.velocity = new Vector2(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y);
-        if (rb.velocity.x != 0)
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            playerAnim.SetBool("IsRunning", true);
-            if (isGrounded)
-            {
-                SFXManager.PlaySound(SFXManager.Sound.Step, transform.position);
-            }
-        }
-        if (rb.velocity == Vector2.zero)
-        {
-            playerAnim.SetBool("IsRunning", false);
+            shouldJump = false;
         }
 
-        
-
-        //je¿eli siê gibiemy
-        if (isSliding)
-        {
-            rb.velocity = new Vector2(slideDirection * statistics.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
-        }
-
-        if (isCharging)
-        {
-            rb.velocity = new Vector2(slideDirection * statistics.chargeSpeed * Time.fixedDeltaTime, rb.velocity.y);
-        }
-        
-        if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
+        if (horizontalAxis > 0 && !facingRight || horizontalAxis < 0 && facingRight)
         {
             Flip();
         }
     }
 
+    public void Move(float horizontal, Rigidbody2D rb, float speed)
+    {
+        rb.velocity = new Vector2(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y);
+    }
+
+    private void Charge(Rigidbody2D rb)
+    {
+        rb.velocity = new Vector2(slideDirection * statistics.chargeSpeed * Time.fixedDeltaTime, rb.velocity.y);
+    }
+
+    private void Slide(Rigidbody2D rb)
+    {
+        rb.velocity = new Vector2(slideDirection * statistics.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
+    }
 
     public void Slide()
     {
@@ -404,10 +387,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Die();
             SM.levels[SM.currentLevelId].deathCounter++;
-            
         }
-        
-
     }
     public void PlayParticleSystem(ParticleSystem vfx)
     {
@@ -492,5 +472,33 @@ public class PlayerMovement : MonoBehaviour
     bool IsPlayerDead()
     {
         return hp <= 0;
+    }
+    private void RunWalkAnimation(Rigidbody2D rb)
+    {
+        if (rb.velocity.x != 0)
+        {
+            playerAnim.SetBool("IsRunning", true);
+            if (isGrounded)
+            {
+                SFXManager.PlaySound(SFXManager.Sound.Step, transform.position);
+            }
+        }
+        else if (rb.velocity == Vector2.zero)
+        {
+            playerAnim.SetBool("IsRunning", false);
+        }
+    }
+    private void PlaySmashParticle()
+    {
+        if (shouldSmashParticle)
+        {
+            if (isGrounded == true && playerRB.velocity.y == 0 && isSmashing)
+            {
+                PlayParticleSystem(smash);
+                shouldSmashParticle = false;
+                isSmashing = false;
+            }
+
+        }
     }
 }
