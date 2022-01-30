@@ -149,6 +149,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             jumpBufferCounter = jumpBuffer;
+            print(GameManager.collectiblesOnMap);
         }
         else
         {

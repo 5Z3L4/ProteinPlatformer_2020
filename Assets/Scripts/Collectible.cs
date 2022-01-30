@@ -9,11 +9,10 @@ public class Collectible : MonoBehaviour
     private Collect collectItem;
     private bool isCollected = false;
     public Animator holder;
-    private void Awake()
-    {
-        collectItem = GetComponent<Collect>();
-    }
-    //enum statystyk
+    public StatsToUpgrade stats;
+    public int scoreValue;
+    public bool shouldBeCounted;
+    //enum statystyk prob do usuniêcia
     public enum StatsToUpgrade
     {
         Strength,
@@ -22,14 +21,13 @@ public class Collectible : MonoBehaviour
         None
     }
 
-    public StatsToUpgrade stats;
-    public int scoreValue;
-
-    private void Start()
+    private void Awake()
     {
+        collectItem = GetComponent<Collect>();
         SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
         HUDM = GameObject.Find("HUDManager").GetComponent<HUDManager>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isCollected) return;
@@ -41,22 +39,20 @@ public class Collectible : MonoBehaviour
             if (stats == StatsToUpgrade.Strength)
             {
                 GameManager.collectedStrenght++;
-                ShowCollectibleUI(holder);
             }
             else if (stats == StatsToUpgrade.Constitution)
             {
                 GameManager.collectedConstitution++;
-                ShowCollectibleUI(holder);
             }
             else if (stats == StatsToUpgrade.Dexterity)
             {
                 GameManager.collectedAgility++;
-                ShowCollectibleUI(holder);
             }
             else if (stats == StatsToUpgrade.None)
             {
                 return;
             }
+            ShowCollectibleUI(holder);
             GameManager.Score += scoreValue;
             HUDManager.currentScore += scoreValue;
             SM.levels[SM.currentLevelId].score += scoreValue;

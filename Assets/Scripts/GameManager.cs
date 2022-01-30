@@ -19,4 +19,6 @@ public static class GameManager
 
     public static int deaths = 0;
 
+    public static int collectiblesOnMap;
+
 }

@@ -185,10 +185,11 @@ MonoBehaviour:
   startTimeBtwAttack: 1.5
   castPos: {fileID: 8826563103988336591}
   baseCastDist: 0.8
+  facingRight: 0
   moveSpeed: 5
   leftOrRight: 1
   shouldAttack: 1
-  scoreValue: 10
+  scoreValue: 100
   scoreText: {fileID: 2803001368844222574, guid: ebab98ed5c91ce74f912fa425ab4cc81, type: 3}
   myAnim: {fileID: 1114004130}
 --- !u!50 &8826563104645454142

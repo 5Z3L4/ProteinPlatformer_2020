@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 2095278304}
   - component: {fileID: 2095278305}
   - component: {fileID: 248698752}
+  - component: {fileID: 1448208059164340953}
   m_Layer: 0
   m_Name: Meat
   m_TagString: Untagged
@@ -323,6 +324,7 @@ MonoBehaviour:
   holder: {fileID: 0}
   stats: 1
   scoreValue: 100
+  shouldBeCounted: 0
 --- !u!114 &4129546853132451064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,3 +381,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amplitude: 0.25
   frequency: 1
+--- !u!114 &1448208059164340953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2955945916921823687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed8854d150ba4c4aaa615e45264b5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldBeCounted: 1
+  countAs: 1
