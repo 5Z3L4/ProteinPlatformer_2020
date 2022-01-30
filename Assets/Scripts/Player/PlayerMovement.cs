@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem fakeFloorBlowUp;
     public ParticleSystem fakeWallBlowUp;
     public ParticleSystem jumpAndLand;
+
     //move variables
     public float horizontalAxis;
     public float moveSpeed;
@@ -53,24 +54,19 @@ public class PlayerMovement : MonoBehaviour
     public CircleCollider2D slideCollider;
     public Animator playerAnim;
     public GameObject wallCheck;
-
     private float jumpTimeCounter;
     public float jumpTime = 1f;
-
-
     public bool isCharging = false;
     public bool isSmashing = false;
     private bool shouldSmashParticle;
-
     public Vector3 respawnPos;
     public Vector3 startingPos;
     public int hp = 3;
-
     public Transform PlayerBubbleTransform;
-
     public SaveManager SM;
     public HUDManager HUDManager;
     private bool isDying;
+    private bool holdingSpace;
 
     private void Awake()
     {
@@ -78,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         HUDManager = FindObjectOfType<HUDManager>();
     }
-    void Start()
+    private void Start()
     {
         coyoteeTimeCounter = coyoteetime;
         slideEmission = slide.emission;
@@ -89,13 +85,11 @@ public class PlayerMovement : MonoBehaviour
         //SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
         //SM.levels[SM.currentLevelId].levelName = "Level_" + SM.currentLevelId;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
-        CheckAxis();
+        CheckInputs();
         if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C)) && canMove)
         {
             Slide();
@@ -120,20 +114,37 @@ public class PlayerMovement : MonoBehaviour
             playerAnim.SetBool("IsJumping", false);
             playerAnim.SetBool("IsFalling", false);
         }
-        print(isAirborn);
         PlaySmashParticle();
         CalculateJumpBuffer();
-        if (canMove)
-        {
-            Jump();
-        }
 
         if (Input.GetKeyDown(KeyCode.E) && !dialogueUI.isOpen)
         {
             Interactable?.Interact(this);
         }
-    }
 
+        if (horizontalAxis > 0 && !facingRight || horizontalAxis < 0 && facingRight)
+        {
+            Flip();
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (!canMove) return;
+        Jump();
+        Move(horizontalAxis, playerRB, moveSpeed);
+        RunWalkAnimation(playerRB);
+        if (isSliding)
+            Slide(playerRB);
+        if (isCharging)
+            Charge(playerRB);
+    }
+    private void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+    }
+    #region Jump
     private void CalculateJumpBuffer()
     {
         if (Input.GetKeyDown("space"))
@@ -145,8 +156,6 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferCounter -= Time.deltaTime;
         }
     }
-
-
     private void CheckCoyoteeTime()
     {
         if (isGrounded && !isAirborn)
@@ -158,31 +167,6 @@ public class PlayerMovement : MonoBehaviour
             coyoteeTimeCounter -= Time.deltaTime;
         }
     }
-
-    private void ShowSlideParticles()
-    {
-        if (isGroundedWithoutOffset && isSliding)
-        {
-            slideEmission.rateOverTime = 60f;
-        }
-        else
-        {
-            slideEmission.rateOverTime = 0;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (!canMove) return;
-        
-        Move(horizontalAxis, playerRB, moveSpeed);
-        RunWalkAnimation(playerRB);
-        if (isSliding)
-            Slide(playerRB);
-        if (isCharging)
-            Charge(playerRB);
-    }
-
     private void Jump()
     {
         //if is player trying to jump
@@ -214,11 +198,10 @@ public class PlayerMovement : MonoBehaviour
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.Space) && shouldJump == true)
+        if (holdingSpace && shouldJump == true)
         {
             if (jumpTimeCounter > 0)
             {
-                
                 playerAnim.SetBool("IsJumping", true);
                 playerAnim.SetBool("IsSliding", false);
                 playerRB.velocity = Vector2.up * jumpForce;
@@ -230,19 +213,33 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    #endregion
+    private void ShowSlideParticles()
+    {
+        if (isGroundedWithoutOffset && isSliding)
+        {
+            slideEmission.rateOverTime = 60f;
+        }
+        else
+        {
+            slideEmission.rateOverTime = 0;
+        }
+    }
 
-    private void CheckAxis()
+    private void CheckInputs()
     {
         horizontalAxis = Input.GetAxisRaw("Horizontal");
-
         if (Input.GetKeyUp(KeyCode.Space))
         {
             shouldJump = false;
         }
-
-        if (horizontalAxis > 0 && !facingRight || horizontalAxis < 0 && facingRight)
+        if (Input.GetKey(KeyCode.Space))
         {
-            Flip();
+            holdingSpace = true;
+        }
+        else
+        {
+            holdingSpace = false;
         }
     }
 
@@ -297,11 +294,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Smash()
     {
-        //TO DO: (smash w momencie uderzenia w ziemie)
-        
         PlayParticleSystem(falling);
-        //spadaj w dó³ a¿ nie trafisz na ziemie
-        
         playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
         isSmashing = true;
         StartCoroutine("stopSmash");
@@ -333,12 +326,9 @@ public class PlayerMovement : MonoBehaviour
     public void JumpBoost()
     {
         isOnJumpBoost = true;
-        Debug.Log(jumpForce);
         jumpForce = 25f;
-        Debug.Log(jumpForce);
         StartCoroutine("jumpBoostTimer");
     }
-
     IEnumerator speedBoostTimer()
     {
         yield return new WaitForSeconds(5);
@@ -351,19 +341,16 @@ public class PlayerMovement : MonoBehaviour
         isOnJumpBoost = false;
         Debug.Log(jumpForce);
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
         {
-            //Play sound
             PlayParticleSystem(fakeWallBlowUp);
             ScreenShake.Instance.Shakecamera(5f, .1f);
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Smashable" && isSmashing)
         {
-            //Play sound
             PlayParticleSystem(fakeFloorBlowUp);
             ScreenShake.Instance.Shakecamera(5f, .1f);
             Destroy(collision.gameObject);
@@ -463,12 +450,6 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 1;
         }
     }
-    void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
-    }
     bool IsPlayerDead()
     {
         return hp <= 0;
@@ -498,7 +479,6 @@ public class PlayerMovement : MonoBehaviour
                 shouldSmashParticle = false;
                 isSmashing = false;
             }
-
         }
     }
 }
