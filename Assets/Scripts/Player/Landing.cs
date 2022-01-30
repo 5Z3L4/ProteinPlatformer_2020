@@ -9,17 +9,12 @@ public class Landing : MonoBehaviour
     {
         player = FindObjectOfType<PlayerMovement>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && player.isAirborn)
+        if (collision.CompareTag("Ground") && player.isAirborn && player.isGrounded)
         {
-            Invoke("PlayParticle", 0.02f);
-            
+            player.PlayParticleSystem(player.jumpAndLand);
             player.isAirborn = false;
         }
-    }
-    private void PlayParticle()
-    {
-        player.PlayParticleSystem(player.jumpAndLand);
     }
 }

@@ -39,15 +39,15 @@ public class PlayerMovement : MonoBehaviour
     public bool isOnJumpBoost = false;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool isGroundedWithoutOffset;
     private bool shouldJump;
     public bool isSliding;
     public Rigidbody2D playerRB;
     public float slideSpeed = 500;
-    private float coyoteetime = 0.1f;
+    private float coyoteetime = 0.2f;
     private float coyoteeTimeCounter;
-    private float jumpBuffer = 0.05f;
+    private float jumpBuffer = 0.1f;
     private float jumpBufferCounter;
     public CapsuleCollider2D mainCollider;
     public CircleCollider2D slideCollider;
@@ -119,9 +119,8 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnim.SetBool("IsJumping", false);
             playerAnim.SetBool("IsFalling", false);
-            isAirborn = false;
         }
-
+        print(isAirborn);
         PlaySmashParticle();
         CalculateJumpBuffer();
         if (canMove)
@@ -206,6 +205,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnim.SetBool("IsFalling", true);
             playerAnim.SetBool("IsJumping", false);
+            isAirborn = true;
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
         //accelerate jump to player space holding time
