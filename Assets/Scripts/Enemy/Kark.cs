@@ -9,7 +9,7 @@ public class Kark : MonoBehaviour //,Enemy
     [SerializeField] float startTimeBtwAttack;
     [SerializeField] Transform castPos;
     [SerializeField] float baseCastDist;
-    bool facingRight;
+    public bool facingRight;
     Rigidbody2D rb;
     [SerializeField] float moveSpeed;
     Vector3 baseScale;
@@ -23,6 +23,7 @@ public class Kark : MonoBehaviour //,Enemy
     [SerializeField] private GameObject scoreText;
 
     public Animator myAnim;
+    private bool isDying;
 
     private void Awake()
     {
@@ -97,28 +98,40 @@ public class Kark : MonoBehaviour //,Enemy
         {
             StartCoroutine(WaitBeforeFlip());
         }
-        if (timeBtwAttack > 0) return;
+    }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         if (collision.CompareTag("Player"))
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);
             if (facingRight == player.facingRight && player.isSliding)
             {
-                Instantiate(scoreText, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-                Destroy(gameObject);
-                GameManager.Score += scoreValue;
+                StartCoroutine(Die());
             }
-            else if (facingRight != player.facingRight || facingRight == player.facingRight ) // TO DO: poprawiæ to tak, ¿eby kark siê odwraca³ jak gracz podejdzie do niego od ty³u
+            else if (facingRight != player.facingRight || facingRight == player.facingRight) // TO DO: poprawiæ to tak, ¿eby kark siê odwraca³ jak gracz podejdzie do niego od ty³u
             {
+                if (timeBtwAttack > 0) return;
+                if ((CalculatePlayerPos() < 0 && facingRight) || CalculatePlayerPos() > 0 && !facingRight && shouldAttack)
+                {
+                    Flip();
+                }
                 canMove = false;
                 canAttack = true;
                 if (canAttack && shouldAttack)
                 {
-                    StartCoroutine(Punch());
+                    if (!isDying)
+                    {
+                        StartCoroutine(Punch());
+                    }
                 }
             }
         }
-        
+    }
+
+    private float CalculatePlayerPos()
+    {
+        return player.transform.position.x - transform.position.x;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -129,6 +142,20 @@ public class Kark : MonoBehaviour //,Enemy
         }
     }
 
+    IEnumerator Die()
+    {
+        if (!isDying) {
+            SFXManager.PlaySound(SFXManager.Sound.Hit, transform.position);
+        };
+        isDying = true;
+        shouldAttack = false;
+        canMove = false;
+        myAnim.Play("GetHit");
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(scoreText, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        Destroy(gameObject);
+        GameManager.Score += scoreValue;
+    }
     IEnumerator Punch()
     {
         timeBtwAttack = startTimeBtwAttack;
