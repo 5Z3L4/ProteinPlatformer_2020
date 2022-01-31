@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2964135265096582364
 Transform:
@@ -51,7 +51,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2964135265434709240
 Transform:
@@ -165,7 +165,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2964135266369128605
 Transform:
@@ -222,7 +222,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 56db33f0e03e2664b95a28071d56de28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08af6c2172e0bd34facef4c62ab949c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -285,7 +285,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.95238096, y: 3.3809524}
+    oldSize: {x: 1.2857143, y: 3.5714285}
     newSize: {x: 0.95238096, y: 3.3809524}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -367,6 +367,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4488002640272243576, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4488002640272243577, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
       propertyPath: imageToShow
       value: 
@@ -386,6 +390,10 @@ PrefabInstance:
     - target: {fileID: 4488002640272243579, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488002640337218657, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
@@ -432,6 +440,14 @@ PrefabInstance:
     - target: {fileID: 1651178199886741221, guid: 977c67df225826d429d0dafe2679a740, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651178199886741223, guid: 977c67df225826d429d0dafe2679a740, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651178200805580066, guid: 977c67df225826d429d0dafe2679a740, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1651178200805580067, guid: 977c67df225826d429d0dafe2679a740, type: 3}
       propertyPath: m_LocalPosition.y
@@ -500,6 +516,14 @@ PrefabInstance:
     - target: {fileID: 1651178200893142212, guid: 977c67df225826d429d0dafe2679a740, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651178200893142212, guid: 977c67df225826d429d0dafe2679a740, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651178201544816450, guid: 977c67df225826d429d0dafe2679a740, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1651178200805580065, guid: 977c67df225826d429d0dafe2679a740, type: 3}
@@ -602,6 +626,10 @@ PrefabInstance:
     - target: {fileID: 5639039332890473112, guid: 7e999b9517a671f46b3816de11d0bab3, type: 3}
       propertyPath: m_Name
       value: CheckPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639039332890473112, guid: 7e999b9517a671f46b3816de11d0bab3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e999b9517a671f46b3816de11d0bab3, type: 3}
