@@ -6405,7 +6405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questTargets: []
   currentDialogue: {fileID: 0}
-  startingDialogue: {fileID: 11400000, guid: 7db1bc2753790b145bd51a17b16e40fa, type: 2}
+  startingDialogue: {fileID: 11400000, guid: aea53cf4ea813a546ae66193693eb617, type: 2}
   pressToTalk: {fileID: 0}
   questID: 0
   imageToShow: {fileID: 21300000, guid: 49f1d67eb63c3ad4fbebbddc56823299, type: 3}
@@ -8206,11 +8206,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.2168045
+      value: 1.8306847
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.28374767
+      value: -0.2662902
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10434,7 +10434,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.060333252, y: 0.4464612}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10445,7 +10445,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.875, y: 0.4375}
+  m_Size: {x: 1.9127197, y: 1.3304224}
   m_EdgeRadius: 0
 --- !u!114 &1385084774
 MonoBehaviour:
