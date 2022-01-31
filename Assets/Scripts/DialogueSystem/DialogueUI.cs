@@ -8,7 +8,6 @@ public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
-    private SpriteRenderer playerSpriteRen;
     private TextWriter textWriter;
     private DialogueActivator dialogueActivator;
     private ResponseHandler responseHandler;
@@ -31,14 +30,11 @@ public class DialogueUI : MonoBehaviour
         {
             dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
         }
-        playerSpriteRen = GameObject.FindWithTag("PlayerSprite").GetComponent<SpriteRenderer>();
         textWriter = GetComponent<TextWriter>();
         responseHandler = GetComponent<ResponseHandler>();
     }
     void Start()
     {
-        playerImage.sprite = playerSpriteRen.sprite;
-        playerImage.color = playerSpriteRen.color;
         defaultPlayerColor = playerImage.color;
         defaultInterlocutorColor = interlocutorImage.color;
         if (GameObject.Find("Dialogue") != null)
