@@ -23,6 +23,7 @@ public class DialogueUI : MonoBehaviour
     public List<bool> isCompleted = new List<bool>();
     int x=0;
     public bool isOpen = false;
+    public bool isOver;
     private void Awake()
     {        
         player = FindObjectOfType<PlayerMovement>();
@@ -41,7 +42,7 @@ public class DialogueUI : MonoBehaviour
         {
             interlocutorImage.sprite = dialogueActivator.ImageToShow;
         }
-        CloseDialogueBox();
+       // CloseDialogueBox();
     }
     public void ShowDialogue(DialogueObject dialogueObject)
     {
@@ -82,7 +83,7 @@ public class DialogueUI : MonoBehaviour
             {
                 yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
                 responseHandler.OnPickedResponse(dialogueObject.Responses[0]);
-            } 
+            }
         }
         else
         {
@@ -104,6 +105,8 @@ public class DialogueUI : MonoBehaviour
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
         isOpen = false;
+        isOver = true;
+        print(isOver);
     }
     private IEnumerator RunTypingEffect(string dialogue)
     {
