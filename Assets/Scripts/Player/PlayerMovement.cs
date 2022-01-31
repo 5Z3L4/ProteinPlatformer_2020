@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //dialogue system
-    [SerializeField] private DialogueUI dialogueUI;
-    public DialogueUI DialogueUI => dialogueUI;
-    public IInteractable Interactable { get; set; }
     public bool canMove = true;
     public bool allowCharge = false;
     public bool allowSmash = false;
@@ -116,11 +112,6 @@ public class PlayerMovement : MonoBehaviour
         }
         PlaySmashParticle();
         CalculateJumpBuffer();
-
-        if (Input.GetKeyDown(KeyCode.E) && !dialogueUI.isOpen)
-        {
-            Interactable?.Interact(this);
-        }
 
         if (horizontalAxis > 0 && !facingRight || horizontalAxis < 0 && facingRight)
         {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueActivator : MonoBehaviour, IInteractable
+public class DialogueActivator : MonoBehaviour
 {
     public Quest[] questTargets;
     private DialogueUI dialogueUI;
@@ -12,6 +12,9 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     [SerializeField] Sprite imageToShow;
     public Sprite ImageToShow => imageToShow;
     public bool Interactable = false;
+    public bool ActivateWithoutButton = false;
+    private bool isDialogueRunning;
+    private bool isPlayerInTrigger;
 
     private void Start()
     {
@@ -19,12 +22,19 @@ public class DialogueActivator : MonoBehaviour, IInteractable
         dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();
         currentDialogue = startingDialogue;
     }
+
+    private void Update()
+    {
+        if (!isPlayerInTrigger) return;
+        if(Input.GetKeyDown(KeyCode.E) && !dialogueUI.isOpen)
+        {
+            Interact();
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if (collision.CompareTag("Player") && collision.TryGetComponent(out PlayerMovement player))
+        if (collision.CompareTag("Player"))
         {
-            player.Interactable = this;
             if (Interactable)
             {
                 pressToTalk.SetActive(true);
@@ -33,23 +43,20 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
-        if (collision.CompareTag("Player") && collision.TryGetComponent(out PlayerMovement player))
+        if (collision.CompareTag("Player"))
         {
             if (Interactable)
             {
                 pressToTalk.SetActive(false);
             }
-            if (player.Interactable is DialogueActivator dialogueActivator && dialogueActivator == this)
-            {
-                player.Interactable = null;
-            }
+            isPlayerInTrigger = false;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            isPlayerInTrigger = true;
             if (Interactable)
             {
                 if (dialogueUI.isOpen)
@@ -61,15 +68,22 @@ public class DialogueActivator : MonoBehaviour, IInteractable
                     pressToTalk.SetActive(true);
                 }
             }
-            
+
+            if (isDialogueRunning) return;
+
+            if (ActivateWithoutButton)
+            {
+                Interact();
+            }
         }
     }
-    public void Interact(PlayerMovement player)
+    public void Interact()
     {
-        player.DialogueUI.ChangeinterlocutorSprite(imageToShow);
+        isDialogueRunning = true;
+        dialogueUI.ChangeinterlocutorSprite(imageToShow);
         if (questTargets == null || questTargets.Length == 0)
         {
-            player.DialogueUI.ShowDialogue(currentDialogue);
+            dialogueUI.ShowDialogue(currentDialogue);
         }
         else
         {
@@ -77,8 +91,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
             {
                 questTargets[questID].isQuestAvailable = true;
             }
-            player.DialogueUI.ShowDialogue(currentDialogue);
+            dialogueUI.ShowDialogue(currentDialogue);
         }
-
     }
 }
