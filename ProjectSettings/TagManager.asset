@@ -16,6 +16,7 @@ TagManager:
   - Ground
   - Projectile
   - BossIntroduction
+  - BossRage
   layers:
   - Default
   - TransparentFX
