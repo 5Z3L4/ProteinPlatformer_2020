@@ -21,7 +21,6 @@ public class DialogueUI : MonoBehaviour
     public Color DefaultPlayerColor => defaultPlayerColor;
     PlayerMovement player;
     public List<bool> isCompleted = new List<bool>();
-    int x=0;
     public bool isOpen = false;
     public bool isOver;
     private void Awake()
