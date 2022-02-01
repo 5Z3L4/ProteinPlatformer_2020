@@ -15,6 +15,7 @@ TagManager:
   - PlayerSprite
   - Ground
   - Projectile
+  - BossIntroduction
   layers:
   - Default
   - TransparentFX
