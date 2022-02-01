@@ -32,14 +32,14 @@ public class TextBubble : MonoBehaviour
             textMeshPro.SetText(randomText);
             textMeshPro.ForceMeshUpdate();
             Vector2 textSize = textMeshPro.GetRenderedValues(false);
-            backgroundSpriteRenderer.size = textSize + new Vector2(1f, 1f);
+            backgroundSpriteRenderer.size = textSize + new Vector2(1f, 0.5f);
         }
         else
         {
             textMeshPro.SetText(startingDialogue.Dialogue[0]);
             textMeshPro.ForceMeshUpdate();
             Vector2 textSize = textMeshPro.GetRenderedValues(false);
-            backgroundSpriteRenderer.size = textSize + new Vector2(1f, 1f);
+            backgroundSpriteRenderer.size = textSize + new Vector2(1f, 0.5f);
         }
     }
 }
