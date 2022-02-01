@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f184db9c6bf3546acf73870c9f1d94, type: 3}
   m_Name: StartingDialogue
   m_EditorClassIdentifier: 
+  tutorial: {fileID: 0}
   dialogue:
   - Hey you, you're finally awake!
-  - Do you see this chick over there?
+  - Do you see the chick behind you?
   - I've heard she has big crush on you!
   responses:
   - responseText: For real?!

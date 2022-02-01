@@ -130,10 +130,10 @@ public class HUDManager : MonoBehaviour
         {
             if (displayScore < currentScore)
             {
-                displayScore++; //Increment the display score by 1
+                displayScore += 5; //Increment the display score by 5
                 currentScoreText.text = "Score: " + displayScore.ToString(); //Write it to the UI
             }
-            yield return new WaitForSeconds(scoreUpdateSpeed); // I used .2 secs but you can update it as fast as you want
+            yield return new WaitForSeconds(scoreUpdateSpeed);
         }
     }
     public void Respawn()
@@ -153,28 +153,6 @@ public class HUDManager : MonoBehaviour
     }
     public IEnumerator DyingScreen()
     {
-        //if (player.transform.position.x <= cam.transform.position.x)
-        //{
-        //    if (player.facingRight)
-        //    {
-        //        player.transform.position = new Vector3(cam.transform.position.x - 2, cam.transform.position.y, cam.transform.position.z);
-        //    }
-        //    else
-        //    {
-        //        player.transform.position = new Vector3(cam.transform.position.x + 2, cam.transform.position.y, cam.transform.position.z);
-        //    }
-        //}
-        //else
-        //{
-        //    if (player.facingRight)
-        //    {
-        //        player.transform.position = new Vector3(cam.transform.position.x - 2, cam.transform.position.y, cam.transform.position.z);
-        //    }
-        //    else
-        //    {
-        //        player.transform.position = new Vector3(cam.transform.position.x + 2, cam.transform.position.y, cam.transform.position.z);
-        //    }
-        //}
         SFXManager.PlaySound(SFXManager.Sound.Fail, transform.position);
         cinemachineBody.m_SoftZoneHeight = 0;
         cinemachineBody.m_SoftZoneWidth = 0;

@@ -12,6 +12,7 @@ public class LaughingGirl : MonoBehaviour //Enemy
     public bool shouldAttack = true;
     public Transform minePosition;
     public GameObject player;
+    [SerializeField] ParticleSystem[] icons;
 
     private void Awake()
     {
@@ -28,12 +29,14 @@ public class LaughingGirl : MonoBehaviour //Enemy
     {
         if (collision.CompareTag("Player"))
         {
+            
+            icons[0].Play();
+            icons[1].Play();
             if (isFacingRight == player.GetComponent<PlayerMovement>().facingRight)
             {
                 Flip();
             }
-        }
-        
+        }  
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -43,9 +46,7 @@ public class LaughingGirl : MonoBehaviour //Enemy
             {
                 ShootWave();
             }
-            
         }
-        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
