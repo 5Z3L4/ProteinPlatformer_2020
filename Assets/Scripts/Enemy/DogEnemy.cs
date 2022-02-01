@@ -20,7 +20,7 @@ public class DogEnemy : MonoBehaviour
 
     private bool playerOnRight;
     private PlayerMovement player;
-    [SerializeField] private float timeBtwAttack = 0;
+    private float timeBtwAttack = 0;
 
     private void Awake()
     {
@@ -65,13 +65,13 @@ public class DogEnemy : MonoBehaviour
             Collider2D enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies).FirstOrDefault();
             if (timeBtwAttack <= 0)
             {
-                Debug.Log("Can attack" + gameObject.name);
                 timeBtwAttack = startTimeBtwAttack;
                 if (enemiesToDamage != null)
                 {
                     int tempSpeed = moveSpeed;
                     moveSpeed = 0;
                     animator.Play("Bite");
+                    //dzwiek
                     player.TakeCertainAmountOfHp();
                     moveSpeed = tempSpeed;
                 }
