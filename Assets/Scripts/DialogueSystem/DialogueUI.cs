@@ -6,23 +6,24 @@ using System.Collections.Generic;
 
 public class DialogueUI : MonoBehaviour
 {
-    [SerializeField] private GameObject dialogueBox;
-    [SerializeField] private TMP_Text textLabel;
-    private TextWriter textWriter;
-    private DialogueActivator dialogueActivator;
-    private ResponseHandler responseHandler;
-    [SerializeField] private Image playerImage;
+    
     public Image PlayerImage => playerImage;
-    [SerializeField] private Image interlocutorImage;
     public Image InterlocutorImage => interlocutorImage;
-    private Color defaultInterlocutorColor;
-    private Color defaultPlayerColor;
     public Color DefaultInterlocutorColor => defaultInterlocutorColor;
     public Color DefaultPlayerColor => defaultPlayerColor;
-    PlayerMovement player;
     public List<bool> isCompleted = new List<bool>();
     public bool isOpen = false;
     public bool isOver;
+    [SerializeField] private Image interlocutorImage;
+    [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private TMP_Text textLabel;
+    [SerializeField] private Image playerImage;
+    private PlayerMovement player;
+    private TextWriter textWriter;
+    private DialogueActivator dialogueActivator;
+    private ResponseHandler responseHandler;
+    private Color defaultInterlocutorColor;
+    private Color defaultPlayerColor;
     private void Awake()
     {        
         player = FindObjectOfType<PlayerMovement>();
@@ -33,7 +34,7 @@ public class DialogueUI : MonoBehaviour
         textWriter = GetComponent<TextWriter>();
         responseHandler = GetComponent<ResponseHandler>();
     }
-    void Start()
+    private void Start()
     {
         defaultPlayerColor = playerImage.color;
         defaultInterlocutorColor = interlocutorImage.color;
