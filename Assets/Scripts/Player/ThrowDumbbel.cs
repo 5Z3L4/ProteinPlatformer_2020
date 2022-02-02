@@ -7,16 +7,18 @@ public class ThrowDumbbel : MonoBehaviour
     public GameObject dumbbel;
     public float startTimeBtwAttack;
     public bool canIShoot = false;
+    private PlayerMovement player;
     float timeBtwAttack =0;
     Animator anim;
 
     private void Awake()
     {
+        player = FindObjectOfType<PlayerMovement>();
         anim = GameObject.FindGameObjectWithTag("PlayerSprite").GetComponent<Animator>();
     }
     void Update()
     {
-        if (!canIShoot) return;
+        if (!canIShoot || !player.canMove) return;
 
         if (timeBtwAttack <= 0)
         {

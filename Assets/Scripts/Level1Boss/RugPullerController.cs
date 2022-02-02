@@ -27,6 +27,8 @@ public class RugPullerController : MonoBehaviour
     public GameObject projectile;
     public AudioSource bgMusic;
     public AudioClip victoryMusic;
+    public BoxCollider2D coll;
+    public Rigidbody2D rb;
     Animator anim;
     private void Awake()
     {
@@ -64,10 +66,23 @@ public class RugPullerController : MonoBehaviour
         }
         if (hp <= 0)
         {
-            bgMusic.clip = victoryMusic;
-            bgMusic.Play();
-            bgMusic.loop = false;
-            Destroy(gameObject);
+            if (coll.isTrigger) return;
+
+            if (!anim.GetBool("BossDied"))
+            {
+                bgMusic.clip = victoryMusic;
+                bgMusic.Play();
+                bgMusic.loop = false;
+                anim.SetBool("BossDied", true);
+            }
+                
+            if (anim.GetBool("BossFlee"))
+            {
+                Flip();
+                coll.isTrigger = true;
+                rb.isKinematic = true;
+            }
+            return;
         }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.3f, whatIsGround);
@@ -94,10 +109,7 @@ public class RugPullerController : MonoBehaviour
             Flip();
             facingLeft = true;
             facingRight = false;
-        }
-
-        
-        
+        } 
     }
     public void Flip()
     {

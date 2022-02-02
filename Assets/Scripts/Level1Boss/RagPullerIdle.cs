@@ -36,7 +36,6 @@ public class RagPullerIdle : StateMachineBehaviour
             if (!isDialogueOver) return;
         }
 
-
         if (timer <= 0)
         {
             animator.SetBool("Fall", false);

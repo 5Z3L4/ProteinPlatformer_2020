@@ -83,6 +83,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (!canMove)
+        {
+            playerRB.velocity = new Vector2(0, -5);
+            playerAnim.SetBool("IsJumping", false);
+            playerAnim.SetBool("IsFalling", false);
+            playerAnim.SetBool("IsRunning", false);
+        }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
         CheckInputs();

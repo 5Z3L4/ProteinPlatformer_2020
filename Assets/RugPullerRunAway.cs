@@ -1,27 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class RugPuller2ndPhase : StateMachineBehaviour
+public class RugPullerRunAway : StateMachineBehaviour
 {
-    private GameObject dialogue;
-    private DialogueUI dialogueUI;
-
+    private Transform player;
+    private Rigidbody2D rb;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        dialogue = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(g => g.CompareTag("BossRage"));
-        dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();
-        dialogueUI.isOver = false;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = animator.GetComponent<Rigidbody2D>();
     }
-
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        dialogue.SetActive(true);
-        if (dialogueUI.isOver)
+        if (player.transform.position.x - animator.transform.position.x < 0)
         {
-            animator.SetBool("RageRun", true);
+            rb.velocity = new Vector2(10, 0);
+        }
+        else
+        {
+            rb.velocity = new Vector2(-10, 0);
         }
     }
 

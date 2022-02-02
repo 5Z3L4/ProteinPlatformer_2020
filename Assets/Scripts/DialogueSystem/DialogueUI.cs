@@ -106,7 +106,6 @@ public class DialogueUI : MonoBehaviour
         textLabel.text = string.Empty;
         isOpen = false;
         isOver = true;
-        print(isOver);
     }
     private IEnumerator RunTypingEffect(string dialogue)
     {
