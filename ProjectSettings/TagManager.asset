@@ -17,6 +17,8 @@ TagManager:
   - Projectile
   - BossIntroduction
   - BossRage
+  - DogEnemy
+  - Ball
   layers:
   - Default
   - TransparentFX
@@ -33,7 +35,7 @@ TagManager:
   - Projectile
   - PlayerFall
   - Player
-  - 
+  - OnlyPlayer
   - 
   - 
   - 

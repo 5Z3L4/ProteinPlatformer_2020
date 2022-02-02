@@ -95,10 +95,10 @@ public class DogEnemy : MonoBehaviour
 
     private void Die()
     {
-        //dzwiek
-        //animacja
+        SFXManager.PlaySound(SFXManager.Sound.ShibaDeath, transform.position);
+        animator.Play("Die");
         GameManager.Score += scoreValue;
-        Destroy(gameObject);
+        Destroy(gameObject, 0.5f);
     }
     
     public void Flip()
