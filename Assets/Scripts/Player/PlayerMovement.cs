@@ -95,7 +95,10 @@ public class PlayerMovement : MonoBehaviour
         CheckInputs();
         if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C)) && canMove)
         {
-            Slide();
+            if (!isSliding)
+            {
+                Slide();
+            }
         }
 
         ShowSlideParticles();
