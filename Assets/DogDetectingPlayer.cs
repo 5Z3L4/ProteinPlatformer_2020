@@ -21,11 +21,27 @@ public class DogDetectingPlayer : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            dog.shouldStartMoving = true;
-            if (dog.facingRight != playerOnRight)
+            RaycastHit2D hitGround = Physics2D.Linecast(dog.transform.position, player.transform.position, 1 << LayerMask.NameToLayer("Ground"));
+            if (hitGround.collider == null)
             {
-                dog.Flip();
+                RaycastHit2D hitPlayer = Physics2D.Linecast(dog.transform.position, player.transform.position, 1 << LayerMask.NameToLayer("Player"));
+                if (hitPlayer.collider != null)
+                {
+                    if (hitPlayer.collider.gameObject.CompareTag("Player"))
+                    {
+                        dog.shouldStartMoving = true;
+                        if (dog.facingRight != playerOnRight)
+                        {
+                            dog.Flip();
+                        }
+                    }
+                }
             }
+            else
+            {
+                dog.shouldStartMoving = false;
+            }
+            Debug.DrawLine(dog.transform.position, player.transform.position);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
