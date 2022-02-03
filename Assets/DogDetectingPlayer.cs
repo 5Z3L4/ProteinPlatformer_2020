@@ -8,10 +8,17 @@ public class DogDetectingPlayer : MonoBehaviour
 
     private PlayerMovement player;
     private DogEnemy dog;
+    private LayerMask groundLayer;
+    private LayerMask playerLayer;
     private void Awake()
     {
         dog = GetComponentInParent<DogEnemy>();
         player = FindObjectOfType<PlayerMovement>();
+    }
+    private void Start()
+    {
+        groundLayer = 1 << LayerMask.NameToLayer("Ground");
+        playerLayer = 1 << LayerMask.NameToLayer("Player");
     }
     private void Update()
     {
@@ -21,10 +28,10 @@ public class DogDetectingPlayer : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            RaycastHit2D hitGround = Physics2D.Linecast(dog.transform.position, player.transform.position, 1 << LayerMask.NameToLayer("Ground"));
+            RaycastHit2D hitGround = Physics2D.Linecast(dog.transform.position, player.transform.position, groundLayer);
             if (hitGround.collider == null)
             {
-                RaycastHit2D hitPlayer = Physics2D.Linecast(dog.transform.position, player.transform.position, 1 << LayerMask.NameToLayer("Player"));
+                RaycastHit2D hitPlayer = Physics2D.Linecast(dog.transform.position, player.transform.position, playerLayer);
                 if (hitPlayer.collider != null)
                 {
                     if (hitPlayer.collider.gameObject.CompareTag("Player"))
