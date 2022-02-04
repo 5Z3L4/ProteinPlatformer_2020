@@ -8,7 +8,6 @@ public class FollowRag : MonoBehaviour
     public bool followOnY = false;
     private void Update()
     {
-        
         if (followOnY)
         {
             transform.position = new Vector2(rp.transform.position.x, rp.transform.position.y);
