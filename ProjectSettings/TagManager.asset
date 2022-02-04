@@ -19,6 +19,7 @@ TagManager:
   - BossRage
   - DogEnemy
   - Ball
+  - x
   layers:
   - Default
   - TransparentFX
