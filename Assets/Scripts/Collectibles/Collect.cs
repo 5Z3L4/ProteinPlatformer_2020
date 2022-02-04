@@ -30,7 +30,10 @@ public class Collect : MonoBehaviour
         {
             text.SetText(popUpText);
         }
-        anim.Play("CollectItemAnimation");
+        if (anim!= null)
+        {
+            anim.Play("ShowCollectText");
+        }
         if (gameObject.CompareTag("JumpBoost"))
         {
             StartCoroutine(BoostOnCd());
@@ -38,7 +41,7 @@ public class Collect : MonoBehaviour
         else
         {
             GetComponentInChildren<SpriteRenderer>().enabled = false;
-            Destroy(gameObject, anim.GetClip("CollectItemAnimation").length);
+            Destroy(gameObject, anim.GetClip("ShowCollectText").length);
         }
         
     }

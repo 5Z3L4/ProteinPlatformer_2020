@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class TakeMeatToPlayer : MonoBehaviour
 {
+    public bool turnOffRb = true;
     public GameObject childSprite;
     public GameObject collectible;
     private bool shouldGoToPlayer = false;
     public float speed = 15f;
+    public float WaitTimeBeforeStop = 0.6f;
+    public float WaitTimeBeforeFly = 0.2f;
     private PlayerMovement player;
     private Rigidbody2D myRb;
     private void Awake()
@@ -33,12 +36,21 @@ public class TakeMeatToPlayer : MonoBehaviour
 
     IEnumerator takeItToPlayerAfterWhile()
     {
-        yield return new WaitForSeconds(0.6f);
-        childSprite.SetActive(false);
-        collectible.SetActive(true);
-        myRb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(0.2f);
-        myRb.simulated = false;
+        yield return new WaitForSeconds(WaitTimeBeforeStop);
+        if (childSprite != null && collectible != null)
+        {
+            childSprite.SetActive(false);
+            collectible.SetActive(true);
+        }
+        if (turnOffRb)
+        {
+            myRb.velocity = Vector2.zero;
+        }
+        yield return new WaitForSeconds(WaitTimeBeforeFly);
+        if (turnOffRb)
+        {
+            myRb.simulated = false;
+        }
         shouldGoToPlayer = true;
         
     }

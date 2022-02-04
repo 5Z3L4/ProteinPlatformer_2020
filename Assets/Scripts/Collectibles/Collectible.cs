@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public HUDManager HUDM;
-    public SaveManager SM;
+    private HUDManager HUDM;
+    private SaveManager SM;
     private Collect collectItem;
     private bool isCollected = false;
     public Animator holder;
@@ -50,7 +50,6 @@ public class Collectible : MonoBehaviour
             }
             else if (stats == StatsToUpgrade.None)
             {
-                return;
             }
             ShowCollectibleUI(holder);
             GameManager.Score += scoreValue;
