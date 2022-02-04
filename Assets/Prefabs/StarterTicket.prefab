@@ -10,15 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1719311742064933987}
   - component: {fileID: 2688423318056231942}
-  - component: {fileID: 252104278764988645}
-  - component: {fileID: 546766474419552605}
   - component: {fileID: 4528820008301040965}
   - component: {fileID: 4528820008301040964}
-  - component: {fileID: 3080611968441995132}
-  - component: {fileID: 4528820009498493249}
-  - component: {fileID: 4528820009498493274}
-  - component: {fileID: 4528820009498493250}
-  - component: {fileID: 4528820009498493251}
+  - component: {fileID: 770694173}
+  - component: {fileID: 770694174}
+  - component: {fileID: 770694175}
   m_Layer: 0
   m_Name: StarterTicket
   m_TagString: Untagged
@@ -58,35 +54,6 @@ CircleCollider2D:
   m_Offset: {x: 0.017018637, y: -0.024710655}
   serializedVersion: 2
   m_Radius: 0.5965474
---- !u!114 &252104278764988645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719311742064933986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5353bccaea0e1794e8d122033ca7d1e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holder: {fileID: 0}
-  stats: 1
-  scoreValue: 5000
-  shouldBeCounted: 0
---- !u!114 &546766474419552605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719311742064933986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c10165332c4794cb94ad7f2e582cc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platformDestructionPoint: {fileID: 0}
 --- !u!111 &4528820008301040965
 Animation:
   m_ObjectHideFlags: 0
@@ -116,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpText: Starter Ticket!
---- !u!114 &3080611968441995132
+--- !u!114 &770694173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,49 +92,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1719311742064933986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed8854d150ba4c4aaa615e45264b5cb, type: 3}
+  m_Script: {fileID: 11500000, guid: d7df6debfd3ae3d46a7c8e488854db4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shouldBeCounted: 1
-  countAs: 1
---- !u!50 &4528820009498493249
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719311742064933986}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 5
-  m_Material: {fileID: 6200000, guid: 30c612fbad8281e44a56c96e87000151, type: 2}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!58 &4528820009498493274
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719311742064933986}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.075917564, y: -0.024710655}
-  serializedVersion: 2
-  m_Radius: 0.05089569
---- !u!114 &4528820009498493250
+  textToShow: Press E to pick starter ticket
+  playerTextHolder: {fileID: 0}
+--- !u!114 &770694174
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,16 +106,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1719311742064933986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3dfecb23e707e343881487ace4b6d4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 36fad7a9f9a542748841880ddefec1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnOffRb: 0
-  childSprite: {fileID: 0}
-  collectible: {fileID: 0}
-  speed: 8
-  WaitTimeBeforeStop: 0
-  WaitTimeBeforeFly: 0
---- !u!114 &4528820009498493251
+  ObjectToSetActive: {fileID: 0}
+  scoreToAdd: 0
+--- !u!114 &770694175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,10 +120,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1719311742064933986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55798798b11891e46b851b5dda866f1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bd93c48499ede7459d4919091787bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collToTurnOff: {fileID: 4528820009498493274}
+  speed: 2
+  maxRotation: 15
 --- !u!1 &1719311743617408124
 GameObject:
   m_ObjectHideFlags: 0

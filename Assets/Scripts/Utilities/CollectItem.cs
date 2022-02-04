@@ -6,6 +6,7 @@ public class CollectItem : MonoBehaviour
 {
     private bool isPlayerInTrigger;
     public GameObject ObjectToSetActive;
+    public int scoreToAdd = 0;
     // Update is called once per frame
     void Update()
     {
@@ -17,6 +18,7 @@ public class CollectItem : MonoBehaviour
             {
                 ObjectToSetActive.SetActive(true);
             }
+            GameManager.Score += scoreToAdd;
             Destroy(gameObject);
         }
     }

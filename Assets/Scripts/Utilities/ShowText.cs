@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +9,12 @@ public class ShowText : MonoBehaviour
     public string textToShow;
     public PlayerBubble playerTextHolder;
 
+    private void Awake()
+    {
+        playerTextHolder = Resources
+    .FindObjectsOfTypeAll<PlayerBubble>()
+    .FirstOrDefault();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

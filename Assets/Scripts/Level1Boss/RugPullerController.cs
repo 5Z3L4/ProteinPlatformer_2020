@@ -11,6 +11,7 @@ public class RugPullerController : MonoBehaviour
     bool jumped = false;
     bool isGrounded;
     bool shouldFlip;
+    public GameObject slider;
     public Slider hpSlider;
     public BossWave left;
     public BossWave right;
@@ -20,7 +21,7 @@ public class RugPullerController : MonoBehaviour
     public GameObject rightObj;
     public GameObject leftObj2;
     public GameObject rightObj2;
-    int hp = 15;
+    int hp = 30;
     public Transform groundCheck;
     public LayerMask whatIsGround;
     public ScreenShake sc;
@@ -59,15 +60,14 @@ public class RugPullerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hpSlider.value = hp;
-        if (hp <= 8)
+        if (hp <= 15)
         {
             anim.SetBool("Second", true);
         }
         if (hp <= 0)
         {
             if (coll.isTrigger) return;
-
+            slider.SetActive(false);
             if (!anim.GetBool("BossDied"))
             {
                 bgMusic.clip = victoryMusic;
@@ -83,6 +83,10 @@ public class RugPullerController : MonoBehaviour
                 rb.isKinematic = true;
             }
             return;
+        }
+        else
+        {
+            hpSlider.value = hp;
         }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.3f, whatIsGround);

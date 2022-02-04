@@ -25,7 +25,7 @@ public class DialogueActivator : MonoBehaviour
 
     private void Update()
     {
-        if (!isPlayerInTrigger) return;
+        if (!isPlayerInTrigger || ActivateWithoutButton) return;
         if(Input.GetKeyDown(KeyCode.E) && !dialogueUI.isOpen)
         {
             Interact();
