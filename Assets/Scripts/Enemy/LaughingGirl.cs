@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class LaughingGirl : MonoBehaviour //Enemy
 {
-    [SerializeField] private Animation anim;
-    [SerializeField] private float timeBtwAttack;
-    [SerializeField] private float startTimeBtwAttack;
-    [HideInInspector]
+    public TextBubble bubble;
     public bool isFacingRight;
     public bool shouldAttack = true;
     public Transform minePosition;
     public GameObject player;
     [SerializeField] ParticleSystem[] icons;
+    [SerializeField] private Animation anim;
+    [SerializeField] private float timeBtwAttack;
+    [SerializeField] private float startTimeBtwAttack;
+
 
     private void Awake()
     {
@@ -20,8 +21,7 @@ public class LaughingGirl : MonoBehaviour //Enemy
     }
     private void Start()
     {
-        isFacingRight = false;
-        Flip();
+        isFacingRight = true;
         minePosition = GetComponent<Transform>();
         anim = GetComponent<Animation>();
     }
@@ -29,10 +29,9 @@ public class LaughingGirl : MonoBehaviour //Enemy
     {
         if (collision.CompareTag("Player"))
         {
-            
             icons[0].Play();
             icons[1].Play();
-            if (isFacingRight == player.GetComponent<PlayerMovement>().facingRight)
+            if ((!bubble.shouldDisplayNegativeTexts && isFacingRight == player.GetComponent<PlayerMovement>().facingRight) || (bubble.shouldDisplayNegativeTexts && isFacingRight != player.GetComponent<PlayerMovement>().facingRight))
             {
                 Flip();
             }

@@ -18,7 +18,8 @@ public class Collectible : MonoBehaviour
         Strength,
         Constitution,
         Dexterity,
-        None
+        None,
+        SpecificItem
     }
 
     private void Awake()
@@ -50,6 +51,11 @@ public class Collectible : MonoBehaviour
             }
             else if (stats == StatsToUpgrade.None)
             {
+            }
+            else if (stats == StatsToUpgrade.SpecificItem)
+            {
+                GameManager.collectedSpecificItems++;
+                GetComponentInChildren<ParticleSystem>().Play();
             }
             ShowCollectibleUI(holder);
             GameManager.Score += scoreValue;

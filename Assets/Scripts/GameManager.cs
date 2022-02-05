@@ -21,4 +21,7 @@ public static class GameManager
 
     public static int collectiblesOnMap;
 
+    public static int specificLevelItemOnMap;
+    public static int collectedSpecificItems;
+
 }

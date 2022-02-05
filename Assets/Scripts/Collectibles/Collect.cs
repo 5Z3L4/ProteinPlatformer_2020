@@ -15,7 +15,10 @@ public class Collect : MonoBehaviour
     private void Awake()
     {
         collSprite = GetComponentInChildren<SpriteRenderer>();
-        anim = GetComponent<Animation>();
+        if (GetComponent<Animation>() != null)
+        {
+            anim = GetComponent<Animation>();
+        }
         text = GetComponentInChildren<TMP_Text>();
         scoreValue = GetComponent<Collectible>();
         myColl = GetComponent<CircleCollider2D>();

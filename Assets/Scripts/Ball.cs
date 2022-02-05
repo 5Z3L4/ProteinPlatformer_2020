@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("KillBox") || collision.gameObject.CompareTag("DogEnemy"))
         {
+            SFXManager.PlaySound(SFXManager.Sound.BalloonBlowUp, transform.position);
             GetComponent<SpriteRenderer>().enabled = false;
             particleSystem.Play();
             Destroy(gameObject, 0.15f);

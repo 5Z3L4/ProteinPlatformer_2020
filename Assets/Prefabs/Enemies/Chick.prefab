@@ -9989,9 +9989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddf9093e6baf404d81bdce411caadb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 2964135266369128603}
-  timeBtwAttack: 0
-  startTimeBtwAttack: 3
+  bubble: {fileID: 4596082310236951695}
   isFacingRight: 0
   shouldAttack: 0
   minePosition: {fileID: 0}
@@ -9999,6 +9997,9 @@ MonoBehaviour:
   icons:
   - {fileID: 1477264722}
   - {fileID: 185697965}
+  anim: {fileID: 2964135266369128603}
+  timeBtwAttack: 0
+  startTimeBtwAttack: 3
 --- !u!111 &2964135266369128603
 Animation:
   m_ObjectHideFlags: 0
