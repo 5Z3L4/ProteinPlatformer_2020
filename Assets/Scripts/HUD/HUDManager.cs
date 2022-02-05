@@ -8,13 +8,11 @@ using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
-    [SerializeField] private float scoreUpdateSpeed;
-    [SerializeField] private Text currentScoreText;
-    private float displayScore;
+    
+    public Animator animatorDumbbell, animatorMeat, animatorProtein;
     public static int currentScore;
     public bool callTimer;
     public float time;
-    private SaveManager SM;
     public Canvas canvas;
     public Canvas deathScreenCanvas;
     public PlayerMovement player;
@@ -26,13 +24,19 @@ public class HUDManager : MonoBehaviour
     public float cameraSoftZoneWidth;
     public float cameraDeadZoneHeight;
     public float cameraDeadZoneWidth;
+
     private CinemachineFramingTransposer cinemachineBody;
     private Rigidbody2D playerRB;
     private Text dumbbelText, proteinText, meatText;
     private Image dumbbelImage, meatImage, proteinImage;
     private Text scoreText;
+    private SaveManager SM;
     [SerializeField] private TMP_Text hpAmountText;
-    public Animator animatorDumbbell, animatorMeat, animatorProtein;
+    [SerializeField] private float scoreUpdateSpeed;
+    [SerializeField] private Text currentScoreText;
+    [SerializeField] private Text specificItemAmount;
+    private float displayScore;
+    
     private void Awake()
     {
         anim = dyingBackground.GetComponent<Animation>();
@@ -72,6 +76,7 @@ public class HUDManager : MonoBehaviour
     //TO DO poprawiæ
     void Update()
     {
+        specificItemAmount.text = GameManager.collectedSpecificItems.ToString() + "/" + GameManager.specificLevelItemOnMap.ToString();
         currentScore = GameManager.Score;
         hpAmountText.SetText("x " + player.hp.ToString());
         if (callTimer && GameManager.isStoryMode)

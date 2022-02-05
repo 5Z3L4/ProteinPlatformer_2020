@@ -43,14 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95956e6355f96b04e8f001097ce4fe3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreUpdateSpeed: -10
-  currentScoreText: {fileID: 0}
-  dumbbleAnimator: {fileID: 0}
-  meatAnimator: {fileID: 0}
-  proteinAnimator: {fileID: 0}
+  animatorDumbbell: {fileID: 0}
+  animatorMeat: {fileID: 0}
+  animatorProtein: {fileID: 0}
   callTimer: 0
   time: 0
-  deathScreen: {fileID: 0}
+  canvas: {fileID: 0}
+  deathScreenCanvas: {fileID: 0}
   player: {fileID: 0}
   dyingBackground: {fileID: 0}
   anim: {fileID: 0}
@@ -59,3 +58,7 @@ MonoBehaviour:
   cameraSoftZoneWidth: 0
   cameraDeadZoneHeight: 0
   cameraDeadZoneWidth: 0
+  hpAmountText: {fileID: 0}
+  scoreUpdateSpeed: -10
+  currentScoreText: {fileID: 0}
+  specificItemAmount: {fileID: 0}

@@ -4,15 +4,17 @@ using UnityEngine.UI;
 public class DialogueActivator : MonoBehaviour
 {
     public Quest[] questTargets;
-    private DialogueUI dialogueUI;
     public DialogueObject currentDialogue;
-    [SerializeField] private DialogueObject startingDialogue;
-    [SerializeField] private GameObject pressToTalk;
+    private DialogueUI dialogueUI;
     [HideInInspector] public int questID;
-    [SerializeField] Sprite imageToShow;
     public Sprite ImageToShow => imageToShow;
     public bool Interactable = false;
     public bool ActivateWithoutButton = false;
+    public Interact interactObject;
+
+    [SerializeField] private DialogueObject startingDialogue;
+    [SerializeField] private GameObject pressToTalk;
+    [SerializeField] Sprite imageToShow;
     private bool isDialogueRunning;
     private bool isPlayerInTrigger;
 
