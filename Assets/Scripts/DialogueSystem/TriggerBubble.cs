@@ -6,7 +6,6 @@ public class TriggerBubble : MonoBehaviour
     [SerializeField] private GameObject NPCBubble;
     [SerializeField]  private TextBubble textToShow;
     private DialogueUI dialogueUI;
-    private DialogueActivator dialogueActivator;
     private Quest questSystem;
     private TutorialManagement tutorial;
 
@@ -17,7 +16,6 @@ public class TriggerBubble : MonoBehaviour
             tutorial = GetComponent<TutorialManagement>();
         }
         questSystem = gameObject.GetComponent<Quest>();
-        dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
         dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();
     }
     private void OnTriggerEnter2D(Collider2D collision)

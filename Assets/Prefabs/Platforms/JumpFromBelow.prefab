@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7067684598565080322}
   - component: {fileID: 7067684598565080349}
   - component: {fileID: 7067684598565080323}
-  m_Layer: 3
+  m_Layer: 16
   m_Name: JumpFromBelow
   m_TagString: Ground
   m_Icon: {fileID: 0}
