@@ -12,17 +12,15 @@ public class CollectiblesCounter : MonoBehaviour
     {
         if (shouldBeCounted)
         {
-            GameManager.collectiblesOnMap += countAs;
-        }
-        if (isSpecificItem)
-        {
-            GameManager.specificLevelItemOnMap += countAs;
+            if (isSpecificItem)
+            {
+                GameManager.specificLevelItemOnMap += countAs;
+            }
+            else
+            {
+                GameManager.collectiblesOnMap += countAs;
+            }
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

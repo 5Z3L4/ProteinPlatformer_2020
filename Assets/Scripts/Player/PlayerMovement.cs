@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove = true;
     public bool allowCharge = false;
     public bool allowSmash = false;
+    public float chargeSpeed = 700;
+    public float slideSpeed = 500;
     public PlayerStats statistics = new PlayerStats();
     //particle system
     public ParticleSystem slide;
@@ -41,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     private bool shouldJump;
     public bool isSliding;
     public Rigidbody2D playerRB;
-    public float slideSpeed = 500;
     private float coyoteetime = 0.2f;
     private float coyoteeTimeCounter;
     private float jumpBuffer = 0.1f;
@@ -251,12 +252,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Charge(Rigidbody2D rb)
     {
-        rb.velocity = new Vector2(slideDirection * statistics.chargeSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(slideDirection * chargeSpeed * Time.fixedDeltaTime, rb.velocity.y);
     }
 
     private void Slide(Rigidbody2D rb)
     {
-        rb.velocity = new Vector2(slideDirection * statistics.slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(slideDirection * slideSpeed * Time.fixedDeltaTime, rb.velocity.y);
     }
 
     public void Slide()
@@ -282,6 +283,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Charge()
     {
+        playerAnim.SetBool("IsCharging", true);
         PlayParticleSystem(charge);
         isCharging = true;
         StartCoroutine("stopCharge");
@@ -289,8 +291,9 @@ public class PlayerMovement : MonoBehaviour
   
     IEnumerator stopCharge()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.5f);
         isCharging = false;
+        playerAnim.SetBool("IsCharging", false);
     }
 
     public void Smash()
