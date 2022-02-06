@@ -106,7 +106,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab) && canMove && allowCharge)
         {
-            Charge();
+            if (!isCharging)
+            {
+                Charge();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y != 0 && allowSmash)
