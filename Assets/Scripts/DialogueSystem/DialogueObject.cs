@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Dialogue/DialogueObject")]
 public class DialogueObject : ScriptableObject
 {
-    public CallTutorial tutorial;
+    public OnQuestComplete tutorial;
     [SerializeField] [TextArea] private string[] dialogue;
     [SerializeField] private Response[] responses;
     public string[] Dialogue => dialogue;
