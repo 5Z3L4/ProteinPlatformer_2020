@@ -6,25 +6,24 @@ using System.Collections.Generic;
 
 public class DialogueUI : MonoBehaviour
 {
+    
+    public Image PlayerImage => playerImage;
+    public Image InterlocutorImage => interlocutorImage;
+    public Color DefaultInterlocutorColor => defaultInterlocutorColor;
+    public Color DefaultPlayerColor => defaultPlayerColor;
+    public List<bool> isCompleted = new List<bool>();
+    public bool isOpen = false;
+    public bool isOver;
+    [SerializeField] private Image interlocutorImage;
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
-    private SpriteRenderer playerSpriteRen;
+    [SerializeField] private Image playerImage;
+    private PlayerMovement player;
     private TextWriter textWriter;
     private DialogueActivator dialogueActivator;
     private ResponseHandler responseHandler;
-    [SerializeField] private Image playerImage;
-    public Image PlayerImage => playerImage;
-    [SerializeField] private Image interlocutorImage;
-    public Image InterlocutorImage => interlocutorImage;
     private Color defaultInterlocutorColor;
     private Color defaultPlayerColor;
-    public Color DefaultInterlocutorColor => defaultInterlocutorColor;
-    public Color DefaultPlayerColor => defaultPlayerColor;
-    PlayerMovement player;
-    public List<bool> isCompleted = new List<bool>();
-    int x=0;
-
-    public bool IsOpen;
     private void Awake()
     {        
         player = FindObjectOfType<PlayerMovement>();
@@ -32,28 +31,24 @@ public class DialogueUI : MonoBehaviour
         {
             dialogueActivator = GameObject.Find("Dialogue").GetComponent<DialogueActivator>();
         }
-        playerSpriteRen = GameObject.FindWithTag("PlayerSprite").GetComponent<SpriteRenderer>();
         textWriter = GetComponent<TextWriter>();
         responseHandler = GetComponent<ResponseHandler>();
     }
-    void Start()
+    private void Start()
     {
-        playerImage.sprite = playerSpriteRen.sprite;
-        playerImage.color = playerSpriteRen.color;
         defaultPlayerColor = playerImage.color;
         defaultInterlocutorColor = interlocutorImage.color;
         if (GameObject.Find("Dialogue") != null)
         {
             interlocutorImage.sprite = dialogueActivator.ImageToShow;
         }
-        CloseDialogueBox();
-        IsOpen = false;
+       // CloseDialogueBox();
     }
     public void ShowDialogue(DialogueObject dialogueObject)
     {
-        interlocutorImage.gameObject.SetActive(true);
-        IsOpen = true;
+        isOpen = true;
         player.canMove = false;
+        interlocutorImage.gameObject.SetActive(true);
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
@@ -78,37 +73,39 @@ public class DialogueUI : MonoBehaviour
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
         }
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
-        CloseDialogueBox();
-        if (!dialogueObject.HasResponses)
-        {
-            IsOpen = false;
-            isCompleted.Add(true);
-        }
         if (dialogueObject.HasResponses)
         {
+            textLabel.text = string.Empty;
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
             interlocutorImage.color = DarkenColor(interlocutorImage);
-            IsOpen = true;
             responseHandler.ShowResponses(dialogueObject.Responses);
             if (dialogueObject.Responses.Length == 1)
             {
                 yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
                 responseHandler.OnPickedResponse(dialogueObject.Responses[0]);
-            } 
+            }
         }
         else
         {
+            isCompleted.Add(true);
             interlocutorImage.gameObject.SetActive(false);
-            player.canMove = true;
+            CloseDialogueBox();
+            if (dialogueObject.tutorial != null)
+            {
+                dialogueObject.SetBool();
+            } 
         }
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
         
     }
     public void CloseDialogueBox()
     {
+        player.canMove = true;
         playerImage.gameObject.SetActive(false);
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
+        isOpen = false;
+        isOver = true;
     }
     private IEnumerator RunTypingEffect(string dialogue)
     {

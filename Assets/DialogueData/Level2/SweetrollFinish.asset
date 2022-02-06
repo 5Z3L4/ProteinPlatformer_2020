@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f184db9c6bf3546acf73870c9f1d94, type: 3}
   m_Name: SweetrollFinish
   m_EditorClassIdentifier: 
+  tutorial: {fileID: 0}
   dialogue:
-  - So you've got your sweetroll? I was looking for it as well but then I took an
-    arrow in the knee...
+  - So you've got your sweetroll?
   responses:
-  - responseText: A-Arrow? Whatever... You're just weirdo...
-    dialogueObject: {fileID: 0}
+  - responseText: I don't think so. It's just a bag with coin inside it... Anyway,
+      for duck sake, what sweetroll are you talking about?!
+    dialogueObject: {fileID: 11400000, guid: 82ad82fea8c6d3b45a6be6490d5cd28a, type: 2}

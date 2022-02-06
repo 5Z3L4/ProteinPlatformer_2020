@@ -16,7 +16,7 @@ public class PlayerBubble : MonoBehaviour
         textMeshPro.SetText(newPlayerBubbleText.Dialogue[0]);
         textMeshPro.ForceMeshUpdate();
         Vector2 textSize = textMeshPro.GetRenderedValues(false);
-        backgroundSpriteRenderer.size = textSize + new Vector2(1f, 1f);
+        backgroundSpriteRenderer.size = textSize + new Vector2(1f, 0.5f);
     }
 
     public void SetSizeOfTextBackground(string text)
@@ -24,7 +24,7 @@ public class PlayerBubble : MonoBehaviour
         textMeshPro.SetText(text);
         textMeshPro.ForceMeshUpdate();
         Vector2 textSize = textMeshPro.GetRenderedValues(false);
-        backgroundSpriteRenderer.size = textSize + new Vector2(1f, 1f);
+        backgroundSpriteRenderer.size = textSize + new Vector2(1f, 0.5f);
     }
 }
 

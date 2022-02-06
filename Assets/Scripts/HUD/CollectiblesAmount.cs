@@ -17,15 +17,15 @@ public class CollectiblesAmount : MonoBehaviour
     {
         if (specificItem == Items.Dumbble)
         {
-            itemAmount.text = " X " + GameManager.collectedStrenght;
+            itemAmount.text = GameManager.collectedStrenght.ToString() + "/" + GameManager.collectiblesOnMap.ToString();
         }
         else if(specificItem == Items.Meat)
         {
-            itemAmount.text = " X " + GameManager.collectedConstitution;
+            itemAmount.text = GameManager.collectedConstitution.ToString() + "/" + GameManager.collectiblesOnMap.ToString();
         }
         else if(specificItem == Items.Protein)
         {
-            itemAmount.text = " X " + GameManager.collectedAgility;
+            itemAmount.text = GameManager.collectedAgility.ToString() + "/" + GameManager.collectiblesOnMap.ToString();
         }
     }
 }

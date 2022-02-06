@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 3877359269754661425}
   - component: {fileID: 3877359269754661426}
   - component: {fileID: 3877359269754661427}
+  - component: {fileID: 7010309622993760528}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Box
@@ -264,6 +265,20 @@ MonoBehaviour:
   scoreAmount: 100
   brokenChest: {fileID: 5018919441934807489}
   player: {fileID: 0}
+--- !u!114 &7010309622993760528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877359269754661428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed8854d150ba4c4aaa615e45264b5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldBeCounted: 1
+  countAs: 5
 --- !u!1 &4463722488542217300
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,6 +933,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2160075726663662884}
     m_Modifications:
+    - target: {fileID: 666661777899197299, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: shouldBeCounted
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2114832362760144272, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_Name
       value: MeatHolder (2)
@@ -966,6 +985,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Size.x
+      value: 0.59375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Size.y
+      value: 0.59375
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9902b84409712b4db0e0195a8151392, type: 3}
 --- !u!4 &2114832362242127412 stripped
@@ -980,6 +1007,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2160075726663662884}
     m_Modifications:
+    - target: {fileID: 666661777899197299, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: shouldBeCounted
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2114832362760144272, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_Name
       value: MeatHolder (3)
@@ -1028,6 +1059,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Size.x
+      value: 0.59375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Size.y
+      value: 0.59375
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9902b84409712b4db0e0195a8151392, type: 3}
 --- !u!4 &2114832363689703277 stripped
@@ -1042,6 +1081,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2160075726663662884}
     m_Modifications:
+    - target: {fileID: 666661777899197299, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: shouldBeCounted
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2114832362760144272, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_Name
       value: MeatHolder (1)
@@ -1090,6 +1133,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Size.x
+      value: 0.59375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Size.y
+      value: 0.59375
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9902b84409712b4db0e0195a8151392, type: 3}
 --- !u!4 &2114832363634257615 stripped
@@ -1104,6 +1155,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2160075726663662884}
     m_Modifications:
+    - target: {fileID: 666661777899197299, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: shouldBeCounted
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2114832362760144272, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_Name
       value: MeatHolder (4)
@@ -1156,6 +1211,14 @@ PrefabInstance:
       propertyPath: scoreValue
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Size.x
+      value: 0.59375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Size.y
+      value: 0.59375
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9902b84409712b4db0e0195a8151392, type: 3}
 --- !u!4 &2114832363485933599 stripped
@@ -1170,6 +1233,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2160075726663662884}
     m_Modifications:
+    - target: {fileID: 666661777899197299, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: shouldBeCounted
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2114832362760144272, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_Name
       value: MeatHolder
@@ -1217,6 +1284,14 @@ PrefabInstance:
     - target: {fileID: 2114832362760144273, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Size.x
+      value: 0.59375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Size.y
+      value: 0.59375
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9902b84409712b4db0e0195a8151392, type: 3}

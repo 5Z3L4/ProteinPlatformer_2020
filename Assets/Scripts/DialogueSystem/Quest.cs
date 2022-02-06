@@ -5,7 +5,7 @@ public class Quest : MonoBehaviour
     [HideInInspector]public bool isQuestAvailable;
     [HideInInspector]public bool isQuestCompleted;
     [Tooltip("Dialogue Activator Object")]
-    [SerializeField] private GameObject QuestDestination;
+    [SerializeField] private GameObject QuestDestinationDialogueActivator;
     public DialogueObject newDialogue;
     public bool questItem = false;
     private void Start()
@@ -15,13 +15,13 @@ public class Quest : MonoBehaviour
     }
     public void ChangeDialogue()
     {
-        QuestDestination.GetComponent<DialogueActivator>().currentDialogue = newDialogue;
+        QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().currentDialogue = newDialogue;
         isQuestAvailable = false;
         isQuestCompleted = true;
-        print("Quest " + QuestDestination.GetComponent<DialogueActivator>().questID + " completed!");
-        if (QuestDestination.GetComponent<DialogueActivator>().questID < (QuestDestination.GetComponent<DialogueActivator>().questTargets.Length - 1))
+        print("Quest " + QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID + " completed!");
+        if (QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID < (QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questTargets.Length - 1))
         {
-            QuestDestination.GetComponent<DialogueActivator>().questID++;
+            QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID++;
         }
     }
 
@@ -30,10 +30,10 @@ public class Quest : MonoBehaviour
         if (!questItem) return;
         if (collision.gameObject.CompareTag("Player"))
         {
-            QuestDestination.GetComponent<DialogueActivator>().currentDialogue = newDialogue;
-            if (QuestDestination.GetComponent<DialogueActivator>().questID < (QuestDestination.GetComponent<DialogueActivator>().questTargets.Length - 1))
+            QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().currentDialogue = newDialogue;
+            if (QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID < (QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questTargets.Length - 1))
             {
-                QuestDestination.GetComponent<DialogueActivator>().questID++;
+                QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID++;
             }
             Destroy(gameObject);
         }

@@ -9,7 +9,7 @@ public class Kark : MonoBehaviour //,Enemy
     [SerializeField] float startTimeBtwAttack;
     [SerializeField] Transform castPos;
     [SerializeField] float baseCastDist;
-    bool facingRight;
+    public bool facingRight;
     Rigidbody2D rb;
     [SerializeField] float moveSpeed;
     Vector3 baseScale;
@@ -102,7 +102,6 @@ public class Kark : MonoBehaviour //,Enemy
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
         if (collision.CompareTag("Player"))
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);

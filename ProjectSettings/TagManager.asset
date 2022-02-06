@@ -15,6 +15,11 @@ TagManager:
   - PlayerSprite
   - Ground
   - Projectile
+  - BossIntroduction
+  - BossRage
+  - DogEnemy
+  - Ball
+  - x
   layers:
   - Default
   - TransparentFX
@@ -31,8 +36,8 @@ TagManager:
   - Projectile
   - PlayerFall
   - Player
-  - 
-  - 
+  - OnlyPlayer
+  - GroundIgnoreWallCheck
   - 
   - 
   - 

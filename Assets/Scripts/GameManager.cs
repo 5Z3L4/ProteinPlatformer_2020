@@ -19,4 +19,9 @@ public static class GameManager
 
     public static int deaths = 0;
 
+    public static int collectiblesOnMap;
+
+    public static int specificLevelItemOnMap;
+    public static int collectedSpecificItems;
+
 }

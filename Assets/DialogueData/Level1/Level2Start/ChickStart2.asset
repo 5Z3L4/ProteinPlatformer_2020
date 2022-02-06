@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f184db9c6bf3546acf73870c9f1d94, type: 3}
+  m_Name: ChickStart2
+  m_EditorClassIdentifier: 
+  tutorial: {fileID: 0}
+  dialogue:
+  - 'No but let''s not talk about it... Looks like hard work turned you into real
+    man. Would you like to buy me a cup of coffee? '
+  responses:
+  - responseText: You're pathetic.. Go away to check your Twitter you slutty...
+    dialogueObject: {fileID: 11400000, guid: de38ed687ddf22045a7a8f71811a9189, type: 2}
