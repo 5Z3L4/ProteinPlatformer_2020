@@ -105,11 +105,11 @@ public class Kark : MonoBehaviour //,Enemy
         if (collision.CompareTag("Player"))
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);
-            if (facingRight == player.facingRight && player.isSliding)
+            if ((facingRight == player.facingRight && player.isSliding) || player.isCharging)
             {
                 StartCoroutine(Die());
             }
-            else if (facingRight != player.facingRight || facingRight == player.facingRight) // TO DO: poprawiæ to tak, ¿eby kark siê odwraca³ jak gracz podejdzie do niego od ty³u
+            else if (facingRight != player.facingRight || facingRight == player.facingRight)
             {
                 if (timeBtwAttack > 0) return;
                 if ((CalculatePlayerPos() < 0 && facingRight) || CalculatePlayerPos() > 0 && !facingRight && shouldAttack)
