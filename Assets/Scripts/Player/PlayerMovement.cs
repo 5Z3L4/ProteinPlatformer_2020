@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         respawnPos = transform.position;
         startingPos = transform.position;
         basejumpForce = jumpForce;
-        //SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
+        SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
         //SM.levels[SM.currentLevelId].levelName = "Level_" + SM.currentLevelId;
     }
     private void Update()
