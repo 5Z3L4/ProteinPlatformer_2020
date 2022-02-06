@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class DialogueActivator : MonoBehaviour
 {
     public Quest[] questTargets;
-    public DialogueObject currentDialogue;
+    public InterlocutorDialogue currentDialogue;
     private DialogueUI dialogueUI;
     [HideInInspector] public int questID;
     public Sprite ImageToShow => imageToShow;
@@ -12,7 +12,7 @@ public class DialogueActivator : MonoBehaviour
     public bool ActivateWithoutButton = false;
     public ShowNormalText normalText;
 
-    [SerializeField] private DialogueObject startingDialogue;
+    [SerializeField] private InterlocutorDialogue startingDialogue;
     
     [SerializeField] Sprite imageToShow;
     private bool isDialogueRunning;

@@ -13,29 +13,29 @@ public class ResponseHandler : MonoBehaviour
     {
         dialogueUI = gameObject.GetComponent<DialogueUI>();
     }
-    public void ShowResponses(Response[] responses)
+    public void ShowResponses(PlayerResponses[] responses)
     {
         dialogueUI.PlayerImage.color = dialogueUI.DefaultPlayerColor;
         dialogueUI.PlayerImage.gameObject.SetActive(true);
         int count = 1;
-        foreach(Response response in responses)
+        foreach(PlayerResponses response in responses)
         {
             GameObject responseButton = Instantiate(responseButtonTemplate.gameObject, responseContainer);
             responseButton.gameObject.SetActive(true);
             if (responses.Length > 1)
             {
-                responseButton.GetComponent<TMP_Text>().text = count + ". " + response.ResponseText;
+                responseButton.GetComponent<TMP_Text>().text = count + ". " + response.responses;
             }
             else
             {
-                responseButton.GetComponent<TMP_Text>().text = response.ResponseText;
+                responseButton.GetComponent<TMP_Text>().text = response.responses;
             }
             responseButton.GetComponent<Button>().onClick.AddListener(() => OnPickedResponse(response));
             count++;
             tempResponseButtons.Add(responseButton);
         }
     }
-    public void OnPickedResponse(Response response)
+    public void OnPickedResponse(PlayerResponses response)
     {
         dialogueUI.PlayerImage.color = dialogueUI.DarkenColor(dialogueUI.PlayerImage);
         dialogueUI.InterlocutorImage.color = dialogueUI.DefaultInterlocutorColor;
@@ -44,9 +44,9 @@ public class ResponseHandler : MonoBehaviour
             Destroy(button);
         }
         tempResponseButtons.Clear();
-        if (response.DialogueObject != null)
+        if (response.interlocutorDialogue != null)
         {
-            dialogueUI.ShowDialogue(response.DialogueObject);
+            dialogueUI.ShowDialogue(response.interlocutorDialogue);
         }
         else
         {

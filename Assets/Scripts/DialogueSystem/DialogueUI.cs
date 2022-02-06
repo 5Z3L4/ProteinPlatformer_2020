@@ -44,13 +44,17 @@ public class DialogueUI : MonoBehaviour
         }
        // CloseDialogueBox();
     }
-    public void ShowDialogue(DialogueObject dialogueObject)
+    public void ShowDialogue(InterlocutorDialogue interlocutorDialogue)
     {
+        if (interlocutorDialogue.isQuestDialogue)
+        {
+            isOver = false;
+        }
         isOpen = true;
         player.canMove = false;
         interlocutorImage.gameObject.SetActive(true);
         dialogueBox.SetActive(true);
-        StartCoroutine(StepThroughDialogue(dialogueObject));
+        StartCoroutine(StepThroughDialogue(interlocutorDialogue));
     }
 
     public void ChangeinterlocutorSprite(Sprite image)
@@ -58,14 +62,14 @@ public class DialogueUI : MonoBehaviour
         interlocutorImage.sprite = image;
         //interlocutorImage.gameObject.transform.localScale *= new Vector2(-1, 1);
     }
-    private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
+    private IEnumerator StepThroughDialogue(InterlocutorDialogue interlocutorDialogue)
     {
-        for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
+        for (int i = 0; i < interlocutorDialogue.interlocutorDialogues.Length; i++)
         {
-            string dialogue = dialogueObject.Dialogue[i];
+            string dialogue = interlocutorDialogue.interlocutorDialogues[i];
             yield return RunTypingEffect(dialogue);
             textLabel.text = dialogue;
-            if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses)
+            if (i == interlocutorDialogue.interlocutorDialogues.Length - 1 && interlocutorDialogue.HasResponses)
             {
                 break;
             }
@@ -73,16 +77,17 @@ public class DialogueUI : MonoBehaviour
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
         }
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
-        if (dialogueObject.HasResponses)
+        if (interlocutorDialogue.HasResponses)
         {
+            print("cipa");
             textLabel.text = string.Empty;
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
             interlocutorImage.color = DarkenColor(interlocutorImage);
-            responseHandler.ShowResponses(dialogueObject.Responses);
-            if (dialogueObject.Responses.Length == 1)
+            responseHandler.ShowResponses(interlocutorDialogue.playerResponse);
+            if (interlocutorDialogue.playerResponse.Length == 1)
             {
                 yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
-                responseHandler.OnPickedResponse(dialogueObject.Responses[0]);
+                responseHandler.OnPickedResponse(interlocutorDialogue.playerResponse[0]);
             }
         }
         else
@@ -90,10 +95,12 @@ public class DialogueUI : MonoBehaviour
             isCompleted.Add(true);
             interlocutorImage.gameObject.SetActive(false);
             CloseDialogueBox();
-            if (dialogueObject.tutorial != null)
-            {
-                dialogueObject.SetBool();
-            } 
+            
+        }
+        if (interlocutorDialogue.isQuestDialogue)
+        {
+            print("dupa");
+            interlocutorDialogue.isOver = true;
         }
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
         
@@ -105,7 +112,6 @@ public class DialogueUI : MonoBehaviour
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
         isOpen = false;
-        isOver = true;
     }
     private IEnumerator RunTypingEffect(string dialogue)
     {

@@ -6,7 +6,7 @@ public class Quest : MonoBehaviour
     [HideInInspector]public bool isQuestCompleted;
     [Tooltip("Dialogue Activator Object")]
     [SerializeField] private GameObject QuestDestinationDialogueActivator;
-    public DialogueObject newDialogue;
+    public InterlocutorDialogue newDialogue;
     public bool questItem = false;
     private void Start()
     {

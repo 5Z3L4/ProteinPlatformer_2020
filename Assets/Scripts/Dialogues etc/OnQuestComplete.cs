@@ -6,23 +6,19 @@ public class OnQuestComplete : MonoBehaviour
 {
     public PlayerBubbleTrigger tutorial;
     public Kark npcToMove;
-    public bool dialogueFinished;
     public ShowNormalText normalText;
+    public InterlocutorDialogue interlocutorDialogue;
+    public PlayerResponses playerResponse;
 
     private void Update()
     {
-        if (dialogueFinished)
+        if (interlocutorDialogue != null && interlocutorDialogue.isOver)
         {
-            if (!npcToMove.facingRight && npcToMove != null && normalText != null)
-            {
-                normalText.shouldDisplayText = false;
-                npcToMove.Flip();
-                npcToMove.facingRight = true;
-            }
-            if (tutorial != null)
-            {
-                EnableTutorial();
-            }
+            FlipKark();
+        }
+        if (playerResponse != null && playerResponse.isOver)
+        {
+            FlipKark();
         }
     }
     public void EnableTutorial()
@@ -33,5 +29,18 @@ public class OnQuestComplete : MonoBehaviour
     private void OnDestroy()
     {
         tutorial.HideTutorialText();
+    }
+    private void FlipKark()
+    {
+        if (npcToMove != null && !npcToMove.facingRight)
+        {
+            normalText.shouldDisplayText = false;
+            npcToMove.Flip();
+            npcToMove.facingRight = true;
+        }
+        if (tutorial != null)
+        {
+            EnableTutorial();
+        }
     }
 }
