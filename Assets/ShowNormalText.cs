@@ -5,7 +5,7 @@ using TMPro;
 
 public class ShowNormalText : MonoBehaviour
 {
-    public TMP_Text tmpTextObject;
+    public TMP_Text TextObject;
     public string textToShow;
     public bool shouldDisplayText = true;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,7 +29,7 @@ public class ShowNormalText : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (!string.IsNullOrEmpty(tmpTextObject.text))
+            if (!string.IsNullOrEmpty(TextObject.text))
             {
                 HideText();
             }
@@ -41,10 +41,10 @@ public class ShowNormalText : MonoBehaviour
     }
     public void ShowText()
     {
-        tmpTextObject.text = textToShow;
+        TextObject.text = textToShow;
     }
     public void HideText()
     {
-        tmpTextObject.text = string.Empty;
+        TextObject.text = string.Empty;
     }
 }

@@ -92,7 +92,10 @@ public class PlayerBubbleTrigger : MonoBehaviour
 
     private void ShowTexts()
     {
-        normalText.HideText();
+        if (normalText != null)
+        {
+            normalText.HideText();
+        }
         if (tutorial != null && tutorial.Dialogue.Length != 0 && !tutorialText.gameObject.activeInHierarchy && isTutAvailable)
         {
             tutorialText.gameObject.SetActive(true);
@@ -122,7 +125,10 @@ public class PlayerBubbleTrigger : MonoBehaviour
                 tutorialText.text = string.Empty;
                 tutorialText.gameObject.SetActive(false);
                 isTutAvailable = false;
-                normalText.HideText();
+                if (normalText != null)
+                {
+                    normalText.HideText();
+                }
             }
         }
     }

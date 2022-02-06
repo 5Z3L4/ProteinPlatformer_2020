@@ -49,7 +49,10 @@ public class DialogueActivator : MonoBehaviour
     }
     public void Interact()
     {
-        normalText.HideText();
+        if(normalText != null)
+        {
+            normalText.HideText();
+        }
         isDialogueRunning = true;
         dialogueUI.ChangeinterlocutorSprite(imageToShow);
         if (questTargets == null || questTargets.Length == 0)
