@@ -18,17 +18,17 @@ public class ChestScript : MonoBehaviour
     }
     private void Update()
     {
-        if (isPlayerThere)
-        {
-            if (!isOpen)
-            {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    OpenBox();
-                }
-            }
+        //if (isPlayerThere)
+        //{
+        //    if (!isOpen)
+        //    {
+        //        if (Input.GetKeyDown(KeyCode.E))
+        //        {
+        //            OpenBox();
+        //        }
+        //    }
             
-        }
+        //}
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
