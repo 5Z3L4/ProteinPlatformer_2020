@@ -5,20 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class TakeToBoss : MonoBehaviour
 {
-    bool takeToBoss = false;
+    public Animator SceneTransition;
+    private bool _takeToBoss = false;
     private void Update()
     {
-        if (!takeToBoss) return;
+        if (!_takeToBoss) return;
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene("BossLevel1");
+            StartCoroutine(LoadBossScene());
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            takeToBoss = true;
+            _takeToBoss = true;
         }
     }
 
@@ -26,7 +27,14 @@ public class TakeToBoss : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            takeToBoss = false;
+            _takeToBoss = false;
         }
+    }
+
+    private IEnumerator LoadBossScene()
+    {
+        SceneTransition.SetTrigger("Start");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("BossLevel1");
     }
 }
