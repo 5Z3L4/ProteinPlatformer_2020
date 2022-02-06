@@ -79,7 +79,6 @@ public class DialogueUI : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
         if (interlocutorDialogue.HasResponses)
         {
-            print("cipa");
             textLabel.text = string.Empty;
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
             interlocutorImage.color = DarkenColor(interlocutorImage);
@@ -99,7 +98,6 @@ public class DialogueUI : MonoBehaviour
         }
         if (interlocutorDialogue.isQuestDialogue)
         {
-            print("dupa");
             interlocutorDialogue.isOver = true;
         }
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
