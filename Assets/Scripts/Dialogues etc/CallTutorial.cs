@@ -10,6 +10,7 @@ public class CallTutorial : MonoBehaviour
     public Kark npcToMove;
     public DialogueObject callingDialogue;
     public bool dialogueFinished;
+    public ShowNormalText normalText;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class CallTutorial : MonoBehaviour
         {
             if (!npcToMove.facingRight)
             {
+                normalText.shouldDisplayText = false;
                 npcToMove.Flip();
                 npcToMove.facingRight = true;
             }
