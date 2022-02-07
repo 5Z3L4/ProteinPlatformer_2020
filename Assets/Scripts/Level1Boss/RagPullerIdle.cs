@@ -8,13 +8,13 @@ public class RagPullerIdle : StateMachineBehaviour
     public float startTimer = 2f;
     bool isDialogueOver = false;
     private GameObject dialogue;
-    private DialogueUI dialogueUI;
+    public InterlocutorDialogue lastDialogue;
     public bool beforeFirstState;
 
     private void Awake()
     {
         dialogue = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(g => g.CompareTag("BossIntroduction"));
-        dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();
+        lastDialogue = GameObject.Find("WhoDecidedThat").GetComponent<InterlocutorDialogue>();
     }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -28,7 +28,7 @@ public class RagPullerIdle : StateMachineBehaviour
         if (beforeFirstState)
         {
             dialogue.SetActive(true);
-            if (dialogueUI.isOver)
+            if (lastDialogue.isOver)
             {
                 isDialogueOver = true;
                 animator.SetBool("StateOne", true);
