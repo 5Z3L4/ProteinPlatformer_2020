@@ -10,6 +10,7 @@ public class RagPullerIdle : StateMachineBehaviour
     private GameObject dialogue;
     public InterlocutorDialogue lastDialogue;
     public bool beforeFirstState;
+    private float _waitBeforeTrans = 0.5f;
 
     private void Awake()
     {
@@ -31,7 +32,14 @@ public class RagPullerIdle : StateMachineBehaviour
             if (lastDialogue.isOver)
             {
                 isDialogueOver = true;
-                animator.SetBool("StateOne", true);
+                if (_waitBeforeTrans <=0)
+                {
+                    animator.SetBool("StateOne", true);
+                }
+                else
+                {
+                    _waitBeforeTrans -= Time.deltaTime;
+                }
             }
             if (!isDialogueOver) return;
         }

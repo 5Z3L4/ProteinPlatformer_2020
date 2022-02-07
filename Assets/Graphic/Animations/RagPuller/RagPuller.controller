@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92139b221e6bb6c429b6c55f01e7cd29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastDialogue: {fileID: 0}
 --- !u!1101 &-5017381342690598757
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -390,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 35
-  distance: 10
+  distance: 7
 --- !u!1102 &-4424527301236773220
 AnimatorState:
   serializedVersion: 6
@@ -565,6 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimer: 2
+  lastDialogue: {fileID: 0}
   beforeFirstState: 0
 --- !u!1101 &-3406687641309029989
 AnimatorStateTransition:
@@ -898,6 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609a8a0f13f96804a9d0647a7cfd2ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastDialogue: {fileID: 0}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -1733,6 +1736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimer: 2
+  lastDialogue: {fileID: 0}
   beforeFirstState: 0
 --- !u!1101 &8267603777365651071
 AnimatorStateTransition:
@@ -1897,6 +1901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimer: 2
+  lastDialogue: {fileID: 0}
   beforeFirstState: 0
 --- !u!114 &9006746364914503881
 MonoBehaviour:
@@ -1911,6 +1916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimer: 0
+  lastDialogue: {fileID: 0}
   beforeFirstState: 1
 --- !u!1101 &9074066774846416617
 AnimatorStateTransition:
