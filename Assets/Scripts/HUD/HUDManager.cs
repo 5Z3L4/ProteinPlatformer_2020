@@ -35,6 +35,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private float scoreUpdateSpeed;
     [SerializeField] private Text currentScoreText;
     [SerializeField] private Text specificItemAmount;
+    [SerializeField] private GameObject specificItemImage;
     private float displayScore;
     
     private void Awake()
@@ -55,6 +56,10 @@ public class HUDManager : MonoBehaviour
     }
     private void Start()
     {
+        if (GameManager.specificLevelItemOnMap == 0)
+        {
+            specificItemImage.SetActive(false);
+        }
         hpAmountText.SetText("x " + player.hp.ToString());
         cameraSoftZoneHeight = cinemachineBody.m_SoftZoneHeight;
         cameraSoftZoneWidth = cinemachineBody.m_SoftZoneWidth;
@@ -76,7 +81,10 @@ public class HUDManager : MonoBehaviour
     //TO DO poprawiæ
     void Update()
     {
-        specificItemAmount.text = GameManager.collectedSpecificItems.ToString() + "/" + GameManager.specificLevelItemOnMap.ToString();
+        if (specificItemImage.activeInHierarchy)
+        {
+            specificItemAmount.text = GameManager.collectedSpecificItems.ToString() + "/" + GameManager.specificLevelItemOnMap.ToString();
+        }
         currentScore = GameManager.Score;
         hpAmountText.SetText("x " + player.hp.ToString());
         if (callTimer && GameManager.isStoryMode)
