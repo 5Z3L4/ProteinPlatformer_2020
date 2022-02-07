@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,7 +65,9 @@ public class PlayerMovement : MonoBehaviour
     public HUDManager HUDManager;
     private bool isDying;
     private bool holdingSpace;
-
+    public bool GodMode = false;
+    public float GodModeTimer;
+    private float _godModeTime;
     private void Awake()
     {
         playerAnim = GameObject.FindGameObjectWithTag("PlayerSprite").GetComponent<Animator>();
@@ -73,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
+        _godModeTime = GodModeTimer;
         coyoteeTimeCounter = coyoteetime;
         slideEmission = slide.emission;
         statistics.playerPosition = gameObject.transform;
@@ -132,6 +136,18 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
     }
+
+    public IEnumerator GodModeOff()
+    {
+        yield return new WaitForSeconds(GodModeTimer);
+        GodMode = false;
+    }
+    public void GodModeOn()
+    {
+        GodMode = true;
+        StartCoroutine(GodModeOff());
+    }
+
     private void FixedUpdate()
     {
         if (!canMove) return;
@@ -390,10 +406,12 @@ public class PlayerMovement : MonoBehaviour
     [ContextMenu("LowerPlayerHp")]
     public void TakeCertainAmountOfHp()
     {
+        if (GodMode) return;
         playerAnim.Play("SkinnyHit");
         SFXManager.PlaySound(SFXManager.Sound.GetHit, transform.position);
         KnockBack(false);
         hp -= 1;
+        GodModeOn();
         if (hp <= 0)
         {
             Die();
