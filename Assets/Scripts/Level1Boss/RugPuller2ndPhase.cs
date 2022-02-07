@@ -7,6 +7,7 @@ public class RugPuller2ndPhase : StateMachineBehaviour
 {
     private GameObject dialogue;
     public InterlocutorDialogue lastDialogue;
+    private float _waitBeforeTrans = 0.5f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -20,7 +21,14 @@ public class RugPuller2ndPhase : StateMachineBehaviour
         dialogue.SetActive(true);
         if (lastDialogue.isOver)
         {
-            animator.SetBool("RageRun", true);
+            if (_waitBeforeTrans <= 0)
+            {
+                animator.SetBool("RageRun", true);
+            }
+            else
+            {
+                _waitBeforeTrans -= Time.deltaTime;
+            }
         }
     }
 
