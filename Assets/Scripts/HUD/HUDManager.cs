@@ -24,7 +24,7 @@ public class HUDManager : MonoBehaviour
     public float cameraSoftZoneWidth;
     public float cameraDeadZoneHeight;
     public float cameraDeadZoneWidth;
-
+    public GameController GameController;
     private CinemachineFramingTransposer cinemachineBody;
     private Rigidbody2D playerRB;
     private Text dumbbelText, proteinText, meatText;
@@ -153,7 +153,8 @@ public class HUDManager : MonoBehaviour
         cinemachineBody.m_ScreenX = 0.5f;
         deathScreenCanvas.gameObject.SetActive(false);
         canvas.gameObject.SetActive(true);
-        dyingBackground.SetActive(false); 
+        dyingBackground.SetActive(false);
+        GameController.RespawnPlatforms();
         Time.timeScale = 1;
     }
     public IEnumerator DyingScreen()
