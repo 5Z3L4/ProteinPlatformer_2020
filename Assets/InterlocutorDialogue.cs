@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InterlocutorDialogue : MonoBehaviour
 { 
-    public bool isQuestDialogue;
+    public bool shouldCheckForEnd;
     public bool isOver;
     [TextArea] public string[] interlocutorDialogues;
     public PlayerResponses[] playerResponse;
