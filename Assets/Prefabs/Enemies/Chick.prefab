@@ -10126,11 +10126,11 @@ PrefabInstance:
     - target: {fileID: 4488002640272243577, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
       propertyPath: currentDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: fcf86cd0900748146bc2f9214318fe62, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4488002640272243577, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
       propertyPath: startingDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: fcf86cd0900748146bc2f9214318fe62, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4488002640272243577, guid: 9f72248c4af42414f93494cf4ecf28ff, type: 3}
       propertyPath: questTargets.Array.size
       value: 0
@@ -10183,7 +10183,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 1afb9b6a63dcc8348848afb50c06b8e7, type: 2}
     - target: {fileID: 1651178199886741221, guid: 977c67df225826d429d0dafe2679a740, type: 3}
       propertyPath: m_fontColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1651178199886741221, guid: 977c67df225826d429d0dafe2679a740, type: 3}
       propertyPath: m_fontColor.g
