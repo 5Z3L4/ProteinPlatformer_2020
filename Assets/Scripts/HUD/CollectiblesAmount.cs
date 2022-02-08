@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CollectiblesAmount : MonoBehaviour
 {
-    public Text itemAmount;
+    public TMP_Text itemAmount;
     public enum Items
     {
         Dumbble,
@@ -17,15 +18,15 @@ public class CollectiblesAmount : MonoBehaviour
     {
         if (specificItem == Items.Dumbble)
         {
-            itemAmount.text = GameManager.collectedStrenght.ToString() + "/" + GameManager.collectiblesOnMap.ToString();
+            itemAmount.SetText(GameManager.collectedStrenght.ToString() + "/" + GameManager.collectiblesOnMap.ToString());
         }
         else if(specificItem == Items.Meat)
         {
-            itemAmount.text = GameManager.collectedConstitution.ToString() + "/" + GameManager.collectiblesOnMap.ToString();
+            itemAmount.SetText(GameManager.collectedConstitution.ToString() + "/" + GameManager.collectiblesOnMap.ToString());
         }
         else if(specificItem == Items.Protein)
         {
-            itemAmount.text = GameManager.collectedAgility.ToString() + "/" + GameManager.collectiblesOnMap.ToString();
+            itemAmount.SetText(GameManager.collectedAgility.ToString() + "/" + GameManager.collectiblesOnMap.ToString());
         }
     }
 }

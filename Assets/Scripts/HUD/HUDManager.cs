@@ -33,8 +33,8 @@ public class HUDManager : MonoBehaviour
     private SaveManager SM;
     [SerializeField] private TMP_Text hpAmountText;
     [SerializeField] private float scoreUpdateSpeed;
-    [SerializeField] private Text currentScoreText;
-    [SerializeField] private Text specificItemAmount;
+    [SerializeField] private TMP_Text currentScoreText;
+    [SerializeField] private TMP_Text specificItemAmount;
     [SerializeField] private GameObject specificItemImage;
     private float displayScore;
     
@@ -74,7 +74,7 @@ public class HUDManager : MonoBehaviour
         displayScore = 0;
         callTimer = false;
         time = 3.5f;
-        currentScoreText.text = "Score: " + displayScore.ToString();
+        currentScoreText.SetText("Score: " + displayScore.ToString());
         StartCoroutine(ScoreUpdater());
     }
 
@@ -83,7 +83,7 @@ public class HUDManager : MonoBehaviour
     {
         if (specificItemImage.activeInHierarchy)
         {
-            specificItemAmount.text = GameManager.collectedSpecificItems.ToString() + "/" + GameManager.specificLevelItemOnMap.ToString();
+            specificItemAmount.SetText(GameManager.collectedSpecificItems.ToString() + "/" + GameManager.specificLevelItemOnMap.ToString()); 
         }
         currentScore = GameManager.Score;
         hpAmountText.SetText("x " + player.hp.ToString());

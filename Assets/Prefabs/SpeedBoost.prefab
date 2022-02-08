@@ -108,7 +108,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4244635647
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
+  m_fontColor: {r: 0, g: 0, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -265,6 +265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   maxRotation: 10
+  ShakeAutomaticly: 1
+  _shakeTimer: 0
 --- !u!1 &4700697198333264083
 GameObject:
   m_ObjectHideFlags: 0
