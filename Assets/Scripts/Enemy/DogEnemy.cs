@@ -81,7 +81,7 @@ public class DogEnemy : MonoBehaviour
 
     public void Move()
     {
-        if (shouldStartMoving && CalculateXDistanceToPlayer() > stopDistance)
+        if (shouldStartMoving && CalculateXDistanceToPlayer() > stopDistance && moveSpeed != 0)
         {
             mineRb.velocity = new Vector2(moveSpeed * Time.fixedDeltaTime, mineRb.velocity.y);
             animator.SetBool("IsWalking", true);

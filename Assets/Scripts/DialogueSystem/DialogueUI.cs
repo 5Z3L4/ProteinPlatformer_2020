@@ -11,7 +11,6 @@ public class DialogueUI : MonoBehaviour
     public Image InterlocutorImage => interlocutorImage;
     public Color DefaultInterlocutorColor => defaultInterlocutorColor;
     public Color DefaultPlayerColor => defaultPlayerColor;
-    public List<bool> isCompleted = new List<bool>();
     public bool isOpen = false;
     [SerializeField] private Image interlocutorImage;
     [SerializeField] private GameObject dialogueBox;
@@ -42,8 +41,19 @@ public class DialogueUI : MonoBehaviour
             interlocutorImage.sprite = dialogueActivator.ImageToShow;
         }
     }
+    private void Update()
+    {
+        if (isOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                CloseDialogueBox();
+            }
+        }
+    }
     public void ShowDialogue(InterlocutorDialogue interlocutorDialogue)
     {
+        if (Time.timeScale == 0) return;
         isOpen = true;
         player.canMove = false;
         interlocutorImage.gameObject.SetActive(true);
@@ -67,42 +77,42 @@ public class DialogueUI : MonoBehaviour
                 break;
             }
             yield return null;
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         }
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         if (interlocutorDialogue.HasResponses)
         {
             textLabel.text = string.Empty;
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
             interlocutorImage.color = DarkenColor(interlocutorImage);
             responseHandler.ShowResponses(interlocutorDialogue.playerResponse);
             if (interlocutorDialogue.playerResponse.Length == 1)
             {
-                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
                 responseHandler.OnPickedResponse(interlocutorDialogue.playerResponse[0]);
             }
         }
         else
         {
-            isCompleted.Add(true);
-            interlocutorImage.gameObject.SetActive(false);
             CloseDialogueBox();
-            
         }
         if (interlocutorDialogue.shouldCheckForEnd)
         {
             interlocutorDialogue.isOver = true;
         }
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         
     }
     public void CloseDialogueBox()
     {
         player.canMove = true;
         playerImage.gameObject.SetActive(false);
+        interlocutorImage.gameObject.SetActive(false);
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
         isOpen = false;
+        textWriter.Stop();
+        StopAllCoroutines();
     }
     private IEnumerator RunTypingEffect(string dialogue)
     {
@@ -110,10 +120,10 @@ public class DialogueUI : MonoBehaviour
         while (textWriter.IsRunning)
         {
             yield return null;
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 textWriter.Stop();
-                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
             }
         }
     }
