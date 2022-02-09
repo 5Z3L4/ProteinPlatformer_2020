@@ -11,7 +11,7 @@ public class Landing : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 3 && player.isAirborn && player.isGrounded)
+        if ((collision.gameObject.layer == 3 || collision.gameObject.layer == 16) && player.isAirborn && player.isGrounded)
         {
             player.PlayParticleSystem(player.jumpAndLand);
             player.isAirborn = false;
