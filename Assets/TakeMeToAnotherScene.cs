@@ -6,7 +6,12 @@ using UnityEngine.SceneManagement;
 public class TakeMeToAnotherScene : MonoBehaviour
 {
     public Animator SceneTransition;
+    public TimeCounter timer;
     private bool _isPlayerInTrigger = false;
+    private void Awake()
+    {
+        timer = FindObjectOfType<TimeCounter>();
+    }
     private void Update()
     {
         if (!_isPlayerInTrigger) return;
@@ -25,6 +30,7 @@ public class TakeMeToAnotherScene : MonoBehaviour
     }
     private IEnumerator LoadBossScene()
     {
+        timer.AddPointsForTime();
         SceneTransition.SetTrigger("Start");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("BossLevel1 muscular");
