@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferCounter;
     public CapsuleCollider2D mainCollider;
     public CircleCollider2D slideCollider;
+    public Transform slideCheckUp;
     public Animator playerAnim;
     public GameObject wallCheck;
     private float jumpTimeCounter;
@@ -68,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
     public bool GodMode = false;
     public float GodModeTimer;
     private float _godModeTime;
+    private bool isAfterSlide;
+
     private void Awake()
     {
         playerAnim = GameObject.FindGameObjectWithTag("PlayerSprite").GetComponent<Animator>();
@@ -98,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
         CheckInputs();
+        
         if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C)) && canMove)
         {
             if (!isSliding)
@@ -135,6 +139,15 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+
+        if (isAfterSlide)
+        {
+            if (!Physics2D.OverlapCircle(slideCheckUp.position, 0.5f, whatIsGround))
+            {
+                overSlide();
+                isAfterSlide = false;
+            }
+        }
     }
 
     public IEnumerator GodModeOff()
@@ -164,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+        Gizmos.DrawWireSphere(slideCheckUp.position, 0.5f);
     }
     #region Jump
     private void CalculateJumpBuffer()
@@ -293,6 +307,11 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator stopSlide()
     {
         yield return new WaitForSeconds(0.8f);
+        isAfterSlide = true;
+    }
+
+    public void overSlide()
+    {
         playerAnim.SetBool("IsSliding", false);
         mainCollider.enabled = true;
         slideCollider.enabled = false;
