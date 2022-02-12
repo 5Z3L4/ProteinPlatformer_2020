@@ -5106,7 +5106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934776406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5913092299120865102}
@@ -5689,6 +5689,7 @@ MonoBehaviour:
   playerRB: {fileID: 5913092299120865098}
   mainCollider: {fileID: 1164784222}
   slideCollider: {fileID: 5913092299120865101}
+  slideCheckUp: {fileID: 934776407}
   playerAnim: {fileID: 0}
   wallCheck: {fileID: 1601613607}
   jumpTime: 0.25
