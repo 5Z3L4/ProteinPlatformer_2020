@@ -783,7 +783,7 @@ GameObject:
   - component: {fileID: 121517913}
   - component: {fileID: 121517912}
   m_Layer: 0
-  m_Name: Death_01
+  m_Name: BeatCoiner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1283,6 +1283,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &199970373 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5423013821782094186, guid: 1cb13c60c22ca3c47aac88ff74702fa8, type: 3}
+  m_PrefabInstance: {fileID: 571891522}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &213759227
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,6 +3296,10 @@ PrefabInstance:
       propertyPath: chargeSpeed
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 1823373232663629942, guid: 1cb13c60c22ca3c47aac88ff74702fa8, type: 3}
+      propertyPath: slideCheckUp
+      value: 
+      objectReference: {fileID: 199970373}
     - target: {fileID: 1823373233051424451, guid: 1cb13c60c22ca3c47aac88ff74702fa8, type: 3}
       propertyPath: m_Sprite
       value: 
