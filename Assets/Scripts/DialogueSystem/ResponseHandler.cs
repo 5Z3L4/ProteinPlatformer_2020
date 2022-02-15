@@ -6,10 +6,14 @@ using UnityEngine.EventSystems;
 
 public class ResponseHandler : MonoBehaviour
 {
+    public List<GameObject> tempResponseButtons = new List<GameObject>();
+
     [SerializeField] private RectTransform responseButtonTemplate;
     [SerializeField] private RectTransform responseContainer;
     private DialogueUI dialogueUI;
-    List<GameObject> tempResponseButtons = new List<GameObject>();
+    private GameObject currentlySelectedButton;
+    public GameObject CurrentlySelectedObject => currentlySelectedButton;
+    
     private void Start()
     {
         dialogueUI = gameObject.GetComponent<DialogueUI>();

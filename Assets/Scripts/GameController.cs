@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     void Start()
     {
         StartCoroutine(LateStart(0.2f));
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     IEnumerator LateStart(float waitTime)
     {

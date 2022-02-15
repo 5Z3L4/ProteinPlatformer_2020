@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
@@ -45,6 +46,13 @@ public class DialogueUI : MonoBehaviour
     {
         if (isOpen)
         {
+            if (responseHandler.tempResponseButtons.Count > 1)
+            {
+                if (EventSystem.current.currentSelectedGameObject == null)
+                {
+                    EventSystem.current.SetSelectedGameObject(responseHandler.tempResponseButtons[0]);
+                }
+            }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 CloseDialogueBox();

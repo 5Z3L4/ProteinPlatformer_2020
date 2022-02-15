@@ -18,7 +18,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
     public enum TutorialFinishKey
     {
         None,
-        ScrollWheel,
+        Zoom,
         LeftCtrl,
         Tab,
         S,
@@ -51,7 +51,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
     //}
     private void Update()
     {
-        if (key == TutorialFinishKey.ScrollWheel && isTutAvailable && (Input.mouseScrollDelta.y < 0 || Input.mouseScrollDelta.y > 0))
+        if (key == TutorialFinishKey.Zoom && isTutAvailable && (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.T)))
         {
             HideTutorialText();
         }
