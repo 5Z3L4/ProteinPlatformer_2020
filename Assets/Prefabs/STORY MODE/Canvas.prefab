@@ -2548,6 +2548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02dd1e20fbba5f448a61d98eff91e48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tempResponseButtons: []
   responseButtonTemplate: {fileID: 317210079}
   responseContainer: {fileID: 1161225502}
 --- !u!114 &264251755
@@ -2592,9 +2593,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5756c5fa5e8ced2469ef82f32b3b72f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSelectedButton: {fileID: 0}
-  firstSelectedOnConfirm: {fileID: 0}
-  confirmPanel: {fileID: 0}
+  firstSelectedButton: {fileID: 465121145452094957}
+  firstSelectedOnConfirm: {fileID: 4575889088571558034}
+  confirmPanel: {fileID: 4281390909031220492}
   pauseScreen: {fileID: 812682416933798939}
 --- !u!212 &488745531
 SpriteRenderer:

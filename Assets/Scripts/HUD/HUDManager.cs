@@ -71,7 +71,7 @@ public class HUDManager : MonoBehaviour
             scoreUpdateSpeed = 0.2f;
         }
         currentScore = GameManager.Score;
-        displayScore = 0;
+        displayScore = GameManager.Score;
         callTimer = false;
         time = 3.5f;
         currentScoreText.SetText("Score: " + displayScore.ToString());

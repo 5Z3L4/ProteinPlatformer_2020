@@ -12,6 +12,11 @@ public class MenuManagement : MonoBehaviour
     public GameObject leaderboardsPanel;
     public GameObject profilePanel;
     public GameObject optionsPanel;
+    private void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 
     public void OnClick(GameObject panel)
     {

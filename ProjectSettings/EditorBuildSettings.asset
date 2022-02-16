@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1/BossLevel1 muscular.unity
     guid: ddf76b99c65ca9f4386668c31b709798
   - enabled: 1
-    path: Assets/Scenes/DeathScreen.unity
-    guid: af87cfe51d9c33a439882cf1eb22d575
+    path: Assets/Scenes/Level2/Level2.unity
+    guid: 24e8b3dac6ee914469d9efab2c0ae3ce
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

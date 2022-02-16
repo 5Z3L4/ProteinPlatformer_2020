@@ -6,24 +6,32 @@ using UnityEngine;
 public class ChangeDialogue : MonoBehaviour
 {
     public InterlocutorDialogue newInterlocutorDialogue;
-    public InterlocutorDialogue lastInterlocutorDialogue;
-    public PlayerResponses lastPlayerResponse;
+    public InterlocutorDialogue[] lastInterlocutorDialogue;
+    public PlayerResponses[] lastPlayerResponse;
     [Tooltip("Dialogue Activator Object")]
     public DialogueActivator objectToChangeDialogue;
     private void Update()
     {
-        if (lastInterlocutorDialogue != null)
+        if (lastInterlocutorDialogue != null && lastInterlocutorDialogue.Length > 0)
         {
-            if (lastInterlocutorDialogue.isOver)
+            foreach(InterlocutorDialogue interlocutorToCheck in lastInterlocutorDialogue)
             {
-                SetNewDialogue(newInterlocutorDialogue);
+                if (interlocutorToCheck.isOver)
+                {
+                    SetNewDialogue(newInterlocutorDialogue);
+                    ActivateWithoutButtonChange();
+                }
             }
         }
-        else if (lastPlayerResponse != null)
+        else if (lastPlayerResponse != null && lastPlayerResponse.Length > 0)
         {
-            if (lastPlayerResponse.isOver)
+            foreach(PlayerResponses playerToCheck in lastPlayerResponse)
             {
-                SetNewDialogue(newInterlocutorDialogue);
+                if (playerToCheck.isOver)
+                {
+                    SetNewDialogue(newInterlocutorDialogue);
+                    ActivateWithoutButtonChange();
+                }
             }
         }
     }
@@ -35,5 +43,10 @@ public class ChangeDialogue : MonoBehaviour
             objectToChangeDialogue.currentDialogue = newIntDial;
         }
         this.enabled = false;
+    }
+
+    private void ActivateWithoutButtonChange()
+    {
+        objectToChangeDialogue.ActivateWithoutButton = false;
     }
 }
