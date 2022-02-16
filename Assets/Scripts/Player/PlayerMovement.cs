@@ -217,6 +217,7 @@ public class PlayerMovement : MonoBehaviour
             shouldJump = true;
             jumpTimeCounter = jumpTime;
             playerRB.velocity = Vector2.up * jumpForce;
+            mainCollider.enabled = true;
         }
 
         //if is player falling
@@ -381,7 +382,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(5);
         jumpForce = basejumpForce;
         isOnJumpBoost = false;
-        Debug.Log(jumpForce);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
