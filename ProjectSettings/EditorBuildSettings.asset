@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Level2/Level2.unity
+    guid: 24e8b3dac6ee914469d9efab2c0ae3ce
+  - enabled: 1
     path: Assets/Scenes/Menus/Menu.unity
     guid: 69d9583ee7af443449a200bbcbeb4e84
   - enabled: 1
@@ -17,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1/BossLevel1 muscular.unity
     guid: ddf76b99c65ca9f4386668c31b709798
-  - enabled: 1
-    path: Assets/Scenes/Level2/Level2.unity
-    guid: 24e8b3dac6ee914469d9efab2c0ae3ce
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
