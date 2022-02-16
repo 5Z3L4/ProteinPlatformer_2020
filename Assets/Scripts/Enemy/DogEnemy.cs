@@ -60,7 +60,7 @@ public class DogEnemy : MonoBehaviour
     }
     public void Attack()
     {
-        if (player.hp > 0 && player.isGrounded)
+        if (player.hp > 0)
         {
             Collider2D enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies).FirstOrDefault();
             if (timeBtwAttack <= 0)
