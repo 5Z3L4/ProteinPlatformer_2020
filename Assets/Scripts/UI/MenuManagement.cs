@@ -64,6 +64,7 @@ public class MenuManagement : MonoBehaviour
     public Button Level1;
     public void LaodScene(string sceneName)
     {
+        GameManager.Reset();
         SceneManager.LoadScene(sceneName);
     }
     public void ChangeMode(GameObject panel)

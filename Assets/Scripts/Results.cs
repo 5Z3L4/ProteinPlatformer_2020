@@ -33,8 +33,7 @@ public class Results : MonoBehaviour
     {
         StartCoroutine(SceneTransition());
         SceneManager.LoadScene("Level2");
-        GameManager.Score = 0;
-        GameManager.deaths = 0;
+        GameManager.Reset();
     }
     public void BackToMenu()
     {

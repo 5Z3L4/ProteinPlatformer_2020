@@ -25,6 +25,10 @@ public class DeathScreenManager : MonoBehaviour
 
         ScoreText.SetText("Score: \n" + score.ToString());
         DeathCounterText.SetText("Deaths: \n" + deaths.ToString());
+        if (gameObject.activeInHierarchy)
+        {
+            EventSystem.current.SetSelectedGameObject(restartButton);
+        }
     }
     private void OnEnable()
     {

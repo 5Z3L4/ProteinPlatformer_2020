@@ -24,4 +24,17 @@ public static class GameManager
     public static int specificLevelItemOnMap;
     public static int collectedSpecificItems;
 
+    public static void Reset()
+    {
+        specificLevelItemOnMap = 0;
+        collectedSpecificItems = 0;
+        deaths = 0;
+        Score = 0;
+        collectedConstitution = 0;
+        maxConstitution = 0;
+        collectedStrenght = 0;
+        maxStrenght = 0;
+        collectedAgility = 0;
+        maxAgility = 0;
+    }
 }
