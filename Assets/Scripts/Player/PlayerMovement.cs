@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem fakeFloorBlowUp;
     public ParticleSystem fakeWallBlowUp;
     public ParticleSystem jumpAndLand;
-
+    public bool KonamiMoonWalk;
     //move variables
     public float horizontalAxis;
     public float moveSpeed;
@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         //if is player trying to jump
-        if (coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn)
+        if ((coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn) || (KonamiMoonWalk && holdingSpace))
         {
             jumpBufferCounter = 0;
             coyoteeTimeCounter = 0;
