@@ -21,6 +21,6 @@ public class ShowKarkScore : MonoBehaviour
     {
         scoreText.SetText("+" + kark.scoreValue.ToString());
         anim.Play("karkScoreAnim");
-        Destroy(gameObject, anim.GetClip("karkScoreAnim").length);
+        Destroy(gameObject.transform.parent.gameObject, anim.GetClip("karkScoreAnim").length);
     }
 }

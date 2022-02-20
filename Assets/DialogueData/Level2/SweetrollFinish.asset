@@ -16,6 +16,5 @@ MonoBehaviour:
   dialogue:
   - So you've got your sweetroll?
   responses:
-  - responseText: I don't think so. It's just a bag with coin inside it... Anyway,
-      for duck sake, what sweetroll are you talking about?!
+  - responseText: Yeah... It looks like, but I don't really like them.
     dialogueObject: {fileID: 11400000, guid: 82ad82fea8c6d3b45a6be6490d5cd28a, type: 2}

@@ -14,14 +14,14 @@ public class ZoomOutCamera : MonoBehaviour
     }
     void Update()
     {
-        if (Input.mouseScrollDelta.y < 0)
+        if (Input.GetKey(KeyCode.R))
         {
             if (vCam.m_Lens.OrthographicSize <= maxCameraSize)
             {
                 vCam.m_Lens.OrthographicSize += zoomSpeed * Time.deltaTime;
             }
         }
-        else if(Input.mouseScrollDelta.y > 0)
+        else if(Input.GetKey(KeyCode.T))
         {
             if (vCam.m_Lens.OrthographicSize > minCameraSize)
             {

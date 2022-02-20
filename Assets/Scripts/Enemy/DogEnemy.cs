@@ -60,7 +60,7 @@ public class DogEnemy : MonoBehaviour
     }
     public void Attack()
     {
-        if (player.hp > 0 && player.isGrounded)
+        if (player.hp > 0)
         {
             Collider2D enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies).FirstOrDefault();
             if (timeBtwAttack <= 0)
@@ -81,7 +81,7 @@ public class DogEnemy : MonoBehaviour
 
     public void Move()
     {
-        if (shouldStartMoving && CalculateXDistanceToPlayer() > stopDistance)
+        if (shouldStartMoving && CalculateXDistanceToPlayer() > stopDistance && moveSpeed != 0)
         {
             mineRb.velocity = new Vector2(moveSpeed * Time.fixedDeltaTime, mineRb.velocity.y);
             animator.SetBool("IsWalking", true);

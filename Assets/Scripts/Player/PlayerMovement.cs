@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem fakeFloorBlowUp;
     public ParticleSystem fakeWallBlowUp;
     public ParticleSystem jumpAndLand;
-
+    public bool KonamiMoonWalk;
     //move variables
     public float horizontalAxis;
     public float moveSpeed;
@@ -49,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferCounter;
     public CapsuleCollider2D mainCollider;
     public CircleCollider2D slideCollider;
+    public Transform slideCheckUp;
     public Animator playerAnim;
     public GameObject wallCheck;
     private float jumpTimeCounter;
@@ -64,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
     public HUDManager HUDManager;
     private bool isDying;
     private bool holdingSpace;
+    public bool GodMode = false;
+    public float GodModeTimer;
+    private float _godModeTime;
+    private bool isAfterSlide;
 
     private void Awake()
     {
@@ -73,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
+        _godModeTime = GodModeTimer;
         coyoteeTimeCounter = coyoteetime;
         slideEmission = slide.emission;
         statistics.playerPosition = gameObject.transform;
@@ -94,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
         CheckInputs();
+        
         if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C)) && canMove)
         {
             if (!isSliding)
@@ -131,7 +139,28 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+
+        if (isAfterSlide)
+        {
+            if (!Physics2D.OverlapCircle(slideCheckUp.position, 0.5f, whatIsGround))
+            {
+                overSlide();
+                isAfterSlide = false;
+            }
+        }
     }
+
+    public IEnumerator GodModeOff()
+    {
+        yield return new WaitForSeconds(GodModeTimer);
+        GodMode = false;
+    }
+    public void GodModeOn()
+    {
+        GodMode = true;
+        StartCoroutine(GodModeOff());
+    }
+
     private void FixedUpdate()
     {
         if (!canMove) return;
@@ -148,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+        Gizmos.DrawWireSphere(slideCheckUp.position, 0.5f);
     }
     #region Jump
     private void CalculateJumpBuffer()
@@ -175,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         //if is player trying to jump
-        if (coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn)
+        if ((coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn) || (KonamiMoonWalk && holdingSpace))
         {
             jumpBufferCounter = 0;
             coyoteeTimeCounter = 0;
@@ -187,6 +217,7 @@ public class PlayerMovement : MonoBehaviour
             shouldJump = true;
             jumpTimeCounter = jumpTime;
             playerRB.velocity = Vector2.up * jumpForce;
+            mainCollider.enabled = true;
         }
 
         //if is player falling
@@ -277,6 +308,11 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator stopSlide()
     {
         yield return new WaitForSeconds(0.8f);
+        isAfterSlide = true;
+    }
+
+    public void overSlide()
+    {
         playerAnim.SetBool("IsSliding", false);
         mainCollider.enabled = true;
         slideCollider.enabled = false;
@@ -346,7 +382,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(5);
         jumpForce = basejumpForce;
         isOnJumpBoost = false;
-        Debug.Log(jumpForce);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -390,10 +425,12 @@ public class PlayerMovement : MonoBehaviour
     [ContextMenu("LowerPlayerHp")]
     public void TakeCertainAmountOfHp()
     {
+        if (GodMode) return;
         playerAnim.Play("SkinnyHit");
         SFXManager.PlaySound(SFXManager.Sound.GetHit, transform.position);
         KnockBack(false);
         hp -= 1;
+        GodModeOn();
         if (hp <= 0)
         {
             Die();

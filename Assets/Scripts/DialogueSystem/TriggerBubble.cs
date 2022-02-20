@@ -8,6 +8,7 @@ public class TriggerBubble : MonoBehaviour
     private DialogueUI dialogueUI;
     private Quest questSystem;
     private TutorialManagement tutorial;
+    private bool _isPlayerInTrigger = false;
 
     private void Awake()
     {
@@ -20,8 +21,11 @@ public class TriggerBubble : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (_isPlayerInTrigger) return;
+
         if (collision.CompareTag("Player"))
         {
+            _isPlayerInTrigger = true;
             if (questSystem != null)
             {
                 if (questSystem.isQuestAvailable && !questSystem.isQuestCompleted)
@@ -39,6 +43,7 @@ public class TriggerBubble : MonoBehaviour
         {
             NPCBubble.SetActive(false);
             textToShow.startingDialogueFinished = true;
+            _isPlayerInTrigger = false;
         }
     }
 }

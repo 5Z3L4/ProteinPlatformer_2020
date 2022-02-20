@@ -28,7 +28,7 @@ public class DumbbelFly : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.gameObject.layer == 3)
         {
             Destroy(gameObject);
         }

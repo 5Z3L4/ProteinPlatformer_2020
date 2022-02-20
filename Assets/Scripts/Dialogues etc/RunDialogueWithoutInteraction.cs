@@ -5,7 +5,7 @@ using UnityEngine;
 public class RunDialogueWithoutInteraction : MonoBehaviour
 {
     public DialogueUI dialogueUI;
-    public DialogueObject dialogueToStart;
+    public InterlocutorDialogue dialogueToStart;
 
     private void OnEnable()
     {

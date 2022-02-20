@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ResponseHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ResponseHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
     private TMP_Text text;
     private Color32 outlineColor;
@@ -30,4 +30,13 @@ public class ResponseHighlight : MonoBehaviour, IPointerEnterHandler, IPointerEx
         text.outlineColor = outlineColor;
     }
 
+    public void OnSelect(BaseEventData eventData)
+    {
+        text.outlineColor = highlightOutlineColor;
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        text.outlineColor = outlineColor;
+    }
 }

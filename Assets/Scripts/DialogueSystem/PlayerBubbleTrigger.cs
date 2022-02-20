@@ -6,18 +6,19 @@ using Cinemachine;
 
 public class PlayerBubbleTrigger : MonoBehaviour
 {
-    private PlayerBubble playerBubble;
     public TMP_Text tutorialText;
     public DialogueObject newPlayerBubbleText;
     public DialogueObject tutorial;
     public bool isTutAvailable;
     public bool callItWithoutButton;
-    [SerializeField] private TMP_Text pressE;
+    public ShowNormalText normalText;
+
     private bool isPlayerInTrigger = false;
+    private PlayerBubble playerBubble;
     public enum TutorialFinishKey
     {
         None,
-        ScrollWheel,
+        Zoom,
         LeftCtrl,
         Tab,
         S,
@@ -50,7 +51,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
     //}
     private void Update()
     {
-        if (key == TutorialFinishKey.ScrollWheel && isTutAvailable && (Input.mouseScrollDelta.y < 0 || Input.mouseScrollDelta.y > 0))
+        if (key == TutorialFinishKey.Zoom && isTutAvailable && (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.T)))
         {
             HideTutorialText();
         }
@@ -80,28 +81,20 @@ public class PlayerBubbleTrigger : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && pressE != null)
-        {
-            pressE.gameObject.SetActive(true);
-        }
-        
-    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             isPlayerInTrigger = true;
-            
         }
     }
 
     private void ShowTexts()
     {
-        if (pressE != null)
+        if (normalText != null)
         {
-            pressE.gameObject.SetActive(false);
+            normalText.HideText();
         }
         if (tutorial != null && tutorial.Dialogue.Length != 0 && !tutorialText.gameObject.activeInHierarchy && isTutAvailable)
         {
@@ -119,10 +112,6 @@ public class PlayerBubbleTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (pressE != null)
-            {
-                pressE.gameObject.SetActive(false);
-            }
             isPlayerInTrigger = false;
             playerBubble.gameObject.SetActive(false);
         }
@@ -136,8 +125,11 @@ public class PlayerBubbleTrigger : MonoBehaviour
                 tutorialText.text = string.Empty;
                 tutorialText.gameObject.SetActive(false);
                 isTutAvailable = false;
+                if (normalText != null)
+                {
+                    normalText.HideText();
+                }
             }
         }
-
     }
 }

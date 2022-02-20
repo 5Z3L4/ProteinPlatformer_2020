@@ -7,19 +7,18 @@ public class RugPullerDeath : StateMachineBehaviour
 {
 
     private GameObject dialogue;
-    private DialogueUI dialogueUI;
+    public InterlocutorDialogue lastDialogue;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
         dialogue = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(g => g.CompareTag("Ball"));
-        dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();
-        dialogueUI.isOver = false;
+        lastDialogue = GameObject.Find("LeaveMeAlone").GetComponent<InterlocutorDialogue>();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         dialogue.SetActive(true);
-        if (dialogueUI.isOver)
+        if (lastDialogue.isOver)
         {
             animator.SetBool("BossFlee", true);
         }
