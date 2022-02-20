@@ -319,8 +319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5353bccaea0e1794e8d122033ca7d1e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HUDM: {fileID: 8140784499073629995, guid: a131632a0c978af438c561b2c71ffeed, type: 3}
-  SM: {fileID: 0}
   holder: {fileID: 0}
   stats: 1
   scoreValue: 100
@@ -395,3 +393,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldBeCounted: 1
   countAs: 1
+  isSpecificItem: 0

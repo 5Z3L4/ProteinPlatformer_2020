@@ -58,7 +58,9 @@ MonoBehaviour:
   cameraSoftZoneWidth: 0
   cameraDeadZoneHeight: 0
   cameraDeadZoneWidth: 0
+  GameController: {fileID: 0}
   hpAmountText: {fileID: 0}
   scoreUpdateSpeed: -10
   currentScoreText: {fileID: 0}
   specificItemAmount: {fileID: 0}
+  specificItemImage: {fileID: 0}

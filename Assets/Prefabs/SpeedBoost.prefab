@@ -265,6 +265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   maxRotation: 10
+  ShakeAutomaticly: 1
+  _shakeTimer: 0
 --- !u!1 &4700697198333264083
 GameObject:
   m_ObjectHideFlags: 0

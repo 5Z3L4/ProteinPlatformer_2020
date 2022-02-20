@@ -24,7 +24,7 @@ public class HUDManager : MonoBehaviour
     public float cameraSoftZoneWidth;
     public float cameraDeadZoneHeight;
     public float cameraDeadZoneWidth;
-
+    public GameController GameController;
     private CinemachineFramingTransposer cinemachineBody;
     private Rigidbody2D playerRB;
     private Text dumbbelText, proteinText, meatText;
@@ -33,8 +33,9 @@ public class HUDManager : MonoBehaviour
     private SaveManager SM;
     [SerializeField] private TMP_Text hpAmountText;
     [SerializeField] private float scoreUpdateSpeed;
-    [SerializeField] private Text currentScoreText;
-    [SerializeField] private Text specificItemAmount;
+    [SerializeField] private TMP_Text currentScoreText;
+    [SerializeField] private TMP_Text specificItemAmount;
+    [SerializeField] private GameObject specificItemImage;
     private float displayScore;
     
     private void Awake()
@@ -55,6 +56,10 @@ public class HUDManager : MonoBehaviour
     }
     private void Start()
     {
+        if (GameManager.specificLevelItemOnMap == 0)
+        {
+            specificItemImage.SetActive(false);
+        }
         hpAmountText.SetText("x " + player.hp.ToString());
         cameraSoftZoneHeight = cinemachineBody.m_SoftZoneHeight;
         cameraSoftZoneWidth = cinemachineBody.m_SoftZoneWidth;
@@ -66,17 +71,20 @@ public class HUDManager : MonoBehaviour
             scoreUpdateSpeed = 0.2f;
         }
         currentScore = GameManager.Score;
-        displayScore = 0;
+        displayScore = GameManager.Score;
         callTimer = false;
         time = 3.5f;
-        currentScoreText.text = "Score: " + displayScore.ToString();
+        currentScoreText.SetText("Score: " + displayScore.ToString());
         StartCoroutine(ScoreUpdater());
     }
 
     //TO DO poprawiæ
     void Update()
     {
-        specificItemAmount.text = GameManager.collectedSpecificItems.ToString() + "/" + GameManager.specificLevelItemOnMap.ToString();
+        if (specificItemImage.activeInHierarchy)
+        {
+            specificItemAmount.SetText(GameManager.collectedSpecificItems.ToString() + "/" + GameManager.specificLevelItemOnMap.ToString()); 
+        }
         currentScore = GameManager.Score;
         hpAmountText.SetText("x " + player.hp.ToString());
         if (callTimer && GameManager.isStoryMode)
@@ -153,7 +161,8 @@ public class HUDManager : MonoBehaviour
         cinemachineBody.m_ScreenX = 0.5f;
         deathScreenCanvas.gameObject.SetActive(false);
         canvas.gameObject.SetActive(true);
-        dyingBackground.SetActive(false); 
+        dyingBackground.SetActive(false);
+        GameController.RespawnPlatforms();
         Time.timeScale = 1;
     }
     public IEnumerator DyingScreen()

@@ -6,7 +6,7 @@ public class Quest : MonoBehaviour
     [HideInInspector]public bool isQuestCompleted;
     [Tooltip("Dialogue Activator Object")]
     [SerializeField] private GameObject QuestDestinationDialogueActivator;
-    public DialogueObject newDialogue;
+    public InterlocutorDialogue newDialogue;
     public bool questItem = false;
     private void Start()
     {
@@ -15,13 +15,16 @@ public class Quest : MonoBehaviour
     }
     public void ChangeDialogue()
     {
-        QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().currentDialogue = newDialogue;
-        isQuestAvailable = false;
-        isQuestCompleted = true;
-        print("Quest " + QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID + " completed!");
-        if (QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID < (QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questTargets.Length - 1))
+        if (QuestDestinationDialogueActivator != null)
         {
-            QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID++;
+            QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().currentDialogue = newDialogue;
+            isQuestAvailable = false;
+            isQuestCompleted = true;
+            print("Quest " + QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID + " completed!");
+            if (QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID < (QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questTargets.Length - 1))
+            {
+                QuestDestinationDialogueActivator.GetComponent<DialogueActivator>().questID++;
+            }
         }
     }
 

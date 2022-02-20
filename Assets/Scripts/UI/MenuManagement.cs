@@ -12,6 +12,11 @@ public class MenuManagement : MonoBehaviour
     public GameObject leaderboardsPanel;
     public GameObject profilePanel;
     public GameObject optionsPanel;
+    private void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 
     public void OnClick(GameObject panel)
     {
@@ -59,6 +64,7 @@ public class MenuManagement : MonoBehaviour
     public Button Level1;
     public void LaodScene(string sceneName)
     {
+        GameManager.Reset();
         SceneManager.LoadScene(sceneName);
     }
     public void ChangeMode(GameObject panel)

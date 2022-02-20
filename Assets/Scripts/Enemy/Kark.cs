@@ -166,7 +166,6 @@ public class Kark : MonoBehaviour //,Enemy
         canMove = true;
         player.TakeCertainAmountOfHp();
         //player.KnockBack(!facingRight);
-        print("Player hp: " + player.hp);
         yield return new WaitForSeconds(0.2f);
         Flip();
     }

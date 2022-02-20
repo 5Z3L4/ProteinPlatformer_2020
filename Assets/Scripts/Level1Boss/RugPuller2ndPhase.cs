@@ -6,22 +6,29 @@ using UnityEngine;
 public class RugPuller2ndPhase : StateMachineBehaviour
 {
     private GameObject dialogue;
-    private DialogueUI dialogueUI;
+    public InterlocutorDialogue lastDialogue;
+    private float _waitBeforeTrans = 0.5f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         dialogue = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(g => g.CompareTag("BossRage"));
-        dialogueUI = GameObject.Find("Canvas").GetComponent<DialogueUI>();
-        dialogueUI.isOver = false;
+        lastDialogue = GameObject.Find("BossRage").GetComponent<InterlocutorDialogue>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         dialogue.SetActive(true);
-        if (dialogueUI.isOver)
+        if (lastDialogue.isOver)
         {
-            animator.SetBool("RageRun", true);
+            if (_waitBeforeTrans <= 0)
+            {
+                animator.SetBool("RageRun", true);
+            }
+            else
+            {
+                _waitBeforeTrans -= Time.deltaTime;
+            }
         }
     }
 
