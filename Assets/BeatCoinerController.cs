@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BeatCoinerController : MonoBehaviour
 {
     private bool _facingRight;
     public int hp = 5;
+    public GameObject SliderObj;
+    public Slider HpSlider;
     private PlayerMovement _player;
     private Animator _anim;
+    
 
     private void Awake()
     {
         _player = FindObjectOfType<PlayerMovement>();
         _anim = GetComponent<Animator>();
+        HpSlider.maxValue = hp;
+    }
+    private void Start()
+    {
+        HpSlider.value = hp;
     }
     void Update()
     {
@@ -28,6 +37,7 @@ public class BeatCoinerController : MonoBehaviour
             Flip();
             _facingRight = false;
         }
+        
     }
 
     public void Flip()
@@ -48,14 +58,15 @@ public class BeatCoinerController : MonoBehaviour
     void BallHit()
     {
         hp--;
+        HpSlider.value = hp;
         StartCoroutine(DestroyAllBalls());
         if (hp <= 5)
         {
-            print("x");
             _anim.SetBool("2ndPhase", true);
         }
         if (hp<=0)
         {
+            SliderObj.SetActive(false);
             Destroy(gameObject);
         }
         if (!_anim.GetBool("BallsDidBoom"))
