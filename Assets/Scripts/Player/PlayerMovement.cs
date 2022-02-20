@@ -385,18 +385,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
-        {
-            PlayParticleSystem(fakeWallBlowUp);
-            ScreenShake.Instance.Shakecamera(5f, .1f);
-            Destroy(collision.gameObject);
-        }
-        if (collision.gameObject.tag == "Smashable" && isSmashing)
-        {
-            PlayParticleSystem(fakeFloorBlowUp);
-            ScreenShake.Instance.Shakecamera(5f, .1f);
-            Destroy(collision.gameObject);
-        }
         if (collision.gameObject.tag == "SpeedBoost")
         {
             SpeedBoost();
@@ -523,6 +511,21 @@ public class PlayerMovement : MonoBehaviour
                 shouldSmashParticle = false;
                 isSmashing = false;
             }
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
+        {
+            PlayParticleSystem(fakeWallBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Smashable" && isSmashing)
+        {
+            PlayParticleSystem(fakeFloorBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
         }
     }
 }
