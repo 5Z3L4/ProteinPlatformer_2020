@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class BeatCoinerShoting : StateMachineBehaviour
 {
-    public float StartTimeBtwShot = 0.5f;
+    public float StartTimeBtwShot = 1f;
     public int CurrentShotCounter = 0;
     private float _timeBtwShot;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("ShotEnd", false);
         animator.SetBool("Jump", false);
+        animator.SetBool("Balls", false);
+        animator.SetBool("BallsDidBoom", false);
         _timeBtwShot = StartTimeBtwShot;
     }
 
