@@ -3612,6 +3612,10 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1823373232663629942, guid: 1cb13c60c22ca3c47aac88ff74702fa8, type: 3}
+      propertyPath: GodModeTimer
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823373232663629942, guid: 1cb13c60c22ca3c47aac88ff74702fa8, type: 3}
       propertyPath: slideCheckUp
       value: 
       objectReference: {fileID: 199970373}
