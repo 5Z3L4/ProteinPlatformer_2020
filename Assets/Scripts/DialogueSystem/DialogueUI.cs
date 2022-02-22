@@ -23,6 +23,7 @@ public class DialogueUI : MonoBehaviour
     private ResponseHandler responseHandler;
     private Color defaultInterlocutorColor;
     private Color defaultPlayerColor;
+    private float jumpBufferTemp;
     private void Awake()
     {        
         player = FindObjectOfType<PlayerMovement>();
@@ -35,6 +36,7 @@ public class DialogueUI : MonoBehaviour
     }
     private void Start()
     {
+        jumpBufferTemp = player.jumpBuffer;
         defaultPlayerColor = playerImage.color;
         defaultInterlocutorColor = interlocutorImage.color;
         if (GameObject.Find("Dialogue") != null)
@@ -53,10 +55,6 @@ public class DialogueUI : MonoBehaviour
                     EventSystem.current.SetSelectedGameObject(responseHandler.tempResponseButtons[0]);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                CloseDialogueBox();
-            }
         }
     }
     public void ShowDialogue(InterlocutorDialogue interlocutorDialogue)
@@ -64,6 +62,7 @@ public class DialogueUI : MonoBehaviour
         if (Time.timeScale == 0) return;
         isOpen = true;
         player.canMove = false;
+        player.jumpBuffer = 0;
         interlocutorImage.gameObject.SetActive(true);
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(interlocutorDialogue));
@@ -119,6 +118,7 @@ public class DialogueUI : MonoBehaviour
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
         isOpen = false;
+        player.jumpBuffer = jumpBufferTemp;
         textWriter.Stop();
         StopAllCoroutines();
     }
