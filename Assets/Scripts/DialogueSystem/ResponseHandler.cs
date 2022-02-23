@@ -66,6 +66,10 @@ public class ResponseHandler : MonoBehaviour
         {
             dialogueUI.CloseDialogueBox();
             dialogueUI.InterlocutorImage.gameObject.SetActive(false);
+            if (response.shouldCheckForEnd)
+            {
+                response.isOver = true;
+            }
         }
     }
 }
