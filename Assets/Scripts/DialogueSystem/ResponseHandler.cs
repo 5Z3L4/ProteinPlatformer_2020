@@ -41,11 +41,11 @@ public class ResponseHandler : MonoBehaviour
             count++;
             tempResponseButtons.Add(responseButton);
         }
-        if (tempResponseButtons.Count > 1)
-        {
+        //if (tempResponseButtons.Count > 1)
+        //{
             EventSystem.current.firstSelectedGameObject = tempResponseButtons[0];
             EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
-        }
+        //}
     }
     public void OnPickedResponse(PlayerResponses response)
     {
