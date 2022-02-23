@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class Kark : MonoBehaviour //,Enemy
 {
-    PlayerMovement player;
-    [SerializeField] float timeBtwAttack;
-    [SerializeField] float startTimeBtwAttack;
-    [SerializeField] Transform castPos;
-    [SerializeField] float baseCastDist;
+    public Animator myAnim;
+    public float timeBtwAttack;
+    public float startTimeBtwAttack;
+    public Transform castPos;
+    public float baseCastDist;
     public bool facingRight;
-    Rigidbody2D rb;
-    [SerializeField] float moveSpeed;
-    Vector3 baseScale;
-    bool canMove;
-    bool canAttack;
-    bool isFlipping = false;
-    [Tooltip("true -> w prawo false -> w lewo")]
+    public float moveSpeed;
     public bool leftOrRight = true;
     public bool shouldAttack = true;
-    public int scoreValue = 10;
+    public int scoreValue = 100;
+    public bool shouldFlipAfterPunch = true;
+    private PlayerMovement player;
+    private Rigidbody2D rb;
+    private Vector3 baseScale;
+    private bool canMove;
+    private bool canAttack;
+    private bool isFlipping = false;
+    [Tooltip("true -> w prawo false -> w lewo")]
     [SerializeField] private GameObject scoreText;
-
-    public Animator myAnim;
     private bool isDying;
+    
 
     private void Awake()
     {
@@ -89,7 +90,6 @@ public class Kark : MonoBehaviour //,Enemy
         canMove = true;
         isFlipping = false;
         myAnim.SetFloat("Speed", moveSpeed);
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -167,7 +167,10 @@ public class Kark : MonoBehaviour //,Enemy
         player.TakeCertainAmountOfHp();
         //player.KnockBack(!facingRight);
         yield return new WaitForSeconds(0.2f);
-        Flip();
+        if (shouldFlipAfterPunch)
+        {
+            Flip();
+        }
     }
     bool IsHittingWall()
     {
@@ -192,10 +195,12 @@ public class Kark : MonoBehaviour //,Enemy
     }
     public void Flip()
     {
+
         Vector3 newScale = baseScale;
         newScale.x = transform.localScale.x * -1;
         transform.localScale = newScale;
         facingRight = !facingRight;
+
     }
     bool IsNearEdge()
     {
