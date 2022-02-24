@@ -5,29 +5,60 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float shootSpeed;
-    public float lifeTime;
-    public Rigidbody2D rb;
     public PlayerMovement player;
+
+    private Vector3 targetPos;
+    private Vector3 startingPos;
+    private bool startMoving = false;
+    private ParticleSystem particleSystem;
+    private bool shouldPlayParticle = true;
+
+
     private void Awake()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        player = FindObjectOfType<PlayerMovement>().GetComponent<PlayerMovement>();
+        particleSystem = GetComponentInChildren<ParticleSystem>();
     }
     private void Start()
     {
-        Invoke("DestroyProjectile", lifeTime);
-        //rb.velocity = new Vector2(shootSpeed * GameObject.Find("Girl").GetComponent<LaughingGirl>().isFacingRight * Time.fixedDeltaTime, 0);
+        startingPos = transform.position;
     }
-    private void DestroyProjectile()
+    private void OnEnable()
     {
-        Destroy(gameObject);
+        targetPos = player.transform.position;
+        startMoving = true;
     }
+    private void Update()
+    {
+        if (startMoving)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetPos, shootSpeed * Time.deltaTime);
+            if (transform.position == targetPos && shouldPlayParticle)
+            {
+                shouldPlayParticle = false;
+                StartCoroutine(Destroy());
+            }
+        }
+    }
+    private void OnDisable()
+    {
+        transform.position = startingPos;
+        startMoving = false;    
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            player.hp--;
-            DestroyProjectile();
+            StartCoroutine(Destroy());
+            player.TakeCertainAmountOfHp();
         }
-        
+    }
+
+    IEnumerator Destroy()
+    {
+        particleSystem.Play();
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
     }
 }

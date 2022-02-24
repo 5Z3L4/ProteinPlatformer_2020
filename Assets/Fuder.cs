@@ -10,6 +10,11 @@ public class Fuder : MonoBehaviour
     [Tooltip("true -> w prawo false -> w lewo")]
     public bool leftOrRight;
     public float moveSpeed;
+    public float projectileSpeed = 20f;
+    public float attackRange = 10f;
+    public float timeBtwAttack;
+    public float startTimeBtwAttack;
+    public GameObject projectile;
 
     private bool isFlipping = false;
     private PlayerMovement player;
@@ -17,9 +22,12 @@ public class Fuder : MonoBehaviour
     private Vector3 baseScale;
     public bool canAttack;
     public bool canMove;
-    private float timeBtwAttack;
-    private float startTimeBtwAttack;
     private Animator myAnim;
+    private bool playerOnRight;
+    private LayerMask groundLayer;
+    private LayerMask playerLayer;
+
+
     private void Awake()
     {
         myAnim = GetComponentInChildren<Animator>();
@@ -29,8 +37,9 @@ public class Fuder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        groundLayer = 1 << LayerMask.NameToLayer("Ground");
+        playerLayer = 1 << LayerMask.NameToLayer("Player");
         baseScale = transform.localScale;
-        timeBtwAttack = startTimeBtwAttack;
         canAttack = false;
         canMove = true;
         myAnim.SetFloat("MoveSpeed", moveSpeed);
@@ -48,8 +57,44 @@ public class Fuder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckPlayerPos(player.transform.position);
+
+        if (Mathf.Abs(Vector2.Distance(player.transform.position, transform.position)) <= attackRange && ((facingRight && playerOnRight) || (!facingRight && !playerOnRight)))
+        {
+            RaycastHit2D hitGround = Physics2D.Linecast(transform.position, player.transform.position, groundLayer);
+            if (hitGround.collider == null)
+            {
+                RaycastHit2D hitPlayer = Physics2D.Linecast(transform.position, player.transform.position, playerLayer);
+                if (hitPlayer.collider != null)
+                {
+                    if (hitPlayer.collider.gameObject.CompareTag("Player"))
+                    {
+                        canAttack = true;
+                        canMove = false;
+                        myAnim.SetFloat("MoveSpeed", 0);
+                        timeBtwAttack -= Time.deltaTime;
+                    }
+                }
+            }
+            Debug.DrawLine(transform.position, player.transform.position);
+        }
+        else
+        {
+            timeBtwAttack = 0;
+            canAttack = false;
+            if (!isFlipping)
+            {
+                canMove = true;
+                myAnim.SetFloat("MoveSpeed", moveSpeed);
+            }
+        }
         
+        if (canAttack)
+        {
+            StartCoroutine(ShootPoision());
+        }
     }
+
     private void FixedUpdate()
     {
         float vX = moveSpeed;
@@ -65,7 +110,6 @@ public class Fuder : MonoBehaviour
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-
         if (IsHittingWall() || IsNearEdge())
         {
             if (!isFlipping)
@@ -74,6 +118,18 @@ public class Fuder : MonoBehaviour
             }
         }
     }
+
+    IEnumerator ShootPoision()
+    {
+        if (timeBtwAttack <= 0)
+        {
+            timeBtwAttack = startTimeBtwAttack;
+            myAnim.Play("Attack");
+            projectile.SetActive(true);
+            yield return new WaitUntil(() => !projectile.activeInHierarchy);
+        }
+    }
+
     IEnumerator WaitBeforeFlip()
     {
         isFlipping = true;
@@ -85,6 +141,7 @@ public class Fuder : MonoBehaviour
         isFlipping = false;
         myAnim.SetFloat("MoveSpeed", moveSpeed);
     }
+
     bool IsHittingWall()
     {
         bool val = false;
@@ -108,12 +165,10 @@ public class Fuder : MonoBehaviour
     }
     public void Flip()
     {
-
         Vector3 newScale = baseScale;
         newScale.x = transform.localScale.x * -1;
         transform.localScale = newScale;
         facingRight = !facingRight;
-
     }
     bool IsNearEdge()
     {
@@ -131,5 +186,21 @@ public class Fuder : MonoBehaviour
             val = true;
         }
         return val;
+    }
+    private void CheckPlayerPos(Vector2 playerPos)
+    {
+        if ((playerPos.x - transform.position.x) >= 0)
+        {
+            playerOnRight = true;
+        }
+        else if ((playerPos.x - transform.position.x) < 0)
+        {
+            playerOnRight = false;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
