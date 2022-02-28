@@ -122,7 +122,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y != 0 && allowSmash)
         {
-            Smash();
+            if (!isSmashing)
+            {
+                Smash();
+            }
         }
 
         CheckCoyoteeTime();
@@ -337,6 +340,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Smash()
     {
+        playerAnim.SetBool("IsSmashing", true);
         PlayParticleSystem(falling);
         playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
         isSmashing = true;
