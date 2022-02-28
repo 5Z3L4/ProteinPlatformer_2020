@@ -5,6 +5,7 @@ using UnityEngine;
 public class MiniMap : MonoBehaviour
 {
     public Transform ObjToFollow;
+    public float ZoomSpeed = 10f;
     private Camera _miniMapCam;
 
     private void Awake()
@@ -24,11 +25,11 @@ public class MiniMap : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftBracket))
         {
-            _miniMapCam.orthographicSize++;
+            _miniMapCam.orthographicSize += Time.deltaTime* ZoomSpeed;
         }
         else if (Input.GetKey(KeyCode.RightBracket))
         {
-            _miniMapCam.orthographicSize--;
+            _miniMapCam.orthographicSize -= Time.deltaTime * ZoomSpeed;
         }
     }
 
