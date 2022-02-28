@@ -38,8 +38,8 @@ TagManager:
   - Player
   - OnlyPlayer
   - GroundIgnoreWallCheck
-  - 
-  - 
+  - MiniMap
+  - Background
   - 
   - 
   - 
