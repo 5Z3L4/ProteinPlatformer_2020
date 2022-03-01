@@ -4,61 +4,92 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float shootSpeed;
-    public PlayerMovement player;
+    public ParticleSystem destroyParticles;
+    public float projectileSpeed = 20f;
+    public Fuder fuder;
 
-    private Vector3 targetPos;
-    private Vector3 startingPos;
-    private bool startMoving = false;
-    private ParticleSystem particleSystem;
-    private bool shouldPlayParticle = true;
-
+    private Vector2 targetPos;
+    private Vector2 startingPos;
+    private PlayerMovement player;
+    private bool hit = false;
+    private bool lateEnable = false;
+    private Rigidbody2D rb;
+    private bool canMove = false;
 
     private void Awake()
     {
-        player = FindObjectOfType<PlayerMovement>().GetComponent<PlayerMovement>();
-        particleSystem = GetComponentInChildren<ParticleSystem>();
+        player = FindObjectOfType<PlayerMovement>();
     }
     private void Start()
     {
         startingPos = transform.position;
+        rb = GetComponent<Rigidbody2D>();
     }
     private void OnEnable()
     {
         targetPos = player.transform.position;
-        startMoving = true;
-    }
-    private void Update()
-    {
-        if (startMoving)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, shootSpeed * Time.deltaTime);
-            if (transform.position == targetPos && shouldPlayParticle)
-            {
-                shouldPlayParticle = false;
-                StartCoroutine(Destroy());
-            }
-        }
+        lateEnable = true;
     }
     private void OnDisable()
     {
-        transform.position = startingPos;
-        startMoving = false;    
+        destroyParticles.transform.position = transform.position;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        destroyParticles.Play();
+        hit = false;
     }
+    
+    private void Update()
+    {
+        if (lateEnable)
+        {
+            OnLateEnable();
+        }
+        if (Vector2.Distance(transform.position, targetPos) <= 0.1)
+        {
+            gameObject.SetActive(false);
+            canMove = false;
+        }
+        else if (hit)
+        {
+            fuder.fuderAttacking = true;
+            gameObject.SetActive(false);
+            canMove = false;
 
+        }
+        else
+        {
+            canMove = true;
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (canMove)
+        {
+            rb.MovePosition(Vector2.MoveTowards(transform.position, targetPos, projectileSpeed * Time.fixedDeltaTime));
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            StartCoroutine(Destroy());
+            hit = true;
             player.TakeCertainAmountOfHp();
+        }
+        
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ground"))
+        {
+            print("Dupa");
+            hit = true;
         }
     }
 
-    IEnumerator Destroy()
+    private void OnLateEnable()
     {
-        particleSystem.Play();
-        yield return new WaitForSeconds(1f);
-        gameObject.SetActive(false);
+        transform.position = startingPos;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        lateEnable = false;
     }
 }

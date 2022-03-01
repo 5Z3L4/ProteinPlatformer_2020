@@ -15,6 +15,7 @@ public class Fuder : MonoBehaviour
     public float timeBtwAttack;
     public float startTimeBtwAttack;
     public GameObject projectile;
+    public bool fuderAttacking = false;
 
     private bool isFlipping = false;
     private PlayerMovement player;
@@ -80,7 +81,6 @@ public class Fuder : MonoBehaviour
         }
         else
         {
-            timeBtwAttack = 0;
             canAttack = false;
             if (!isFlipping)
             {
@@ -126,7 +126,7 @@ public class Fuder : MonoBehaviour
             timeBtwAttack = startTimeBtwAttack;
             myAnim.Play("Attack");
             projectile.SetActive(true);
-            yield return new WaitUntil(() => !projectile.activeInHierarchy);
+            yield return new WaitUntil(() => !fuderAttacking);
         }
     }
 
@@ -202,5 +202,12 @@ public class Fuder : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+    public void AlertObservers(string message)
+    {
+        if (message.Equals("AttackAnimationEnded"))
+        {
+            fuderAttacking = false;
+        }
     }
 }
