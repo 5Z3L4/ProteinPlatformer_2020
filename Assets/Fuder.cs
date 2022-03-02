@@ -25,8 +25,8 @@ public class Fuder : MonoBehaviour
     public bool canMove;
     private Animator myAnim;
     private bool playerOnRight;
-    private LayerMask groundLayer;
-    private LayerMask playerLayer;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask playerLayer;
 
 
     private void Awake()
@@ -38,8 +38,6 @@ public class Fuder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        groundLayer = 1 << LayerMask.NameToLayer("Ground");
-        playerLayer = 1 << LayerMask.NameToLayer("Player");
         baseScale = transform.localScale;
         canAttack = false;
         canMove = true;
