@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
     private bool lateEnable = false;
     private Rigidbody2D rb;
     private bool canMove = false;
+    private SpriteRenderer projectileSprite;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class Projectile : MonoBehaviour
     {
         startingPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
+        projectileSprite = GetComponent<SpriteRenderer>();
     }
     private void OnEnable()
     {
@@ -33,11 +35,10 @@ public class Projectile : MonoBehaviour
     private void OnDisable()
     {
         destroyParticles.transform.position = transform.position;
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        projectileSprite.enabled = false;
         destroyParticles.Play();
         hit = false;
     }
-    
     private void Update()
     {
         if (lateEnable)
@@ -54,7 +55,6 @@ public class Projectile : MonoBehaviour
             fuder.fuderAttacking = true;
             gameObject.SetActive(false);
             canMove = false;
-
         }
         else
         {
@@ -75,21 +75,18 @@ public class Projectile : MonoBehaviour
             hit = true;
             player.TakeCertainAmountOfHp();
         }
-        
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
         {
-            print("Dupa");
             hit = true;
         }
     }
-
     private void OnLateEnable()
     {
         transform.position = startingPos;
-        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        projectileSprite.enabled = true;
         lateEnable = false;
     }
 }
