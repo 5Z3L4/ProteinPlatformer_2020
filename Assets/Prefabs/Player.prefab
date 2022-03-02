@@ -5407,6 +5407,53 @@ CircleCollider2D:
   m_Offset: {x: 0.853615, y: -0.2841996}
   serializedVersion: 2
   m_Radius: 1.3595694
+--- !u!1 &4831173423107842397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6155583529736750948}
+  - component: {fileID: 6203636390697783739}
+  m_Layer: 8
+  m_Name: SlideCollider (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6155583529736750948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831173423107842397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.49, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5913092299120865102}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &6203636390697783739
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831173423107842397}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.1764851, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3009014
 --- !u!1 &5913092297051663632
 GameObject:
   m_ObjectHideFlags: 0
@@ -5630,6 +5677,7 @@ Transform:
   - {fileID: 2125414706}
   - {fileID: 1601613608}
   - {fileID: 934776407}
+  - {fileID: 6155583529736750948}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5661,7 +5709,7 @@ MonoBehaviour:
   allowCharge: 0
   allowSmash: 0
   chargeSpeed: 700
-  slideSpeed: 50000
+  slideSpeed: 700
   slide: {fileID: 3025373535833340419}
   smash: {fileID: 1886680183169553625}
   charge: {fileID: 3186263671420266488}
@@ -5669,6 +5717,7 @@ MonoBehaviour:
   fakeFloorBlowUp: {fileID: 9018949208425185363}
   fakeWallBlowUp: {fileID: 9018949207829170698}
   jumpAndLand: {fileID: 283386562}
+  KonamiMoonWalk: 0
   horizontalAxis: 0
   moveSpeed: 600
   facingRight: 1
@@ -5687,8 +5736,10 @@ MonoBehaviour:
   isGrounded: 0
   isSliding: 0
   playerRB: {fileID: 5913092299120865098}
+  jumpBuffer: 0.1
   mainCollider: {fileID: 1164784222}
   slideCollider: {fileID: 5913092299120865101}
+  slideCollider2: {fileID: 6203636390697783739}
   slideCheckUp: {fileID: 934776407}
   playerAnim: {fileID: 0}
   wallCheck: {fileID: 1601613607}
@@ -5887,14 +5938,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12a20bacdfc155544b436c17ba0cc8f6, type: 3}
---- !u!198 &9018949207829170698 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3397465197084386104, guid: 12a20bacdfc155544b436c17ba0cc8f6, type: 3}
-  m_PrefabInstance: {fileID: 5913092297071094066}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9018949207829170696 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3397465197084386106, guid: 12a20bacdfc155544b436c17ba0cc8f6, type: 3}
+  m_PrefabInstance: {fileID: 5913092297071094066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &9018949207829170698 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3397465197084386104, guid: 12a20bacdfc155544b436c17ba0cc8f6, type: 3}
   m_PrefabInstance: {fileID: 5913092297071094066}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5913092297293955668
@@ -6033,14 +6084,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62cefd48f5a29384fa449f02d0508747, type: 3}
---- !u!198 &1886680183169553625 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5197527516026277478, guid: 62cefd48f5a29384fa449f02d0508747, type: 3}
-  m_PrefabInstance: {fileID: 5913092297515834047}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1886680183169553631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5197527516026277472, guid: 62cefd48f5a29384fa449f02d0508747, type: 3}
+  m_PrefabInstance: {fileID: 5913092297515834047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1886680183169553625 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5197527516026277478, guid: 62cefd48f5a29384fa449f02d0508747, type: 3}
   m_PrefabInstance: {fileID: 5913092297515834047}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5913092298504011987
@@ -6183,14 +6234,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12a20bacdfc155544b436c17ba0cc8f6, type: 3}
---- !u!198 &9018949208425185363 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3397465197084386104, guid: 12a20bacdfc155544b436c17ba0cc8f6, type: 3}
-  m_PrefabInstance: {fileID: 5913092298757825387}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9018949208425185361 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3397465197084386106, guid: 12a20bacdfc155544b436c17ba0cc8f6, type: 3}
+  m_PrefabInstance: {fileID: 5913092298757825387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &9018949208425185363 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3397465197084386104, guid: 12a20bacdfc155544b436c17ba0cc8f6, type: 3}
   m_PrefabInstance: {fileID: 5913092298757825387}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5913092298981656496
