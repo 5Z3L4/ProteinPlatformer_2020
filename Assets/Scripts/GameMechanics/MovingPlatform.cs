@@ -28,11 +28,11 @@ public class MovingPlatform : MonoBehaviour
         {
             if (transform.position.x > startPos.x + distance)
             {
-                speed = -startSpeed;
+                speed *= -1;
             }
             if (transform.position.x < startPos.x - distance)
             {
-                speed = startSpeed;
+                speed *= -1;
             }
             transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
         }
@@ -40,11 +40,11 @@ public class MovingPlatform : MonoBehaviour
         {
             if (transform.position.y > startPos.y + distance)
             {
-                speed = -startSpeed;
+                speed *= -1;
             }
             if (transform.position.y < startPos.y - distance)
             {
-                speed = startSpeed;
+                speed *= -1;
             }
             transform.position = new Vector2(transform.position.x, transform.position.y + speed * Time.deltaTime);
         }
