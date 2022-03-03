@@ -102,7 +102,10 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
         CheckInputs();
-        
+        if (isGrounded)
+        {
+            playerAnim.SetBool("IsFalling", false);
+        }
         if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C)) && canMove)
         {
             if (!isSliding)
