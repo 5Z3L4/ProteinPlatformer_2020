@@ -36,7 +36,7 @@ public class MiniMap : MonoBehaviour
     void FollowObj()
     {
         Vector3 newPosition = ObjToFollow.position;
-        newPosition.y = transform.position.y;
+        //newPosition.y = transform.position.y;
         newPosition.z = transform.position.z;
         transform.position = newPosition;
     }
