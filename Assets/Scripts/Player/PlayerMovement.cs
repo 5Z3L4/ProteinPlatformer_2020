@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isSliding;
     public Rigidbody2D playerRB;
     public float jumpBuffer = 0.1f;
-    private float coyoteetime = 0.2f;
+    public float coyoteetime = 0.2f;
     private float coyoteeTimeCounter;
     private float jumpBufferCounter;
     public CapsuleCollider2D mainCollider;
