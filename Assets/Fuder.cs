@@ -197,6 +197,17 @@ public class Fuder : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            if (player.isSmashing && player.transform.position.y > transform.position.y)
+            {
+
+            }
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, attackRange);
