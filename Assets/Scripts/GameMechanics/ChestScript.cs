@@ -7,7 +7,6 @@ public class ChestScript : MonoBehaviour
     public bool isOpen = false;
     public int goodLootChance;
     public int scoreAmount;
-    private bool isPlayerThere = false;
     public GameObject brokenChest;
     public PlayerMovement player;
     SpriteRenderer sprite;
@@ -16,20 +15,7 @@ public class ChestScript : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
         player = FindObjectOfType<PlayerMovement>();
     }
-    private void Update()
-    {
-        //if (isPlayerThere)
-        //{
-        //    if (!isOpen)
-        //    {
-        //        if (Input.GetKeyDown(KeyCode.E))
-        //        {
-        //            OpenBox();
-        //        }
-        //    }
-            
-        //}
-    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && (player.isSliding || player.isCharging))
@@ -37,13 +23,7 @@ public class ChestScript : MonoBehaviour
             BrokeChest();
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            isPlayerThere = true;
-        }
-    }
+
     public void OpenBox()
     {
             isOpen = true;

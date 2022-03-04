@@ -17,6 +17,7 @@ public class FoodVendingMachine : MonoBehaviour
         if (_isUsed) return;
         if (collision.CompareTag("Player") && (_player.isSliding || _player.isCharging))
         {
+            SFXManager.PlaySound(SFXManager.Sound.MetalHit, transform.position);
             MeatHolder.SetActive(true);
             _isUsed = true;
             ShakeVending.ShakeOnce();
