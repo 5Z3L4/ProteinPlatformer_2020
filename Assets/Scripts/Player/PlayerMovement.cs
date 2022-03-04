@@ -538,4 +538,20 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
+        {
+            PlayParticleSystem(fakeWallBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Smashable" && isSmashing)
+        {
+            PlayParticleSystem(fakeFloorBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
+        }
+    }
 }

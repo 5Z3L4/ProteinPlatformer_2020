@@ -32,7 +32,7 @@ public class ChestScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && player.isSliding)
+        if (collision.gameObject.CompareTag("Player") && (player.isSliding || player.isCharging))
         {
             BrokeChest();
         }
