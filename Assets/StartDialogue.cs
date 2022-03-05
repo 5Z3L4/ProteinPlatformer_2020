@@ -7,14 +7,14 @@ public class StartDialogue : StateMachineBehaviour
 {
     bool isDialogueOver = false;
     private SetActiveObj dialogue;
-    private InterlocutorDialogue lastDialogue;
+    public InterlocutorDialogue lastDialogue;
     private float _waitBeforeTrans = 0.5f;
     public string DialogueName;
     public string BoolName;
     public string LastInterlocutorResponseName;
     private void Awake()
     {
-        dialogue = GameObject.Find(DialogueName).GetComponent<SetActiveObj>();
+        dialogue = GameObject.Find("BossIntr").GetComponent<SetActiveObj>();
         lastDialogue = GameObject.Find(LastInterlocutorResponseName).GetComponent<InterlocutorDialogue>();
     }
 

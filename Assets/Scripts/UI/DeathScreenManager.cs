@@ -37,9 +37,6 @@ public class DeathScreenManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        if (EventSystem.current != null)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-        }
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }

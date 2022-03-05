@@ -13,7 +13,6 @@ public class MovingPlatform : MonoBehaviour
     public float speed;
     public float distance;
     private float startSpeed;
-    private float _changeDirDelayTime = 0.5f;
     private Vector2 startPos;
     // Start is called before the first frame update
     void Start()
@@ -27,36 +26,26 @@ public class MovingPlatform : MonoBehaviour
     {
         if (direction == Direction.LeftAndRight)
         {
-            if (transform.position.x > startPos.x + distance || transform.position.x < startPos.x - distance)
+            if (transform.position.x > startPos.x + distance)
             {
-                if (_changeDirDelayTime <= 0)
-                {
-                    speed *= -1;
-                    _changeDirDelayTime = 0.5f;
-                }
+                speed = -startSpeed;
             }
-            else
+            if (transform.position.x < startPos.x - distance)
             {
-                _changeDirDelayTime -= Time.deltaTime;
+                speed = startSpeed;
             }
-
             transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
         }
         else if (direction == Direction.UpAndDown)
         {
-            if (transform.position.y > startPos.y + distance || transform.position.y < startPos.y - distance)
+            if (transform.position.y > startPos.y + distance)
             {
-                if (_changeDirDelayTime <= 0)
-                {
-                    speed *= -1;
-                    _changeDirDelayTime = 0.5f;
-                }
+                speed = -startSpeed;
             }
-            else
+            if (transform.position.y < startPos.y - distance)
             {
-                _changeDirDelayTime -= Time.deltaTime;
+                speed = startSpeed;
             }
-
             transform.position = new Vector2(transform.position.x, transform.position.y + speed * Time.deltaTime);
         }
         
@@ -68,7 +57,6 @@ public class MovingPlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && transform.position.y < collision.gameObject.transform.position.y)
         {
             collision.transform.parent = transform;
-            collision.gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.None;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -78,7 +66,6 @@ public class MovingPlatform : MonoBehaviour
             if (collision.transform.parent != null)
             {
                 collision.transform.parent = null;
-                collision.gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
             }
         }
     }

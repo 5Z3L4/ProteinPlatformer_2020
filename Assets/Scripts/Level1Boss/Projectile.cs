@@ -4,89 +4,30 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public ParticleSystem destroyParticles;
-    public float projectileSpeed = 20f;
-    public Fuder fuder;
-
-    private Vector2 targetPos;
-    private Vector2 startingPos;
-    private PlayerMovement player;
-    private bool hit = false;
-    private bool lateEnable = false;
-    private Rigidbody2D rb;
-    private bool canMove = false;
-    private SpriteRenderer projectileSprite;
-
+    public float shootSpeed;
+    public float lifeTime;
+    public Rigidbody2D rb;
+    public PlayerMovement player;
     private void Awake()
     {
-        player = FindObjectOfType<PlayerMovement>();
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
     private void Start()
     {
-        startingPos = transform.position;
-        rb = GetComponent<Rigidbody2D>();
-        projectileSprite = GetComponent<SpriteRenderer>();
+        Invoke("DestroyProjectile", lifeTime);
+        //rb.velocity = new Vector2(shootSpeed * GameObject.Find("Girl").GetComponent<LaughingGirl>().isFacingRight * Time.fixedDeltaTime, 0);
     }
-    private void OnEnable()
+    private void DestroyProjectile()
     {
-        targetPos = player.transform.position;
-        lateEnable = true;
-    }
-    private void OnDisable()
-    {
-        destroyParticles.transform.position = transform.position;
-        projectileSprite.enabled = false;
-        destroyParticles.Play();
-        hit = false;
-    }
-    private void Update()
-    {
-        if (lateEnable)
-        {
-            OnLateEnable();
-        }
-        if (Vector2.Distance(transform.position, targetPos) <= 0.1)
-        {
-            gameObject.SetActive(false);
-            canMove = false;
-        }
-        else if (hit)
-        {
-            fuder.fuderAttacking = true;
-            gameObject.SetActive(false);
-            canMove = false;
-        }
-        else
-        {
-            canMove = true;
-        }
-    }
-    private void FixedUpdate()
-    {
-        if (canMove)
-        {
-            rb.MovePosition(Vector2.MoveTowards(transform.position, targetPos, projectileSpeed * Time.fixedDeltaTime));
-        }
+        Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
-            hit = true;
-            player.TakeCertainAmountOfHp();
+            player.hp--;
+            DestroyProjectile();
         }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Ground"))
-        {
-            hit = true;
-        }
-    }
-    private void OnLateEnable()
-    {
-        transform.position = startingPos;
-        projectileSprite.enabled = true;
-        lateEnable = false;
+        
     }
 }

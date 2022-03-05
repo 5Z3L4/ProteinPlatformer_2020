@@ -23,7 +23,6 @@ public class DialogueUI : MonoBehaviour
     private ResponseHandler responseHandler;
     private Color defaultInterlocutorColor;
     private Color defaultPlayerColor;
-    private float jumpBufferTemp;
     private void Awake()
     {        
         player = FindObjectOfType<PlayerMovement>();
@@ -36,7 +35,6 @@ public class DialogueUI : MonoBehaviour
     }
     private void Start()
     {
-        jumpBufferTemp = player.jumpBuffer;
         defaultPlayerColor = playerImage.color;
         defaultInterlocutorColor = interlocutorImage.color;
         if (GameObject.Find("Dialogue") != null)
@@ -48,19 +46,22 @@ public class DialogueUI : MonoBehaviour
     {
         if (isOpen)
         {
-            //if (responseHandler.tempResponseButtons.Count > 1)
-            //{
-                if (EventSystem.current.currentSelectedGameObject == null && responseHandler.tempResponseButtons.Count > 0)
+            if (responseHandler.tempResponseButtons.Count > 1)
+            {
+                if (EventSystem.current.currentSelectedGameObject == null)
                 {
                     EventSystem.current.SetSelectedGameObject(responseHandler.tempResponseButtons[0]);
                 }
-            //}
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                CloseDialogueBox();
+            }
         }
     }
     public void ShowDialogue(InterlocutorDialogue interlocutorDialogue)
     {
         if (Time.timeScale == 0) return;
-        player.jumpBuffer = 0;
         isOpen = true;
         player.canMove = false;
         interlocutorImage.gameObject.SetActive(true);
@@ -93,11 +94,11 @@ public class DialogueUI : MonoBehaviour
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
             interlocutorImage.color = DarkenColor(interlocutorImage);
             responseHandler.ShowResponses(interlocutorDialogue.playerResponse);
-            //if (interlocutorDialogue.playerResponse.Length == 1)
-            //{
-            //    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-            //    responseHandler.OnPickedResponse(interlocutorDialogue.playerResponse[0]);
-            //}
+            if (interlocutorDialogue.playerResponse.Length == 1)
+            {
+                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+                responseHandler.OnPickedResponse(interlocutorDialogue.playerResponse[0]);
+            }
         }
         else
         {
@@ -108,7 +109,6 @@ public class DialogueUI : MonoBehaviour
             interlocutorDialogue.isOver = true;
         }
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        
         
     }
     public void CloseDialogueBox()
@@ -121,7 +121,6 @@ public class DialogueUI : MonoBehaviour
         isOpen = false;
         textWriter.Stop();
         StopAllCoroutines();
-        StartCoroutine(ResetJumpBuffer(1f));
     }
     private IEnumerator RunTypingEffect(string dialogue)
     {
@@ -140,10 +139,5 @@ public class DialogueUI : MonoBehaviour
     {
         Color darkImg = new Color(imgToDarken.color.r - (imgToDarken.color.r * 0.6f), imgToDarken.color.g - (imgToDarken.color.g * 0.6f), imgToDarken.color.b - (imgToDarken.color.b * 0.6f));
         return darkImg;
-    }
-    public IEnumerator ResetJumpBuffer(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        player.jumpBuffer = jumpBufferTemp;
     }
 }

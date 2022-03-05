@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +11,7 @@ public class BeatCoinerController : MonoBehaviour
     public Slider HpSlider;
     private PlayerMovement _player;
     private Animator _anim;
-    private bool _runAwayFromPlayer = false;
+    
 
     private void Awake()
     {
@@ -26,41 +25,19 @@ public class BeatCoinerController : MonoBehaviour
     }
     void Update()
     {
-        if (!_runAwayFromPlayer)
+        if (transform.position.x > _player.transform.position.x)
         {
-            if (transform.position.x > _player.transform.position.x)
-            {
-                if (_facingRight) return;
-                Flip();
-                _facingRight = true;
-            }
-            if (transform.position.x < _player.transform.position.x)
-            {
-                if (!_facingRight) return;
-                Flip();
-                _facingRight = false;
-            }
+            if (_facingRight) return;
+            Flip();
+            _facingRight = true;
         }
-        else
+        if (transform.position.x < _player.transform.position.x)
         {
-            if (transform.position.x < _player.transform.position.x)
-            {
-                if (_facingRight) return;
-                Flip();
-                _facingRight = true;
-            }
-            if (transform.position.x > _player.transform.position.x)
-            {
-                if (!_facingRight) return;
-                Flip();
-                _facingRight = false;
-            }
+            if (!_facingRight) return;
+            Flip();
+            _facingRight = false;
         }
-    }
-
-    internal void RunAway()
-    {
-        _runAwayFromPlayer = !_runAwayFromPlayer;
+        
     }
 
     public void Flip()
