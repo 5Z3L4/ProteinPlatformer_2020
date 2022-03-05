@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isSliding;
     public Rigidbody2D playerRB;
     public float jumpBuffer = 0.1f;
-    private float coyoteetime = 0.2f;
+    public float coyoteetime = 0.2f;
     private float coyoteeTimeCounter;
     private float jumpBufferCounter;
     public CapsuleCollider2D mainCollider;
@@ -524,6 +524,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
+        {
+            PlayParticleSystem(fakeWallBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Smashable" && isSmashing)
+        {
+            PlayParticleSystem(fakeFloorBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
         {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FoodVendingMachine : MonoBehaviour
 {
+    public Sprite BrokenMachine;
     public GameObject MeatHolder;
     public ShakeCollectible ShakeVending;
     private PlayerMovement _player;
@@ -17,8 +18,10 @@ public class FoodVendingMachine : MonoBehaviour
         if (_isUsed) return;
         if (collision.CompareTag("Player") && (_player.isSliding || _player.isCharging))
         {
+            SFXManager.PlaySound(SFXManager.Sound.MetalHit, transform.position);
             MeatHolder.SetActive(true);
             _isUsed = true;
+            GetComponent<SpriteRenderer>().sprite = BrokenMachine;
             ShakeVending.ShakeOnce();
         }
     }
