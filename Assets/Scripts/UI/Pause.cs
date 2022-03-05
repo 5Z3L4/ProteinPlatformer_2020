@@ -1,6 +1,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Pause : MonoBehaviour
 {
@@ -8,8 +9,19 @@ public class Pause : MonoBehaviour
     public GameObject firstSelectedOnConfirm;
     public GameObject confirmPanel;
 
+    private PlayerMovement player;
+    private float jumpBufferTemp = 0;
     private bool gamePaused = false;
     [SerializeField] private GameObject pauseScreen;
+
+    private void Awake()
+    {
+        player = FindObjectOfType<PlayerMovement>();
+    }
+    private void Start()
+    {
+        jumpBufferTemp = player.jumpBuffer;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -30,6 +42,8 @@ public class Pause : MonoBehaviour
                 }
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+                StartCoroutine(ResetJumpBuffer(1f));
+
             }
             else
             {
@@ -40,6 +54,7 @@ public class Pause : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                player.jumpBuffer = 0;
             }
             
         }
@@ -55,6 +70,7 @@ public class Pause : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            StartCoroutine(ResetJumpBuffer(1f));
         }
     }
     public void ShowConfirmPanel()
@@ -75,5 +91,10 @@ public class Pause : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
         Time.timeScale = 1;
+    }
+    private IEnumerator ResetJumpBuffer(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        player.jumpBuffer = jumpBufferTemp;
     }
 }
