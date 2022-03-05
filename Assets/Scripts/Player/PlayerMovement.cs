@@ -44,12 +44,13 @@ public class PlayerMovement : MonoBehaviour
     private bool shouldJump;
     public bool isSliding;
     public Rigidbody2D playerRB;
-    private float coyoteetime = 0.2f;
+    public float jumpBuffer = 0.1f;
+    public float coyoteetime = 0.2f;
     private float coyoteeTimeCounter;
-    private float jumpBuffer = 0.1f;
     private float jumpBufferCounter;
     public CapsuleCollider2D mainCollider;
     public CircleCollider2D slideCollider;
+    public CircleCollider2D slideCollider2;
     public Transform slideCheckUp;
     public Animator playerAnim;
     public GameObject wallCheck;
@@ -101,7 +102,10 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         isGroundedWithoutOffset = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
         CheckInputs();
-        
+        if (isGrounded)
+        {
+            playerAnim.SetBool("IsFalling", false);
+        }
         if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C)) && canMove)
         {
             if (!isSliding)
@@ -122,7 +126,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y != 0 && allowSmash)
         {
-            Smash();
+            if (!isSmashing)
+            {
+                Smash();
+            }
         }
 
         CheckCoyoteeTime();
@@ -301,6 +308,7 @@ public class PlayerMovement : MonoBehaviour
         playerRB.velocity += Vector2.up * Physics2D.gravity.y * (80) * Time.deltaTime;
         mainCollider.enabled = false;
         slideCollider.enabled = true;
+        slideCollider2.enabled = true;
         wallCheck.SetActive(false);
         isSliding = true;
         StartCoroutine("stopSlide");
@@ -316,6 +324,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnim.SetBool("IsSliding", false);
         mainCollider.enabled = true;
         slideCollider.enabled = false;
+        slideCollider2.enabled = false;
         wallCheck.SetActive(true);
         isSliding = false;
     }
@@ -337,6 +346,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Smash()
     {
+        playerAnim.SetBool("IsSmashing", true);
         PlayParticleSystem(falling);
         playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
         isSmashing = true;
@@ -514,6 +524,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
+        {
+            PlayParticleSystem(fakeWallBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Smashable" && isSmashing)
+        {
+            PlayParticleSystem(fakeFloorBlowUp);
+            ScreenShake.Instance.Shakecamera(5f, .1f);
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
         {

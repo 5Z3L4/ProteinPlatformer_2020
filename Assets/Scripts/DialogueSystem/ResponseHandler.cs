@@ -41,11 +41,11 @@ public class ResponseHandler : MonoBehaviour
             count++;
             tempResponseButtons.Add(responseButton);
         }
-        if (tempResponseButtons.Count > 1)
-        {
+        //if (tempResponseButtons.Count > 1)
+        //{
             EventSystem.current.firstSelectedGameObject = tempResponseButtons[0];
             EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
-        }
+        //}
     }
     public void OnPickedResponse(PlayerResponses response)
     {
@@ -66,6 +66,10 @@ public class ResponseHandler : MonoBehaviour
         {
             dialogueUI.CloseDialogueBox();
             dialogueUI.InterlocutorImage.gameObject.SetActive(false);
+            if (response.shouldCheckForEnd)
+            {
+                response.isOver = true;
+            }
         }
     }
 }

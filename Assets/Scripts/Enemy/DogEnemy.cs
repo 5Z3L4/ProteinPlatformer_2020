@@ -8,7 +8,7 @@ public class DogEnemy : MonoBehaviour
 {
     public int moveSpeed;
     public int scoreValue;
-    public float stopDistance = 1.5f;
+    public float stopDistance;
     public float attackRange;
     public Transform attackPos;
     public float startTimeBtwAttack;
@@ -17,10 +17,14 @@ public class DogEnemy : MonoBehaviour
     public bool facingRight = true;
     public bool shouldStartMoving = false;
     public Animator animator;
-
-    private bool playerOnRight;
     private PlayerMovement player;
     private float timeBtwAttack = 0;
+    private float _startBarkTime = 1f;
+    private float _barkTime = 0f;
+    private void Start()
+    {
+        stopDistance = attackRange + (attackRange/2);
+    }
 
     private void Awake()
     {
@@ -83,14 +87,30 @@ public class DogEnemy : MonoBehaviour
     {
         if (shouldStartMoving && CalculateXDistanceToPlayer() > stopDistance && moveSpeed != 0)
         {
+            Bark();
             mineRb.velocity = new Vector2(moveSpeed * Time.fixedDeltaTime, mineRb.velocity.y);
             animator.SetBool("IsWalking", true);
+            timeBtwAttack = 0;
         }
         else
         {
             mineRb.velocity = new Vector2(0, mineRb.velocity.y);
             animator.SetBool("IsWalking", false);
         }  
+    }
+
+    private void Bark()
+    {
+        if (_barkTime <= 0)
+        {
+            SFXManager.PlaySound(SFXManager.Sound.Bark, transform.position);
+            _barkTime = _startBarkTime;
+        }
+        else
+        {
+            _startBarkTime -= Time.deltaTime;
+        }
+        
     }
 
     private void Die()
@@ -112,7 +132,7 @@ public class DogEnemy : MonoBehaviour
 
     private float CalculateXDistanceToPlayer()
     {
-        return Mathf.Abs(transform.position.x - player.transform.position.x);
+        return Mathf.Abs(attackPos.transform.position.x - player.transform.position.x);
     }
 
     private void OnDrawGizmosSelected()

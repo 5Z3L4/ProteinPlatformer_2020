@@ -29,8 +29,11 @@ public class LaughingGirl : MonoBehaviour //Enemy
     {
         if (collision.CompareTag("Player"))
         {
-            icons[0].Play();
-            icons[1].Play();
+            if (icons.Length > 0)
+            {
+                icons[0].Play();
+                icons[1].Play();
+            }
             if ((!bubble.shouldDisplayNegativeTexts && isFacingRight == player.GetComponent<PlayerMovement>().facingRight) || (bubble.shouldDisplayNegativeTexts && isFacingRight != player.GetComponent<PlayerMovement>().facingRight))
             {
                 Flip();
