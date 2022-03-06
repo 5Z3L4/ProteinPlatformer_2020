@@ -12,6 +12,7 @@ public class StartBossFight : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.SetBool("Idle", false);
         _player = FindObjectOfType<PlayerMovement>().transform;
         _rb = animator.GetComponent<Rigidbody2D>();
     }
