@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     public CapsuleCollider2D mainCollider;
     public CircleCollider2D slideCollider;
     public CircleCollider2D slideCollider2;
+    public GameObject SmashCheck;
     public Transform slideCheckUp;
     public Animator playerAnim;
     public GameObject wallCheck;
@@ -347,6 +348,7 @@ public class PlayerMovement : MonoBehaviour
     public void Smash()
     {
         playerAnim.SetBool("IsSmashing", true);
+        SmashCheck.SetActive(true);
         PlayParticleSystem(falling);
         playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
         isSmashing = true;
@@ -519,7 +521,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 PlayParticleSystem(smash);
                 shouldSmashParticle = false;
-                isSmashing = false;
             }
         }
     }
@@ -553,5 +554,10 @@ public class PlayerMovement : MonoBehaviour
             ScreenShake.Instance.Shakecamera(5f, .1f);
             Destroy(collision.gameObject);
         }
+    }
+
+    public void SmashOver()
+    {
+        playerAnim.SetBool("IsSmashing", false);
     }
 }

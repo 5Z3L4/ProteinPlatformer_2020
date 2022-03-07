@@ -12,13 +12,11 @@ public class MovingPlatform : MonoBehaviour
     public Direction direction;
     public float speed;
     public float distance;
-    private float startSpeed;
     private float _changeDirDelayTime = 0.5f;
     private Vector2 startPos;
     // Start is called before the first frame update
     void Start()
     {
-        startSpeed = speed;
         startPos = transform.position;
     }
 
@@ -77,8 +75,16 @@ public class MovingPlatform : MonoBehaviour
         {
             if (collision.transform.parent != null)
             {
-                collision.transform.parent = null;
-                collision.gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
+                try
+                {
+                    collision.transform.parent = null;
+                    collision.gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
+                }
+                catch
+                {
+
+                }
+                
             }
         }
     }
