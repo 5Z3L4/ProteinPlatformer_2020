@@ -53,7 +53,7 @@ public class Collect : MonoBehaviour
     {
         myColl.enabled = false;
         collSprite.color = new Color(1, 1, 1, 0.3f);
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(5f);
         collSprite.color = new Color(1, 1, 1, 1);
         myColl.enabled = true;
     }

@@ -55,8 +55,8 @@ public class PlatformFalling : MonoBehaviour
         myRb.isKinematic = true;
         _isSpawned = false;
         platformDestroy.Play();
-        Invoke("PlayRespawnParticle", 9f);
-        Invoke("RespawnPlatform", 10);
+        Invoke("PlayRespawnParticle", 4f);
+        Invoke("RespawnPlatform", 5);
     }
 
     public void RespawnPlatform()

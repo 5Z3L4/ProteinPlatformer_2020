@@ -402,7 +402,7 @@ public class PlayerMovement : MonoBehaviour
             SpeedBoost();
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.tag == "JumpBoost" && !isOnJumpBoost)
+        if (collision.gameObject.tag == "JumpBoost")
         {
             JumpBoost();
             SFXManager.PlaySound(SFXManager.Sound.Boost, transform.position);
