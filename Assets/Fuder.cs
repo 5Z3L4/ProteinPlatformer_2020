@@ -6,7 +6,6 @@ public class Fuder : MonoBehaviour
 {
     public bool facingRight = true;
     public float baseCastDist;
-    public Transform castPos;
     [Tooltip("true -> w prawo false -> w lewo")]
     public bool leftOrRight;
     public float moveSpeed;
@@ -17,6 +16,7 @@ public class Fuder : MonoBehaviour
     public GameObject projectile;
     public bool fuderAttacking = false;
 
+    private Transform castPos;
     private bool isFlipping = false;
     private PlayerMovement player;
     private Rigidbody2D rb;
@@ -34,6 +34,7 @@ public class Fuder : MonoBehaviour
         myAnim = GetComponentInChildren<Animator>();
         player = FindObjectOfType<PlayerMovement>().GetComponent<PlayerMovement>();
         rb = GetComponent<Rigidbody2D>();
+        castPos = GetComponentInChildren<Transform>();
     }
     // Start is called before the first frame update
     void Start()
@@ -203,7 +204,7 @@ public class Fuder : MonoBehaviour
         {
             if (player.isSmashing && player.transform.position.y > transform.position.y)
             {
-
+                Destroy(gameObject);
             }
         }
     }
