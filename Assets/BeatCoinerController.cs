@@ -8,6 +8,7 @@ public class BeatCoinerController : MonoBehaviour
 {
     private bool _facingRight;
     public int hp = 5;
+    public bool CanGetHit = false;
     public GameObject SliderObj;
     public Slider HpSlider;
     private PlayerMovement _player;
@@ -56,6 +57,10 @@ public class BeatCoinerController : MonoBehaviour
                 _facingRight = false;
             }
         }
+        if (CanGetHit)
+        {
+            gameObject.layer = 0;
+        }
     }
 
     internal void RunAway()
@@ -77,7 +82,19 @@ public class BeatCoinerController : MonoBehaviour
             BallHit();
         }
     }
-
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (CanGetHit && _player.isCharging)
+            {
+                BallHit();
+                gameObject.layer = 13;
+                _anim.SetBool("Idle", true);
+                CanGetHit = false;
+            }
+        }
+    }
     void BallHit()
     {
         hp--;
