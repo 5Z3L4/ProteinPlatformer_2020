@@ -9,24 +9,24 @@ public class CollectiblesAmount : MonoBehaviour
     public TMP_Text itemAmount;
     public enum Items
     {
-        Dumbble,
+        VendingMachine,
         Meat,
-        Protein
+        Chest
     }
     public Items specificItem;
     void Update()
     {
-        if (specificItem == Items.Dumbble)
+        if (specificItem == Items.Chest)
         {
-            itemAmount.SetText(GameManager.collectedStrenght.ToString() + "/" + GameManager.collectiblesOnMap.ToString());
+            itemAmount.SetText(GameManager.collectedChests.ToString() + "/" + GameManager.chestsOnMap.ToString());
         }
         else if(specificItem == Items.Meat)
         {
             itemAmount.SetText(GameManager.collectedConstitution.ToString() + "/" + GameManager.collectiblesOnMap.ToString());
         }
-        else if(specificItem == Items.Protein)
+        else if(specificItem == Items.VendingMachine)
         {
-            itemAmount.SetText(GameManager.collectedAgility.ToString() + "/" + GameManager.collectiblesOnMap.ToString());
+            itemAmount.SetText(GameManager.collectedVendingMachines.ToString() + "/" + GameManager.vendingMachinesOnMap.ToString());
         }
     }
 }

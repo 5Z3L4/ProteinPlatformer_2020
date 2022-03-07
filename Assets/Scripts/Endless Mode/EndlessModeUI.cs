@@ -31,7 +31,6 @@ public class EndlessModeUI : MonoBehaviour
     }
     public void RestartButton()
     {
-        HUDM.ShowHUD();
         HUDManager.currentScore = 0;
         GameManager.collectedStrenght = 0;
         GameManager.collectedConstitution = 0;
@@ -43,7 +42,6 @@ public class EndlessModeUI : MonoBehaviour
     }
     public void ShowDeathScreen()
     {
-        HUDM.HideHUD();
         DeathScreen.SetActive(true);
         Time.timeScale = 0;
         Score.text = "Your score: " + HUDManager.currentScore.ToString();
@@ -56,14 +54,12 @@ public class EndlessModeUI : MonoBehaviour
         Time.timeScale = 0;
         DeathScreen.SetActive(false);
         pauseScreen.SetActive(true);
-        HUDM.HideHUD();
     }
     public void Resume()
     {
         Time.timeScale = 1;
         pauseScreen.SetActive(false);
         DeathScreen.SetActive(false);
-        HUDM.ShowHUD();
     }
 
 }
