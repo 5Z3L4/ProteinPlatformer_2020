@@ -10,6 +10,7 @@ namespace Proyecto26
     {
         public static IEnumerator CreateRequestAndRetry(RequestHelper options, Action<RequestException, ResponseHelper> callback)
         {
+#pragma warning disable
             var retries = 0;
             do
             {

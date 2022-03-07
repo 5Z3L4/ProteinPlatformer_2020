@@ -25,6 +25,7 @@ namespace Proyecto26.Common
         /// <returns>A boolean that indicates if the request is valid.</returns>
         public static bool IsValidRequest(this UnityWebRequest request, RequestHelper options)
         {
+#pragma warning disable
             return request.isDone &&
             !request.isNetworkError &&
             (

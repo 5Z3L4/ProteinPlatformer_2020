@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 7464210346413924306}
   - component: {fileID: 7464210346413924307}
   - component: {fileID: 7464210346413924309}
+  - component: {fileID: 7654362428568415726}
   m_Layer: 0
   m_Name: VendingMachine
   m_TagString: Untagged
@@ -211,6 +212,22 @@ MonoBehaviour:
   maxRotation: 5
   ShakeAutomaticly: 0
   _shakeTimer: 0.5
+--- !u!114 &7654362428568415726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7464210346413924334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed8854d150ba4c4aaa615e45264b5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldBeCounted: 1
+  countAs: 1
+  isSpecificItem: 0
+  CollectibleType: 1
 --- !u!1 &7464210347165558126
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2377718740695053546, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: stats
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2377718740695053546, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: holder
@@ -452,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2377718740695053546, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: stats
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2377718740695053546, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: holder

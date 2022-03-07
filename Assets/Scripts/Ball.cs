@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    private ParticleSystem particleSystem;
+    private ParticleSystem _particleSystem;
     private void Awake()
     {
-        particleSystem = GetComponentInChildren<ParticleSystem>();
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("KillBox") || collision.gameObject.CompareTag("DogEnemy"))
+        if (collision.gameObject.CompareTag("KillBox") || collision.gameObject.CompareTag("DogEnemy") || collision.gameObject.CompareTag("Enemy"))
         {
             DestroyBall();
         }
@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
     {
         SFXManager.PlaySound(SFXManager.Sound.BalloonBlowUp, transform.position);
         GetComponent<SpriteRenderer>().enabled = false;
-        particleSystem.Play();
+        _particleSystem.Play();
         Destroy(gameObject, 0.15f);
     }
 }

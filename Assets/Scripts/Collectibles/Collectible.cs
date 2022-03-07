@@ -49,15 +49,16 @@ public class Collectible : MonoBehaviour
             {
                 GameManager.collectedAgility++;
             }
-            else if (stats == StatsToUpgrade.None)
-            {
-            }
             else if (stats == StatsToUpgrade.SpecificItem)
             {
                 GameManager.collectedSpecificItems++;
                 GetComponentInChildren<ParticleSystem>().Play();
             }
-            ShowCollectibleUI(holder);
+            if (stats != StatsToUpgrade.None)
+            {
+                ShowCollectibleUI(holder);
+            }
+            
             GameManager.Score += scoreValue;
             HUDManager.currentScore += scoreValue;
             SM.levels[SM.currentLevelId].score += scoreValue;

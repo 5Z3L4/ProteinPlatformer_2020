@@ -21,6 +21,12 @@ public static class GameManager
 
     public static int collectiblesOnMap;
 
+    public static int chestsOnMap;
+    public static int collectedChests;
+    
+    public static int vendingMachinesOnMap;
+    public static int collectedVendingMachines;
+
     public static int specificLevelItemOnMap;
     public static int collectedSpecificItems;
 
@@ -36,5 +42,9 @@ public static class GameManager
         maxStrenght = 0;
         collectedAgility = 0;
         maxAgility = 0;
+        chestsOnMap = 0;
+        collectedChests = 0;
+        vendingMachinesOnMap = 0;
+        collectedVendingMachines = 0;
     }
 }

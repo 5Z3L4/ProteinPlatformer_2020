@@ -279,6 +279,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldBeCounted: 1
   countAs: 5
+  isSpecificItem: 0
+  CollectibleType: 0
 --- !u!1 &4463722488542217300
 GameObject:
   m_ObjectHideFlags: 0
