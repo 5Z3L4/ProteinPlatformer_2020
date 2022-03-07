@@ -27,8 +27,6 @@ public class HUDManager : MonoBehaviour
     public GameController GameController;
     private CinemachineFramingTransposer cinemachineBody;
     private Rigidbody2D playerRB;
-    private Text dumbbelText, proteinText, meatText;
-    private Image dumbbelImage, meatImage, proteinImage;
     private Text scoreText;
     private SaveManager SM;
     [SerializeField] private TMP_Text hpAmountText;
@@ -45,12 +43,6 @@ public class HUDManager : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>();
         playerRB = player.GetComponent<Rigidbody2D>();
         cinemachineBody = cam.GetCinemachineComponent<CinemachineFramingTransposer>();
-        dumbbelImage = GameObject.Find("DumbbelAmountImage").GetComponentInChildren<Image>();
-        dumbbelText = GameObject.Find("DumbbelAmountImage").GetComponentInChildren<Text>();
-        meatImage = GameObject.Find("MeatAmountImage").GetComponent<Image>();
-        meatText = GameObject.Find("MeatAmountImage").GetComponentInChildren<Text>();
-        proteinImage = GameObject.Find("ProteinAmountImage").GetComponent<Image>();
-        proteinText = GameObject.Find("ProteinAmountImage").GetComponentInChildren<Text>();
         scoreText = GameObject.Find("currentScoreText").GetComponent<Text>();
 
     }
@@ -95,7 +87,6 @@ public class HUDManager : MonoBehaviour
             }
             else if (time <= 0)
             {
-                HideCollected();
                 callTimer = false;
                 time = 3.5f;
                 animatorDumbbell.SetBool("Open", false);
@@ -104,39 +95,7 @@ public class HUDManager : MonoBehaviour
             }
         }
     }
-    //TO DO poprawiæ
-    public void ShowCollected(Animator animator)
-    {
-        animator.SetBool("Close", false);
-        animator.SetBool("Open", true);
-        callTimer = true;
-    }
-    //TO DO poprawiæ
-    public void HideCollected()
-    {
-        animatorDumbbell.SetBool("Close", true);
-        animatorMeat.SetBool("Close", true);
-        animatorProtein.SetBool("Close", true);
-    }
-    public void HideHUD()
-    {
-        ChangeHUDVisibility(false);
-    }
-    public void ShowHUD()
-    {
-        ChangeHUDVisibility(true);
-    }
 
-    public void ChangeHUDVisibility(bool shouldBeVisible)
-    {
-        dumbbelImage.enabled = shouldBeVisible;
-        dumbbelText.enabled = shouldBeVisible;
-        meatImage.enabled = shouldBeVisible;
-        meatText.enabled = shouldBeVisible;
-        proteinImage.enabled = shouldBeVisible;
-        proteinText.enabled = shouldBeVisible;
-        scoreText.enabled = shouldBeVisible;
-    }
     private IEnumerator ScoreUpdater()
     {
         while (true)

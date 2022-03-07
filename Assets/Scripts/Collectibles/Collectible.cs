@@ -54,25 +54,11 @@ public class Collectible : MonoBehaviour
                 GameManager.collectedSpecificItems++;
                 GetComponentInChildren<ParticleSystem>().Play();
             }
-            if (stats != StatsToUpgrade.None)
-            {
-                ShowCollectibleUI(holder);
-            }
             
             GameManager.Score += scoreValue;
             HUDManager.currentScore += scoreValue;
             SM.levels[SM.currentLevelId].score += scoreValue;
             collectItem.CollectItem();
-        }
-    }
-
-    private void ShowCollectibleUI(Animator holder)
-    {
-        if (holder != null && !holder.GetBool("Open"))
-        {
-            HUDM.ShowCollected(holder);
-            HUDM.callTimer = true;
-            HUDM.time += 0.5f;
         }
     }
 }
