@@ -9,14 +9,17 @@ public class BeatCoinerController : MonoBehaviour
     private bool _facingRight;
     public int hp = 5;
     public bool CanGetHit = false;
+    public bool CanHitPlayer = false;
     public GameObject SliderObj;
     public Slider HpSlider;
     private PlayerMovement _player;
     private Animator _anim;
+    private Rigidbody2D _rb;
     private bool _runAwayFromPlayer = false;
 
     private void Awake()
     {
+        _rb = GetComponent<Rigidbody2D>();
         _player = FindObjectOfType<PlayerMovement>();
         _anim = GetComponent<Animator>();
         HpSlider.maxValue = hp;
@@ -27,6 +30,11 @@ public class BeatCoinerController : MonoBehaviour
     }
     void Update()
     {
+        if (CanHitPlayer)
+        {
+            gameObject.layer = 0;
+            _rb.isKinematic = true;
+        }
         if (!_runAwayFromPlayer)
         {
             if (transform.position.x > _player.transform.position.x)
@@ -57,10 +65,7 @@ public class BeatCoinerController : MonoBehaviour
                 _facingRight = false;
             }
         }
-        if (CanGetHit)
-        {
-            gameObject.layer = 0;
-        }
+       
     }
 
     internal void RunAway()
@@ -89,9 +94,12 @@ public class BeatCoinerController : MonoBehaviour
             if (CanGetHit && _player.isCharging)
             {
                 BallHit();
+                _rb.isKinematic = false;
                 gameObject.layer = 13;
                 _anim.SetBool("Idle", true);
                 CanGetHit = false;
+                CanHitPlayer = false;
+                _anim.Play("BeatCoinerGetHit");
             }
         }
     }

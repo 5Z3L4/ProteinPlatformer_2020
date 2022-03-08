@@ -1044,7 +1044,7 @@ GameObject:
   - component: {fileID: 121517916}
   - component: {fileID: 121517917}
   - component: {fileID: 121517912}
-  m_Layer: 13
+  m_Layer: 21
   m_Name: BeatCoiner
   m_TagString: DogEnemy
   m_Icon: {fileID: 0}
@@ -1204,6 +1204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   CanGetHit: 0
+  CanHitPlayer: 0
   SliderObj: {fileID: 1394147016}
   HpSlider: {fileID: 1394147018}
 --- !u!1 &123136966
@@ -3544,7 +3545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437455338}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.40116, y: 3.34, z: 21.326223}
+  m_LocalPosition: {x: 17.51, y: 3.34, z: 21.326223}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461047001}
@@ -9605,7 +9606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508627531}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.710001, y: 3.34, z: 21.326223}
+  m_LocalPosition: {x: -2.51, y: 3.24, z: 21.326223}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461047001}
@@ -10218,7 +10219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610687277}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.12, y: 3.34, z: 21.326223}
+  m_LocalPosition: {x: -23.98, y: 3.34, z: 21.326223}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461047001}
@@ -10355,7 +10356,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628964994}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.811157, y: 3.34, z: 21.326223}
+  m_LocalPosition: {x: 38.95, y: 3.34, z: 21.326223}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461047001}
@@ -10671,7 +10672,7 @@ GameObject:
   - component: {fileID: 1671588230}
   - component: {fileID: 1671588231}
   - component: {fileID: 1671588232}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: bagCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
