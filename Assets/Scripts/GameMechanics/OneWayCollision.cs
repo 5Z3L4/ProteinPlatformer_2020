@@ -17,7 +17,7 @@ public class OneWayCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
             gameObject.layer = 13;
             waitTime = 0.5f;

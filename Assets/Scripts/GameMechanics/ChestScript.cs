@@ -47,5 +47,6 @@ public class ChestScript : MonoBehaviour
         SFXManager.PlaySound(SFXManager.Sound.DestroyChest, transform.position);
         brokenChest.SetActive(true);
         sprite.enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 }
