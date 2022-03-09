@@ -449,17 +449,17 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(HUDManager.DyingScreen());
     }
 
-    public void KnockBack(bool shouldKnockBackToRight)
+    public void KnockBack(bool shouldKnockBackToRight, float knockBackStrength = 0)
     {
         canMove = false;
         Vector2 knockbackVelocity = new Vector2();
         if (shouldKnockBackToRight)
         {
-            knockbackVelocity = new Vector2(0, 3);
+            knockbackVelocity = new Vector2(knockBackStrength, 3);
         }
         else if (!shouldKnockBackToRight)
         {
-            knockbackVelocity = new Vector2(0, 3);
+            knockbackVelocity = new Vector2(knockBackStrength, 3);
         }
         StartCoroutine(StartKnockabck(knockbackVelocity));
     }

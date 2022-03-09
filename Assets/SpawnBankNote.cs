@@ -8,11 +8,15 @@ public class SpawnBankNote : MonoBehaviour
     public GameObject BankNote;
     private void Update()
     {
-        if (Shot)
-        {
-            Spawn();
-            Shot = false;
-        }
+        //if (Shot)
+        //{
+        //    Spawn();
+        //    Shot = false;
+        //}
+    }
+    private void OnEnable()
+    {
+        Spawn();
     }
     void Spawn()
     {
