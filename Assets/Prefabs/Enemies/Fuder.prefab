@@ -5195,7 +5195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingRight: 1
   baseCastDist: 0.8
-  castPos: {fileID: 4021525024122309216}
   leftOrRight: 1
   moveSpeed: 0
   projectileSpeed: 20
@@ -5204,6 +5203,7 @@ MonoBehaviour:
   startTimeBtwAttack: 3
   projectile: {fileID: 4021525022682341881}
   fuderAttacking: 0
+  castPos: {fileID: 4021525024122309216}
   canAttack: 1
   canMove: 1
   groundLayer:
@@ -5232,7 +5232,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!95 &4021525024692486639
 Animator:
   serializedVersion: 3
@@ -5265,9 +5265,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.12051237}
   serializedVersion: 2
-  m_Radius: 1.8
+  m_Radius: 1.6794876
 --- !u!212 &4021525024692486637
 SpriteRenderer:
   m_ObjectHideFlags: 0
