@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class OnQuestComplete : MonoBehaviour
 {
-    public PlayerBubbleTrigger tutorial;
+    public TutorialPages tutorial;
     public Kark npcToMove;
     public ShowNormalText normalText;
     public InterlocutorDialogue interlocutorDialogue;
     public PlayerResponses playerResponse;
+    public DialogueActivator karkDialogueActivator;
 
+    private bool _isTutDone = false;
+    private void Awake()
+    {
+        tutorial = FindObjectOfType<TutorialPages>();
+    }
     private void Update()
     {
         if (interlocutorDialogue != null && interlocutorDialogue.isOver)
@@ -23,12 +29,12 @@ public class OnQuestComplete : MonoBehaviour
     }
     public void EnableTutorial()
     {
-        tutorial.isTutAvailable = true;
+        tutorial.ActivateTutorialPage(1);
     }
 
     private void OnDestroy()
     {
-        tutorial.HideTutorialText();
+        tutorial.DeactivateTutorialPage(1);
     }
     private void FlipKark()
     {
@@ -38,9 +44,14 @@ public class OnQuestComplete : MonoBehaviour
             npcToMove.Flip();
             npcToMove.facingRight = true;
         }
-        if (tutorial != null)
+        if (tutorial != null && !_isTutDone)
         {
             EnableTutorial();
+            _isTutDone = true;
+        }
+        if (karkDialogueActivator != null)
+        {
+            karkDialogueActivator.interactable = false;
         }
     }
 }
