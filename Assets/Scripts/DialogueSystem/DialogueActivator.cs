@@ -5,16 +5,15 @@ public class DialogueActivator : MonoBehaviour
 {
     public Quest[] questTargets;
     public InterlocutorDialogue currentDialogue;
-    private DialogueUI dialogueUI;
     [HideInInspector] public int questID;
     public Sprite ImageToShow => imageToShow;
-    public bool Interactable = false;
+    public bool interactable = true;
     public bool ActivateWithoutButton = false;
     public ShowNormalText normalText;
 
     [SerializeField] private InterlocutorDialogue startingDialogue;
-    
     [SerializeField] Sprite imageToShow;
+    private DialogueUI dialogueUI;
     private bool isDialogueRunning;
     private bool isPlayerInTrigger;
 
@@ -28,7 +27,7 @@ public class DialogueActivator : MonoBehaviour
     private void Update()
     {
         if (!isPlayerInTrigger || ActivateWithoutButton) return;
-        if(Input.GetKeyDown(KeyCode.E) && !dialogueUI.isOpen)
+        if(Input.GetKeyDown(KeyCode.E) && !dialogueUI.isOpen && interactable)
         {
             Interact();
         }
