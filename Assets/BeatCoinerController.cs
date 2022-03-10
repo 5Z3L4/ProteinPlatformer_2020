@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BeatCoinerController : MonoBehaviour
 {
-    private bool _facingRight;
+    public bool FacingRight;
     public int hp = 5;
     public bool CanGetHit = false;
     public bool CanHitPlayer = false;
@@ -39,30 +39,30 @@ public class BeatCoinerController : MonoBehaviour
         {
             if (transform.position.x > _player.transform.position.x)
             {
-                if (_facingRight) return;
+                if (FacingRight) return;
                 Flip();
-                _facingRight = true;
+                FacingRight = true;
             }
             if (transform.position.x < _player.transform.position.x)
             {
-                if (!_facingRight) return;
+                if (!FacingRight) return;
                 Flip();
-                _facingRight = false;
+                FacingRight = false;
             }
         }
         else
         {
             if (transform.position.x < _player.transform.position.x)
             {
-                if (_facingRight) return;
+                if (FacingRight) return;
                 Flip();
-                _facingRight = true;
+                FacingRight = true;
             }
             if (transform.position.x > _player.transform.position.x)
             {
-                if (!_facingRight) return;
+                if (!FacingRight) return;
                 Flip();
-                _facingRight = false;
+                FacingRight = false;
             }
         }
        
@@ -100,6 +100,7 @@ public class BeatCoinerController : MonoBehaviour
                 CanGetHit = false;
                 CanHitPlayer = false;
                 _anim.Play("BeatCoinerGetHit");
+                _rb.AddForce(new Vector2(5f, 1f));
             }
         }
     }

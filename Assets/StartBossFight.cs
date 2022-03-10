@@ -13,6 +13,7 @@ public class StartBossFight : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("Idle", false);
+        animator.SetBool("Jump", false);
         _player = FindObjectOfType<PlayerMovement>().transform;
         _rb = animator.GetComponent<Rigidbody2D>();
     }

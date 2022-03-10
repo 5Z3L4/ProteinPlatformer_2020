@@ -8,6 +8,7 @@ public class TakeToBoss : MonoBehaviour
     public Animator SceneTransition;
     private bool _takeToBoss = false;
     public TimeCounter timer;
+    public string SceneName;
     private void Awake()
     {
         timer = FindObjectOfType<TimeCounter>();
@@ -41,6 +42,6 @@ public class TakeToBoss : MonoBehaviour
         timer.AddPointsForTime();
         SceneTransition.SetTrigger("Start");
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("BossLevel1");
+        SceneManager.LoadScene(SceneName);
     }
 }
