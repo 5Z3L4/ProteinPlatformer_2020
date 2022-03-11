@@ -11,9 +11,11 @@ public class TutorialPages : MonoBehaviour
     private PlayerMovement _player;
     private int _pageID = 0;
     private bool _isTutorialOpen = false;
+    private float _jumpBuffer;
     private void Awake()
     {
         _player = FindObjectOfType<PlayerMovement>();
+        _jumpBuffer = _player.jumpBuffer;
     }
 
     // Update is called once per frame
@@ -58,6 +60,10 @@ public class TutorialPages : MonoBehaviour
         if (tutorialPages[_pageID] != null)
         {
             tutorialPages[_pageID].SetActive(false);
+        }
+        if (pageID == 1)
+        {
+            _player.jumpBuffer = _jumpBuffer;
         }
     }
 }
