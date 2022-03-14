@@ -12,6 +12,7 @@ public class StartDialogue : StateMachineBehaviour
     public string DialogueName;
     public string BoolName;
     public string LastInterlocutorResponseName;
+    public float WaitBeofreStartTime = 0f;
     private void Awake()
     {
         dialogue = GameObject.Find(DialogueName).GetComponent<SetActiveObj>();
@@ -21,6 +22,8 @@ public class StartDialogue : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (WaitBeofreStartTime <= 0)
+        {
             dialogue.ActivateObj();
             if (lastDialogue.isOver)
             {
@@ -34,6 +37,11 @@ public class StartDialogue : StateMachineBehaviour
                     _waitBeforeTrans -= Time.deltaTime;
                 }
             }
+        }
+        else
+        {
+            WaitBeofreStartTime -= Time.deltaTime;
+        }
             if (!isDialogueOver) return;
     }
 

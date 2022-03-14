@@ -30,6 +30,12 @@ public class BeatCoinerController : MonoBehaviour
     }
     void Update()
     {
+        if (hp <= 0)
+        {
+            gameObject.layer = 13;
+            return;
+        }
+
         if (CanHitPlayer)
         {
             gameObject.layer = 0;
@@ -116,7 +122,8 @@ public class BeatCoinerController : MonoBehaviour
         if (hp<=0)
         {
             SliderObj.SetActive(false);
-            Destroy(gameObject);
+            _anim.SetBool("IsDead", true);
+            _rb.gravityScale = 100;
         }
         if (!_anim.GetBool("BallsDidBoom"))
         {
