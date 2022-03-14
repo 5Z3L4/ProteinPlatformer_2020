@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 340227025632784049, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1070.6807
       objectReference: {fileID: 0}
     - target: {fileID: 340227025632784049, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.3920307
       objectReference: {fileID: 0}
     - target: {fileID: 340227025632784049, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -57,7 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 85cd812859132e24798e09c50fc5b38e, type: 3}
     - target: {fileID: 340227025632784052, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: m_Name
-      value: ball_purple
+      value: ball_purple (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 340227025632784052, guid: 205457e7793fc524894913434e2326cc, type: 3}
+      propertyPath: m_Layer
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 340227025869600115, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b

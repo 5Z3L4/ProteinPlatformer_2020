@@ -6,6 +6,7 @@ using TMPro;
 
 public class Collect : MonoBehaviour
 {
+    public GameObject MinimapIcon;
     private Animation anim;
     private TMP_Text text;
     private Collectible scoreValue;
@@ -44,6 +45,10 @@ public class Collect : MonoBehaviour
         else
         {
             GetComponentInChildren<SpriteRenderer>().enabled = false;
+            if (MinimapIcon != null)
+            {
+                MinimapIcon.SetActive(false);
+            }
             Destroy(gameObject, anim.GetClip("ShowCollectText").length);
         }
         

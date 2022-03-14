@@ -8,6 +8,7 @@ public class ChestScript : MonoBehaviour
     public int goodLootChance;
     public int scoreAmount;
     public GameObject brokenChest;
+    public GameObject MinimapIcon;
     public PlayerMovement player;
     SpriteRenderer sprite;
     private void Awake()
@@ -47,6 +48,7 @@ public class ChestScript : MonoBehaviour
         SFXManager.PlaySound(SFXManager.Sound.DestroyChest, transform.position);
         brokenChest.SetActive(true);
         sprite.enabled = false;
+        MinimapIcon.SetActive(false);
         GetComponent<BoxCollider2D>().enabled = false;
     }
 }

@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 340227025632784049, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1176.2096
       objectReference: {fileID: 0}
     - target: {fileID: 340227025632784049, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -22.181679
       objectReference: {fileID: 0}
     - target: {fileID: 340227025632784049, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -57,7 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 2fa9e678b9f26c04280cf2950e6f15b8, type: 3}
     - target: {fileID: 340227025632784052, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: m_Name
-      value: ball_pink
+      value: ball_pink (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 340227025632784052, guid: 205457e7793fc524894913434e2326cc, type: 3}
+      propertyPath: m_Layer
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 340227025869600115, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
