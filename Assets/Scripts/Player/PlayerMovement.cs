@@ -375,7 +375,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SpeedBoost()
     {
-        statistics.moveSpeed *= 2.5f;
+        moveSpeed *= 2.5f;
         StartCoroutine("speedBoostTimer");
     }
     public void JumpBoost()
@@ -386,8 +386,8 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator speedBoostTimer()
     {
-        yield return new WaitForSeconds(5);
-        statistics.moveSpeed /= 2.5f;
+        yield return new WaitForSeconds(3);
+        moveSpeed /= 2.5f;
     }
     IEnumerator jumpBoostTimer()
     {
