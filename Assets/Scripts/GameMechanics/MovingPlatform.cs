@@ -75,15 +75,8 @@ public class MovingPlatform : MonoBehaviour
         {
             if (collision.transform.parent != null)
             {
-                try
-                {
                     collision.transform.parent = null;
                     collision.gameObject.GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
-                }
-                catch
-                {
-
-                }
                 
             }
         }

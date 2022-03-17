@@ -215,6 +215,7 @@ public class PlayerMovement : MonoBehaviour
         //if is player trying to jump
         if ((coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn) || (KonamiMoonWalk && holdingSpace))
         {
+            transform.SetParent(null);
             jumpBufferCounter = 0;
             coyoteeTimeCounter = 0;
             isAirborn = true;
@@ -294,6 +295,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Charge(Rigidbody2D rb)
     {
+        transform.SetParent(null);
         rb.velocity = new Vector2(slideDirection * chargeSpeed * Time.fixedDeltaTime, rb.velocity.y);
     }
 
