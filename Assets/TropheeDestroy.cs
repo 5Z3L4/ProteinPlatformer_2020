@@ -72,6 +72,7 @@ public class TropheeDestroy : MonoBehaviour
     }
     private IEnumerator DestroyTrophee()
     {
+        SFXManager.PlaySound(SFXManager.Sound.ChaliceBreak, transform.position);
         _sprite.enabled = false;
         _collider.enabled = false;
         destroyParticle.Play();

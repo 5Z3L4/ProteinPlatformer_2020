@@ -21,7 +21,8 @@ public static class SFXManager
         ShibaDeath,
         BalloonBlowUp,
         MetalHit,
-        Bark
+        Bark,
+        ChaliceBreak
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 
