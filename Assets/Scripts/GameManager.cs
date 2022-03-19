@@ -46,5 +46,6 @@ public static class GameManager
         collectedChests = 0;
         vendingMachinesOnMap = 0;
         collectedVendingMachines = 0;
+        collectiblesOnMap = 0;
     }
 }
