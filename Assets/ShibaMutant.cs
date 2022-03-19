@@ -15,10 +15,12 @@ public class ShibaMutant : MonoBehaviour
     private Vector3 _baseScale;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private LayerMask _playerLayer;
+    private Animator _myAnim;
 
     private void Awake()
     {
         _player = FindObjectOfType<PlayerMovement>();
+        _myAnim = GetComponentInChildren<Animator>();
     }
     // Start is called before the first frame update
     void Start()
@@ -80,6 +82,10 @@ public class ShibaMutant : MonoBehaviour
         newScale.x = transform.localScale.x * -1;
         transform.localScale = newScale;
         _facingRight = !_facingRight;
-
+    }
+    IEnumerator StartRunning()
+    {
+        _myAnim.SetBool("running", true);
+        yield return new WaitForSeconds(1f);
     }
 }
