@@ -405,7 +405,7 @@ MonoBehaviour:
   holder: {fileID: 0}
   stats: 1
   scoreValue: 100
-  shouldBeCounted: 0
+  shouldBeCounted: 1
 --- !u!114 &4129546853132451064
 MonoBehaviour:
   m_ObjectHideFlags: 0

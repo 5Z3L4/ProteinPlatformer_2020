@@ -36,24 +36,27 @@ public class Collectible : MonoBehaviour
         {
             isCollected = true;
             SFXManager.PlaySound(SFXManager.Sound.PickUpItem, gameObject.transform.position);
+            if (shouldBeCounted)
+            {
+                if (stats == StatsToUpgrade.Strength)
+                {
+                    GameManager.collectedStrenght++;
+                }
+                else if (stats == StatsToUpgrade.Constitution)
+                {
+                    GameManager.collectedConstitution++;
+                }
+                else if (stats == StatsToUpgrade.Dexterity)
+                {
+                    GameManager.collectedAgility++;
+                }
+                else if (stats == StatsToUpgrade.SpecificItem)
+                {
+                    GameManager.collectedSpecificItems++;
+                    GetComponentInChildren<ParticleSystem>().Play();
+                }
+            }
             
-            if (stats == StatsToUpgrade.Strength)
-            {
-                GameManager.collectedStrenght++;
-            }
-            else if (stats == StatsToUpgrade.Constitution)
-            {
-                GameManager.collectedConstitution++;
-            }
-            else if (stats == StatsToUpgrade.Dexterity)
-            {
-                GameManager.collectedAgility++;
-            }
-            else if (stats == StatsToUpgrade.SpecificItem)
-            {
-                GameManager.collectedSpecificItems++;
-                GetComponentInChildren<ParticleSystem>().Play();
-            }
             
             GameManager.Score += scoreValue;
             HUDManager.currentScore += scoreValue;
