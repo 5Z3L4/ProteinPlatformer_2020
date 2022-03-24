@@ -6,16 +6,25 @@ public class ShibaMutant : MonoBehaviour
 {
     [Tooltip("true -> w prawo false -> w lewo")]
     public bool leftOrRight;
-    public float moveSpeed;
+    public float startingMoveSpeed;
+    public float maxMoveSpeed;
+    public float increaseMoveSpeedStep;
     public float focusRange;
+    public Rigidbody2D rb;
+    public Transform wallCheckingCastPos;
 
     private PlayerMovement _player;
     private bool _playerOnRight;
     private bool _facingRight;
+    private bool _isRunning = false;
+    private bool _isAttacking = false;
+    private bool _isDizzy = false;
+    private float _changingMoveSpeed;
     private Vector3 _baseScale;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private LayerMask _playerLayer;
     private Animator _myAnim;
+    private float baseCastDist = 0.35f;
 
     private void Awake()
     {
@@ -47,22 +56,57 @@ public class ShibaMutant : MonoBehaviour
                     if (hitPlayer.collider.gameObject.CompareTag("Player"))
                     {
                         CheckPlayerPos(_player.transform.position);
-                        if (_playerOnRight && !_facingRight)
+                        if (!_isRunning && !_isAttacking)
                         {
-                            Flip();
-                        }
-                        else if (!_playerOnRight && _facingRight)
-                        {
-                            Flip();
-                        }
-                        else
-                        {
-                            //start running
+                            if (_playerOnRight && !_facingRight)
+                            {
+                                Flip();
+                            }
+                            else if (!_playerOnRight && _facingRight)
+                            {
+                                Flip();
+                            }
+                            else
+                            {
+                                if (!_isRunning)
+                                {
+                                    StartCoroutine(StartRunning());
+                                }
+                            }
                         }
                     }
                 }
             }
             Debug.DrawLine(transform.position, _player.transform.position);
+        }
+        if (_changingMoveSpeed > 0 && !_isAttacking)
+        {
+            if (_changingMoveSpeed < maxMoveSpeed)
+            {
+                _changingMoveSpeed += increaseMoveSpeedStep * Time.deltaTime;
+            }
+        }
+        
+    }
+    private void FixedUpdate()
+    {
+        if (_isRunning)
+        {
+            if (_facingRight)
+            {
+                rb.velocity = new Vector2(_changingMoveSpeed, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-_changingMoveSpeed, rb.velocity.y);
+            }
+            if (IsHittingWall())
+            {
+                _isRunning = false;
+                _isAttacking = false;
+                _isDizzy = true;
+                _myAnim.SetBool("IsDizzy", true);
+            }
         }
     }
     private void CheckPlayerPos(Vector2 playerPos)
@@ -85,7 +129,32 @@ public class ShibaMutant : MonoBehaviour
     }
     IEnumerator StartRunning()
     {
-        _myAnim.SetBool("running", true);
+        _isRunning = true;
+        _myAnim.SetBool("GetsAngry", true);
         yield return new WaitForSeconds(1f);
+        _myAnim.SetBool("GetsAngry", false);
+        _myAnim.SetBool("IsRunning", true);
+        _changingMoveSpeed = startingMoveSpeed;
+    }
+    bool IsHittingWall()
+    {
+        bool val = false;
+        float castDist = baseCastDist;
+        if (!_facingRight)
+        {
+            castDist = -baseCastDist;
+        }
+        Vector3 targetPos = wallCheckingCastPos.position;
+        targetPos.x += castDist;
+        Debug.DrawLine(wallCheckingCastPos.position, targetPos, Color.blue);
+        if (Physics2D.Linecast(wallCheckingCastPos.position, targetPos, 1 << LayerMask.NameToLayer("Ground")))
+        {
+            val = true;
+        }
+        else
+        {
+            val = false;
+        }
+        return val;
     }
 }
