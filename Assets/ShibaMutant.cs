@@ -45,7 +45,7 @@ public class ShibaMutant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(Vector2.Distance(_player.transform.position, transform.position)) <= focusRange)
+        if (Mathf.Abs(Vector2.Distance(_player.transform.position, transform.position)) <= focusRange && !_isDizzy)
         {
             RaycastHit2D hitGround = Physics2D.Linecast(transform.position, _player.transform.position, _groundLayer);
             if (hitGround.collider == null)
@@ -56,23 +56,9 @@ public class ShibaMutant : MonoBehaviour
                     if (hitPlayer.collider.gameObject.CompareTag("Player"))
                     {
                         CheckPlayerPos(_player.transform.position);
-                        if (!_isRunning && !_isAttacking)
+                        if (!_isRunning && !_isAttacking && ((_playerOnRight && _facingRight)||(!_playerOnRight && !_facingRight)))
                         {
-                            if (_playerOnRight && !_facingRight)
-                            {
-                                Flip();
-                            }
-                            else if (!_playerOnRight && _facingRight)
-                            {
-                                Flip();
-                            }
-                            else
-                            {
-                                if (!_isRunning)
-                                {
-                                    StartCoroutine(StartRunning());
-                                }
-                            }
+                            StartCoroutine(StartRunning());
                         }
                     }
                 }
@@ -102,12 +88,39 @@ public class ShibaMutant : MonoBehaviour
             }
             if (IsHittingWall())
             {
-                _isRunning = false;
-                _isAttacking = false;
-                _isDizzy = true;
-                _myAnim.SetBool("IsDizzy", true);
+                StartCoroutine(HitsWall());
             }
         }
+    }
+    //IEnumerator Attack()
+    //{
+
+    //}
+    IEnumerator HitsWall()
+    {
+        StopRunning();
+        _isDizzy = true;
+        _myAnim.SetBool("IsDizzy", true);
+        yield return new WaitForSeconds(3f);
+        _myAnim.SetBool("IsDizzy", false);
+        _isDizzy = false;
+        StopRunning();
+        Flip();
+    }
+    IEnumerator StartRunning()
+    {
+        _isRunning = true;
+        _myAnim.SetBool("GetsAngry", true);
+        yield return new WaitForSeconds(1f);
+        _myAnim.SetBool("GetsAngry", false);
+        _myAnim.SetBool("IsRunning", true);
+        _changingMoveSpeed = startingMoveSpeed;
+    }
+    private void StopRunning()
+    {
+        _myAnim.SetBool("IsRunning", false);
+        _isRunning = false;
+        _changingMoveSpeed = 0;
     }
     private void CheckPlayerPos(Vector2 playerPos)
     {
@@ -126,15 +139,6 @@ public class ShibaMutant : MonoBehaviour
         newScale.x = transform.localScale.x * -1;
         transform.localScale = newScale;
         _facingRight = !_facingRight;
-    }
-    IEnumerator StartRunning()
-    {
-        _isRunning = true;
-        _myAnim.SetBool("GetsAngry", true);
-        yield return new WaitForSeconds(1f);
-        _myAnim.SetBool("GetsAngry", false);
-        _myAnim.SetBool("IsRunning", true);
-        _changingMoveSpeed = startingMoveSpeed;
     }
     bool IsHittingWall()
     {
