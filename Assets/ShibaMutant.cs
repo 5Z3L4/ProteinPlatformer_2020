@@ -12,13 +12,16 @@ public class ShibaMutant : MonoBehaviour
     public float focusRange;
     public Rigidbody2D rb;
     public Transform wallCheckingCastPos;
+    public float timeBtwAttack;
 
     private PlayerMovement _player;
     private bool _playerOnRight;
     private bool _facingRight;
     private bool _isRunning = false;
-    private bool _isAttacking = false;
+    private bool _isPlayerInRange = false;
     private bool _isDizzy = false;
+    private bool _canAttack = true;
+    private float _timeBtwAttack = 0;
     private float _changingMoveSpeed;
     private Vector3 _baseScale;
     [SerializeField] private LayerMask _groundLayer;
@@ -45,7 +48,7 @@ public class ShibaMutant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(Vector2.Distance(_player.transform.position, transform.position)) <= focusRange && !_isDizzy)
+        if (Mathf.Abs(Vector2.Distance(_player.transform.position, transform.position)) <= focusRange && !_isDizzy && !_isPlayerInRange)
         {
             RaycastHit2D hitGround = Physics2D.Linecast(transform.position, _player.transform.position, _groundLayer);
             if (hitGround.collider == null)
@@ -56,7 +59,7 @@ public class ShibaMutant : MonoBehaviour
                     if (hitPlayer.collider.gameObject.CompareTag("Player"))
                     {
                         CheckPlayerPos(_player.transform.position);
-                        if (!_isRunning && !_isAttacking && ((_playerOnRight && _facingRight)||(!_playerOnRight && !_facingRight)))
+                        if (!_isRunning && ((_playerOnRight && _facingRight)||(!_playerOnRight && !_facingRight)))
                         {
                             StartCoroutine(StartRunning());
                         }
@@ -65,14 +68,26 @@ public class ShibaMutant : MonoBehaviour
             }
             Debug.DrawLine(transform.position, _player.transform.position);
         }
-        if (_changingMoveSpeed > 0 && !_isAttacking)
+        if (_changingMoveSpeed > 0 && !_isPlayerInRange)
         {
             if (_changingMoveSpeed < maxMoveSpeed)
             {
                 _changingMoveSpeed += increaseMoveSpeedStep * Time.deltaTime;
             }
         }
-        
+        if (_timeBtwAttack > 0)
+        {
+            _timeBtwAttack -= Time.deltaTime;
+        }
+        else
+        {
+            _canAttack = true;
+        }
+        if (_isPlayerInRange && _canAttack && _player.hp > 0)
+        {
+            StartCoroutine(Attack());
+            _canAttack = false;
+        }
     }
     private void FixedUpdate()
     {
@@ -92,10 +107,59 @@ public class ShibaMutant : MonoBehaviour
             }
         }
     }
-    //IEnumerator Attack()
-    //{
-
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (_player.isSmashing)
+            {
+                Die();
+            }
+            else if (_isDizzy && _player.isCharging)
+            {
+                Die();
+            }
+            if ((!_playerOnRight && _facingRight) || (_playerOnRight && !_facingRight))
+            {
+                Flip();
+            }
+            _isPlayerInRange = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isPlayerInRange = true;
+            _isRunning = false;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _isPlayerInRange = false;
+        }
+    }
+    private void Die()
+    {
+        _myAnim.Play("Death");
+        Invoke("Destroy", _myAnim.GetCurrentAnimatorClipInfo(0).Length);
+    }
+    private void Destroy()
+    {
+        Destroy(gameObject);
+    }
+    IEnumerator Attack()
+    {
+        StopRunning();
+        _myAnim.SetBool("IsAttacking", true);
+        _player.TakeCertainAmountOfHp();
+        _timeBtwAttack = timeBtwAttack;
+        yield return new WaitForSeconds(_myAnim.GetCurrentAnimatorStateInfo(0).length);
+        _myAnim.SetBool("IsAttacking", false);
+        _canAttack = false;
+    }
     IEnumerator HitsWall()
     {
         StopRunning();
