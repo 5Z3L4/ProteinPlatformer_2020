@@ -83,6 +83,11 @@ public class ShibaMutant : MonoBehaviour
         {
             _canAttack = true;
         }
+        if (_isPlayerInRange && _canAttack && _player.hp > 0)
+        {
+            StartCoroutine(Attack());
+            _canAttack = false;
+        }
     }
     private void FixedUpdate()
     {
@@ -106,27 +111,19 @@ public class ShibaMutant : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            _isPlayerInRange = true;
-            if ((_playerOnRight && _facingRight) || (!_playerOnRight && !_facingRight))
+            if (_player.isSmashing)
             {
-                if (_player.isSmashing)
-                {
-                    Die();
-                }
-                else if (_isDizzy && _player.isCharging)
-                {
-                    Die();
-                }
-                else
-                {
-                    if (_canAttack && _isPlayerInRange)
-                    {
-                        Attack();
-                        _canAttack = false;
-                        _myAnim.SetBool("IsAttacking", false);
-                    }
-                }
+                Die();
             }
+            else if (_isDizzy && _player.isCharging)
+            {
+                Die();
+            }
+            if ((!_playerOnRight && _facingRight) || (_playerOnRight && !_facingRight))
+            {
+                Flip();
+            }
+            _isPlayerInRange = true;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -153,12 +150,14 @@ public class ShibaMutant : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    private void Attack()
+    IEnumerator Attack()
     {
-        _myAnim.SetBool("IsRunning", false);
+        StopRunning();
         _myAnim.SetBool("IsAttacking", true);
         _player.TakeCertainAmountOfHp();
         _timeBtwAttack = timeBtwAttack;
+        yield return new WaitForSeconds(_myAnim.GetCurrentAnimatorStateInfo(0).length);
+        _myAnim.SetBool("IsAttacking", false);
         _canAttack = false;
     }
     IEnumerator HitsWall()
