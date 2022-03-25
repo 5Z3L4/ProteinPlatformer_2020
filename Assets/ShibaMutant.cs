@@ -145,6 +145,7 @@ public class ShibaMutant : MonoBehaviour
     {
         StopRunning();
         _isDying = true;
+        //SFXManager.PlaySound(ShibaMutantDeath, transform.position);
         _myAnim.Play("Death");
         Invoke("Destroy", _myAnim.GetCurrentAnimatorClipInfo(0).Length);
     }
@@ -156,6 +157,7 @@ public class ShibaMutant : MonoBehaviour
     {
         _myAnim.SetBool("IsRunning", false);
         _myAnim.SetBool("IsAttacking", true);
+        //SFXManager.PlaySound(ShibaMutantBite, transform.position);
         _player.TakeCertainAmountOfHp();
         _timeBtwAttack = timeBtwAttack;
         yield return new WaitForSeconds(_myAnim.GetCurrentAnimatorStateInfo(0).length);
@@ -168,6 +170,8 @@ public class ShibaMutant : MonoBehaviour
         StopRunning();
         _isDizzy = true;
         _myAnim.SetBool("IsDizzy", true);
+        SFXManager.PlaySound(SFXManager.Sound.Hit,transform.position);
+        //SFXManager.PlaySound(ShibaMutantDizzy, transform.position);
         yield return new WaitForSeconds(3f);
         _myAnim.SetBool("IsDizzy", false);
         _isDizzy = false;
@@ -178,6 +182,7 @@ public class ShibaMutant : MonoBehaviour
     {
         _isRunning = true;
         _myAnim.SetBool("GetsAngry", true);
+        SFXManager.PlaySound(SFXManager.Sound.ShibaMutantGrowl,transform.position);
         yield return new WaitForSeconds(1f);
         _myAnim.SetBool("GetsAngry", false);
         _myAnim.SetBool("IsRunning", true);
