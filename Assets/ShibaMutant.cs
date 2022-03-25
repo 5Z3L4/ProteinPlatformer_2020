@@ -24,7 +24,7 @@ public class ShibaMutant : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private LayerMask _playerLayer;
     private Animator _myAnim;
-    private float baseCastDist = 0.35f;
+    private float baseCastDist = 0.5f;
 
     private void Awake()
     {
