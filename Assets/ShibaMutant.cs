@@ -21,6 +21,7 @@ public class ShibaMutant : MonoBehaviour
     private bool _isPlayerInRange = false;
     private bool _isDizzy = false;
     private bool _canAttack = true;
+    private bool _isDying = false;
     private float _timeBtwAttack = 0;
     private float _changingMoveSpeed;
     private Vector3 _baseScale;
@@ -48,7 +49,7 @@ public class ShibaMutant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(Vector2.Distance(_player.transform.position, transform.position)) <= focusRange && !_isDizzy && !_isPlayerInRange)
+        if (Mathf.Abs(Vector2.Distance(_player.transform.position, transform.position)) <= focusRange && !_isDizzy)
         {
             RaycastHit2D hitGround = Physics2D.Linecast(transform.position, _player.transform.position, _groundLayer);
             if (hitGround.collider == null)
@@ -68,7 +69,7 @@ public class ShibaMutant : MonoBehaviour
             }
             Debug.DrawLine(transform.position, _player.transform.position);
         }
-        if (_changingMoveSpeed > 0 && !_isPlayerInRange)
+        if (_changingMoveSpeed > 0)
         {
             if (_changingMoveSpeed < maxMoveSpeed)
             {
@@ -83,7 +84,7 @@ public class ShibaMutant : MonoBehaviour
         {
             _canAttack = true;
         }
-        if (_isPlayerInRange && _canAttack && _player.hp > 0)
+        if (_isPlayerInRange && _canAttack && _player.hp > 0 && !_isDizzy && !_player.isCharging && !_player.isSmashing && !_isDying)
         {
             StartCoroutine(Attack());
             _canAttack = false;
@@ -119,7 +120,7 @@ public class ShibaMutant : MonoBehaviour
             {
                 Die();
             }
-            if ((!_playerOnRight && _facingRight) || (_playerOnRight && !_facingRight))
+            if (!_isDizzy && ((!_playerOnRight && _facingRight) || (_playerOnRight && !_facingRight)))
             {
                 Flip();
             }
@@ -131,7 +132,6 @@ public class ShibaMutant : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _isPlayerInRange = true;
-            _isRunning = false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -143,6 +143,8 @@ public class ShibaMutant : MonoBehaviour
     }
     private void Die()
     {
+        StopRunning();
+        _isDying = true;
         _myAnim.Play("Death");
         Invoke("Destroy", _myAnim.GetCurrentAnimatorClipInfo(0).Length);
     }
@@ -152,11 +154,12 @@ public class ShibaMutant : MonoBehaviour
     }
     IEnumerator Attack()
     {
-        StopRunning();
+        _myAnim.SetBool("IsRunning", false);
         _myAnim.SetBool("IsAttacking", true);
         _player.TakeCertainAmountOfHp();
         _timeBtwAttack = timeBtwAttack;
         yield return new WaitForSeconds(_myAnim.GetCurrentAnimatorStateInfo(0).length);
+        _myAnim.SetBool("IsRunning", true);
         _myAnim.SetBool("IsAttacking", false);
         _canAttack = false;
     }
