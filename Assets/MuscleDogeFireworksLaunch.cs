@@ -28,18 +28,20 @@ public class MuscleDogeFireworksLaunch : StateMachineBehaviour
                 {
                     _fireworkCounter++;
                     Instantiate(Fireworks[Random.Range(0, 3)]);
+                    _countTimer = StartCountTimer;
                 }
                 else
                 {
                     Instantiate(FinishingFirework);
                     _lastFireWorkSpawned = true;
+                    _countTimer = 1.5f;
                 }
             }
             else
             {
                 animator.SetBool("Fall", true);
             }
-            _countTimer = StartCountTimer;
+           
         }
         else
         {

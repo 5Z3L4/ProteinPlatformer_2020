@@ -27,6 +27,11 @@ public class MuscleDogeController : MonoBehaviour
         {
             _anim.SetBool("2ndState", true);
         }
+        if (BossHp <= 0)
+        {
+            _anim.SetBool("IsDead", true);
+            return;
+        }
         _anim.SetBool("GetHit", true);
     }
 

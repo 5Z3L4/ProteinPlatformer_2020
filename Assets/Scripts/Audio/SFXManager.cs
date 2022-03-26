@@ -23,7 +23,9 @@ public static class SFXManager
         MetalHit,
         Bark,
         ChaliceBreak,
-        ShibaMutantGrowl
+        ShibaMutantGrowl,
+        FireworkExplosion,
+        WhipeStrike
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 

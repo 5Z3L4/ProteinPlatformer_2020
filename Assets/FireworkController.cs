@@ -19,6 +19,7 @@ public class FireworkController : MonoBehaviour
             _player.TakeCertainAmountOfHp();
             _explosionPlayer.Play();
             Destroy(gameObject);
+            SFXManager.PlaySound(SFXManager.Sound.FireworkExplosion, transform.position);
         }
         else if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("DogEnemy"))
         {
@@ -31,5 +32,6 @@ public class FireworkController : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
         Explosion.Play();
+        SFXManager.PlaySound(SFXManager.Sound.FireworkExplosion, transform.position);
     }
 }

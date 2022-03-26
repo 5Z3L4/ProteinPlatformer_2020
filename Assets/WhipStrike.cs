@@ -36,6 +36,7 @@ public class WhipStrike : MonoBehaviour
                 StartCoroutine(showCollider());
                 _isAnimPlaying = true;
                 _time = _startTimer;
+                SFXManager.PlaySound(SFXManager.Sound.WhipeStrike, transform.position);
             }
         }
         
