@@ -6,16 +6,44 @@ public class WhipStrike : MonoBehaviour
 {
     public GameObject WhipeCollider;
     private Animator _anim;
+    private float _startTimer = 0.5f;
+    private float _time;
+    private bool _isAnimPlaying = false;
     private void Awake()
     {
         _anim = GameObject.FindGameObjectWithTag("PlayerSprite").GetComponent<Animator>();
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        
+        if (_isAnimPlaying)
         {
-            _anim.Play("PumpedBeastWhipStrike");
-            WhipeCollider.SetActive(true);
+            if (_time <= 0)
+            {
+                WhipeCollider.SetActive(false);
+                _isAnimPlaying = false;
+            }
+            else
+            {
+                _time -= Time.deltaTime;
+            }
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                _anim.Play("PumpedBeastWhipStrike");
+                StartCoroutine(showCollider());
+                _isAnimPlaying = true;
+                _time = _startTimer;
+            }
+        }
+        
+    }
+
+    IEnumerator showCollider()
+    {
+        yield return new WaitForSeconds(0.5f);
+        WhipeCollider.SetActive(true);
     }
 }

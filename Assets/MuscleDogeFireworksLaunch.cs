@@ -27,7 +27,7 @@ public class MuscleDogeFireworksLaunch : StateMachineBehaviour
                 if (_fireworkCounter <= 2)
                 {
                     _fireworkCounter++;
-                    Instantiate(Fireworks[Random.Range(0, 2)]);
+                    Instantiate(Fireworks[Random.Range(0, 3)]);
                 }
                 else
                 {

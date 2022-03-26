@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerWhipe : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class PlayerWhipe : MonoBehaviour
     {
         if (collision.CompareTag("DogEnemy"))
         {
-            print("Works");
+            collision.gameObject.GetComponent<MuscleDogeController>().GetDamage();
         }
     }
 }

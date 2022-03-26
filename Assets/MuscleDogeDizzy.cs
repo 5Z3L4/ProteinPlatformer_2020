@@ -10,6 +10,7 @@ public class MuscleDogeDizzy : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _dizzyTime = DizzyTimeCounter;
+        animator.SetBool("Fall", false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -17,7 +18,11 @@ public class MuscleDogeDizzy : StateMachineBehaviour
     {
         if (_dizzyTime < 0)
         {
-
+            animator.SetBool("GetHit", true);
+        }
+        else
+        {
+            _dizzyTime -= Time.deltaTime;
         }
     }
 
