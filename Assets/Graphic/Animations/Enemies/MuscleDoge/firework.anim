@@ -307,15 +307,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 1.2833333
         value: {x: -64.39, y: 12.03, z: 0}
-        inSlope: {x: 12.599946, y: -76.125, z: 0}
-        outSlope: {x: 12.599946, y: -76.125, z: 0}
+        inSlope: {x: 12.599946, y: -85.875, z: 0}
+        outSlope: {x: 12.599946, y: -85.875, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 1.3666667
-        value: {x: -62.96, y: 6.48, z: 0}
+        value: {x: -62.96, y: 5.18, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -712,15 +712,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 1.2833333
         value: 12.03
-        inSlope: -76.125
-        outSlope: -76.125
+        inSlope: -85.875
+        outSlope: -85.875
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.3666667
-        value: 6.48
+        value: 5.18
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1356,4 +1356,11 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1.3666667
+    functionName: Explode
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

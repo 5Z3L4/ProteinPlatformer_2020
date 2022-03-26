@@ -4,17 +4,32 @@ using UnityEngine;
 
 public class FireworkController : MonoBehaviour
 {
+    public ParticleSystem Explosion;
+    public ParticleSystem _explosionPlayer;
+    private PlayerMovement _player;
+    private void Awake()
+    {
+        _player = FindObjectOfType<PlayerMovement>();
+        _explosionPlayer = GameObject.Find("ExplosionPlayer").GetComponent<ParticleSystem>();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //playerhp -1;
-            //BOOM
+            _player.TakeCertainAmountOfHp();
+            _explosionPlayer.Play();
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("DogEnemy"))
+        {
+            Explode();
         }
     }
 
     public void Explode()
     {
-        //Particles
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        Explosion.Play();
     }
 }
