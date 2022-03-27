@@ -44,7 +44,7 @@ public class WhipStrike : MonoBehaviour
 
     IEnumerator showCollider()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         WhipeCollider.SetActive(true);
     }
 }

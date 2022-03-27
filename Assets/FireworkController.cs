@@ -11,6 +11,7 @@ public class FireworkController : MonoBehaviour
     {
         _player = FindObjectOfType<PlayerMovement>();
         _explosionPlayer = GameObject.Find("ExplosionPlayer").GetComponent<ParticleSystem>();
+        SFXManager.PlaySound(SFXManager.Sound.FireworkWhistle, transform.position);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -31,6 +32,7 @@ public class FireworkController : MonoBehaviour
     {
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
+        ScreenShake.Instance.Shakecamera(5f, .1f);
         Explosion.Play();
         SFXManager.PlaySound(SFXManager.Sound.FireworkExplosion, transform.position);
     }
