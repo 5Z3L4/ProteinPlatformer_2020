@@ -140,7 +140,6 @@ public class PlayerMovement : MonoBehaviour
             playerAnim.SetBool("IsJumping", false);
             playerAnim.SetBool("IsFalling", false);
         }
-        PlaySmashParticle();
         CalculateJumpBuffer();
 
         if (horizontalAxis > 0 && !facingRight || horizontalAxis < 0 && facingRight)
@@ -515,17 +514,6 @@ public class PlayerMovement : MonoBehaviour
             playerAnim.SetBool("IsRunning", false);
         }
     }
-    private void PlaySmashParticle()
-    {
-        if (shouldSmashParticle)
-        {
-            if (isGrounded == true && playerRB.velocity.y == 0 && isSmashing)
-            {
-                PlayParticleSystem(smash);
-                shouldSmashParticle = false;
-            }
-        }
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Destroyable") && isCharging)
@@ -560,6 +548,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SmashOver()
     {
+        PlayParticleSystem(smash);
         playerAnim.SetBool("IsSmashing", false);
     }
 }

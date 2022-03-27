@@ -151,6 +151,8 @@ MonoBehaviour:
   canMove: 1
   allowCharge: 0
   allowSmash: 0
+  chargeSpeed: 700
+  slideSpeed: 50000
   slide: {fileID: 7115163378944558398}
   smash: {fileID: 5867275486269959140}
   charge: {fileID: 7455018397404879045}
@@ -158,6 +160,7 @@ MonoBehaviour:
   fakeFloorBlowUp: {fileID: 3921461906943262574}
   fakeWallBlowUp: {fileID: 3921461906465862967}
   jumpAndLand: {fileID: 5423013821256654335}
+  KonamiMoonWalk: 0
   horizontalAxis: 0
   moveSpeed: 600
   facingRight: 1
@@ -176,9 +179,13 @@ MonoBehaviour:
   isGrounded: 0
   isSliding: 0
   playerRB: {fileID: 1823373232663629943}
-  slideSpeed: 50000
+  jumpBuffer: 0.1
+  coyoteetime: 0.2
   mainCollider: {fileID: 5423013822556294499}
   slideCollider: {fileID: 1823373232663629936}
+  slideCollider2: {fileID: 0}
+  SmashCheck: {fileID: 0}
+  slideCheckUp: {fileID: 0}
   playerAnim: {fileID: 0}
   wallCheck: {fileID: 5423013822188998682}
   jumpTime: 0.25
@@ -190,6 +197,8 @@ MonoBehaviour:
   PlayerBubbleTransform: {fileID: 5423013822233882070}
   SM: {fileID: 0}
   HUDManager: {fileID: 0}
+  GodMode: 0
+  GodModeTimer: 0
 --- !u!50 &1823373232663629943
 Rigidbody2D:
   serializedVersion: 4
@@ -6097,6 +6106,14 @@ PrefabInstance:
     - target: {fileID: 2608793114293369949, guid: a5b68fef2dbc7764e93255aabe6362e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095133730914346795, guid: a5b68fef2dbc7764e93255aabe6362e9, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095133730914346795, guid: a5b68fef2dbc7764e93255aabe6362e9, type: 3}
+      propertyPath: ShapeModule.m_Position.x
+      value: -0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5b68fef2dbc7764e93255aabe6362e9, type: 3}
