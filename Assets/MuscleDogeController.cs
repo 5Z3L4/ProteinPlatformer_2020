@@ -9,8 +9,10 @@ public class MuscleDogeController : MonoBehaviour
     public Slider HpSlider;
     private Animator _anim;
     public GameObject Ticket;
+    private BoxCollider2D col;
     private void Awake()
     {
+        col = GetComponent<BoxCollider2D>();
         HpSlider.maxValue = BossHp;
         _anim = GetComponent<Animator>();
     }
@@ -30,6 +32,7 @@ public class MuscleDogeController : MonoBehaviour
         }
         if (BossHp <= 0)
         {
+            col.isTrigger = true;
             Ticket.SetActive(true);
             _anim.SetBool("IsDead", true);
             return;
