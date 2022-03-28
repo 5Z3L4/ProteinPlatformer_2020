@@ -8,6 +8,7 @@ public class MuscleDogeController : MonoBehaviour
     public int BossHp = 10;
     public Slider HpSlider;
     private Animator _anim;
+    public GameObject Ticket;
     private void Awake()
     {
         HpSlider.maxValue = BossHp;
@@ -29,6 +30,7 @@ public class MuscleDogeController : MonoBehaviour
         }
         if (BossHp <= 0)
         {
+            Ticket.SetActive(true);
             _anim.SetBool("IsDead", true);
             return;
         }

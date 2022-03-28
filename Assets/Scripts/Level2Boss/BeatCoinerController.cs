@@ -11,6 +11,7 @@ public class BeatCoinerController : MonoBehaviour
     public bool CanGetHit = false;
     public bool CanHitPlayer = false;
     public GameObject SliderObj;
+    public GameObject Ticket;
     public Slider HpSlider;
     private PlayerMovement _player;
     private Animator _anim;
@@ -33,6 +34,7 @@ public class BeatCoinerController : MonoBehaviour
         if (hp <= 0)
         {
             gameObject.layer = 13;
+            Ticket.SetActive(true);
             return;
         }
 
