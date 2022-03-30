@@ -19,6 +19,7 @@ public static class SFXManager
         Hit,
         Boost,
         ShibaDeath,
+        ShibaPullInBall,
         BalloonBlowUp,
         MetalHit,
         Bark,
