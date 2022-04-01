@@ -20392,7 +20392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 364947625}
   DeathCounterText: {fileID: 892838617}
-  restartButton: {fileID: 0}
+  restartButton: {fileID: 1202542729}
 --- !u!1 &839333352
 GameObject:
   m_ObjectHideFlags: 0
@@ -23085,11 +23085,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.88645
+      value: -44.537464
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.596966
+      value: 17.296915
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.z
