@@ -29,10 +29,10 @@ public class Results : MonoBehaviour
         scoreResult.SetText("Score: " + GameManager.Score.ToString());
         deaths.SetText("Deaths: " + GameManager.deaths.ToString());
     }
-    public void NextLevel()
+    public void NextLevel(string levelName)
     {
         StartCoroutine(SceneTransition());
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene(levelName);
         GameManager.Reset();
     }
     public void BackToMenu()

@@ -26,7 +26,8 @@ public static class SFXManager
         ShibaMutantGrowl,
         FireworkExplosion,
         WhipeStrike,
-        FireworkWhistle
+        FireworkWhistle,
+        ShibaPullInBall
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 
