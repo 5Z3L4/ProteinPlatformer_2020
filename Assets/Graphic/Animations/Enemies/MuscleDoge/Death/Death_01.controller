@@ -289,7 +289,7 @@ MonoBehaviour:
   - {fileID: 6118379238479787486, guid: e2b1bdd9868c6264db4a9ac9e5ee1dba, type: 3}
   - {fileID: 8265425826449564947, guid: babc0a7c3a3b16e41b3cfbd884285ade, type: 3}
   FinishingFirework: {fileID: 3532154563508511479, guid: 873a8a2499d11de488b4ae15e1541a62, type: 3}
-  StartCountTimer: 0.75
+  StartCountTimer: 1.25
 --- !u!1102 &-3554297459878155215
 AnimatorState:
   serializedVersion: 6
