@@ -2777,7 +2777,7 @@ MonoBehaviour:
   CanGetHit: 0
   CanHitPlayer: 0
   SliderObj: {fileID: 1394147016}
-  Ticket: {fileID: 0}
+  Ticket: {fileID: 1868612107}
   HpSlider: {fileID: 1394147018}
 --- !u!1 &121928727
 GameObject:
@@ -3002,7 +3002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoolToChange: ShotEnd
-  Change: 0
+  Change: 1
   anim: {fileID: 121517912}
 --- !u!1 &135128652
 GameObject:
@@ -9092,7 +9092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoolToChange: ShotEnd
-  Change: 0
+  Change: 1
   anim: {fileID: 121517912}
 --- !u!1001 &331716810
 PrefabInstance:
@@ -37840,7 +37840,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575501895}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 209.19002, y: 13.081135, z: -10}
+  m_LocalPosition: {x: 209.19003, y: 13.085943, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1523453826}
@@ -43569,6 +43569,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1868612107 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1230731327638362153, guid: 2d5e5cc6003686e4fb926e74e13be0a5, type: 3}
+  m_PrefabInstance: {fileID: 1902807619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1869043893
 GameObject:
   m_ObjectHideFlags: 0

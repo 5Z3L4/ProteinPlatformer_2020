@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985a39eaf940031429caf7501e598b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileSpeed: -1500
+  ProjectileSpeed: -1300
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 8
