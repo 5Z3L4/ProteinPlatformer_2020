@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public Sprite ballWithShiba;
+    public bool shouldTakeDogInside = true;
 
     private ParticleSystem _particleSystem;
     private SpriteRenderer _spriteRenderer;
@@ -20,12 +21,16 @@ public class Ball : MonoBehaviour
         {
             DestroyBall();
         }
-        if (collision.gameObject.CompareTag("DogEnemy"))
+        if (collision.gameObject.CompareTag("DogEnemy") && shouldTakeDogInside)
         {
             Destroy(collision.gameObject);
             SFXManager.PlaySound(SFXManager.Sound.ShibaPullInBall, transform.position);
             _spriteRenderer.sprite = ballWithShiba;
             _isShibaInside = true;
+        }
+        else if (collision.gameObject.CompareTag("DogEnemy"))
+        {
+            DestroyBall();
         }
     }
 

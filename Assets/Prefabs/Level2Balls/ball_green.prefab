@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: ballWithShiba
       value: 
       objectReference: {fileID: 21300000, guid: e0bbd6fa3e0ebbe4ca487211304bac83, type: 3}
+    - target: {fileID: 340227025632784047, guid: 205457e7793fc524894913434e2326cc, type: 3}
+      propertyPath: shouldTakeDogInside
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 340227025632784049, guid: 205457e7793fc524894913434e2326cc, type: 3}
       propertyPath: m_RootOrder
       value: 0
