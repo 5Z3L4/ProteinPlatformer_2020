@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 respawnPos;
     public Vector3 startingPos;
     public int hp = 3;
+    public int maxHp = 3;
     public Transform PlayerBubbleTransform;
     public SaveManager SM;
     public HUDManager HUDManager;
@@ -484,7 +485,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = respawnPos;
             canMove = true;
-            hp = 3;
+            hp = maxHp;
             isDying = false;
             playerAnim.SetBool("IsDead", false);
         }

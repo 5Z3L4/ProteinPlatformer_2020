@@ -48,4 +48,14 @@ public static class GameManager
         collectedVendingMachines = 0;
         collectiblesOnMap = 0;
     }
+
+    public static void AddMeat(PlayerMovement player)
+    {
+        collectedConstitution++;
+        if (collectedConstitution % 50 == 0)
+        {
+            player.maxHp++;
+            player.hp++;
+        }
+    }
 }

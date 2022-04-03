@@ -44,7 +44,7 @@ public class Collectible : MonoBehaviour
                 }
                 else if (stats == StatsToUpgrade.Constitution)
                 {
-                    GameManager.collectedConstitution++;
+                    GameManager.AddMeat(GameObject.Find("Player").GetComponent<PlayerMovement>());
                 }
                 else if (stats == StatsToUpgrade.Dexterity)
                 {
