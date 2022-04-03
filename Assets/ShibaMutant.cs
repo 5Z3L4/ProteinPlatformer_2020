@@ -16,7 +16,7 @@ public class ShibaMutant : MonoBehaviour
 
     private PlayerMovement _player;
     private bool _playerOnRight;
-    private bool _facingRight;
+    private bool _facingRight = true;
     private bool _isRunning = false;
     private bool _isPlayerInRange = false;
     private bool _isDizzy = false;
@@ -39,7 +39,6 @@ public class ShibaMutant : MonoBehaviour
     void Start()
     {
         _baseScale = transform.localScale;
-        _facingRight = leftOrRight;
         if (!leftOrRight)
         {
             Flip();
@@ -120,11 +119,15 @@ public class ShibaMutant : MonoBehaviour
             {
                 Die();
             }
-            if (!_isDizzy && ((!_playerOnRight && _facingRight) || (_playerOnRight && !_facingRight)))
+            if (!_isDizzy && !_isRunning && ((!_playerOnRight && _facingRight) || (_playerOnRight && !_facingRight)))
             {
                 Flip();
             }
             _isPlayerInRange = true;
+        }
+        if (collision.CompareTag("KillBox"))
+        {
+            Die();
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
