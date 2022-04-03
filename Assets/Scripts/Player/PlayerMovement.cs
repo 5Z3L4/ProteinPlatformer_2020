@@ -428,6 +428,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeCertainAmountOfHp()
     {
         if (GodMode) return;
+        overSlide();
         playerAnim.Play("SkinnyHit");
         SFXManager.PlaySound(SFXManager.Sound.GetHit, transform.position);
         KnockBack(false);

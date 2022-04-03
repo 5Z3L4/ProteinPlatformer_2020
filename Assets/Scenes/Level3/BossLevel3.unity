@@ -21738,6 +21738,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 995209906}
+  - component: {fileID: 995209907}
   m_Layer: 0
   m_Name: 2ndPhaseDialogueData
   m_TagString: Untagged
@@ -21760,6 +21761,20 @@ Transform:
   m_Father: {fileID: 386360981}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &995209907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995209905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e170583ac6b2442a19bbc62fa1b91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialogue: {fileID: 1115137315}
+  anim: {fileID: 1358218358}
 --- !u!1 &999250276
 GameObject:
   m_ObjectHideFlags: 0
@@ -22724,7 +22739,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 109243058108378872, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
   m_PrefabInstance: {fileID: 1115137313}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2099607226}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a534d503b562cdf43818570996bd8369, type: 3}
@@ -23098,11 +23113,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -45.6139
+      value: -48.09665
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.31263
+      value: 20.402485
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50894,6 +50909,25 @@ Transform:
   m_Father: {fileID: 573707652}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2099607226 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 359094373979658785, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
+  m_PrefabInstance: {fileID: 1115137313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2099607227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099607226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e170583ac6b2442a19bbc62fa1b91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dialogue: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!1 &2104350458
 GameObject:
   m_ObjectHideFlags: 0

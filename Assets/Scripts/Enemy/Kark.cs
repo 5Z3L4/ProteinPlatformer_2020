@@ -143,6 +143,7 @@ public class Kark : MonoBehaviour //,Enemy
 
     public IEnumerator Die()
     {
+        shouldFlipAfterPunch = false;
         if (!isDying) {
             SFXManager.PlaySound(SFXManager.Sound.Hit, transform.position);
         };
