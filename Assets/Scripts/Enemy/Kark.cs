@@ -104,8 +104,11 @@ public class Kark : MonoBehaviour //,Enemy
     {
         if (collision.CompareTag("Player"))
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);
-            if (facingRight != player.facingRight || facingRight == player.facingRight)
+            if (player.isCharging)
+            {
+                StartCoroutine(Die());
+            }
+            else if (facingRight != player.facingRight || facingRight == player.facingRight)
             {
                 if (timeBtwAttack > 0) return;
                 if ((CalculatePlayerPos() < 0 && facingRight) || CalculatePlayerPos() > 0 && !facingRight && shouldAttack)

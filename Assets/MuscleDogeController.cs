@@ -26,7 +26,7 @@ public class MuscleDogeController : MonoBehaviour
     {
         BossHp--;
         HpSlider.value = BossHp;
-        if (BossHp <= (5))
+        if (BossHp <= 5)
         {
             _anim.SetBool("2ndState", true);
         }
