@@ -1023,6 +1023,14 @@ PrefabInstance:
       propertyPath: shouldBeCounted
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2114832362279958711, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
+    - target: {fileID: 2114832362614938931, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
     - target: {fileID: 2114832362760144272, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_Name
       value: MeatHolder (2)
@@ -1083,6 +1091,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.59375
       objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9902b84409712b4db0e0195a8151392, type: 3}
 --- !u!4 &2114832362242127412 stripped
@@ -1101,6 +1113,14 @@ PrefabInstance:
       propertyPath: shouldBeCounted
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2114832362279958711, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
+    - target: {fileID: 2114832362614938931, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
     - target: {fileID: 2114832362760144272, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_Name
       value: MeatHolder (3)
@@ -1161,6 +1181,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.59375
       objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9902b84409712b4db0e0195a8151392, type: 3}
 --- !u!4 &2114832363689703277 stripped
@@ -1179,6 +1203,14 @@ PrefabInstance:
       propertyPath: shouldBeCounted
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2114832362279958711, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
+    - target: {fileID: 2114832362614938931, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
     - target: {fileID: 2114832362760144272, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_Name
       value: MeatHolder (1)
@@ -1239,6 +1271,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.59375
       objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9902b84409712b4db0e0195a8151392, type: 3}
 --- !u!4 &2114832363634257615 stripped
@@ -1257,6 +1293,14 @@ PrefabInstance:
       propertyPath: shouldBeCounted
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2114832362279958711, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
+    - target: {fileID: 2114832362614938931, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
     - target: {fileID: 2114832362760144272, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_Name
       value: MeatHolder (4)
@@ -1321,6 +1365,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.59375
       objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9902b84409712b4db0e0195a8151392, type: 3}
 --- !u!4 &2114832363485933599 stripped
@@ -1339,6 +1387,14 @@ PrefabInstance:
       propertyPath: shouldBeCounted
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2114832362279958711, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
+    - target: {fileID: 2114832362614938931, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
     - target: {fileID: 2114832362760144272, guid: c9902b84409712b4db0e0195a8151392, type: 3}
       propertyPath: m_Name
       value: MeatHolder
@@ -1399,6 +1455,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.59375
       objectReference: {fileID: 0}
+    - target: {fileID: 3773108232155250812, guid: c9902b84409712b4db0e0195a8151392, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60625d377a2340946a5a65578aac1954, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9902b84409712b4db0e0195a8151392, type: 3}
 --- !u!4 &955269614 stripped

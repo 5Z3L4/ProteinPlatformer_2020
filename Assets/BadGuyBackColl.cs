@@ -13,9 +13,13 @@ public class BadGuyBackColl : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((BadGuy.facingRight == _player.facingRight && _player.isSliding) || _player.isCharging)
+        if (collision.CompareTag("Player"))
         {
-            StartCoroutine(BadGuy.Die());
+            if ((BadGuy.facingRight == _player.facingRight && _player.isSliding) || _player.isCharging)
+            {
+                StartCoroutine(BadGuy.Die());
+            }
         }
+        
     }
 }

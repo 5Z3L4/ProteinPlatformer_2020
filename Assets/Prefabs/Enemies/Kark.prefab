@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 227913687006845863}
   - component: {fileID: 8020707336563112097}
   - component: {fileID: 8494864681113046099}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: KillBackColl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
