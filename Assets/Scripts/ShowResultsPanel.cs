@@ -8,14 +8,16 @@ public class ShowResultsPanel : MonoBehaviour
     public GameObject canvas;
 
     public bool IsPlayerInTrigger = false;
+    [SerializeField]
+    private bool _shouldPlayerClick = true;
     private void Update()
     {
+        if (!_shouldPlayerClick) return;
         if (IsPlayerInTrigger)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                resultsPanel.SetActive(true);
-                canvas.SetActive(false);
+                ShowPanel();
             }
         }
     }
@@ -39,5 +41,11 @@ public class ShowResultsPanel : MonoBehaviour
         {
             IsPlayerInTrigger = false;
         }
+    }
+
+    public void ShowPanel()
+    {
+        resultsPanel.SetActive(true);
+        canvas.SetActive(false);
     }
 }
