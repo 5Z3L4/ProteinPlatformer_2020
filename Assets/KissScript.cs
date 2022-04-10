@@ -12,7 +12,8 @@ public class KissScript : MonoBehaviour
     {
         KissSkinny,
         KissMuscular,
-        KissBeast
+        KissBeast,
+        KissArnie
     }
     private void Awake()
     {
