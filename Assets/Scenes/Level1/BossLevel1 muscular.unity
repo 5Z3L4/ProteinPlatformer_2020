@@ -2487,6 +2487,7 @@ MonoBehaviour:
   resultsPanel: {fileID: 62862804}
   canvas: {fileID: 904076300}
   IsPlayerInTrigger: 0
+  _shouldPlayerClick: 1
 --- !u!1001 &877486184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3246,11 +3247,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.0353947
+      value: 1.7950363
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.0282607
+      value: -3.091116
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -37359,7 +37360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2062419970604121656, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level2
+      value: Level2 1
       objectReference: {fileID: 0}
     - target: {fileID: 2062419970978422484, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
       propertyPath: m_Name

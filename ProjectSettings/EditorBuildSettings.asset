@@ -24,14 +24,26 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1/BossLevel1 muscular.unity
     guid: ddf76b99c65ca9f4386668c31b709798
   - enabled: 1
-    path: Assets/Scenes/Level2/Level2.unity
-    guid: 24e8b3dac6ee914469d9efab2c0ae3ce
+    path: Assets/Scenes/Level2/Level2 1.unity
+    guid: 20318c54c49d77b4dabdfc008786c5c4
+  - enabled: 1
+    path: Assets/Scenes/Level2/Level2 2.unity
+    guid: a8d3f6cb60045f24a809261d2a0e09ec
+  - enabled: 1
+    path: Assets/Scenes/Level2/Level2 3.unity
+    guid: b48184e65940d2840a9892f91964ac1f
   - enabled: 1
     path: Assets/Scenes/Level2/BossLevel2.unity
     guid: 4bfa05dfbacb0f044b49b2973db8def0
   - enabled: 1
-    path: Assets/Scenes/Level3/Level3.unity
-    guid: 83979b7c58831974ea663c1f563ab275
+    path: Assets/Scenes/Level3/Level3 1.unity
+    guid: b8350ce984768be4e9e09ba0682102e9
+  - enabled: 1
+    path: Assets/Scenes/Level3/Level3 2.unity
+    guid: 9d0e7de901f3e264ca0bb0ffc6e191d0
+  - enabled: 1
+    path: Assets/Scenes/Level3/Level3 3.unity
+    guid: bc1edf25f07952d49abcca817845e057
   - enabled: 1
     path: Assets/Scenes/Level3/BossLevel3.unity
     guid: e88736ca79e7ceb479aceae7098853a5
