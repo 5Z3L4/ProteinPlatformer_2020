@@ -10,7 +10,6 @@ public class Results : MonoBehaviour
     public Animator sceneTransition;
     public GameObject firstSelected;
     public TMP_Text scoreResult;
-    public TMP_Text deaths;
 
     private PlayerMovement player;
 
@@ -27,7 +26,6 @@ public class Results : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         scoreResult.SetText("Score: " + GameManager.Score.ToString());
-        deaths.SetText("Deaths: " + GameManager.deaths.ToString());
     }
     public void NextLevel(string levelName)
     {
