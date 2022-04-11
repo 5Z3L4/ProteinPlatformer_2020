@@ -10,7 +10,6 @@ public class MenuManagement : MonoBehaviour
     public GameObject menuPanel;
     public GameObject storyModePanel;
     public GameObject leaderboardsPanel;
-    public GameObject profilePanel;
     public GameObject optionsPanel;
     private void Start()
     {
@@ -31,7 +30,6 @@ public class MenuManagement : MonoBehaviour
         menuPanel.SetActive(true);
         storyModePanel.SetActive(false);
         leaderboardsPanel.SetActive(false);
-        profilePanel.SetActive(false);
         optionsPanel.SetActive(false);
     }
 
