@@ -42,7 +42,7 @@ public class Pause : MonoBehaviour
                 }
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                StartCoroutine(ResetJumpBuffer(1f));
+                StartCoroutine(ResetJumpBuffer(0.25f));
 
             }
             else
@@ -70,7 +70,7 @@ public class Pause : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            StartCoroutine(ResetJumpBuffer(1f));
+            StartCoroutine(ResetJumpBuffer(0.25f));
         }
     }
     public void ShowConfirmPanel()
