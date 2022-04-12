@@ -38,7 +38,7 @@ public class SECController : MonoBehaviour
         {
             //zrzuæ œmiecia
             _shotCOunter = 0;
-            print("Spad³o");
+            _anim.SetBool("Fall", true);
         }
     }
 }
