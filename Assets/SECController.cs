@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class SECController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject _left;
+    [SerializeField]
+    private GameObject _right;
+    private Animator _anim;
+    private int _shotCOunter = 0;
+    private void Awake()
     {
-        
+        _anim = GetComponent<Animator>();
+    }
+    public void SpawnRightBriefCase()
+    {
+        Instantiate(_right);
+    }
+    public void SpawnRLeftBriefCase()
+    {
+        Instantiate(_left);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChoseSide()
     {
-        
+        if (Random.Range(0,2) > 0)
+        {
+            _anim.SetBool("Left", true);
+        }
+        else
+        {
+            _anim.SetBool("Right", true);
+        }
+        _shotCOunter++;
+        if (_shotCOunter >=3)
+        {
+            //zrzuæ œmiecia
+            _shotCOunter = 0;
+            print("Spad³o");
+        }
     }
 }
