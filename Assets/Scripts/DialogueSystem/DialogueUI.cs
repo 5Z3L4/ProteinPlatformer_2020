@@ -13,6 +13,7 @@ public class DialogueUI : MonoBehaviour
     public Color DefaultInterlocutorColor => defaultInterlocutorColor;
     public Color DefaultPlayerColor => defaultPlayerColor;
     public bool isOpen = false;
+    public GameObject miniMap;
     [SerializeField] private Image interlocutorImage;
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
@@ -60,6 +61,7 @@ public class DialogueUI : MonoBehaviour
     public void ShowDialogue(InterlocutorDialogue interlocutorDialogue)
     {
         if (Time.timeScale == 0) return;
+        miniMap.SetActive(false);
         player.jumpBuffer = 0;
         isOpen = true;
         player.canMove = false;
@@ -119,6 +121,7 @@ public class DialogueUI : MonoBehaviour
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
         isOpen = false;
+        miniMap.SetActive(true);
         textWriter.Stop();
         StopAllCoroutines();
         StartCoroutine(ResetJumpBuffer(1f));

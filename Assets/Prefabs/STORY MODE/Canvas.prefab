@@ -671,7 +671,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2906552370286410431}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1721,7 +1721,7 @@ RectTransform:
   - {fileID: 1064965958284426664}
   - {fileID: 3065574181910566027}
   m_Father: {fileID: 2906552370286410431}
-  m_RootOrder: 1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2173,7 +2173,7 @@ RectTransform:
   - {fileID: 8314101645962700326}
   - {fileID: 3914839189935204938}
   m_Father: {fileID: 2906552370286410431}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2848,12 +2848,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 157045867}
-  - {fileID: 8994511536343354112}
   - {fileID: 7096597488969414772}
   - {fileID: 479192855961452394}
   - {fileID: 954708579}
   - {fileID: 6251695558641716066}
   - {fileID: 5966616070412960054}
+  - {fileID: 8994511536343354112}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4095,7 +4095,7 @@ RectTransform:
   - {fileID: 2906552371573950185}
   - {fileID: 1656370000}
   m_Father: {fileID: 2906552370286410431}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -4997,7 +4997,7 @@ RectTransform:
   - {fileID: 1992895835462487021}
   - {fileID: 4011621627152765903}
   m_Father: {fileID: 2906552370286410431}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -5035,7 +5035,7 @@ RectTransform:
   m_Children:
   - {fileID: 540434771}
   m_Father: {fileID: 2906552370286410431}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
