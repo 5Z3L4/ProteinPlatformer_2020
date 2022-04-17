@@ -136,6 +136,14 @@ public class ShibaMutant : MonoBehaviour
         {
             _isPlayerInRange = true;
         }
+        if (_player.isSmashing)
+        {
+            Die();
+        }
+        else if (_isDizzy && _player.isCharging)
+        {
+            Die();
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
