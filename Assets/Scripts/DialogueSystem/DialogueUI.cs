@@ -61,7 +61,10 @@ public class DialogueUI : MonoBehaviour
     public void ShowDialogue(InterlocutorDialogue interlocutorDialogue)
     {
         if (Time.timeScale == 0) return;
-        miniMap.SetActive(false);
+        if (miniMap != null)
+        {
+            miniMap.SetActive(false);
+        }
         player.jumpBuffer = 0;
         isOpen = true;
         player.canMove = false;
@@ -121,7 +124,10 @@ public class DialogueUI : MonoBehaviour
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
         isOpen = false;
-        miniMap.SetActive(true);
+        if (miniMap != null)
+        {
+            miniMap.SetActive(true);
+        }
         textWriter.Stop();
         StopAllCoroutines();
         StartCoroutine(ResetJumpBuffer(1f));

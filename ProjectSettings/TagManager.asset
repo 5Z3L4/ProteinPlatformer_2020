@@ -20,6 +20,10 @@ TagManager:
   - DogEnemy
   - Ball
   - x
+  - Shield
+  - Shield2
+  - Firework
+  - Hantel
   layers:
   - Default
   - TransparentFX
