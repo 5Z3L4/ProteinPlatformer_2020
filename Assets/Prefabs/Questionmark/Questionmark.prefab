@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shouldCheckForEndOfDialogue: 1
-  lastInterlocutorDialogue: {fileID: 0}
-  lastPlayerResponse: {fileID: 0}
+  lastInterlocutorDialogue: []
+  lastPlayerResponse: []
   shouldCheckForQuestFinish: 0
   quest: {fileID: 0}
