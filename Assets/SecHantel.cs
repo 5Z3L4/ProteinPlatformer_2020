@@ -12,4 +12,5 @@ public class SecHantel : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
     }
+
 }

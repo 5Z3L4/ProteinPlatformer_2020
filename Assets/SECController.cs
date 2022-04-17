@@ -92,9 +92,14 @@ public class SECController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Shield") || collision.CompareTag("Shield2") || collision.CompareTag("Firework") || collision.CompareTag("Hantel"))
+        if (collision.CompareTag("Shield") || collision.CompareTag("Shield2") || collision.CompareTag("Firework"))
         {
             GetDamage();
+        }
+        if (collision.CompareTag("Hantel"))
+        {
+            GetDamage();
+            Destroy(collision.gameObject);
         }
     }
 }
