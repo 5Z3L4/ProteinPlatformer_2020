@@ -23,6 +23,7 @@ public class SECController : MonoBehaviour
     private int _hp = 10;
     private int _shotCOunter = 0;
     private int _hitCOunter = 0;
+    private bool _checkForDialogue = false;
     private void Awake()
     {
         _anim = GetComponent<Animator>();
@@ -66,6 +67,12 @@ public class SECController : MonoBehaviour
         _anim.SetBool(side, true);
     }
 
+    private void MuscularBomb()
+    {
+        _muscularAnim.Play("KickBall");
+        MuscularAttack = false;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("DogEnemy"))
@@ -79,7 +86,6 @@ public class SECController : MonoBehaviour
                 _anim.SetBool("Fall", true);
                 if (MuscularAttack)
                 {
-                    _muscularAnim.Play("KickBall");
                     MuscularAttack = false;
                 }
                 else
