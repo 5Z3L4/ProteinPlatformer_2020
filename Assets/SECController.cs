@@ -18,6 +18,8 @@ public class SECController : MonoBehaviour
     private Animator _muscularAnim;
     [SerializeField]
     private Animator _beastAnim;
+    [SerializeField]
+    private BeastSecController _beast;
     private Animator _anim;
     [SerializeField]
     private int _hp = 10;
@@ -90,8 +92,8 @@ public class SECController : MonoBehaviour
                 }
                 else
                 {
-                    _beastAnim.Play("BeastFireworks");
-                    _fireWorks.SetActive(true);
+                    _anim.SetBool("GoBeast", true);
+                    _beast.Shot = true;
                 }
             }
         }

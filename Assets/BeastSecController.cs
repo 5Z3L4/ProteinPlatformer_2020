@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class BeastSecController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool Shot = false;
+    [SerializeField]
+    private GameObject _fireWorks;
+    [SerializeField]
+    private InterlocutorDialogue _dialogue;
+    private Animator _beastAnim;
+    private bool _isOver = false;
 
-    // Update is called once per frame
+    private void Awake()
+    {
+        _beastAnim = GetComponent<Animator>();
+    }
     void Update()
     {
-        
+        if (_isOver) return;
+        if (!Shot) return;
+        if (_dialogue.isOver)
+        {
+            _beastAnim.Play("BeastFireworks");
+            _fireWorks.SetActive(true);
+            _isOver = true;
+        }
     }
 }
