@@ -256,6 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119676843d511444b8193968367450d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballWithShiba: {fileID: 0}
+  shouldTakeDogInside: 0
 --- !u!114 &4822323519591158080
 MonoBehaviour:
   m_ObjectHideFlags: 0
