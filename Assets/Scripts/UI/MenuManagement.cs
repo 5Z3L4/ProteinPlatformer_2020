@@ -36,28 +36,24 @@ public class MenuManagement : MonoBehaviour
     }
 
     [Space(10)]
-    //PROFILE
-    public GameObject[] characters;
-    public int selectedCharacter = 0;
-    public void NextCharacter()
+    //LEVELS
+    public GameObject[] levels;
+    public int selectedLevel = 0;
+    public void NextLevel()
     {
-        characters[selectedCharacter].SetActive(false);
-        selectedCharacter = (selectedCharacter + 1) % characters.Length;
-        characters[selectedCharacter].SetActive(true);
+        levels[selectedLevel].SetActive(false);
+        selectedLevel = (selectedLevel + 1) % levels.Length;
+        levels[selectedLevel].SetActive(true);
     }
-    public void PreviousCharacter()
+    public void PreviousLevel()
     {
-        characters[selectedCharacter].SetActive(false);
-        selectedCharacter--;
-        if(selectedCharacter < 0)
+        levels[selectedLevel].SetActive(false);
+        selectedLevel--;
+        if(selectedLevel < 0)
         {
-            selectedCharacter += characters.Length;
+            selectedLevel += levels.Length;
         }
-        characters[selectedCharacter].SetActive(true);
-    }
-    public void ChooseCharacter()
-    {
-        PlayerPrefs.SetInt("Selected Character", selectedCharacter);
+        levels[selectedLevel].SetActive(true);
     }
     [Space(10)]
     //STORY MODE
