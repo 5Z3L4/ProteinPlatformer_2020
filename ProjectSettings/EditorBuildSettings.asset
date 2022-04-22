@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1/BossLevel1.unity
     guid: 78a887e722fca104d937b2d00d6bb0b2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level1/BossLevel1 muscular.unity
     guid: ddf76b99c65ca9f4386668c31b709798
   - enabled: 1
