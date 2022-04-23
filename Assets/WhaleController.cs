@@ -8,6 +8,8 @@ public class WhaleController : MonoBehaviour
     public GameObject Bag;
     public int BossHp = 20;
     public Slider HpSlider;
+    [SerializeField]
+    private GameObject _ticket;
     private WhaleSpawner _whaleSpawner;
     private Animator _anim;
     private bool _isDead;
@@ -45,10 +47,7 @@ public class WhaleController : MonoBehaviour
         {
             _isDead = true;
             _anim.Play("WhaleDeath");
-            //col.isTrigger = true;
-            //ticket for sure
-            //Ticket.SetActive(true);
-            //_anim.SetBool("IsDead", true);
+            _ticket.SetActive(true);
             return;
         }
         _anim.SetBool("GetHit", true);
