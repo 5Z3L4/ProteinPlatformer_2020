@@ -22,7 +22,7 @@ public class ThrowDumbbel : MonoBehaviour
 
         if (timeBtwAttack <= 0)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 StartCoroutine(Shot());
                 timeBtwAttack = startTimeBtwAttack;

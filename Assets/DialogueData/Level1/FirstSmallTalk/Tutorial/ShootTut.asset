@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f184db9c6bf3546acf73870c9f1d94, type: 3}
   m_Name: ShootTut
   m_EditorClassIdentifier: 
+  isQuestDialogue: 0
   dialogue:
-  - Press Q to shoot
+  - Press Z to shoot
   responses: []

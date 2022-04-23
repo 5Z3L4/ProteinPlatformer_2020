@@ -22,7 +22,8 @@ public class PlayerBubbleTrigger : MonoBehaviour
         LeftCtrl,
         Tab,
         S,
-        Q
+        Q,
+        Z
     }
     public TutorialFinishKey key;
     private void Awake()
@@ -67,7 +68,7 @@ public class PlayerBubbleTrigger : MonoBehaviour
         {
             HideTutorialText();
         }
-        if (key == TutorialFinishKey.Q && isTutAvailable && (Input.GetKeyDown(KeyCode.Q)))
+        if (key == TutorialFinishKey.Z && isTutAvailable && (Input.GetKeyDown(KeyCode.Z)))
         {
             HideTutorialText();
             Destroy(gameObject);
