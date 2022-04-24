@@ -39,21 +39,14 @@ public class MenuManagement : MonoBehaviour
     //LEVELS
     public GameObject[] levels;
     public int selectedLevel = 0;
+    [SerializeField] private Animator[] _animators;
     public void NextLevel()
     {
-        levels[selectedLevel].SetActive(false);
-        selectedLevel = (selectedLevel + 1) % levels.Length;
-        levels[selectedLevel].SetActive(true);
+        StartCoroutine(NextLevelFade());
     }
     public void PreviousLevel()
     {
-        levels[selectedLevel].SetActive(false);
-        selectedLevel--;
-        if(selectedLevel < 0)
-        {
-            selectedLevel += levels.Length;
-        }
-        levels[selectedLevel].SetActive(true);
+        StartCoroutine(PreviousLevelFade());
     }
     [Space(10)]
     //STORY MODE
@@ -76,5 +69,27 @@ public class MenuManagement : MonoBehaviour
         {
             DisablePanels();
         }
+    }
+    private IEnumerator NextLevelFade()
+    {
+        _animators[selectedLevel].Play("Right");
+        yield return new WaitForSeconds(_animators[selectedLevel].GetCurrentAnimatorStateInfo(0).length);
+        levels[selectedLevel].SetActive(false);
+        selectedLevel = (selectedLevel + 1) % levels.Length;
+        levels[selectedLevel].SetActive(true);
+        _animators[selectedLevel].Play("Entry");
+    }
+    private IEnumerator PreviousLevelFade()
+    {
+        _animators[selectedLevel].Play("Left");
+        yield return new WaitForSeconds(_animators[selectedLevel].GetCurrentAnimatorStateInfo(0).length);
+        levels[selectedLevel].SetActive(false);
+        selectedLevel--;
+        if (selectedLevel < 0)
+        {
+            selectedLevel += levels.Length;
+        }
+        levels[selectedLevel].SetActive(true);
+        _animators[selectedLevel].Play("Entry");
     }
 }
