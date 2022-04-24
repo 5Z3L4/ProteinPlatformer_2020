@@ -22531,22 +22531,52 @@ MonoBehaviour:
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
   SM: {fileID: 0}
 --- !u!1 &1056615862
 GameObject:
@@ -22930,22 +22960,52 @@ MonoBehaviour:
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
 --- !u!1001 &1115137313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23407,11 +23467,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -44.62469
+      value: -48.09665
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.779799
+      value: 20.402485
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -51521,6 +51581,10 @@ PrefabInstance:
       propertyPath: sceneTransition
       value: 
       objectReference: {fileID: 378125091}
+    - target: {fileID: 2062419970978422489, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
+      propertyPath: currentLevelNumber
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
 --- !u!224 &2135214322 stripped

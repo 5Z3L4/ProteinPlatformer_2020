@@ -9417,11 +9417,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.06942
+      value: 1.8306847
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.332273
+      value: -0.2662902
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10631,22 +10631,52 @@ MonoBehaviour:
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
   SM: {fileID: 0}
 --- !u!4 &1055290007 stripped
 Transform:
@@ -13067,22 +13097,52 @@ MonoBehaviour:
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
 --- !u!1 &1413779106
 GameObject:
   m_ObjectHideFlags: 0
@@ -59859,6 +59919,10 @@ PrefabInstance:
       propertyPath: sceneTransition
       value: 
       objectReference: {fileID: 1106485724}
+    - target: {fileID: 2062419970978422489, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
+      propertyPath: currentLevelNumber
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
 --- !u!224 &2006873662 stripped
