@@ -213,21 +213,26 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         //if is player trying to jump
-        if ((coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn) || (KonamiMoonWalk && holdingSpace))
+        if (!Physics2D.OverlapCircle(slideCheckUp.position, 0.5f, whatIsGround))
         {
-            transform.SetParent(null);
-            jumpBufferCounter = 0;
-            coyoteeTimeCounter = 0;
-            isAirborn = true;
-            mainCollider.enabled = true;
-            SFXManager.PlaySound(SFXManager.Sound.Jump, transform.position);
-            PlayParticleSystem(jumpAndLand);
-            playerAnim.SetBool("IsSliding", false);
-            shouldJump = true;
-            jumpTimeCounter = jumpTime;
-            playerRB.velocity = Vector2.up * jumpForce;
-            mainCollider.enabled = true;
+            if ((coyoteeTimeCounter > 0 && jumpBufferCounter > 0 && !shouldJump && !isAirborn) || (KonamiMoonWalk && holdingSpace))
+            {
+                transform.SetParent(null);
+                jumpBufferCounter = 0;
+                coyoteeTimeCounter = 0;
+                isAirborn = true;
+                mainCollider.enabled = true;
+                SFXManager.PlaySound(SFXManager.Sound.Jump, transform.position);
+                PlayParticleSystem(jumpAndLand);
+                playerAnim.SetBool("IsSliding", false);
+                shouldJump = true;
+                jumpTimeCounter = jumpTime;
+                playerRB.velocity = Vector2.up * jumpForce;
+                mainCollider.enabled = true;
+            }
         }
+
+            
 
         //if is player falling
         if (playerRB.velocity.y < 0 && !isGrounded)
