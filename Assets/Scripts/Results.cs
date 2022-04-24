@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
+using System;
 
 public class Results : MonoBehaviour
 {
@@ -16,13 +17,16 @@ public class Results : MonoBehaviour
     public TMP_Text finalScore;
     public float timeNeededForFinishInSeconds;
     public float oneSecondValue;
-
+    [SerializeField]
+    private int currentLevelNumber;
+    private SaveManager _sm;
     private PlayerMovement player;
     private float _timer;
     private float _finalScore;
 
     private void Awake()
     {
+        _sm = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
         player = FindObjectOfType<PlayerMovement>();
     }
 
@@ -41,6 +45,7 @@ public class Results : MonoBehaviour
         _finalScore = CalculateFinalScore();
         GameManager.Score = (int)_finalScore;
         finalScore.SetText("Final score: <color=#FF0000> " + _finalScore.ToString("0") + "</color>");
+        _sm.UpdateDataForCurrentLevel(currentLevelNumber, (int)_finalScore, _timer, GameManager.collectedChests, GameManager.collectedVendingMachines, GameManager.collectedConstitution ,false);
     }
     public void NextLevel(string levelName)
     {
@@ -50,7 +55,7 @@ public class Results : MonoBehaviour
     }
     public void BackToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu 1");
     }
     private IEnumerator SceneTransition()
     {

@@ -13,6 +13,6 @@ public class LevelData
     public int collectedMeat;
     public int collectedVM;
     public int collectedChests;
-    public string bestTime;
+    public float bestTime;
     public bool foundHiddenPlace;
 }
