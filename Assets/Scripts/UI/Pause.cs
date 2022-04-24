@@ -89,7 +89,7 @@ public class Pause : MonoBehaviour
     }
     public void BackToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu 1");
         Time.timeScale = 1;
     }
     private IEnumerator ResetJumpBuffer(float seconds)

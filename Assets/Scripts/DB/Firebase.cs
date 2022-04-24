@@ -12,24 +12,25 @@ public class Firebase : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(transform.gameObject);
         SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
         //SignUpUser("testlistyaa@test.com", "lista", "twojaaastara123");
-        SignInUser("testlistyaa@test.com", "twojaaastara123");
+        //SignInUser("testlistyaa@test.com", "twojaaastara123");
     }
 
     //delete this
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("Klikn¹³eœ save");
-            PostToDB();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            RetrieveFromDatabase();
-            print(SM.idToken);
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    Debug.Log("Klikn¹³eœ save");
+        //    PostToDB();
+        //}
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    RetrieveFromDatabase();
+        //    print(SM.idToken);
+        //}
     }
     private void RetrieveFromDatabase()
     {
@@ -66,7 +67,7 @@ public class Firebase : MonoBehaviour
     
     public void SignUpUser(string email, string username, string password)
     {
-        string userData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
+        string userData = "{\"email\":\"" + email + "@metagym.io" + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
         RestClient.Post<SignResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + authKey, userData).Then(
             response =>
             {
@@ -76,13 +77,13 @@ public class Firebase : MonoBehaviour
                 PostToDB(true);
             }).Catch(error =>
             {
-                Debug.Log(error);
+                Debug.Log(error.Message);
             });
     }
 
     public void SignInUser(string email, string password)
     {
-        string userData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
+        string userData = "{\"email\":\"" + email + "@metagym.io" + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
         RestClient.Post<SignResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + authKey, userData).Then(
             response =>
             {
@@ -92,7 +93,7 @@ public class Firebase : MonoBehaviour
                 GetUserName();
             }).Catch(error =>
             {
-                Debug.Log(error);
+                Debug.Log(error.Message);
             });
     }
 

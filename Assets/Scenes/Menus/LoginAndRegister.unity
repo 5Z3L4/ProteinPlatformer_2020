@@ -647,7 +647,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 352759006}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1931179299}
+        m_TargetAssemblyTypeName: LoginAndRegister, Assembly-CSharp
+        m_MethodName: Register
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &352759006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,6 +1013,7 @@ GameObject:
   - component: {fileID: 552655213}
   - component: {fileID: 552655212}
   - component: {fileID: 552655211}
+  - component: {fileID: 552655215}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1090,6 +1103,218 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &552655215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552655210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57159d3ffcaa1904db08580eca53c2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &692147749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 692147751}
+  - component: {fileID: 692147750}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: SaveManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &692147750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692147749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2f6b5e0aed96040a5c26db1f7574b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idToken: 
+  localId: 
+  playerName: 
+  terraWallet: 
+  deathCounter: 0
+  currentLevelId: 0
+  levels:
+  - levelName: Level_1.1
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_1.2
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_1.3
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_2.1
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_2.2
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_2.3
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_3.1
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_3.2
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_3.3
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_4.1
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_4.2
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_4.3
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_5.1
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_5.2
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+  - levelName: Level_5.3
+    isCompleted: 0
+    score: 0
+    deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 
+    foundHiddenPlace: 0
+--- !u!4 &692147751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692147749}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.390015, y: -3.57, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &776449927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,7 +1762,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1099730810}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1614911626}
+        m_TargetAssemblyTypeName: LoginAndRegister, Assembly-CSharp
+        m_MethodName: Login
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1099730810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1798,6 +2035,110 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428876454}
   m_CullTransparentMesh: 1
+--- !u!1 &1451721071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451721073}
+  - component: {fileID: 1451721072}
+  m_Layer: 5
+  m_Name: Firebase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1451721072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451721071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e40bcad43c747469896074f5141994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataToReturn:
+    playerName: 
+    wallet: 
+    localId: 
+    levels:
+    - levelName: 
+      isCompleted: 0
+      score: 0
+      deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 
+      foundHiddenPlace: 0
+    - levelName: 
+      isCompleted: 0
+      score: 0
+      deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 
+      foundHiddenPlace: 0
+    - levelName: 
+      isCompleted: 0
+      score: 0
+      deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 
+      foundHiddenPlace: 0
+    - levelName: 
+      isCompleted: 0
+      score: 0
+      deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 
+      foundHiddenPlace: 0
+    - levelName: 
+      isCompleted: 0
+      score: 0
+      deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 
+      foundHiddenPlace: 0
+  SM: {fileID: 0}
+--- !u!224 &1451721073
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451721071}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.48424998, y: 0.48424998, z: 0.48424998}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2426.0854, y: -142.64569}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1614911621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,6 +2175,7 @@ RectTransform:
   - {fileID: 776449928}
   - {fileID: 1099730808}
   - {fileID: 1870756618}
+  - {fileID: 1632196668}
   m_Father: {fileID: 552655214}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1907,6 +2249,140 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmailInput: {fileID: 1428876456}
   PasswordInput: {fileID: 776449929}
+  _db: {fileID: 1451721072}
+--- !u!1 &1632196667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1632196668}
+  - component: {fileID: 1632196671}
+  - component: {fileID: 1632196670}
+  - component: {fileID: 1632196669}
+  m_Layer: 5
+  m_Name: Submit (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1632196668
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632196667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2063812710}
+  m_Father: {fileID: 1614911622}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -731, y: -259}
+  m_SizeDelta: {x: 300, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1632196669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632196667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1632196670}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 552655215}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Menu 1
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1632196670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632196667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1632196671
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632196667}
+  m_CullTransparentMesh: 1
 --- !u!1 &1676277859
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,6 +2874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmailInput: {fileID: 1898093749}
   PasswordInput: {fileID: 987779672}
+  _db: {fileID: 1451721072}
 --- !u!1 &2030714166
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,6 +2979,87 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030714166}
+  m_CullTransparentMesh: 1
+--- !u!1 &2063812709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063812710}
+  - component: {fileID: 2063812712}
+  - component: {fileID: 2063812711}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2063812710
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063812709}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1632196668}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2063812711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063812709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 80
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 8
+    m_MaxSize: 80
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Menu
+
+'
+--- !u!222 &2063812712
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063812709}
   m_CullTransparentMesh: 1
 --- !u!1 &2080165237
 GameObject:

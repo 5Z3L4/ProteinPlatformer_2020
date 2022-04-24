@@ -9,5 +9,10 @@ public class LevelData
     public bool isCompleted;
     public int score;
     public int deathCounter;
-
+    public int tries;
+    public int collectedMeat;
+    public int collectedVM;
+    public int collectedChests;
+    public string bestTime;
+    public bool foundHiddenPlace;
 }

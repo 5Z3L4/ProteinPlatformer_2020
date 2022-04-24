@@ -14,6 +14,11 @@ public class SaveManager : MonoBehaviour
 
     public List<LevelData> levels = new List<LevelData>();
 
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
     //public LevelData level1 = new LevelData();
     //public LevelData level2 = new LevelData();
     //public LevelData level3 = new LevelData();
