@@ -24,6 +24,7 @@ TagManager:
   - Shield2
   - Firework
   - Hantel
+  - DB
   layers:
   - Default
   - TransparentFX

@@ -97,11 +97,12 @@ public class Firebase : MonoBehaviour
             });
     }
 
-    private void GetUserName()
+    public void GetUserName()
     {
         RestClient.Get<PlayerData>(databaseURL + "/" + SM.localId + ".json?auth=" + SM.idToken).Then(callback =>
         {
             SM.playerName = callback.playerName;
+            SM.levels = callback.levels;
         });
     }
     

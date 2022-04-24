@@ -2047,7 +2047,7 @@ GameObject:
   - component: {fileID: 1451721072}
   m_Layer: 5
   m_Name: Firebase
-  m_TagString: Untagged
+  m_TagString: DB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
