@@ -7,6 +7,8 @@ public class SECController : MonoBehaviour
 {
     public bool MuscularAttack = true;
     [SerializeField]
+    private GameObject _ticket;
+    [SerializeField]
     private GameObject _left;
     [SerializeField]
     private GameObject _right;
@@ -62,6 +64,11 @@ public class SECController : MonoBehaviour
     {
         _hp--;
         _hpSlider.value = _hp;
+        if (_hp <= 0)
+        {
+            _anim.Play("SECDie");
+            _ticket.SetActive(true);
+        }
     }
 
     public void Fall(string side)
@@ -104,7 +111,7 @@ public class SECController : MonoBehaviour
         {
             GetDamage();
         }
-        if (collision.CompareTag("Hantel"))
+        if (collision.CompareTag("Hantel") || collision.CompareTag("Projectile"))
         {
             GetDamage();
             Destroy(collision.gameObject);

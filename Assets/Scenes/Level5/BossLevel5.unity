@@ -1702,6 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MuscularAttack: 1
+  _ticket: {fileID: 1222434435}
   _left: {fileID: 3119811451401089523, guid: 191009f78a42e0140ae97e3f32b3a74b, type: 3}
   _right: {fileID: 378925539972848565, guid: 419e1c2499cd2784581b911e21f2eab0, type: 3}
   _fireWorks: {fileID: 1558531576}
@@ -5823,6 +5824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3996ade5ad92034d9f8596fbe7164ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _throw: {fileID: 1842401378}
   _target: {fileID: 262293551}
   _speed: 50
 --- !u!212 &1006625353
@@ -7248,6 +7250,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textWriterSpeed: 50
+--- !u!1 &1222434435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1230731327638362153, guid: 2d5e5cc6003686e4fb926e74e13be0a5, type: 3}
+  m_PrefabInstance: {fileID: 248106094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1232308321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 536622443229764161, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
@@ -29375,11 +29382,21 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
-  - first: {x: -80, y: 19, z: 0}
+  - first: {x: -81, y: 19, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
       m_TileSpriteIndex: 12
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741826
+  - first: {x: -80, y: 19, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -38809,7 +38826,7 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 3088
     m_Data: {fileID: 11400000, guid: 993eea01dfa4df447ad147c6b656fb33, type: 2}
-  - m_RefCount: 5
+  - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: 52d5852223a968a44a7e85204cd91c24, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 105
@@ -38824,7 +38841,7 @@ Tilemap:
     m_Data: {fileID: -242423724625672336, guid: b3b8ccc0249fb1c46931b0ee8ce81c42, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1825301175938728563, guid: b382e9cecdf9dd144b0644da77df7ca5, type: 3}
-  - m_RefCount: 3
+  - m_RefCount: 4
     m_Data: {fileID: -1019294444972620163, guid: b382e9cecdf9dd144b0644da77df7ca5, type: 3}
   - m_RefCount: 2638
     m_Data: {fileID: 2583560902386045109, guid: b3b8ccc0249fb1c46931b0ee8ce81c42, type: 3}
@@ -38841,7 +38858,7 @@ Tilemap:
   - m_RefCount: 5
     m_Data: {fileID: -5015334997998814490, guid: b3b8ccc0249fb1c46931b0ee8ce81c42, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 3088
+  - m_RefCount: 3089
     m_Data:
       e00: 1
       e01: 0
@@ -38914,7 +38931,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 3093
+  - m_RefCount: 3094
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -90024,8 +90041,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dumbbel: {fileID: 2537870411746724131, guid: d91b51988cabcd141b4d8a3a969646ef, type: 3}
-  startTimeBtwAttack: 0
-  canIShoot: 1
+  startTimeBtwAttack: 0.4
+  canIShoot: 0
 --- !u!114 &1842401386
 MonoBehaviour:
   m_ObjectHideFlags: 0
