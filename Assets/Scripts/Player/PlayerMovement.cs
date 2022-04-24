@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
         ShowSlideParticles();
 
-        if (Input.GetKeyDown(KeyCode.Tab) && canMove && allowCharge)
+        if (Input.GetKeyDown(KeyCode.X) && canMove && allowCharge)
         {
             if (!isCharging)
             {
@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && playerRB.velocity.y != 0 && allowSmash)
+        if (Input.GetKeyDown(KeyCode.V) && playerRB.velocity.y != 0 && allowSmash)
         {
             if (!isSmashing)
             {

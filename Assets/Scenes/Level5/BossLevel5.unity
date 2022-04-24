@@ -1963,6 +1963,7 @@ Transform:
   - {fileID: 800978877}
   - {fileID: 378125095}
   - {fileID: 504404884}
+  - {fileID: 1861750362}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6038,22 +6039,52 @@ MonoBehaviour:
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
     - levelName: 
       isCompleted: 0
       score: 0
       deathCounter: 0
+      tries: 0
+      collectedMeat: 0
+      collectedVM: 0
+      collectedChests: 0
+      bestTime: 0
+      foundHiddenPlace: 0
   SM: {fileID: 0}
 --- !u!1 &1049744664
 GameObject:
@@ -6350,22 +6381,52 @@ MonoBehaviour:
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
   - levelName: 
     isCompleted: 0
     score: 0
     deathCounter: 0
+    tries: 0
+    collectedMeat: 0
+    collectedVM: 0
+    collectedChests: 0
+    bestTime: 0
+    foundHiddenPlace: 0
 --- !u!4 &1098629121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 536622443229764161, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
@@ -90239,7 +90300,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 318721400}
     m_Modifications:
     - target: {fileID: 2062419970604121656, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -90263,7 +90324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2062419970978422485, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2062419970978422485, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
       propertyPath: m_AnchorMax.x
@@ -90299,7 +90360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2062419970978422485, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 12.930329
       objectReference: {fileID: 0}
     - target: {fileID: 2062419970978422485, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
       propertyPath: m_LocalRotation.w
@@ -90319,11 +90380,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2062419970978422485, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 76.7738
       objectReference: {fileID: 0}
     - target: {fileID: 2062419970978422485, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -7.292495
       objectReference: {fileID: 0}
     - target: {fileID: 2062419970978422485, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -90341,11 +90402,20 @@ PrefabInstance:
       propertyPath: sceneTransition
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2062419970978422489, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
+      propertyPath: currentLevelNumber
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
 --- !u!1 &1861750361 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2062419970978422484, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
+  m_PrefabInstance: {fileID: 1861750360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1861750362 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2062419970978422485, guid: 06b4731c779b8da4595618c96a85f216, type: 3}
   m_PrefabInstance: {fileID: 1861750360}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1866281500
