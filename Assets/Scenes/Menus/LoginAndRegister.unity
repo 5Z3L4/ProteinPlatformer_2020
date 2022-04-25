@@ -896,6 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57159d3ffcaa1904db08580eca53c2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 692147750}
 --- !u!1 &692147749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,6 +2249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmailInput: {fileID: 1428876456}
   PasswordInput: {fileID: 776449929}
+  PasswordCheckInput: {fileID: 0}
   _db: {fileID: 1451721072}
 --- !u!1 &1630306367
 GameObject:
@@ -3252,6 +3254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmailInput: {fileID: 1898093749}
   PasswordInput: {fileID: 987779672}
+  PasswordCheckInput: {fileID: 0}
   _db: {fileID: 1451721072}
 --- !u!1 &2030714166
 GameObject:

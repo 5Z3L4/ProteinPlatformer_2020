@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    public void LoadLevel(string levelName)
+    public SaveManager saveManager;
+    public void OnClick(string levelName)
     {
-        SceneManager.LoadScene(levelName);
+        StartCoroutine(LoadLevel(levelName));
+    }
+    private IEnumerator LoadLevel(string levelName)
+    {
+        yield return new WaitForSeconds(1f);
+        if (saveManager.idToken != string.Empty)
+        {
+            SceneManager.LoadScene(levelName);
+        }
     }
 }
