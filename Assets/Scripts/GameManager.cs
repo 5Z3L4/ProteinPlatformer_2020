@@ -30,6 +30,7 @@ public static class GameManager
     public static int specificLevelItemOnMap;
     public static int collectedSpecificItems;
 
+    public static string response;
     public static void Reset()
     {
         specificLevelItemOnMap = 0;

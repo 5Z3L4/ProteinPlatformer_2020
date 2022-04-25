@@ -933,7 +933,7 @@ MonoBehaviour:
   deathCounter: 0
   currentLevelId: 0
   levels:
-  - levelName: Level_1.1
+  - levelName: Level1_1
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -943,7 +943,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_1.2
+  - levelName: Level1_2
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -953,7 +953,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_1.3
+  - levelName: Level1_3
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -963,7 +963,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_2.1
+  - levelName: Level2_1
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -973,7 +973,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_2.2
+  - levelName: Level2_2
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -983,7 +983,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_2.3
+  - levelName: Level2_3
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -993,7 +993,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_3.1
+  - levelName: Level3_1
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -1003,7 +1003,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_3.2
+  - levelName: Level3_2
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -1013,7 +1013,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_3.3
+  - levelName: Level3_3
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -1023,7 +1023,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_4.1
+  - levelName: Level4_1
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -1033,7 +1033,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_4.2
+  - levelName: Level4_2
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -1043,7 +1043,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_4.3
+  - levelName: Level4_3
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -1053,7 +1053,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_5.1
+  - levelName: Level5_1
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -1063,7 +1063,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_5.2
+  - levelName: Level5_2
     isCompleted: 0
     score: 0
     deathCounter: 0
@@ -1073,7 +1073,7 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
-  - levelName: Level_5.3
+  - levelName: Level5_3
     isCompleted: 0
     score: 0
     deathCounter: 0

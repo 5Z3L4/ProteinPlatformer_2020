@@ -64,7 +64,16 @@ namespace Proyecto26
         {
             return Get<T>(new RequestHelper { Uri = url });
         }
-
+        public static IPromise<Players> Get<Players>(string url, string x = "")
+        {
+            return Get2<Players>(new RequestHelper { Uri = url });
+        }
+        public static IPromise<T> Get2<T>(RequestHelper options)
+        {
+            var promise = new Promise<T>();
+            Get2<T>(options, promise.Promisify);
+            return promise;
+        }
         /// <summary>
         /// Load data from the server using a HTTP GET request.
         /// </summary>

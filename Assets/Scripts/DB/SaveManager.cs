@@ -20,12 +20,13 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad(transform.gameObject);
         _db = GameObject.FindGameObjectWithTag("DB").GetComponent<Firebase>();
     }
-
     public void UpdateDataForCurrentLevel(int levelNumber, int score, float time, int collectedChests, int collectedVMs, int collectedMeat, bool hiddenPlace )
     {
         if (levels[levelNumber].score < score)
         {
             levels[levelNumber].score = score;
+            //if it's player highscore we don't have to compare it with database
+            _db.PostToDBScore(new ScoreData { score = levels[levelNumber].score, playerName = playerName, wallet = terraWallet }, levels[levelNumber].levelName);
         }
         if (levels[levelNumber].bestTime > time || levels[levelNumber].bestTime == 0)
         {

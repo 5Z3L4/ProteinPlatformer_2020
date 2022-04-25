@@ -8,22 +8,26 @@ public class Firebase : MonoBehaviour
     private string databaseURL = "https://metagymtest-default-rtdb.firebaseio.com/users/";
     public PlayerData dataToReturn = new PlayerData();
     public Players dataToReturnList = new Players();
-    public ResponseHelper responseHelper;
     private string authKey = "AIzaSyAquMeylCI4AEzjNkwVL9xJQh58EHslg8Q";
     public SaveManager SM;
 
-    private void Start()
+    private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
         SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
-        GetToDBAllUsersPlease("x");
-        //SignUpUser("testlistyaa@test.com", "lista", "twojaaastara123");
-        //SignInUser("testlistyaa@test.com", "twojaaastara123");
+        //downloads scores for specific level
+        GetToDBAllUsersPlease("Level1_2");
     }
 
     //delete this
     private void Update()
     {
+        //deserialize score for leaderboard
+        //if (!string.IsNullOrEmpty(GameManager.response))
+        //{
+        //    Dictionary<string, ScoreData> entryDict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, ScoreData>>(GameManager.response);
+        //}
+
         //if (Input.GetKeyDown(KeyCode.P))
         //{
         //    Debug.Log("Klikn¹³eœ save");
@@ -58,6 +62,16 @@ public class Firebase : MonoBehaviour
         RestClient.Put("https://metagymtest-default-rtdb.firebaseio.com/users/" + SM.localId + ".json?auth=" +SM.idToken, playerData).Catch(error => { Debug.Log(error); });
         Debug.Log("Rzuci³o puta");
     }
+    public void PostToDBScore(ScoreData score, string levelName)
+    {
+        if (SM.localId == null)
+        {
+            print("local id jest nullem");
+            return;
+        }
+        RestClient.Put("https://metagymtest-default-rtdb.firebaseio.com/Scores/" + levelName + "/" + SM.localId + ".json?auth=" +SM.idToken, score).Catch(error => { Debug.Log(error); });
+        Debug.Log("Rzuci³o puta z wynikiem");
+    }
 
     public void GetToDB(string GamingName)
     {
@@ -67,15 +81,13 @@ public class Firebase : MonoBehaviour
         });
     }
     
-    public void GetToDBAllUsersPlease(string GamingName)
+    public void GetToDBAllUsersPlease(string levelName)
     {
-        RestClient.Get<ResponseHelper>(
-        "https://metagymtest-default-rtdb.firebaseio.com/users.json").Then(response =>
+        RestClient.Get<Players>(
+        "https://metagymtest-default-rtdb.firebaseio.com/Scores/" + levelName + ".json", "x").Then(response =>
         {
-            responseHelper = response;
-        }).Catch(error =>
-        {
-            Debug.Log(error.Message);
+            dataToReturnList = response;
+ 
         });
     }
 

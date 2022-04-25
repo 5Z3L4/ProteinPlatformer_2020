@@ -100,6 +100,10 @@ namespace Proyecto26
         {
             StaticCoroutine.StartCoroutine(HttpBase.DefaultUnityWebRequest<T>(options, callback));
         }
+        public static void Request2<T>(RequestHelper options, Action<RequestException, ResponseHelper, T> callback)
+        {
+            StaticCoroutine.StartCoroutine(HttpBase.DefaultUnityWebRequest2<T>(options, callback));
+        }
 
         /// <summary>
         /// Load data from the server using a HTTP GET request.
@@ -143,6 +147,11 @@ namespace Proyecto26
         {
             options.Method = UnityWebRequest.kHttpVerbGET;
             Request(options, callback);
+        }
+        public static void Get2<T>(RequestHelper options, Action<RequestException, ResponseHelper, T> callback)
+        {
+            options.Method = UnityWebRequest.kHttpVerbGET;
+            Request2(options, callback);
         }
 
         /// <summary>
