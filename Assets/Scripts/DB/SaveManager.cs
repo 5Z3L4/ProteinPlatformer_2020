@@ -20,12 +20,25 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad(transform.gameObject);
         _db = GameObject.FindGameObjectWithTag("DB").GetComponent<Firebase>();
     }
+    private void Start()
+    {
+    }
 
+    private void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    _db.PostToDBScore(new ScoreData { score = 5000, playerName = "testscore"}, "Level1_2");
+        //}
+    }
     public void UpdateDataForCurrentLevel(int levelNumber, int score, float time, int collectedChests, int collectedVMs, int collectedMeat, bool hiddenPlace )
     {
+        score = 100000;
         if (levels[levelNumber].score < score)
         {
             levels[levelNumber].score = score;
+            Debug.Log("score: " + levels[levelNumber].score + " player name: " + playerName + " Levels: " + levels[levelNumber].levelName);
+            _db.PostToDBScore(new ScoreData { score = levels[levelNumber].score, playerName = playerName }, levels[levelNumber].levelName);
         }
         if (levels[levelNumber].bestTime > time || levels[levelNumber].bestTime == 0)
         {
