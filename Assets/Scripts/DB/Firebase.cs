@@ -7,6 +7,8 @@ public class Firebase : MonoBehaviour
 {
     private string databaseURL = "https://metagymtest-default-rtdb.firebaseio.com/users/";
     public PlayerData dataToReturn = new PlayerData();
+    public Players dataToReturnList = new Players();
+    public ResponseHelper responseHelper;
     private string authKey = "AIzaSyAquMeylCI4AEzjNkwVL9xJQh58EHslg8Q";
     public SaveManager SM;
 
@@ -14,6 +16,7 @@ public class Firebase : MonoBehaviour
     {
         DontDestroyOnLoad(transform.gameObject);
         SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
+        GetToDBAllUsersPlease("x");
         //SignUpUser("testlistyaa@test.com", "lista", "twojaaastara123");
         //SignInUser("testlistyaa@test.com", "twojaaastara123");
     }
@@ -63,6 +66,18 @@ public class Firebase : MonoBehaviour
             dataToReturn = callback;
         });
     }
+    
+    public void GetToDBAllUsersPlease(string GamingName)
+    {
+        RestClient.Get<ResponseHelper>(
+        "https://metagymtest-default-rtdb.firebaseio.com/users.json").Then(response =>
+        {
+            responseHelper = response;
+        }).Catch(error =>
+        {
+            Debug.Log(error.Message);
+        });
+    }
 
     
     public void SignUpUser(string email, string username, string password)
@@ -103,6 +118,16 @@ public class Firebase : MonoBehaviour
         {
             SM.playerName = callback.playerName;
             SM.levels = callback.levels;
+        });
+    }
+    public void GetLeaderBoard()
+    {
+        RestClient.Get(databaseURL + ".json?auth=" + SM.idToken).Then(callback =>
+        {
+            string x = callback.Headers.ToString();
+        }).Catch(error =>
+        {
+            Debug.Log(error.Message);
         });
     }
     
