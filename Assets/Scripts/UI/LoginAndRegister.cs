@@ -12,7 +12,7 @@ public class LoginAndRegister : MonoBehaviour
     private Firebase _db;
     public void Register()
     {
-        if (PasswordInput.text.Length < 6)
+        if (PasswordInput.textComponent.text.Length < 6)
         {
             Debug.Log("Password should contain atleast 6 characters");
             return;
@@ -24,6 +24,7 @@ public class LoginAndRegister : MonoBehaviour
         }
 
         _db.SignUpUser(EmailInput.text, EmailInput.text, PasswordInput.text);
+        _db.SignInUser(EmailInput.text, PasswordInput.text);
     }
     public void Login()
     {

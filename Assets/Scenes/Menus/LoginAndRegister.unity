@@ -3106,7 +3106,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1614911626}
+      - m_Target: {fileID: 1931179299}
         m_TargetAssemblyTypeName: LoginAndRegister, Assembly-CSharp
         m_MethodName: Register
         m_Mode: 1
@@ -3266,7 +3266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmailInput: {fileID: 1898093749}
   PasswordInput: {fileID: 987779672}
-  PasswordCheckInput: {fileID: 0}
+  PasswordCheckInput: {fileID: 986502624}
   _db: {fileID: 1451721072}
 --- !u!1 &2030714166
 GameObject:

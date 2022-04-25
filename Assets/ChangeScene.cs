@@ -17,5 +17,9 @@ public class ChangeScene : MonoBehaviour
         {
             SceneManager.LoadScene(levelName);
         }
+        else
+        {
+            Debug.Log("Login and password doesn't match");
+        }
     }
 }
