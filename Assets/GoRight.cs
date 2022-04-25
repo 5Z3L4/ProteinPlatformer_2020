@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GoRight : MonoBehaviour
 {
+    public GameObject Explosion;
+
     private Rigidbody2D _rb;
     private void Awake()
     {
@@ -18,7 +20,8 @@ public class GoRight : MonoBehaviour
     {
         if (collision.CompareTag("BossRage"))
         {
-            //boom
+            SFXManager.PlaySound(SFXManager.Sound.FireworkExplosion, transform.position);
+            Instantiate(Explosion, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
             Destroy(gameObject);
         }
     }

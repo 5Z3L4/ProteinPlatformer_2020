@@ -23,5 +23,6 @@ public class WhaleSpawner : MonoBehaviour
             //maybe timer
             Instantiate(ObjectsToSpawn[2], SpawnPos);
         }
+        SFXManager.PlaySound(SFXManager.Sound.WhaleWave, transform.position);
     }
 }

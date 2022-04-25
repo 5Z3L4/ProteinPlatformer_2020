@@ -19,6 +19,7 @@ public class WhaleBag : MonoBehaviour
     public void DestroyBag()
     {
         ScreenShake.Instance.Shakecamera(5f, .1f);
+        SFXManager.PlaySound(SFXManager.Sound.BagHit, transform.position);
         Destroy(gameObject);
     }
 }
