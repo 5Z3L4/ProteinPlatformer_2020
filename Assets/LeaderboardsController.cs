@@ -18,10 +18,23 @@ public class LeaderboardsController : MonoBehaviour
     {
         _db.GetToDBAllUsersPlease(levelName + "_1");
     }
+    //take scores for 1/3 of level
     public List<ScoresPlayers> GetLevelScores(string levelName)
     {
         List<ScoresPlayers> scores = new List<ScoresPlayers>();
-        //List<ScoreData> tempScores = _db.scores.Where(p =>p.)
-        return scores;
+        foreach (var score in _db.scores)
+        {
+            scores.Add(new ScoresPlayers 
+            { 
+                playerName = score.playerName,
+                wallet = score.wallet,
+                score = score.levels.Where(x => x.levelName == levelName).Select(p => p.score).SingleOrDefault()
+            });
+        }
+        return scores.OrderByDescending(p => p.score).ToList();
     }
+
+    //summary of 3 parts of level
+
+    //summary of all levels
 }

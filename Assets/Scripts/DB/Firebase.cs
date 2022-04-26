@@ -164,6 +164,9 @@ public class Firebase : MonoBehaviour
     
     public void GetToDBAllUsersPlease(string levelName)
     {
+        //reseting scores
+        scores.Clear();
+
         RestClient.Get<Players>(
         "https://metagymtest-default-rtdb.firebaseio.com/Scores.json", "x").Then(response =>
         {
