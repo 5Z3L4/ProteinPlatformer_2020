@@ -51,6 +51,87 @@ public class Firebase : MonoBehaviour
             //UpdateScore();
         });
     }
+    private ScoreData InitializeList(string nick, string wallet)
+    {
+        return new ScoreData { playerName = nick, wallet = wallet, levels = new List<Level>
+        {
+            new Level
+            {
+                levelName="Level1_1",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level1_2",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level1_3",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level2_1",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level2_2",
+                score=0        
+            },                 
+            new Level          
+            {                  
+                levelName="Level2_3",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level3_1",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level3_2",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level3_3",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level4_1",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level4_2",
+                score=0        
+            },                 
+            new Level          
+            {                  
+                levelName="Level4_3",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level5_1",
+                score=0
+            },
+            new Level
+            {
+                levelName="Level5_2",
+                score=0        
+            },                 
+            new Level          
+            {                  
+                levelName="Level5_3",
+                score=0
+            }
+        } };
+    }
     public void PostToDB(bool emptyScore = false)
     {
         PlayerData playerData = DataCollector();
@@ -69,7 +150,7 @@ public class Firebase : MonoBehaviour
             print("local id jest nullem");
             return;
         }
-        RestClient.Put("https://metagymtest-default-rtdb.firebaseio.com/Scores/" + levelName + "/" + SM.localId + ".json?auth=" +SM.idToken, score).Catch(error => { Debug.Log(error); });
+        RestClient.Put("https://metagymtest-default-rtdb.firebaseio.com/Scores/" + SM.localId + ".json?auth=" +SM.idToken, score).Catch(error => { Debug.Log(error); });
         Debug.Log("Rzuci³o puta z wynikiem");
     }
 
@@ -84,7 +165,7 @@ public class Firebase : MonoBehaviour
     public void GetToDBAllUsersPlease(string levelName)
     {
         RestClient.Get<Players>(
-        "https://metagymtest-default-rtdb.firebaseio.com/Scores/" + levelName + ".json", "x").Then(response =>
+        "https://metagymtest-default-rtdb.firebaseio.com/Scores.json", "x").Then(response =>
         {
             Dictionary<string, ScoreData> entryDict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, ScoreData>>(GameManager.response);
             scores.AddRange(entryDict.Select(p => p.Value).ToList());
@@ -103,6 +184,8 @@ public class Firebase : MonoBehaviour
                 SM.localId = response.localId;
                 SM.playerName = username;
                 PostToDB(true);
+                SignInUser(email, password);
+                PostToDBScore(InitializeList(email, "placeholder"), "x");
             }).Catch(error =>
             {
                 Debug.Log(error.Message);

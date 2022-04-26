@@ -24,7 +24,6 @@ public class LoginAndRegister : MonoBehaviour
         }
 
         _db.SignUpUser(EmailInput.text, EmailInput.text, PasswordInput.text);
-        _db.SignInUser(EmailInput.text, PasswordInput.text);
     }
     public void Login()
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class SaveManager : MonoBehaviour
     public int currentLevelId = 2;
 
     public List<LevelData> levels = new List<LevelData>();
+    public ScoreData levelsScore = new ScoreData();
     private Firebase _db;
 
     private void Awake()
@@ -20,13 +22,21 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad(transform.gameObject);
         _db = GameObject.FindGameObjectWithTag("DB").GetComponent<Firebase>();
     }
-    public void UpdateDataForCurrentLevel(int levelNumber, int score, float time, int collectedChests, int collectedVMs, int collectedMeat, bool hiddenPlace )
+    public void UpdateDataForCurrentLevel(int levelNumber, int score, float time, int collectedChests, int collectedVMs, int collectedMeat, bool hiddenPlace, string nick)
     {
         if (levels[levelNumber].score < score)
         {
             levels[levelNumber].score = score;
             //if it's player highscore we don't have to compare it with database
-            _db.PostToDBScore(new ScoreData { score = levels[levelNumber].score, playerName = playerName, wallet = terraWallet, levelName = levels[levelNumber].levelName }, levels[levelNumber].levelName);
+            levelsScore = _db.scores.Where(p => p.playerName == nick).SingleOrDefault();
+            foreach (var item in levelsScore.levels)
+            {
+                if (item.levelName == levels[levelNumber].levelName)
+                {
+                    item.score = score;
+                }
+            }
+            _db.PostToDBScore(levelsScore, levels[levelNumber].levelName);
         }
         if (levels[levelNumber].bestTime > time || levels[levelNumber].bestTime == 0)
         {

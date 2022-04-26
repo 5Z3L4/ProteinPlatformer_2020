@@ -1987,6 +1987,11 @@ MonoBehaviour:
       bestTime: 0
       foundHiddenPlace: 0
   SM: {fileID: 0}
+  scores:
+  - playerName: 
+    wallet: 
+    levels: []
+  iterations: 0
 --- !u!224 &1451721073
 RectTransform:
   m_ObjectHideFlags: 0

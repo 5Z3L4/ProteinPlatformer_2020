@@ -45,7 +45,7 @@ public class Results : MonoBehaviour
         _finalScore = CalculateFinalScore();
         GameManager.Score = (int)_finalScore;
         finalScore.SetText("Final score: <color=#FF0000> " + _finalScore.ToString("0") + "</color>");
-        _sm.UpdateDataForCurrentLevel(currentLevelNumber, (int)_finalScore, _timer, GameManager.collectedChests, GameManager.collectedVendingMachines, GameManager.collectedConstitution ,false);
+        _sm.UpdateDataForCurrentLevel(currentLevelNumber, (int)_finalScore, _timer, GameManager.collectedChests, GameManager.collectedVendingMachines, GameManager.collectedConstitution ,false, _sm.playerName);
     }
     public void NextLevel(string levelName)
     {

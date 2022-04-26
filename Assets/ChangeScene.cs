@@ -15,11 +15,19 @@ public class ChangeScene : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (saveManager.idToken != string.Empty)
         {
-            SceneManager.LoadScene(levelName);
+
         }
         else
         {
             Debug.Log("Login and password doesn't match");
+        }
+    }
+
+    private void Update()
+    {
+        if (saveManager.idToken != string.Empty)
+        {
+            SceneManager.LoadScene("Menu 1");
         }
     }
 }
