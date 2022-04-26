@@ -18,7 +18,6 @@ public class TutorialPages : MonoBehaviour
         _jumpBuffer = _player.jumpBuffer;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!_isTutorialOpen) return;
