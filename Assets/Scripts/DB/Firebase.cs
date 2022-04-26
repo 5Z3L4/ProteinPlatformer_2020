@@ -1,6 +1,7 @@
 using Proyecto26;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Firebase : MonoBehaviour
@@ -10,13 +11,12 @@ public class Firebase : MonoBehaviour
     public Players dataToReturnList = new Players();
     private string authKey = "AIzaSyAquMeylCI4AEzjNkwVL9xJQh58EHslg8Q";
     public SaveManager SM;
-
+    public List<ScoreData> scores = new List<ScoreData>();
+    public int iterations = 0;
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
         SM = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
-        //downloads scores for specific level
-        GetToDBAllUsersPlease("Level1_2");
     }
 
     //delete this
@@ -86,9 +86,10 @@ public class Firebase : MonoBehaviour
         RestClient.Get<Players>(
         "https://metagymtest-default-rtdb.firebaseio.com/Scores/" + levelName + ".json", "x").Then(response =>
         {
-            dataToReturnList = response;
- 
-        });
+            Dictionary<string, ScoreData> entryDict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, ScoreData>>(GameManager.response);
+            scores.AddRange(entryDict.Select(p => p.Value).ToList());
+            iterations++;
+        }).Catch(error => { Debug.Log(error); });
     }
 
     

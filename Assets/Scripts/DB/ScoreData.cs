@@ -6,6 +6,12 @@ using UnityEngine;
 public class ScoreData
 {
     public string playerName;
+    public string levelName;
     public int score;
     public string wallet;
+}
+[System.Serializable]
+public class ScoreDataRoot
+{
+    
 }

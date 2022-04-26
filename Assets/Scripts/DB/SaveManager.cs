@@ -26,7 +26,7 @@ public class SaveManager : MonoBehaviour
         {
             levels[levelNumber].score = score;
             //if it's player highscore we don't have to compare it with database
-            _db.PostToDBScore(new ScoreData { score = levels[levelNumber].score, playerName = playerName, wallet = terraWallet }, levels[levelNumber].levelName);
+            _db.PostToDBScore(new ScoreData { score = levels[levelNumber].score, playerName = playerName, wallet = terraWallet, levelName = levels[levelNumber].levelName }, levels[levelNumber].levelName);
         }
         if (levels[levelNumber].bestTime > time || levels[levelNumber].bestTime == 0)
         {
