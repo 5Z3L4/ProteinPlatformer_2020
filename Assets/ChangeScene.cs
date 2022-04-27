@@ -2,25 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ChangeScene : MonoBehaviour
 {
     public SaveManager saveManager;
+    public TMP_Text errorText;
+    public Animator loadingAnim;
+    private bool _canLoadMenu = false;
     public void OnClick(string levelName)
     {
         StartCoroutine(LoadLevel(levelName));
     }
     private IEnumerator LoadLevel(string levelName)
     {
-        yield return new WaitForSeconds(1f);
-        if (saveManager.idToken != string.Empty)
+        loadingAnim.SetBool("IsLoading", true);
+        yield return new WaitForSeconds(3f);
+        if (saveManager.idToken == string.Empty)
         {
-
+            errorText.SetText("Login or password is incorrect");
         }
-        else
-        {
-            Debug.Log("Login and password doesn't match");
-        }
+        loadingAnim.SetBool("IsLoading", false);
     }
 
     private void Update()

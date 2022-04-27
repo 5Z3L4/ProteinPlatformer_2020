@@ -13,6 +13,7 @@ public class Firebase : MonoBehaviour
     public SaveManager SM;
     public List<ScoreData> scores = new List<ScoreData>();
     public int iterations = 0;
+
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);

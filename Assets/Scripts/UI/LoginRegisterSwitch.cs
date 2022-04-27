@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class LoginRegisterSwitch : MonoBehaviour, IPointerClickHandler
 {
@@ -10,6 +11,7 @@ public class LoginRegisterSwitch : MonoBehaviour, IPointerClickHandler
     public GameObject LoginPanel; 
     // add callbacks in the inspector like for buttons
     public UnityEvent onClick;
+    public TMP_Text errorText;
 
     public void OnPointerClick(PointerEventData pointerEventData)
     {
@@ -27,5 +29,6 @@ public class LoginRegisterSwitch : MonoBehaviour, IPointerClickHandler
             RegisterPanel.SetActive(false);
             LoginPanel.SetActive(true);
         }
+        errorText.SetText(string.Empty);
     }
 }
