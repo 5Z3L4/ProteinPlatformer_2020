@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SECFireworkController : MonoBehaviour
 {
+    public ParticleSystem explode;
     public SECController Boss;
     [SerializeField]
     private Animator _anim;
@@ -12,8 +13,13 @@ public class SECFireworkController : MonoBehaviour
         if (collision.CompareTag("x"))
         {
             Boss.GetDamage();
+            explode.Play();
             _anim.SetBool("FallRight", true);
-            Destroy(gameObject);
+            Invoke("Destroy", 1f);
         }
+    }
+    private void Destroy()
+    {
+        Destroy(gameObject);
     }
 }
