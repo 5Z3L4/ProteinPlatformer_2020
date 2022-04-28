@@ -13,7 +13,6 @@ public class LeaderboardsController : MonoBehaviour
         _db = GameObject.FindGameObjectWithTag("DB").GetComponent<Firebase>();
         GetLevelLeaderboard("Level1");
     }
-    //15 requests to get full leaderboard XDDD
     public void GetLevelLeaderboard(string levelName)
     {
         _db.GetToDBAllUsersPlease(levelName + "_1");
@@ -58,7 +57,7 @@ public class LeaderboardsController : MonoBehaviour
                 score = tempScore
             });
         }
-        return scores;
+        return scores.OrderByDescending(p => p.score).ToList();
     }
 
     //summary of all levels
@@ -80,6 +79,6 @@ public class LeaderboardsController : MonoBehaviour
                 score = tempScore
             });
         }
-        return scores;
+        return scores.OrderByDescending(p => p.score).ToList();
     }
 }
