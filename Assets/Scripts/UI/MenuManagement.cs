@@ -23,6 +23,7 @@ public class MenuManagement : MonoBehaviour
     public Button Level1;
 
     private SaveManager _SM;
+    private Firebase _db;
     [SerializeField]
     private TMP_InputField walletInput;
     public GameObject walletPanel;
@@ -30,6 +31,7 @@ public class MenuManagement : MonoBehaviour
     private void Awake()
     {
         _SM = GameObject.Find("SaveManager").GetComponent<SaveManager>();
+        _db = GameObject.FindGameObjectWithTag("DB").GetComponent<Firebase>();
     }
     private void Start()
     {
@@ -46,6 +48,7 @@ public class MenuManagement : MonoBehaviour
         if (!string.IsNullOrEmpty(walletInput.text))
         {
             _SM.terraWallet = walletInput.text;
+            _db.PostToDB(true);
             walletPanel.SetActive(false);
         }
     }

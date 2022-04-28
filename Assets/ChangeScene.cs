@@ -27,7 +27,7 @@ public class ChangeScene : MonoBehaviour
 
     private void Update()
     {
-        if (saveManager.idToken != string.Empty)
+        if (saveManager.playerName != string.Empty)
         {
             SceneManager.LoadScene("Menu 1");
         }

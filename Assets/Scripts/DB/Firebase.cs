@@ -218,6 +218,7 @@ public class Firebase : MonoBehaviour
         {
             SM.playerName = callback.playerName;
             SM.levels = callback.levels;
+            SM.terraWallet = callback.wallet;
         });
     }
     public void GetLeaderBoard()
