@@ -44,7 +44,7 @@ public class LeaderboardsController : MonoBehaviour
             int tempScore = 0;
             foreach (var level in score.levels)
             {
-                if (levelName.Contains(levelName))
+                if (level.levelName.Contains(levelName))
                 {
                     tempScore += level.score;
                 }
