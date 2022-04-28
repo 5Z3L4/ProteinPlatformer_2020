@@ -22,6 +22,7 @@ public class SECArnieController : MonoBehaviour
         {
             _isShieldSpawned = true;
             Instantiate(_kwonShield);
+            SFXManager.PlaySound(SFXManager.Sound.ShurikenThrow, transform.position);
         }
     }
 }

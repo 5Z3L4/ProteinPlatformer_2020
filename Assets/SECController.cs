@@ -63,6 +63,7 @@ public class SECController : MonoBehaviour
     public void GetDamage()
     {
         _hp--;
+        SFXManager.PlaySound(SFXManager.Sound.Hit, transform.position);
         _hpSlider.value = _hp;
         if (_hp <= 0)
         {
@@ -116,5 +117,9 @@ public class SECController : MonoBehaviour
             GetDamage();
             Destroy(collision.gameObject);
         }
+    }
+    public void PlayShootSound()
+    {
+        SFXManager.PlaySound(SFXManager.Sound.ShurikenThrow, transform.position);
     }
 }

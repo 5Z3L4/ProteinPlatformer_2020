@@ -14,6 +14,7 @@ public class SECFireworkController : MonoBehaviour
         {
             Boss.GetDamage();
             explode.Play();
+            SFXManager.PlaySound(SFXManager.Sound.FireworkExplosion, transform.position);
             _anim.SetBool("FallRight", true);
             Invoke("Destroy", 1f);
         }

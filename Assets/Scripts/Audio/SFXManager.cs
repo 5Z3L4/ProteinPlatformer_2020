@@ -30,7 +30,8 @@ public static class SFXManager
         ShibaPullInBall,
         Thunder,
         BagHit,
-        WhaleWave
+        WhaleWave,
+        ShurikenThrow
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
 

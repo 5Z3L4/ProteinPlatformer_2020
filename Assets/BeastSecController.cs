@@ -24,6 +24,7 @@ public class BeastSecController : MonoBehaviour
         {
             _beastAnim.Play("BeastFireworks");
             _fireWorks.SetActive(true);
+            SFXManager.PlaySound(SFXManager.Sound.FireworkWhistle, transform.position);
             _isOver = true;
         }
     }

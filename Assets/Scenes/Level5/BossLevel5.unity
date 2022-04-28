@@ -355,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 109243058108378872, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
       propertyPath: interlocutorDialogues.Array.data[0]
-      value: Wait. Thats illegal, you can't do that!
+      value: Wait. That's illegal, you can't do that!
       objectReference: {fileID: 0}
     - target: {fileID: 359094373979658785, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
       propertyPath: m_Name
@@ -5576,7 +5576,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2085277948014580558, guid: b6805d950ab64ab429d5d6b12eba12d5, type: 3}
       propertyPath: responses
-      value: Nothing special, I'm just here to take cryptocat back home.
+      value: Nothing special, I'm just here to take CryptoCatDev back home.
       objectReference: {fileID: 0}
     - target: {fileID: 2085277948014580558, guid: b6805d950ab64ab429d5d6b12eba12d5, type: 3}
       propertyPath: shouldCheckForEnd
@@ -7292,7 +7292,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2085277948014580558, guid: b6805d950ab64ab429d5d6b12eba12d5, type: 3}
       propertyPath: responses
-      value: I don't need that, he is to weak. Take it back.
+      value: I don't need it, he is too weak. Take it back.
       objectReference: {fileID: 0}
     - target: {fileID: 2085277948014580558, guid: b6805d950ab64ab429d5d6b12eba12d5, type: 3}
       propertyPath: shouldCheckForEnd
@@ -7829,6 +7829,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
+    - target: {fileID: 3967524304330866288, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 224731854}
+    - target: {fileID: 3967524304330866288, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeSFXVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 4011621627152765903, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
       propertyPath: m_LocalScale.x
       value: -5
@@ -7876,6 +7884,14 @@ PrefabInstance:
     - target: {fileID: 6839132777821501679, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410660484507607450, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 224731854}
+    - target: {fileID: 7410660484507607450, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeMusicVolume
       objectReference: {fileID: 0}
     - target: {fileID: 8105929347991637553, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
       propertyPath: m_IsActive
@@ -10813,7 +10829,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2085277948014580558, guid: b6805d950ab64ab429d5d6b12eba12d5, type: 3}
       propertyPath: responses
-      value: Just get away. You are annoying.
+      value: Just go away. You are annoying.
       objectReference: {fileID: 0}
     - target: {fileID: 2085277948014580558, guid: b6805d950ab64ab429d5d6b12eba12d5, type: 3}
       propertyPath: shouldCheckForEnd
@@ -10903,7 +10919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 109243058108378872, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
       propertyPath: interlocutorDialogues.Array.data[0]
-      value: You are good at dodging. Lets see, how will you handle this one.
+      value: You are good at dodging. Lets see how you will handle this one.
       objectReference: {fileID: 0}
     - target: {fileID: 359094373979658785, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
       propertyPath: m_Name
@@ -11244,7 +11260,6 @@ MonoBehaviour:
   _throw: {fileID: 1842401378}
   _target: {fileID: 262293551}
   _speed: 50
-  tut: {fileID: 1383976993}
 --- !u!212 &1006625353
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12072,7 +12087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 109243058108378872, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
       propertyPath: interlocutorDialogues.Array.data[0]
-      value: Take this mr. Kwon!
+      value: Take this Mr. Kwon!
       objectReference: {fileID: 0}
     - target: {fileID: 359094373979658785, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
       propertyPath: m_Name
@@ -12283,7 +12298,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2085277948014580558, guid: b6805d950ab64ab429d5d6b12eba12d5, type: 3}
       propertyPath: responses
-      value: Ofcourse I can. I just wanted to show you my mercy. Prepare now for
+      value: Of course I can. I just wanted to show you my mercy. Prepare now for
         real fight.
       objectReference: {fileID: 0}
     - target: {fileID: 2085277948014580558, guid: b6805d950ab64ab429d5d6b12eba12d5, type: 3}
@@ -95463,12 +95478,19 @@ PrefabInstance:
       objectReference: {fileID: 1117498515}
     - target: {fileID: 109243058108378872, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
       propertyPath: interlocutorDialogues.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 109243058108378872, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
       propertyPath: interlocutorDialogues.Array.data[0]
-      value: You can't defeat me anyway! Why is there so dark. Turn these lights
-        on!
+      value: 'You can''t defeat me anyway! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 109243058108378872, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
+      propertyPath: interlocutorDialogues.Array.data[1]
+      value: 'Why is there so dark. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 109243058108378872, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
+      propertyPath: interlocutorDialogues.Array.data[2]
+      value: Turn these lights on!
       objectReference: {fileID: 0}
     - target: {fileID: 359094373979658785, guid: 076556b2f58d0874cabf7b9966d6d9de, type: 3}
       propertyPath: m_Name

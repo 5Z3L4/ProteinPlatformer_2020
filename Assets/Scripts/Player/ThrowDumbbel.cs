@@ -37,6 +37,7 @@ public class ThrowDumbbel : MonoBehaviour
     IEnumerator Shot()
     {
         anim.Play("ThrowSkinny");
+        SFXManager.PlaySound(SFXManager.Sound.ShurikenThrow, transform.position);
         yield return new WaitForSeconds(0.3f);
         Instantiate(dumbbel, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation);
     }
