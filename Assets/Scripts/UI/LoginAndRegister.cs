@@ -28,17 +28,21 @@ public class LoginAndRegister : MonoBehaviour
             return;
         }
         StartCoroutine(StartLoading());
-        _db.SignUpUser(EmailInput.text, EmailInput.text, PasswordInput.text);
     }
     public void Login()
     {
         _db.SignInUser(EmailInput.text, PasswordInput.text);
     }
+
     private IEnumerator StartLoading()
     {
         loadingAnim.SetBool("IsLoading", true);
         yield return new WaitForSeconds(3f);
-        loadingAnim.SetBool("IsLoading", false);
         errorText.SetText("<color=#00ff44>Account has been created successfully</color>");
+        yield return new WaitForSeconds(1f);
+        errorText.SetText("<color=#00ff44>Logging in...</color>");
+        yield return new WaitForSeconds(1f);
+        loadingAnim.SetBool("IsLoading", false);
+        _db.SignUpUser(EmailInput.text, EmailInput.text, PasswordInput.text);
     }
 }

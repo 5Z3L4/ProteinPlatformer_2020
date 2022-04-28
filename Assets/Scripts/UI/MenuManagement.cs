@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuManagement : MonoBehaviour
 {
@@ -12,10 +13,41 @@ public class MenuManagement : MonoBehaviour
     public GameObject leaderboardsPanel;
     public GameObject instructionsPanel;
     public GameObject optionsPanel;
+    [Space(10)]
+    //LEVELS
+    public GameObject[] levels;
+    public int selectedLevel = 0;
+    [SerializeField] private Animator[] _animators;
+    [Space(10)]
+    //STORY MODE
+    public Button Level1;
+
+    private SaveManager _SM;
+    [SerializeField]
+    private TMP_InputField walletInput;
+    public GameObject walletPanel;
+
+    private void Awake()
+    {
+        _SM = GameObject.Find("SaveManager").GetComponent<SaveManager>();
+    }
     private void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        if (string.IsNullOrEmpty(_SM.terraWallet))
+        {
+            walletPanel.SetActive(true);
+        }
+    }
+
+    public void EnterTerraWallet()
+    {
+        if (!string.IsNullOrEmpty(walletInput.text))
+        {
+            _SM.terraWallet = walletInput.text;
+            walletPanel.SetActive(false);
+        }
     }
 
     public void OnClick(GameObject panel)
@@ -35,11 +67,6 @@ public class MenuManagement : MonoBehaviour
         optionsPanel.SetActive(false);
     }
 
-    [Space(10)]
-    //LEVELS
-    public GameObject[] levels;
-    public int selectedLevel = 0;
-    [SerializeField] private Animator[] _animators;
     public void NextLevel()
     {
         StartCoroutine(NextLevelFade());
@@ -48,9 +75,6 @@ public class MenuManagement : MonoBehaviour
     {
         StartCoroutine(PreviousLevelFade());
     }
-    [Space(10)]
-    //STORY MODE
-    public Button Level1;
     public void LaodScene(string sceneName)
     {
         GameManager.Reset();
