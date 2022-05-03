@@ -5939,6 +5939,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259714506 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8140784499073629995, guid: a131632a0c978af438c561b2c71ffeed, type: 3}
+  m_PrefabInstance: {fileID: 262022843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95956e6355f96b04e8f001097ce4fe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &262022843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9417,11 +9428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.06942
+      value: 0.64276123
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.332273
+      value: -0.25132895
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10678,6 +10689,8 @@ MonoBehaviour:
       bestTime: 0
       foundHiddenPlace: 0
   SM: {fileID: 0}
+  scores: []
+  iterations: 0
 --- !u!4 &1055290007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
@@ -11083,7 +11096,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 259714506}
         m_TargetAssemblyTypeName: HUDManager, Assembly-CSharp
         m_MethodName: Respawn
         m_Mode: 1
@@ -13143,6 +13156,10 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
+  levelsScore:
+    playerName: 
+    wallet: 
+    levels: []
 --- !u!1 &1413779106
 GameObject:
   m_ObjectHideFlags: 0
