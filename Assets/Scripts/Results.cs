@@ -14,6 +14,9 @@ public class Results : MonoBehaviour
     public TMP_Text vendingMachinesCount;
     public TMP_Text chestsCount;
     public TMP_Text meatsCount;
+    public TMP_Text meatsCountCollected;
+    public TMP_Text vendingMachinesCountCollected;
+    public TMP_Text chestsCountCollected;
     public TMP_Text finalScore;
     public float timeNeededForFinishInSeconds;
     public float oneSecondValue;
@@ -38,6 +41,9 @@ public class Results : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        meatsCountCollected.SetText(GameManager.collectedConstitution.ToString() + "/" + GameManager.collectiblesOnMap.ToString());
+        vendingMachinesCountCollected.SetText(GameManager.collectedVendingMachines.ToString() + "/" + GameManager.vendingMachinesOnMap.ToString());
+        chestsCountCollected.SetText(GameManager.collectedChests.ToString() + "/" + GameManager.chestsOnMap.ToString());
         scoreResult.SetText("Score: " + GameManager.Score.ToString());
         vendingMachinesCount.SetText(" x " + CalculateMultiplierByCollectedItems("vendingMachine").ToString("0.0"));
         chestsCount.SetText(" x " + CalculateMultiplierByCollectedItems("chest").ToString("0.0"));

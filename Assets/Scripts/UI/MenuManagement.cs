@@ -46,6 +46,24 @@ public class MenuManagement : MonoBehaviour
             walletPanel.SetActive(true);
         }
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            DisablePanels();
+        }
+        if (storyModePanel.activeInHierarchy)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                PreviousLevel();
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                NextLevel();
+            }
+        }
+    }
 
     public void EnterTerraWallet()
     {
@@ -72,6 +90,8 @@ public class MenuManagement : MonoBehaviour
         leaderboardsPanel.SetActive(false);
         instructionsPanel.SetActive(false);
         optionsPanel.SetActive(false);
+        finishPreviousLevel.SetActive(false);
+        finishPreviousLevel.GetComponentInChildren<TMP_Text>().SetText(string.Empty);
     }
 
     public void NextLevel()
@@ -94,13 +114,6 @@ public class MenuManagement : MonoBehaviour
         leaderboardsPanel.SetActive(true);
     }
     //------------------------------------------------------------------------
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            DisablePanels();
-        }
-    }
     private IEnumerator NextLevelFade()
     {
         _animators[selectedLevel].Play("Right");
