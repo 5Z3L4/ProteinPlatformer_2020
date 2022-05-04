@@ -10,8 +10,10 @@ public class MuscleDogeController : MonoBehaviour
     private Animator _anim;
     public GameObject Ticket;
     private BoxCollider2D col;
+    private InterlocutorDialogue _lastDialogue;
     private void Awake()
     {
+        _lastDialogue = GameObject.Find("Okay").GetComponent<InterlocutorDialogue>();
         col = GetComponent<BoxCollider2D>();
         HpSlider.maxValue = BossHp;
         _anim = GetComponent<Animator>();
@@ -33,11 +35,27 @@ public class MuscleDogeController : MonoBehaviour
         if (BossHp <= 0)
         {
             col.isTrigger = true;
-            Ticket.SetActive(true);
+            if (!Ticket.gameObject.activeInHierarchy)
+            {
+                Ticket.SetActive(true);
+            }
             _anim.SetBool("IsDead", true);
             return;
         }
         _anim.SetBool("GetHit", true);
+    }
+    private void Update()
+    {
+        if (_anim.GetBool("y"))
+        {
+            if (_lastDialogue.isOver)
+            {
+                if (!Ticket.gameObject.activeInHierarchy)
+                {
+                    Ticket.SetActive(true);
+                }
+            }
+        }
     }
 
 }
