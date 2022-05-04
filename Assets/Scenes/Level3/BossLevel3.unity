@@ -5411,7 +5411,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 185}
-  m_SizeDelta: {x: 300, y: 95}
+  m_SizeDelta: {x: 400, y: 110}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &89917619
 GameObject:
@@ -6387,7 +6387,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -7, y: 10}
-  m_SizeDelta: {x: 300, y: 95}
+  m_SizeDelta: {x: 400, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &193317477
 GameObject:
@@ -22578,6 +22578,8 @@ MonoBehaviour:
       bestTime: 0
       foundHiddenPlace: 0
   SM: {fileID: 0}
+  scores: []
+  iterations: 0
 --- !u!1 &1056615862
 GameObject:
   m_ObjectHideFlags: 0
@@ -23006,6 +23008,10 @@ MonoBehaviour:
     collectedChests: 0
     bestTime: 0
     foundHiddenPlace: 0
+  levelsScore:
+    playerName: 
+    wallet: 
+    levels: []
 --- !u!1001 &1115137313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23467,11 +23473,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -48.09665
+      value: -45.626564
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.402485
+      value: 20.31298
       objectReference: {fileID: 0}
     - target: {fileID: 523621449963508292, guid: 3fbba76fb97756748858cf1348737e55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23905,9 +23911,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'RESTART FROM
+  m_text: 'PRESS SPACE
 
-    CHECKPOINT'
+    TO RESTART
+
+    FROM CHICKPOINT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1afb9b6a63dcc8348848afb50c06b8e7, type: 2}
   m_sharedMaterial: {fileID: 1201818935358060580, guid: 1afb9b6a63dcc8348848afb50c06b8e7, type: 2}

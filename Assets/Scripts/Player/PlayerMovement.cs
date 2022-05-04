@@ -492,6 +492,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = respawnPos;
             canMove = true;
             hp = maxHp;
+            GodModeOn();
             isDying = false;
             playerAnim.SetBool("IsDead", false);
         }
