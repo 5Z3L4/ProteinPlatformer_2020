@@ -131,5 +131,9 @@ public class Results : MonoBehaviour
         _finalScore = (GameManager.Score + CalculateScoreByTime()) * CalculateMultiplierByCollectedItems("vendingMachine") * CalculateMultiplierByCollectedItems("chest") * CalculateMultiplierByCollectedItems("meat");
         return _finalScore;
     }
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
         
 }
