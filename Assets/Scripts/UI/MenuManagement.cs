@@ -13,20 +13,24 @@ public class MenuManagement : MonoBehaviour
     public GameObject leaderboardsPanel;
     public GameObject instructionsPanel;
     public GameObject optionsPanel;
+    public GameObject walletPanel;
     [Space(10)]
     //LEVELS
     public GameObject[] levels;
     public int selectedLevel = 0;
-    [SerializeField] private Animator[] _animators;
     [Space(10)]
     //STORY MODE
     public Button Level1;
 
+    public GameObject finishPreviousLevel;
+
+    [SerializeField] private Animator[] _animators;
+    [SerializeField]
+    private TMP_InputField walletInput;
     private SaveManager _SM;
     private Firebase _db;
     [SerializeField]
-    private TMP_InputField walletInput;
-    public GameObject walletPanel;
+    private DBData _dbData;
 
     private void Awake()
     {
@@ -105,6 +109,24 @@ public class MenuManagement : MonoBehaviour
         selectedLevel = (selectedLevel + 1) % levels.Length;
         levels[selectedLevel].SetActive(true);
         _animators[selectedLevel].Play("Entry");
+        if (selectedLevel >= 1)
+        {
+            if (!_dbData.IsLevelOpen((selectedLevel*3) - 1))
+            {
+                finishPreviousLevel.SetActive(true);
+                finishPreviousLevel.GetComponentInChildren<TMP_Text>().SetText("FINISH ALL CHAPTERS IN LEVEL "+ selectedLevel + " TO GET ACCESS TO THIS GYM");
+            }
+            else
+            {
+                finishPreviousLevel.SetActive(false);
+                finishPreviousLevel.GetComponentInChildren<TMP_Text>().SetText(string.Empty);
+            }
+        }
+        else
+        {
+            finishPreviousLevel.SetActive(false);
+            finishPreviousLevel.GetComponentInChildren<TMP_Text>().SetText(string.Empty);
+        }
     }
     private IEnumerator PreviousLevelFade()
     {
@@ -118,5 +140,23 @@ public class MenuManagement : MonoBehaviour
         }
         levels[selectedLevel].SetActive(true);
         _animators[selectedLevel].Play("Entry");
+        if (selectedLevel >= 1)
+        {
+            if (!_dbData.IsLevelOpen((selectedLevel * 3) - 1))
+            {
+                finishPreviousLevel.SetActive(true);
+                finishPreviousLevel.GetComponentInChildren<TMP_Text>().SetText("FINISH ALL CHAPTERS IN LEVEL " + selectedLevel + " TO GET ACCESS TO THIS GYM");
+            }
+            else
+            {
+                finishPreviousLevel.SetActive(false);
+                finishPreviousLevel.GetComponentInChildren<TMP_Text>().SetText(string.Empty);
+            }
+        }
+        else
+        {
+            finishPreviousLevel.SetActive(false);
+            finishPreviousLevel.GetComponentInChildren<TMP_Text>().SetText(string.Empty);
+        }
     }
 }

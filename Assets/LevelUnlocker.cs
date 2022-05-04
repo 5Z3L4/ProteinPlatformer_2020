@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelUnlocker : MonoBehaviour
 {
@@ -32,12 +33,13 @@ public class LevelUnlocker : MonoBehaviour
 
             if (!lastLevelFinished)
             {
-                level.SetActive(false);
+                level.GetComponent<Button>().interactable = false;
             }
             else
             {
-                level.SetActive(true);
+                level.GetComponent<Button>().interactable = true;
             }
+            level.SetActive(true);
             i++;
         }
     }
