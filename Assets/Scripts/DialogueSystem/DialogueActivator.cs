@@ -57,7 +57,10 @@ public class DialogueActivator : MonoBehaviour
             normalText.HideText();
         }
         isDialogueRunning = true;
-        dialogueUI.ChangeinterlocutorSprite(imageToShow);
+        if (dialogueUI.gameObject.activeInHierarchy)
+        {
+            dialogueUI.ChangeinterlocutorSprite(imageToShow);
+        }
         if (questTargets == null || questTargets.Length == 0)
         {
             dialogueUI.ShowDialogue(currentDialogue);

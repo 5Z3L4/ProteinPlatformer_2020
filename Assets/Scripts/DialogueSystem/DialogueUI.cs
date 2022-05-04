@@ -68,6 +68,7 @@ public class DialogueUI : MonoBehaviour
         player.jumpBuffer = 0;
         isOpen = true;
         player.canMove = false;
+        player.GodModeOn();
         interlocutorImage.gameObject.SetActive(true);
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(interlocutorDialogue));

@@ -34,7 +34,10 @@ public class BeatCoinerController : MonoBehaviour
         if (hp <= 0)
         {
             gameObject.layer = 13;
-            Ticket.SetActive(true);
+            if (Ticket != null)
+            {
+                Ticket.SetActive(true);
+            }
             return;
         }
 
@@ -113,7 +116,7 @@ public class BeatCoinerController : MonoBehaviour
         }
     }
     void BallHit()
-    {
+    { 
         hp--;
         HpSlider.value = hp;
         StartCoroutine(DestroyAllBalls());
@@ -140,6 +143,18 @@ public class BeatCoinerController : MonoBehaviour
         foreach (var ball in allBalls)
         {
             ball.DestroyBall();
+        }
+    }
+    public void GetBagUp()
+    {
+        if (hp > 4) return;
+        if (_player.canMove)
+        {
+            _rb.isKinematic = false;
+            gameObject.layer = 13;
+            _anim.SetBool("Idle", true);
+            CanGetHit = false;
+            CanHitPlayer = true;
         }
     }
 }
