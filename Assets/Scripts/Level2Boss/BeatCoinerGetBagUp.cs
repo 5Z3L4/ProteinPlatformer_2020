@@ -31,7 +31,6 @@ public class BeatCoinerGetBagUp : StateMachineBehaviour
                 _timer -= Time.deltaTime;
             }
         }
-        Debug.Log(_timer);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
