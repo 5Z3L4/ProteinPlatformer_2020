@@ -23,6 +23,7 @@ public class MenuManagement : MonoBehaviour
     public Button Level1;
 
     public GameObject finishPreviousLevel;
+    public Button backButton;
 
     [SerializeField] private Animator[] _animators;
     [SerializeField]
@@ -63,6 +64,14 @@ public class MenuManagement : MonoBehaviour
                 NextLevel();
             }
         }
+        if (menuPanel.activeInHierarchy)
+        {
+            backButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            backButton.gameObject.SetActive(true);
+        }
     }
 
     public void EnterTerraWallet()
@@ -83,7 +92,7 @@ public class MenuManagement : MonoBehaviour
             panel.SetActive(true);
         }
     }
-    private void DisablePanels()
+    public void DisablePanels()
     {
         menuPanel.SetActive(true);
         storyModePanel.SetActive(false);
