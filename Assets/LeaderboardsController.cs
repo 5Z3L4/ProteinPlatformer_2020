@@ -29,10 +29,10 @@ public class LeaderboardsController : MonoBehaviour
             { 
                 playerName = score.playerName,
                 wallet = score.wallet,
-                score = score.levels.Where(x => x.levelName == levelName).FirstOrDefault().score
+                score = score.levels.Where(x => x.levelName == levelName).FirstOrDefault().seed
             });
         }
-        return scores.OrderByDescending(p => p.score).ToList();
+        return scores.OrderByDescending(p => DS.DecryptScore(p.score)).ToList();
     }
 
     //summary of 3 parts of level Level1 etc
@@ -46,7 +46,7 @@ public class LeaderboardsController : MonoBehaviour
             {
                 if (level.levelName.Contains(levelName))
                 {
-                    tempScore += level.score;
+                    tempScore += DS.DecryptScore(level.seed);
                 }
             };
 
@@ -54,10 +54,10 @@ public class LeaderboardsController : MonoBehaviour
             {
                 playerName = score.playerName,
                 wallet = score.wallet,
-                score = tempScore
+                score = tempScore.ToString()
             });
         }
-        return scores.OrderByDescending(p => p.score).ToList();
+        return scores.OrderByDescending(p => DS.DecryptScore(p.score)).ToList();
     }
 
     //summary of all levels
@@ -69,16 +69,18 @@ public class LeaderboardsController : MonoBehaviour
             int tempScore = 0;
             foreach (var level in score.levels)
             {
-                tempScore += level.score;
+                //decrypt here
+                tempScore += DS.DecryptScore(level.seed);
             };
 
             scores.Add(new ScoresPlayers
             {
                 playerName = score.playerName,
                 wallet = score.wallet,
-                score = tempScore
+                //decrypt here
+                score = tempScore.ToString()
             });
         }
-        return scores.OrderByDescending(p => p.score).ToList();
+        return scores.OrderByDescending(p => DS.DecryptScore(p.score)).ToList();
     }
 }

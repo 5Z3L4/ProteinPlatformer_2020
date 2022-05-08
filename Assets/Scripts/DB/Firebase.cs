@@ -59,77 +59,107 @@ public class Firebase : MonoBehaviour
             new Level
             {
                 levelName="Level1_1",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level1_2",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level1_3",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level2_1",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level2_2",
-                score=0        
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },                 
             new Level          
             {                  
                 levelName="Level2_3",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level3_1",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level3_2",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level3_3",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level4_1",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level4_2",
-                score=0        
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },                 
             new Level          
             {                  
                 levelName="Level4_3",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level5_1",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },
             new Level
             {
                 levelName="Level5_2",
-                score=0        
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             },                 
             new Level          
             {                  
                 levelName="Level5_3",
-                score=0
+                seed=DS.RandomString(60),
+                score=DS.RandomString(30),
+                magicString = DS.RandomString(25)
             }
         } };
     }

@@ -1,6 +1,10 @@
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -24,16 +28,17 @@ public class SaveManager : MonoBehaviour
     }
     public void UpdateDataForCurrentLevel(int levelNumber, int score, float time, int collectedChests, int collectedVMs, int collectedMeat, bool hiddenPlace, string nick)
     {
-        if (levels[levelNumber].score < score)
+        if (DS.DecryptScore(levels[levelNumber].score) < score)
         {
-            levels[levelNumber].score = score;
+            levels[levelNumber].score = DS.EncryptScore(score);
             //if it's player highscore we don't have to compare it with database
             levelsScore = _db.scores.Where(p => p.playerName == nick).SingleOrDefault();
             foreach (var item in levelsScore.levels)
             {
                 if (item.levelName == levels[levelNumber].levelName)
                 {
-                    item.score = score;
+                    //set score
+                    item.seed = DS.EncryptScore(score);
                 }
             }
             _db.PostToDBScore(levelsScore, levels[levelNumber].levelName);
@@ -61,7 +66,6 @@ public class SaveManager : MonoBehaviour
         levels[levelNumber].isCompleted = true;
         _db.PostToDB(true);
     }
-
     public void AddTriesForCurrentLevel(int currentLevelNumber)
     {
         levels[currentLevelNumber].tries++;

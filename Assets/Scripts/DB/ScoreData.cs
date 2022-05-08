@@ -18,12 +18,14 @@ public class Level
     //    score = 0;
     //}
     public string levelName;
-    public int score;
+    public string seed;
+    public string magicString;
+    public string score;
 }
 
 public class ScoresPlayers
 {
     public string playerName;
     public string wallet;
-    public int score;
+    public string score;
 }
