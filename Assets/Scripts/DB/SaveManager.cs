@@ -28,7 +28,7 @@ public class SaveManager : MonoBehaviour
     }
     public void UpdateDataForCurrentLevel(int levelNumber, int score, float time, int collectedChests, int collectedVMs, int collectedMeat, bool hiddenPlace, string nick)
     {
-        if (true) //DS.DecryptScore(levels[levelNumber].score) < score
+        if (DS.DecryptScore(levels[levelNumber].score) < score)
         {
             levels[levelNumber].score = DS.EncryptScore(score);
             //if it's player highscore we don't have to compare it with database
