@@ -50,7 +50,7 @@ public class Results : MonoBehaviour
         meatsCount.SetText(" x " + CalculateMultiplierByCollectedItems("meat").ToString("0.0"));
         _finalScore = CalculateFinalScore();
         GameManager.Score = (int)_finalScore;
-        finalScore.SetText("Final score: <color=#FF0000> " + _finalScore.ToString("0") + "</color>");
+        finalScore.SetText("Final score: <color=#FF0000> " + ((int)_finalScore).ToString("0") + "</color>");
         _sm.UpdateDataForCurrentLevel(currentLevelNumber, (int)_finalScore, _timer, GameManager.collectedChests, GameManager.collectedVendingMachines, GameManager.collectedConstitution ,false, _sm.playerName);
     }
     public void NextLevel(string levelName)
