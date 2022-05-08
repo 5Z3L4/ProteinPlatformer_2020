@@ -71,7 +71,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level5/BossLevel5.unity
     guid: 1bf109895457f7c4eb7e9690b8c5939b
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/BackToMenuTemp.unity
+    guid: 3de7bdf42e41bab4ea2d66784f7fa4bf
   m_configObjects: {}
