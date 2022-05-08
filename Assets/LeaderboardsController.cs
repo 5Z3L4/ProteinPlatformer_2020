@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ public class LeaderboardsController : MonoBehaviour
                 score = score.levels.Where(x => x.levelName == levelName).FirstOrDefault().seed
             });
         }
-        return scores.OrderByDescending(p => DS.DecryptScore(p.score)).ToList();
+        return scores.OrderByDescending(p => Convert.ToInt32(p.score)).ToList();
     }
 
     //summary of 3 parts of level Level1 etc
@@ -57,7 +58,7 @@ public class LeaderboardsController : MonoBehaviour
                 score = tempScore.ToString()
             });
         }
-        return scores.OrderByDescending(p => DS.DecryptScore(p.score)).ToList();
+        return scores.OrderByDescending(p => Convert.ToInt32(p.score)).ToList();
     }
 
     //summary of all levels
@@ -81,6 +82,6 @@ public class LeaderboardsController : MonoBehaviour
                 score = tempScore.ToString()
             });
         }
-        return scores.OrderByDescending(p => DS.DecryptScore(p.score)).ToList();
+        return scores.OrderByDescending(p => Convert.ToInt32(p.score)).ToList();
     }
 }

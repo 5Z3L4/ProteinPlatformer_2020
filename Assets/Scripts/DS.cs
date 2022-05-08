@@ -29,9 +29,7 @@ public static class DS
             return 0;
         }
         string newScore = score.ToString();
-        Debug.Log(newScore);
         newScore = Regex.Replace(newScore, @"[^XZCMKRGBLW]", "");
-        Debug.Log(newScore);
         newScore = new StringBuilder(newScore)
             .Replace("X", "1")
             .Replace("Z", "2")
@@ -44,7 +42,6 @@ public static class DS
             .Replace("L", "9")
             .Replace("W", "0")
             .ToString();
-        Debug.Log(newScore);
         if (string.IsNullOrEmpty(newScore))
         {
             return 0;
@@ -64,9 +61,38 @@ public static class DS
             .Replace("7", "G")
             .Replace("8", "B")
             .Replace("9", "L")
-            .Replace("0", "w")
+            .Replace("0", "W")
             .ToString();
+        newScore = RandomizeString(newScore);
         return newScore;
+    }
+
+    private static string RandomizeString(string newScore)
+    {
+        List<char> charList = new List<char>();
+        string firstChars = RandomSeed(random.Next(6));
+        foreach (var character in firstChars)
+        {
+            charList.Add(character);
+        }
+        foreach (var letter in newScore)
+        {
+            if (random.Next(10) % 3 != 0)
+            {
+                string newChars = RandomSeed(random.Next(6));
+                foreach (var character in newChars)
+                {
+                    charList.Add(character);
+                }
+            }
+            charList.Add(letter);
+        }
+        string lastChars = RandomSeed(random.Next(6));
+        foreach (var character in lastChars)
+        {
+            charList.Add(character);
+        }
+        return string.Join("",charList);
     }
 }
 

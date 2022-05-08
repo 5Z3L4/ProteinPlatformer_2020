@@ -28,7 +28,7 @@ public class SaveManager : MonoBehaviour
     }
     public void UpdateDataForCurrentLevel(int levelNumber, int score, float time, int collectedChests, int collectedVMs, int collectedMeat, bool hiddenPlace, string nick)
     {
-        if (DS.DecryptScore(levels[levelNumber].score) < score)
+        if (true) //DS.DecryptScore(levels[levelNumber].score) < score
         {
             levels[levelNumber].score = DS.EncryptScore(score);
             //if it's player highscore we don't have to compare it with database
@@ -37,8 +37,10 @@ public class SaveManager : MonoBehaviour
             {
                 if (item.levelName == levels[levelNumber].levelName)
                 {
+                    item.magicString = DS.RandomString(25);
+                    item.score = DS.RandomString(30);
                     //set score
-                    item.seed = DS.EncryptScore(score);
+                    item.seed = levels[levelNumber].score;
                 }
             }
             _db.PostToDBScore(levelsScore, levels[levelNumber].levelName);
