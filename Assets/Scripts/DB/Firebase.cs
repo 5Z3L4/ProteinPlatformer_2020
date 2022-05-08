@@ -172,7 +172,6 @@ public class Firebase : MonoBehaviour
             return;
         }
         RestClient.Put("https://metagymtest-default-rtdb.firebaseio.com/users/" + SM.localId + ".json?auth=" +SM.idToken, playerData).Catch(error => { Debug.Log(error); });
-        Debug.Log("Rzuci³o puta");
     }
     public void PostToDBScore(ScoreData score, string levelName)
     {
@@ -182,7 +181,6 @@ public class Firebase : MonoBehaviour
             return;
         }
         RestClient.Put("https://metagymtest-default-rtdb.firebaseio.com/Scores/" + SM.localId + ".json?auth=" +SM.idToken, score).Catch(error => { Debug.Log(error); });
-        Debug.Log("Rzuci³o puta z wynikiem");
     }
 
     public void GetToDB(string GamingName)
