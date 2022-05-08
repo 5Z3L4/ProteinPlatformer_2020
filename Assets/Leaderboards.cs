@@ -14,11 +14,14 @@ public class Leaderboards : MonoBehaviour
     [SerializeField]
     private LeaderboardsController _LC;
     private SaveManager _SM;
-
-    void Start()
+    private void Awake()
     {
         _LC = FindObjectOfType<LeaderboardsController>();
         _SM = FindObjectOfType<SaveManager>();
+    }
+    private void OnEnable()
+    {
+        LoadGeneralData();
     }
     public void LoadGeneralData()
     {
@@ -30,21 +33,21 @@ public class Leaderboards : MonoBehaviour
         {
             foreach (var record in records)
             {
-                if (record.playerName == _SM.playerName)
-                {
-                    yourScore.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().SetText(pos + ". ");
-                    yourScore.transform.GetChild(2).gameObject.GetComponent<TMP_Text>().SetText(record.playerName);
-                    yourScore.transform.GetChild(3).gameObject.GetComponent<TMP_Text>().SetText(record.score.ToString());
-                }
+                GetPersonalResult(record, pos);
                 
                 GameObject template = Instantiate(this.template.gameObject, contentHolder);
                 template.SetActive(true);
-                if (pos < 17)
-                {
-                    GameObject thropeeImg = template.transform.GetChild(0).transform.GetChild(0).gameObject;
-                    thropeeImg.SetActive(true);
-                    thropeeImg.GetComponent<Image>().sprite = thropiees[pos-1];
-                }
+                SetPucharek(pos, template);
+                //if (pos < 17)
+                //{
+                //    GameObject thropeeImg = template.transform.GetChild(0).transform.GetChild(0).gameObject;
+                //    thropeeImg.SetActive(true);
+                //    thropeeImg.GetComponent<Image>().sprite = thropiees[pos - 1];
+                //    if (pos == 4 || pos == 8 || pos == 12 || pos == 16)
+                //    {
+                //        thropeeImg.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 30);
+                //    }
+                //}
                 TMP_Text position = template.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
                 TMP_Text name = template.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
                 TMP_Text playerScore = template.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
@@ -66,14 +69,11 @@ public class Leaderboards : MonoBehaviour
         {
             foreach (var record in records)
             {
-                if (record.playerName == _SM.playerName)
-                {
-                    yourScore.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().SetText(pos + ". ");
-                    yourScore.transform.GetChild(2).gameObject.GetComponent<TMP_Text>().SetText(record.playerName);
-                    yourScore.transform.GetChild(3).gameObject.GetComponent<TMP_Text>().SetText(record.score.ToString());
-                }
+                GetPersonalResult(record, pos);
+
                 GameObject template = Instantiate(this.template.gameObject, contentHolder);
                 template.SetActive(true);
+                SetPucharek(pos, template);
                 TMP_Text position = template.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
                 TMP_Text name = template.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
                 TMP_Text playerScore = template.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
@@ -94,14 +94,11 @@ public class Leaderboards : MonoBehaviour
         {
             foreach (var record in records)
             {
-                if (record.playerName == _SM.playerName)
-                {
-                    yourScore.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().SetText(pos + ". ");
-                    yourScore.transform.GetChild(2).gameObject.GetComponent<TMP_Text>().SetText(record.playerName);
-                    yourScore.transform.GetChild(3).gameObject.GetComponent<TMP_Text>().SetText(record.score.ToString());
-                }
+                GetPersonalResult(record, pos);
+
                 GameObject template = Instantiate(this.template.gameObject, contentHolder);
                 template.SetActive(true);
+                SetPucharek(pos, template);
                 TMP_Text position = template.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
                 TMP_Text name = template.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
                 TMP_Text playerScore = template.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
@@ -120,5 +117,27 @@ public class Leaderboards : MonoBehaviour
             Destroy(record);
         }
         playerRecords.Clear();
+    }
+    private void GetPersonalResult(ScoresPlayers record, int pos)
+    {
+        if (record.playerName == _SM.playerName)
+        {
+            yourScore.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().SetText(pos + ". ");
+            yourScore.transform.GetChild(2).gameObject.GetComponent<TMP_Text>().SetText(record.playerName);
+            yourScore.transform.GetChild(3).gameObject.GetComponent<TMP_Text>().SetText(record.score.ToString());
+        }
+    }
+    private void SetPucharek(int pos, GameObject template)
+    {
+        if (pos < 17)
+        {
+            GameObject thropeeImg = template.transform.GetChild(0).transform.GetChild(0).gameObject;
+            thropeeImg.SetActive(true);
+            thropeeImg.GetComponent<Image>().sprite = thropiees[pos - 1];
+            if (pos == 4 || pos == 8 || pos == 12 || pos == 16)
+            {
+                thropeeImg.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 30);
+            }
+        }
     }
 }
