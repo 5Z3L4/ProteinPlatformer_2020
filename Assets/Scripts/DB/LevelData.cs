@@ -7,7 +7,7 @@ public class LevelData
 {
     public string levelName;
     public bool isCompleted;
-    public int score;
+    public string score;
     public int deathCounter;
     public int tries;
     public int collectedMeat;
