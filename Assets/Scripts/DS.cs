@@ -16,11 +16,22 @@ public static class DS
         return new string(Enumerable.Repeat(chars, length)
             .Select(s => s[random.Next(s.Length)]).ToArray());
     }
+    public static string RandomSeed(int length)
+    {
+        const string chars = "ADEFHIJNOPQSTUVYabcdefghijklmnopqrstuvwxyz0123456789";
+        return new string(Enumerable.Repeat(chars, length)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
     public static int DecryptScore(string score)
     {
+        if (string.IsNullOrEmpty(score))
+        {
+            return 0;
+        }
         string newScore = score.ToString();
-        
-        newScore = Regex.Replace(newScore, @"[^XZCMKRGBLW]", "", RegexOptions.IgnoreCase);
+        Debug.Log(newScore);
+        newScore = Regex.Replace(newScore, @"[^XZCMKRGBLW]", "");
+        Debug.Log(newScore);
         newScore = new StringBuilder(newScore)
             .Replace("X", "1")
             .Replace("Z", "2")
@@ -31,8 +42,9 @@ public static class DS
             .Replace("G", "7")
             .Replace("B", "8")
             .Replace("L", "9")
-            .Replace("w", "0")
+            .Replace("W", "0")
             .ToString();
+        Debug.Log(newScore);
         if (string.IsNullOrEmpty(newScore))
         {
             return 0;
