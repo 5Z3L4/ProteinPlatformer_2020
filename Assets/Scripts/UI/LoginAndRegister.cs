@@ -13,6 +13,21 @@ public class LoginAndRegister : MonoBehaviour
     public Animator loadingAnim;
     [SerializeField]
     private Firebase _db;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (GameObject.Find("LoginPanel") != null && GameObject.Find("LoginPanel").activeInHierarchy)
+            {
+                FindObjectOfType<Canvas>().GetComponent<ChangeScene>().OnClick("Menu 1");
+                Login();
+            }
+            if (GameObject.Find("RegisterPanel") != null && GameObject.Find("RegisterPanel").activeInHierarchy)
+            {
+                Register();
+            }
+        }
+    }
     public void Register()
     {
         if (PasswordInput.textComponent.text.Length < 6)
