@@ -2530,6 +2530,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 264251755, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
+      propertyPath: canSkipDialogue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 488745530, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
       propertyPath: m_Controller
       value: 

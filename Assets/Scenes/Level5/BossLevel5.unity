@@ -7629,6 +7629,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 318721400}
     m_Modifications:
+    - target: {fileID: 264251755, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
+      propertyPath: canSkipDialogue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 488745530, guid: 44ad2562f1058fa41a06064fb156e736, type: 3}
       propertyPath: m_Controller
       value: 
@@ -8210,7 +8214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &504404881
 MonoBehaviour:
   m_ObjectHideFlags: 0
