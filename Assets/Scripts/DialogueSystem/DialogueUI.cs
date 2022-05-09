@@ -7,13 +7,14 @@ using System.Collections.Generic;
 
 public class DialogueUI : MonoBehaviour
 {
-    
+    public bool canSkipDialogue = true;
     public Image PlayerImage => playerImage;
     public Image InterlocutorImage => interlocutorImage;
     public Color DefaultInterlocutorColor => defaultInterlocutorColor;
     public Color DefaultPlayerColor => defaultPlayerColor;
     public bool isOpen = false;
     public GameObject miniMap;
+    public Slider holdSpaceSlider;
     [SerializeField] private Image interlocutorImage;
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
@@ -25,6 +26,8 @@ public class DialogueUI : MonoBehaviour
     private Color defaultInterlocutorColor;
     private Color defaultPlayerColor;
     private float jumpBufferTemp;
+    private float _closeDialogueTimer = 0;
+    public float CloseDialogueTimer => _closeDialogueTimer;
     private void Awake()
     {        
         player = FindObjectOfType<PlayerMovement>();
@@ -49,18 +52,33 @@ public class DialogueUI : MonoBehaviour
     {
         if (isOpen)
         {
-            //if (responseHandler.tempResponseButtons.Count > 1)
-            //{
-                if (EventSystem.current.currentSelectedGameObject == null && responseHandler.tempResponseButtons.Count > 0)
+            if (EventSystem.current.currentSelectedGameObject == null && responseHandler.tempResponseButtons.Count > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(responseHandler.tempResponseButtons[0]);
+            }
+        }
+        if (canSkipDialogue && isOpen)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                _closeDialogueTimer += Time.deltaTime;
+                if (_closeDialogueTimer > 1.5f)
                 {
-                    EventSystem.current.SetSelectedGameObject(responseHandler.tempResponseButtons[0]);
+                    textWriter.Stop();
+                    CloseDialogueBox();
                 }
-            //}
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                _closeDialogueTimer = 0;
+            }
+            holdSpaceSlider.value = _closeDialogueTimer;
         }
     }
     public void ShowDialogue(InterlocutorDialogue interlocutorDialogue)
     {
         if (Time.timeScale == 0) return;
+        textLabel.text = string.Empty;
         if (miniMap != null)
         {
             miniMap.SetActive(false);
@@ -130,8 +148,13 @@ public class DialogueUI : MonoBehaviour
             miniMap.SetActive(true);
         }
         textWriter.Stop();
+        foreach (GameObject button in responseHandler.tempResponseButtons)
+        {
+            Destroy(button);
+        }
+        responseHandler.tempResponseButtons.Clear();
         StopAllCoroutines();
-        StartCoroutine(ResetJumpBuffer(1f));
+        StartCoroutine(ResetJumpBuffer(0.5f));
     }
     private IEnumerator RunTypingEffect(string dialogue)
     {
