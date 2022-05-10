@@ -6578,12 +6578,14 @@ MonoBehaviour:
   _ticket: {fileID: 1222434435}
   _left: {fileID: 3119811451401089523, guid: 191009f78a42e0140ae97e3f32b3a74b, type: 3}
   _right: {fileID: 378925539972848565, guid: 419e1c2499cd2784581b911e21f2eab0, type: 3}
+  _final: {fileID: 364244820700772627, guid: c76bf89053bcc93418de3a8860edebc5, type: 3}
   _fireWorks: {fileID: 1558531576}
   _hpSlider: {fileID: 1875316190}
   _muscularAnim: {fileID: 1049744667}
   _beastAnim: {fileID: 1367436992}
   _beast: {fileID: 1367436991}
   _hp: 10
+  _tut: {fileID: 826319161}
 --- !u!50 &262293554
 Rigidbody2D:
   serializedVersion: 4

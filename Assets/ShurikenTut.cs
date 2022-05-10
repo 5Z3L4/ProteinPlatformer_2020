@@ -16,6 +16,7 @@ public class ShurikenTut : MonoBehaviour
                 if (lastDial.isOver)
                 {
                     tut.gameObject.SetActive(true);
+                    GameObject.Find("Player").GetComponent<PlayerMovement>().jumpBuffer = 0.1f;
                     _shouldActivateTut = false;
                 }
             }

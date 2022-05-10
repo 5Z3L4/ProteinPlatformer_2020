@@ -13,6 +13,8 @@ public class SECController : MonoBehaviour
     [SerializeField]
     private GameObject _right;
     [SerializeField]
+    private GameObject _final;
+    [SerializeField]
     private GameObject _fireWorks;
     [SerializeField]
     private Slider _hpSlider;
@@ -28,6 +30,9 @@ public class SECController : MonoBehaviour
     private int _shotCOunter = 0;
     private int _hitCOunter = 0;
     private bool _checkForDialogue = false;
+    [SerializeField]
+    private GameObject _tut;
+    private int _counter = 0;
     private void Awake()
     {
         _anim = GetComponent<Animator>();
@@ -37,6 +42,18 @@ public class SECController : MonoBehaviour
         _hpSlider.maxValue = _hp;
         _hpSlider.value = _hp;
     }
+    private void Update()
+    {
+        if (_tut.activeInHierarchy && _counter == 0)
+        {
+            _counter++;
+        }
+        if (!_tut.activeInHierarchy && _counter == 1)
+        {
+            _anim.SetBool("FinalAttack", true);
+            _counter++;
+        }
+    }
     public void SpawnRightBriefCase()
     {
         Instantiate(_right);
@@ -44,6 +61,10 @@ public class SECController : MonoBehaviour
     public void SpawnRLeftBriefCase()
     {
         Instantiate(_left);
+    }
+    public void SpawnFinalBriefCase()
+    {
+        Instantiate(_final);
     }
 
     public void ChoseSide()
