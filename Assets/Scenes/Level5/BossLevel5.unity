@@ -97091,8 +97091,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1095346259}
     - target: {fileID: 5913092299120865099, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
+      propertyPath: jumpForce
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913092299120865099, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
       propertyPath: moveSpeed
-      value: 600
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 5913092299120865099, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
       propertyPath: SmashCheck
@@ -97108,7 +97112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5913092299120865099, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
       propertyPath: slideSpeed
-      value: 700
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 5913092299120865099, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
       propertyPath: allowCharge
@@ -97116,11 +97120,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5913092299120865099, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
       propertyPath: chargeSpeed
-      value: 1000
+      value: 1300
       objectReference: {fileID: 0}
     - target: {fileID: 5913092299120865099, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
       propertyPath: checkRadius
       value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913092299120865099, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
+      propertyPath: fallMultiplier
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913092299120865099, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
+      propertyPath: lowJumpMultiplier
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5913092299120865099, guid: 6b6849d545fc8954487fac6750fc3de4, type: 3}
       propertyPath: whatIsGround.m_Bits
