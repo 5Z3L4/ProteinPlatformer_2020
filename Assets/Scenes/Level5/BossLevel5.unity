@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasesToDisable:
   - {fileID: 441923094}
+  - {fileID: 440082812}
   endingScene: {fileID: 1090761832}
   lastPlayerRes: {fileID: 1004743763}
 --- !u!95 &38701201
