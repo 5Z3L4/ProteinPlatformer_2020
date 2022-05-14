@@ -188,6 +188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce592742f6f019409cff7d5474ab401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasesToDisable:
+  - {fileID: 441923094}
   endingScene: {fileID: 1090761832}
   lastPlayerRes: {fileID: 1004743763}
 --- !u!95 &38701201
